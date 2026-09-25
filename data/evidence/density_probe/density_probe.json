@@ -1,0 +1,101 @@
+{
+ "generated_utc": "2026-09-25T18:42:16Z",
+ "generated_by": "scripts/density_probe.py",
+ "file": "gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+ "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+ "bytes": 527755,
+ "suggested_note": "density probe \u00b7 p=1 on all unmasked valid px (5,106,385) \u00b7 inverts to |G| \u00b7 9cdae9b4",
+ "emitted_px": 5106385,
+ "valid_px": 5167373,
+ "known_fault_px": 60988,
+ "N_unmasked": 5106385,
+ "conformance": {
+  "template_adjustments": {
+   "pixels": 12279160,
+   "template_valid_px": 5167373,
+   "filled_inside": 0,
+   "masked_outside": 0,
+   "clipped": 0,
+   "unchanged": 12279160
+  },
+  "findings": {
+   "pixels": 12279160,
+   "template_valid_px": 5167373,
+   "nan_inside_px": 0,
+   "finite_outside_px": 0,
+   "out_of_range_px": 0,
+   "conformant": true
+  }
+ },
+ "inversion": {
+  "formula": "|G| = 0.2*N_unmasked*D/(1 - D + 0.2*kappa*D)",
+  "table": [
+   {
+    "D": 0.005,
+    "G_kappa3": 5116.618236472946,
+    "G_kappa2": 5121.750250752257,
+    "truth_density_kappa3": 0.001002004008016032
+   },
+   {
+    "D": 0.01,
+    "G_kappa3": 10253.78514056225,
+    "G_kappa2": 10274.416498993964,
+    "truth_density_kappa3": 0.0020080321285140565
+   },
+   {
+    "D": 0.015,
+    "G_kappa3": 15411.624748490945,
+    "G_kappa2": 15458.279515640766,
+    "truth_density_kappa3": 0.0030181086519114686
+   },
+   {
+    "D": 0.02,
+    "G_kappa3": 20590.262096774193,
+    "G_kappa2": 20673.62348178138,
+    "truth_density_kappa3": 0.004032258064516129
+   },
+   {
+    "D": 0.03,
+    "G_kappa3": 31010.435222672062,
+    "G_kappa2": 31199.908350305497,
+    "truth_density_kappa3": 0.006072874493927125
+   },
+   {
+    "D": 0.04,
+    "G_kappa3": 41515.32520325203,
+    "G_kappa2": 41855.614754098366,
+    "truth_density_kappa3": 0.008130081300813007
+   },
+   {
+    "D": 0.05,
+    "G_kappa3": 52105.96938775511,
+    "G_kappa2": 52643.14432989692,
+    "truth_density_kappa3": 0.010204081632653062
+   },
+   {
+    "D": 0.07,
+    "G_kappa3": 73548.75514403294,
+    "G_kappa2": 74623.5803757829,
+    "truth_density_kappa3": 0.014403292181069963
+   },
+   {
+    "D": 0.1,
+    "G_kappa3": 106383.02083333334,
+    "G_kappa2": 108646.48936170213,
+    "truth_density_kappa3": 0.020833333333333336
+   },
+   {
+    "D": 0.15,
+    "G_kappa3": 162969.7340425532,
+    "G_kappa2": 168342.36263736265,
+    "truth_density_kappa3": 0.03191489361702128
+   }
+  ],
+  "reading_if_FP_counted_only_in_public_chunks": "the inversion then yields an UPPER bound on |G_public|"
+ },
+ "expected_score_is_low_by_design": true,
+ "sources": {
+  "metric": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric",
+  "masking": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+ }
+}

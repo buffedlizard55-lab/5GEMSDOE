@@ -1,0 +1,940 @@
+{
+ "generated_utc": "2026-09-25T18:57:05Z",
+ "generated_by": "scripts/leaderboard_anchor.py",
+ "purpose": "Leaderboard anchor: turn every publicly-scored submission we own into a measurement.",
+ "metric": {
+  "alpha": 0.2,
+  "beta": 0.8,
+  "R_px": 3,
+  "R_m": 300
+ },
+ "leader": {
+  "account": "DARD",
+  "score": 0.3049,
+  "read_utc": "2026-09-25",
+  "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+ },
+ "sources": {
+  "metric_definition": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric",
+  "test_set_is_new_faults_only": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#competition-structure",
+  "known_faults_masked_from_scoring": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+  "new_fault_includes_geometry_of_known_systems": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+  "organizers_will_not_disclose_label_sources": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7",
+  "leaderboard": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+ },
+ "measurements": {
+  "grid": {
+   "shape": [
+    3730,
+    3292
+   ],
+   "crs": "EPSG:32611",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ]
+  },
+  "valid_px": 5167373,
+  "known_fault_px": 60988,
+  "known_fraction_of_valid": 0.011802515514169385,
+  "unmasked_valid_px": 5106385,
+  "files": [
+   {
+    "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+    "origin": "GEMSDOE data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+    "account": "extradr19",
+    "score": 0.1563,
+    "read_utc": "2026-09-25",
+    "family": "CNN ensemble (11 ResNet34 U-Net/UNet++/DeepLabV3+ folds) \u2192 floor 0.1 \u2192 distance-R thinning \u2192 binary",
+    "site": "https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html",
+    "identity": "CERTAIN \u2014 the only file that site offers; sha256 matches the committed artifact",
+    "sha256_measured": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 172974,
+    "emitted_fraction_of_valid": 0.03347426245405547,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 6455,
+    "on_known_fraction": 0.037317747175876145,
+    "flank_1px_of_known": 12092,
+    "between_1_and_3px_of_known": 18767,
+    "farther_than_3px_from_known": 135660,
+    "far_fraction": 0.7842797183391723,
+    "unmasked_emitted_px": 166519,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+    "origin": "GEMSDOE2 docs/gemsdoe2-dual-family-union-f68e590f.tif",
+    "account": "smashi34",
+    "score": 0.156,
+    "read_utc": "2026-09-25",
+    "family": "union of the 11-fold recall arm (7f00890a) and a 6-fold precision arm (8bce5dfe)",
+    "site": "https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html",
+    "identity": "PROBABLE \u2014 GEMSDOE2's pre-registered plan uploads the union first; the score differs from 0.1563 so it was not the recall arm (identical bytes to 7f00890a). FLAGGED for the owner to confirm from the DrivenData submissions page.",
+    "sha256_measured": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 183642,
+    "emitted_fraction_of_valid": 0.035538754411574315,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 7693,
+    "on_known_fraction": 0.04189128848520491,
+    "flank_1px_of_known": 14049,
+    "between_1_and_3px_of_known": 20811,
+    "farther_than_3px_from_known": 141089,
+    "far_fraction": 0.7682828546846582,
+    "unmasked_emitted_px": 175949,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "pindrop-v4-nodes-f347b70daa.tif",
+    "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+    "origin": "GEMSDOE3 docs/downloads/pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+    "account": "smrtdoog5",
+    "score": 0.1193,
+    "read_utc": "2026-09-25",
+    "family": "HistGradientBoosting pixel model (union target) \u2192 spaced nodes k=4, 3 % budget, 0 px on labels",
+    "site": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+    "identity": "CERTAIN \u2014 the owner's note names the file: '1 \u00b7 SUBMIT FIRST f347b70daa Pindrop nodes'",
+    "sha256_measured": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 155021,
+    "emitted_fraction_of_valid": 0.029999963230833152,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 0,
+    "on_known_fraction": 0.0,
+    "flank_1px_of_known": 6202,
+    "between_1_and_3px_of_known": 7489,
+    "farther_than_3px_from_known": 141330,
+    "far_fraction": 0.9116829332800073,
+    "unmasked_emitted_px": 155021,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "pindrop-v4-discovery-37f9d5b855.tif",
+    "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+    "origin": "GEMSDOE3 docs/downloads/pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+    "account": "wbg1 (wingbangboozle1)",
+    "score": 0.083,
+    "read_utc": "2026-09-25",
+    "family": "HistGradientBoosting trained only on catalogue-gap (SGMC-not-in-labels) pixels \u2192 spaced nodes",
+    "site": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+    "identity": "CERTAIN \u2014 the owner's note names the file: '2 \u00b7 SUBMIT SECOND 37f9d5b855 catalogue-gap target'",
+    "sha256_measured": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 155021,
+    "emitted_fraction_of_valid": 0.029999963230833152,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 0,
+    "on_known_fraction": 0.0,
+    "flank_1px_of_known": 4939,
+    "between_1_and_3px_of_known": 8175,
+    "farther_than_3px_from_known": 141907,
+    "far_fraction": 0.9154050096438547,
+    "unmasked_emitted_px": 155021,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "pindrop-v4-ridge-4e03fc9705.tif",
+    "sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+    "origin": "GEMSDOE3 docs/downloads/pindrop-v4-ridge-20260925T152422Z-4e03fc9705.tif",
+    "account": "SDCF9 (supahduteychef69)",
+    "score": 0.1152,
+    "read_utc": "2026-09-25",
+    "family": "same HGB union-target model \u2192 dense confidence-floor ridge (spacing 1), same 3 % budget",
+    "site": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+    "identity": "CERTAIN \u2014 the owner's note names the file: '3 \u00b7 CONTROL 4e03fc9705 dense ridge control'",
+    "sha256_measured": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 155021,
+    "emitted_fraction_of_valid": 0.029999963230833152,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 0,
+    "on_known_fraction": 0.0,
+    "flank_1px_of_known": 13341,
+    "between_1_and_3px_of_known": 16920,
+    "farther_than_3px_from_known": 124760,
+    "far_fraction": 0.80479418917437,
+    "unmasked_emitted_px": 155021,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "sha256": "8bce5dfe7302ad388a6bd36f9ae8a6402bde2bae6a295b0e66d174bfb25389a2",
+    "origin": "GEMSDOE2 docs/gemsdoe2-precision-arm-8bce5dfe.tif",
+    "account": null,
+    "score": null,
+    "read_utc": null,
+    "family": "6-fold blend, floor 0.47, thinned (the 'precision arm')",
+    "site": null,
+    "identity": "unscored",
+    "sha256_measured": "8bce5dfe7302ad388a6bd36f9ae8a6402bde2bae6a295b0e66d174bfb25389a2",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 21492,
+    "emitted_fraction_of_valid": 0.004159173336238743,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 2593,
+    "on_known_fraction": 0.12064954401637819,
+    "flank_1px_of_known": 4316,
+    "between_1_and_3px_of_known": 4239,
+    "farther_than_3px_from_known": 10344,
+    "far_fraction": 0.4812953657174763,
+    "unmasked_emitted_px": 18899,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   },
+   {
+    "file": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "sha256": "ad5ba91174b637bb77f399ae35506bebfa920a2e159ab593492f9baa64f3389f",
+    "origin": "GEMSDOE2 docs/gemsdoe2-extension-arm-ad5ba911.tif",
+    "account": null,
+    "score": null,
+    "read_utc": null,
+    "family": "union + 1 px corridor along the supplied catalogue (the 'extension arm')",
+    "site": null,
+    "identity": "unscored",
+    "sha256_measured": "ad5ba91174b637bb77f399ae35506bebfa920a2e159ab593492f9baa64f3389f",
+    "sha256_ok": true,
+    "format": {
+     "dtype": "float32",
+     "count": 1,
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "transform_matches_sample": true
+    },
+    "status": "OK",
+    "emitted_px": 292190,
+    "emitted_fraction_of_valid": 0.05654517295345236,
+    "binary": true,
+    "distinct_nonzero_values": 1,
+    "min_nonzero": 1.0,
+    "max": 1.0,
+    "on_known_fault_px": 7693,
+    "on_known_fraction": 0.026328758684417673,
+    "flank_1px_of_known": 122597,
+    "between_1_and_3px_of_known": 20811,
+    "farther_than_3px_from_known": 141089,
+    "far_fraction": 0.4828673123652418,
+    "unmasked_emitted_px": 284497,
+    "nan_inside_valid": 0,
+    "finite_outside_valid": 0
+   }
+  ],
+  "pairwise": [
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "intersection_px": 172974,
+    "union_px": 183642,
+    "jaccard": 0.941908713692946,
+    "a_minus_b_px": 0,
+    "b_minus_a_px": 10668
+   },
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "pindrop-v4-nodes-f347b70daa.tif",
+    "intersection_px": 7871,
+    "union_px": 320124,
+    "jaccard": 0.024587347402881383,
+    "a_minus_b_px": 165103,
+    "b_minus_a_px": 147150
+   },
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "pindrop-v4-discovery-37f9d5b855.tif",
+    "intersection_px": 5680,
+    "union_px": 322315,
+    "jaccard": 0.017622512138746257,
+    "a_minus_b_px": 167294,
+    "b_minus_a_px": 149341
+   },
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "pindrop-v4-ridge-4e03fc9705.tif",
+    "intersection_px": 20316,
+    "union_px": 307679,
+    "jaccard": 0.06602985579126297,
+    "a_minus_b_px": 152658,
+    "b_minus_a_px": 134705
+   },
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "intersection_px": 10824,
+    "union_px": 183642,
+    "jaccard": 0.05894076518443493,
+    "a_minus_b_px": 162150,
+    "b_minus_a_px": 10668
+   },
+   {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 172974,
+    "union_px": 292190,
+    "jaccard": 0.5919915123720867,
+    "a_minus_b_px": 0,
+    "b_minus_a_px": 119216
+   },
+   {
+    "a": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "b": "pindrop-v4-nodes-f347b70daa.tif",
+    "intersection_px": 8655,
+    "union_px": 330008,
+    "jaccard": 0.026226636930013817,
+    "a_minus_b_px": 174987,
+    "b_minus_a_px": 146366
+   },
+   {
+    "a": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "b": "pindrop-v4-discovery-37f9d5b855.tif",
+    "intersection_px": 5996,
+    "union_px": 332667,
+    "jaccard": 0.018024030036042048,
+    "a_minus_b_px": 177646,
+    "b_minus_a_px": 149025
+   },
+   {
+    "a": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "b": "pindrop-v4-ridge-4e03fc9705.tif",
+    "intersection_px": 24139,
+    "union_px": 314524,
+    "jaccard": 0.07674772036474165,
+    "a_minus_b_px": 159503,
+    "b_minus_a_px": 130882
+   },
+   {
+    "a": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "b": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "intersection_px": 21492,
+    "union_px": 183642,
+    "jaccard": 0.11703205149148888,
+    "a_minus_b_px": 162150,
+    "b_minus_a_px": 0
+   },
+   {
+    "a": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 183642,
+    "union_px": 292190,
+    "jaccard": 0.628502002121907,
+    "a_minus_b_px": 0,
+    "b_minus_a_px": 108548
+   },
+   {
+    "a": "pindrop-v4-nodes-f347b70daa.tif",
+    "b": "pindrop-v4-discovery-37f9d5b855.tif",
+    "intersection_px": 10453,
+    "union_px": 299589,
+    "jaccard": 0.034891134187169756,
+    "a_minus_b_px": 144568,
+    "b_minus_a_px": 144568
+   },
+   {
+    "a": "pindrop-v4-nodes-f347b70daa.tif",
+    "b": "pindrop-v4-ridge-4e03fc9705.tif",
+    "intersection_px": 30125,
+    "union_px": 279917,
+    "jaccard": 0.1076211877092138,
+    "a_minus_b_px": 124896,
+    "b_minus_a_px": 124896
+   },
+   {
+    "a": "pindrop-v4-nodes-f347b70daa.tif",
+    "b": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "intersection_px": 1687,
+    "union_px": 174826,
+    "jaccard": 0.009649594453914178,
+    "a_minus_b_px": 153334,
+    "b_minus_a_px": 19805
+   },
+   {
+    "a": "pindrop-v4-nodes-f347b70daa.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 13578,
+    "union_px": 433633,
+    "jaccard": 0.03131219256837003,
+    "a_minus_b_px": 141443,
+    "b_minus_a_px": 278612
+   },
+   {
+    "a": "pindrop-v4-discovery-37f9d5b855.tif",
+    "b": "pindrop-v4-ridge-4e03fc9705.tif",
+    "intersection_px": 8726,
+    "union_px": 301316,
+    "jaccard": 0.02895963042121892,
+    "a_minus_b_px": 146295,
+    "b_minus_a_px": 146295
+   },
+   {
+    "a": "pindrop-v4-discovery-37f9d5b855.tif",
+    "b": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "intersection_px": 665,
+    "union_px": 175848,
+    "jaccard": 0.00378167508302625,
+    "a_minus_b_px": 154356,
+    "b_minus_a_px": 20827
+   },
+   {
+    "a": "pindrop-v4-discovery-37f9d5b855.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 10289,
+    "union_px": 436922,
+    "jaccard": 0.023548825648513922,
+    "a_minus_b_px": 144732,
+    "b_minus_a_px": 281901
+   },
+   {
+    "a": "pindrop-v4-ridge-4e03fc9705.tif",
+    "b": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "intersection_px": 8207,
+    "union_px": 168306,
+    "jaccard": 0.04876237329625801,
+    "a_minus_b_px": 146814,
+    "b_minus_a_px": 13285
+   },
+   {
+    "a": "pindrop-v4-ridge-4e03fc9705.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 33177,
+    "union_px": 414034,
+    "jaccard": 0.08013110034441616,
+    "a_minus_b_px": 121844,
+    "b_minus_a_px": 259013
+   },
+   {
+    "a": "gemsdoe2-precision-arm-8bce5dfe.tif",
+    "b": "gemsdoe2-extension-arm-ad5ba911.tif",
+    "intersection_px": 21492,
+    "union_px": 292190,
+    "jaccard": 0.07355487867483487,
+    "a_minus_b_px": 0,
+    "b_minus_a_px": 270698
+   }
+  ]
+ },
+ "algebra": {
+  "definitions": {
+   "DTI": "T / (0.2*(T+F) + 0.8*G): TP_w + FN_w = |G| exactly, so FN never needs to be estimated",
+   "G": "kernel mass of the scored (hidden, new-fault, public-split) truth pixels = |G_public|",
+   "E_i": "emitted pixels of file i that are NOT on a supplied-catalogue pixel (those are masked)",
+   "T_i": "distance-weighted true-positive mass of file i",
+   "c": "kernel credit kept by an emitted pixel that is not a false positive (1 = on a truth pixel)",
+   "caveat_scoring_region": "If FP is counted only inside the public chunks, replace E_i by the portion of E_i inside them; the slopes are unchanged, the intercepts shrink. The chunking is not published, so both readings are kept."
+  },
+  "lines_T_of_G": [
+   {
+    "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "score": 0.1563,
+    "E_unmasked_emitted_px": 166519,
+    "intercept_c1": 5205.383940000001,
+    "slope_c1": 0.12504,
+    "G_lower_bound_from_T_le_G": {
+     "c=1": 5949.282184328427,
+     "c=0": 6169.7095413061525
+    },
+    "T_at_G": [
+     {
+      "G": 10000,
+      "T_c1": 6455.78394,
+      "recall_c1": 0.645578394,
+      "hit_rate_per_emitted_px_c1": 0.038769053020976586,
+      "T_c0": 6664.103825587877
+     },
+     {
+      "G": 20000,
+      "T_c1": 7706.18394,
+      "recall_c1": 0.385309197,
+      "hit_rate_per_emitted_px_c1": 0.04627810604195317,
+      "T_c0": 7954.852633317505
+     },
+     {
+      "G": 30000,
+      "T_c1": 8956.58394,
+      "recall_c1": 0.298552798,
+      "hit_rate_per_emitted_px_c1": 0.05378715906292976,
+      "T_c0": 9245.601441047133
+     },
+     {
+      "G": 50000,
+      "T_c1": 11457.38394,
+      "recall_c1": 0.2291476788,
+      "hit_rate_per_emitted_px_c1": 0.06880526510488293,
+      "T_c0": 11827.09905650639
+     },
+     {
+      "G": 80000,
+      "T_c1": 15208.58394,
+      "recall_c1": 0.19010729925,
+      "hit_rate_per_emitted_px_c1": 0.09133242416781269,
+      "T_c0": 15699.345479695274
+     },
+     {
+      "G": 120000,
+      "T_c1": 20210.18394,
+      "recall_c1": 0.1684181995,
+      "hit_rate_per_emitted_px_c1": 0.12136863625171902,
+      "T_c0": 20862.340710613786
+     }
+    ]
+   },
+   {
+    "file": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "score": 0.156,
+    "E_unmasked_emitted_px": 175949,
+    "intercept_c1": 5489.6088,
+    "slope_c1": 0.12480000000000001,
+    "G_lower_bound_from_T_le_G": {
+     "c=1": 6272.4049360146255,
+     "c=0": 6504.275829383886
+    },
+    "T_at_G": [
+     {
+      "G": 10000,
+      "T_c1": 6737.608800000001,
+      "recall_c1": 0.6737608800000001,
+      "hit_rate_per_emitted_px_c1": 0.0382929644385589,
+      "T_c0": 6954.592072667218
+     },
+     {
+      "G": 20000,
+      "T_c1": 7985.608800000001,
+      "recall_c1": 0.39928044000000007,
+      "hit_rate_per_emitted_px_c1": 0.04538592887711781,
+      "T_c0": 8242.783649876137
+     },
+     {
+      "G": 30000,
+      "T_c1": 9233.6088,
+      "recall_c1": 0.30778696,
+      "hit_rate_per_emitted_px_c1": 0.0524788933156767,
+      "T_c0": 9530.975227085053
+     },
+     {
+      "G": 50000,
+      "T_c1": 11729.6088,
+      "recall_c1": 0.23459217599999999,
+      "hit_rate_per_emitted_px_c1": 0.0666648221927945,
+      "T_c0": 12107.35838150289
+     },
+     {
+      "G": 80000,
+      "T_c1": 15473.6088,
+      "recall_c1": 0.19342011,
+      "hit_rate_per_emitted_px_c1": 0.0879437155084712,
+      "T_c0": 15971.933113129646
+     },
+     {
+      "G": 120000,
+      "T_c1": 20465.608799999998,
+      "recall_c1": 0.17054673999999997,
+      "hit_rate_per_emitted_px_c1": 0.11631557326270679,
+      "T_c0": 21124.699421965317
+     }
+    ]
+   },
+   {
+    "file": "pindrop-v4-nodes-f347b70daa.tif",
+    "score": 0.1193,
+    "E_unmasked_emitted_px": 155021,
+    "intercept_c1": 3698.8010600000002,
+    "slope_c1": 0.09544000000000001,
+    "G_lower_bound_from_T_le_G": {
+     "c=1": 4089.061046254533,
+     "c=0": 4199.842239127966
+    },
+    "T_at_G": [
+     {
+      "G": 10000,
+      "T_c1": 4653.201059999999,
+      "recall_c1": 0.46532010599999996,
+      "hit_rate_per_emitted_px_c1": 0.030016585236838877,
+      "T_c0": 4766.940254471694
+     },
+     {
+      "G": 20000,
+      "T_c1": 5607.60106,
+      "recall_c1": 0.280380053,
+      "hit_rate_per_emitted_px_c1": 0.03617317047367776,
+      "T_c0": 5744.668858975147
+     },
+     {
+      "G": 30000,
+      "T_c1": 6562.00106,
+      "recall_c1": 0.21873336866666665,
+      "hit_rate_per_emitted_px_c1": 0.042329755710516635,
+      "T_c0": 6722.397463478599
+     },
+     {
+      "G": 50000,
+      "T_c1": 8470.80106,
+      "recall_c1": 0.1694160212,
+      "hit_rate_per_emitted_px_c1": 0.0546429261841944,
+      "T_c0": 8677.854672485504
+     },
+     {
+      "G": 80000,
+      "T_c1": 11334.00106,
+      "recall_c1": 0.14167501325,
+      "hit_rate_per_emitted_px_c1": 0.07311268189471104,
+      "T_c0": 11611.040485995862
+     },
+     {
+      "G": 120000,
+      "T_c1": 15151.60106,
+      "recall_c1": 0.12626334216666668,
+      "hit_rate_per_emitted_px_c1": 0.09773902284206656,
+      "T_c0": 15521.954904009672
+     }
+    ]
+   },
+   {
+    "file": "pindrop-v4-discovery-37f9d5b855.tif",
+    "score": 0.083,
+    "E_unmasked_emitted_px": 155021,
+    "intercept_c1": 2573.3486,
+    "slope_c1": 0.0664,
+    "G_lower_bound_from_T_le_G": {
+     "c=1": 2756.371679520137,
+     "c=0": 2806.2689203925843
+    },
+    "T_at_G": [
+     {
+      "G": 10000,
+      "T_c1": 3237.3486,
+      "recall_c1": 0.32373485999999996,
+      "hit_rate_per_emitted_px_c1": 0.020883290650944065,
+      "T_c0": 3291.9957291031114
+     },
+     {
+      "G": 20000,
+      "T_c1": 3901.3486,
+      "recall_c1": 0.19506742999999999,
+      "hit_rate_per_emitted_px_c1": 0.02516658130188813,
+      "T_c0": 3967.204189546471
+     },
+     {
+      "G": 30000,
+      "T_c1": 4565.3486,
+      "recall_c1": 0.15217828666666666,
+      "hit_rate_per_emitted_px_c1": 0.029449871952832198,
+      "T_c0": 4642.412649989831
+     },
+     {
+      "G": 50000,
+      "T_c1": 5893.3486,
+      "recall_c1": 0.117866972,
+      "hit_rate_per_emitted_px_c1": 0.03801645325472033,
+      "T_c0": 5992.829570876551
+     },
+     {
+      "G": 80000,
+      "T_c1": 7885.3486,
+      "recall_c1": 0.09856685750000001,
+      "hit_rate_per_emitted_px_c1": 0.05086632520755253,
+      "T_c0": 8018.45495220663
+     },
+     {
+      "G": 120000,
+      "T_c1": 10541.348600000001,
+      "recall_c1": 0.08784457166666668,
+      "hit_rate_per_emitted_px_c1": 0.0679994878113288,
+      "T_c0": 10719.28879398007
+     }
+    ]
+   },
+   {
+    "file": "pindrop-v4-ridge-4e03fc9705.tif",
+    "score": 0.1152,
+    "E_unmasked_emitted_px": 155021,
+    "intercept_c1": 3571.68384,
+    "slope_c1": 0.09216,
+    "G_lower_bound_from_T_le_G": {
+     "c=1": 3934.265773704618,
+     "c=0": 4036.713200723327
+    },
+    "T_at_G": [
+     {
+      "G": 10000,
+      "T_c1": 4493.283839999999,
+      "recall_c1": 0.4493283839999999,
+      "hit_rate_per_emitted_px_c1": 0.02898500099986453,
+      "T_c0": 4599.250573206681
+     },
+     {
+      "G": 20000,
+      "T_c1": 5414.8838399999995,
+      "recall_c1": 0.270744192,
+      "hit_rate_per_emitted_px_c1": 0.034930001999729066,
+      "T_c0": 5542.584998362266
+     },
+     {
+      "G": 30000,
+      "T_c1": 6336.48384,
+      "recall_c1": 0.211216128,
+      "hit_rate_per_emitted_px_c1": 0.0408750029995936,
+      "T_c0": 6485.919423517851
+     },
+     {
+      "G": 50000,
+      "T_c1": 8179.68384,
+      "recall_c1": 0.1635936768,
+      "hit_rate_per_emitted_px_c1": 0.05276500499932267,
+      "T_c0": 8372.58827382902
+     },
+     {
+      "G": 80000,
+      "T_c1": 10944.483839999999,
+      "recall_c1": 0.13680604799999999,
+      "hit_rate_per_emitted_px_c1": 0.07060000799891628,
+      "T_c0": 11202.591549295774
+     },
+     {
+      "G": 120000,
+      "T_c1": 14630.883839999999,
+      "recall_c1": 0.12192403199999999,
+      "hit_rate_per_emitted_px_c1": 0.09438001199837441,
+      "T_c0": 14975.929249918112
+     }
+    ]
+   }
+  ],
+  "union_pair": {
+   "superset_check": {
+    "a": "gemsdoe-ens12-adopted-7f00890a.tif",
+    "b": "gemsdoe2-dual-family-union-f68e590f.tif",
+    "intersection_px": 172974,
+    "union_px": 183642,
+    "jaccard": 0.941908713692946,
+    "a_minus_b_px": 0,
+    "b_minus_a_px": 10668
+   },
+   "added_unmasked_px": 9430,
+   "score_delta": -0.0002999999999999947,
+   "rows": [
+    {
+     "G": 10000,
+     "delta_T_c1": 281.8248600000006,
+     "marginal_hit_rate_c1": 0.029885987274655423
+    },
+    {
+     "G": 20000,
+     "delta_T_c1": 279.424860000001,
+     "marginal_hit_rate_c1": 0.029631480381760444
+    },
+    {
+     "G": 30000,
+     "delta_T_c1": 277.02485999999953,
+     "marginal_hit_rate_c1": 0.029376973488865275
+    },
+    {
+     "G": 50000,
+     "delta_T_c1": 272.22486000000026,
+     "marginal_hit_rate_c1": 0.02886795970307532
+    },
+    {
+     "G": 80000,
+     "delta_T_c1": 265.02485999999953,
+     "marginal_hit_rate_c1": 0.028104439024390193
+    },
+    {
+     "G": 120000,
+     "delta_T_c1": 255.42485999999917,
+     "marginal_hit_rate_c1": 0.027086411452810093
+    }
+   ],
+   "reading": "The added pixels changed the score by -0.0003: under this metric that is the signature of pixels whose marginal hit-rate sits at the break-even line below."
+  },
+  "marginal_inclusion_rule": {
+   "statement": "Under DTI = T/(0.2(T+F)+0.8G), adding a binary pixel with expected TP gain dT and FP cost dF (\u22641) raises the score iff dT > 0.2*DTI*dF/(1-0.2*DTI).",
+   "corollary_binary_is_optimal": "For a fixed support, scaling all values by c>0 changes the score to cT/(0.2c(T+F)+0.8G), which is increasing in c; so every emitted pixel should be 1.0 and the whole problem is WHICH pixels to emit.",
+   "thresholds": [
+    {
+     "DTI": 0.1,
+     "break_even_expected_marginal_TP_per_px": 0.020408163265306128
+    },
+    {
+     "DTI": 0.1563,
+     "break_even_expected_marginal_TP_per_px": 0.03226872019324071
+    },
+    {
+     "DTI": 0.2,
+     "break_even_expected_marginal_TP_per_px": 0.04166666666666668
+    },
+    {
+     "DTI": 0.25,
+     "break_even_expected_marginal_TP_per_px": 0.052631578947368425
+    },
+    {
+     "DTI": 0.3049,
+     "break_even_expected_marginal_TP_per_px": 0.06494004387552982
+    },
+    {
+     "DTI": 0.4,
+     "break_even_expected_marginal_TP_per_px": 0.08695652173913046
+    }
+   ]
+  },
+  "density_probe_inversion": {
+   "N_unmasked_valid_px": 5106385,
+   "rows": [
+    {
+     "blanket_score": 0.01,
+     "G_kappa2": 10274.416498993964,
+     "G_kappa3": 10253.78514056225
+    },
+    {
+     "blanket_score": 0.015,
+     "G_kappa2": 15458.279515640766,
+     "G_kappa3": 15411.624748490945
+    },
+    {
+     "blanket_score": 0.02,
+     "G_kappa2": 20673.62348178138,
+     "G_kappa3": 20590.262096774193
+    },
+    {
+     "blanket_score": 0.03,
+     "G_kappa2": 31199.908350305497,
+     "G_kappa3": 31010.435222672062
+    },
+    {
+     "blanket_score": 0.04,
+     "G_kappa2": 41855.614754098366,
+     "G_kappa3": 41515.32520325203
+    },
+    {
+     "blanket_score": 0.05,
+     "G_kappa2": 52643.14432989692,
+     "G_kappa3": 52105.96938775511
+    },
+    {
+     "blanket_score": 0.07,
+     "G_kappa2": 74623.5803757829,
+     "G_kappa3": 73548.75514403294
+    },
+    {
+     "blanket_score": 0.1,
+     "G_kappa2": 108646.48936170213,
+     "G_kappa3": 106383.02083333334
+    },
+    {
+     "blanket_score": 0.15,
+     "G_kappa2": 168342.36263736265,
+     "G_kappa3": 162969.7340425532
+    }
+   ],
+   "producer": "scripts/density_probe.py"
+  }
+ },
+ "deductions": [
+  "D1. The best file is a DISCOVERY field, not a catalogue re-tracer: 78% of its 172,974 pixels lie >3 px from any supplied fault and only 3.7% sit on masked pixels. The 0.1563 was earned off-catalogue.",
+  "D2. Adding 9,430 unmasked pixels (10,668 in total; a strict superset) moved the score by -0.0003: post-hoc unions of existing fields are at break-even. More pixels from the SAME detectors do not raise the score; a better detector does.",
+  "D3. Spaced nodes vs dense ridge, same model and budget: 0.1193 vs 0.1152 (+0.0041). GEMSDOE3's local proxy (its README, audit fold) predicted +0.0924 for the same contrast. The local proxies over-reward sparsity by ~23\u00d7; the emission geometry is a second-order effect on the real board.",
+  "D4. Training on catalogue-gap (SGMC) pixels only scored 0.0830 vs 0.1193 for the same architecture with the union target: the SGMC gap population does NOT resemble the expert new-fault set. Any strategy that leans on it as truth should be down-weighted.",
+  "D5. CNN ensemble (0.1563) beats the pixel-wise HGB model (0.1152\u20130.1193) at similar budgets with almost disjoint supports (Jaccard 0.066): spatial context is worth ~+0.04, and the two families find different things. Their union is bounded between 'no new truth covered' and 'all TP disjoint' \u2014 the marginal rule puts the HGB pixels near break-even, so the union is a coin-flip, not a plan.",
+  "D6. Every scored file emits ~3\u20133.6 % of the valid area and lands at 0.08\u20130.16; the leader is at 0.3049. At DTI 0.30 the break-even marginal hit-rate is 6.5 % (vs 3.3 % at 0.156): the leader's detector finds roughly twice the truth per emitted pixel. The gap is detection quality, not shaping.",
+  "D7. The 19 supplied bands contain NO radiometric channel and only a 100 m detrended-elevation pair; the GeoDAWN release itself ships radiometric + magnetic GeoTIFF grids (22103_area1/area2_tiffs.zip) and the organizers hand out 1 m lidar links. Quaternary faults are mapped by experts from scarps in high-resolution topography; that channel is the one this family has never trained on (docs/STRATEGY.md \u00a74)."
+ ],
+ "irregularities": [
+  "The 0.1560 row's file identity is inferred from GEMSDOE2's pre-registered upload order, not read from the submissions page \u2014 FLAGGED; confirm from the account's DrivenData history.",
+  "Five accounts from one project family submitted to the same competition. The official rules (NLR/96647.pdf) and DrivenData's terms govern multiple accounts per individual; this is a compliance question for the owner, not something this repository can resolve \u2014 FLAGGED.",
+  "The public/private chunking of the region is not published; the algebra therefore carries two readings of E_i (whole-footprint FP vs public-chunk FP) and the numbers are bounds, not points."
+ ]
+}
