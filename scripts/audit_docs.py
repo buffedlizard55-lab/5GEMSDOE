@@ -63,6 +63,13 @@ GENERATED = {
     "outputs/submission.tif": "src/inference.py",
     "data/external": "scripts/download_external.sh (and scripts/build_reconstruction_dataset.py)",
     "data/external/jklinck": "scripts/download_external.sh",
+    # data/derived/ is a derived-products directory: rasters no script of this project reads back,
+    # written only so the next script (or a reader reproducing the run) can consume them. They are
+    # gitignored like outputs/, so a fresh checkout will not have them - a doc that names one is
+    # citing a product of a script, not a missing artefact.
+    "data/derived/salience.tif": "scripts/build_structural_salience.py",
+    "data/derived/salience_mean.tif": "scripts/build_structural_salience.py",
+    "data/derived/structural_targets.tif": "scripts/build_structural_targets.py",
 }
 
 # hosts legitimately cited outside the data catalog, with the reason (review this list; a

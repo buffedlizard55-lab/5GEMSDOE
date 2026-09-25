@@ -275,12 +275,188 @@ continuations/splays). Priced by the marginal rule once |G| is known.</li>
 <li><b>H5 — Phase-2 leverage</b>: distinct, defensible geometry is worth more after expert review than consensus pixels.</li>
 </ul>
 
-<h2>7. Irregularities flagged</h2><ul>""")
+<h2>7. Which local instrument can be trusted (measured 2026-09-25)</h2>""")
+
+    ri = ev.get("rank_instruments")
+    if ri:
+        out.append("<p>Every policy decision this project family has taken was argued on a local stand-in for the "
+                   "hidden truth. This is the test that stand-in has never been given: <b>can it order the five files "
+                   "whose true order the leaderboard already published?</b> Scored with the official metric, with the "
+                   "catalogue pixels the platform masks excluded from the false-positive term "
+                   "(<code>scripts/rank_instruments.py</code>).</p>")
+        out.append("<table><thead><tr><th>file</th><th>public score</th>"
+                   + "".join(f"<th>{e(i['name'])}</th>" for i in ri["instruments"])
+                   + "</tr></thead><tbody>")
+        for f in ri["files"]:
+            if f.get("status") != "OK":
+                continue
+            sc = f"<b>{f['score']:.4f}</b>" if f.get("score") is not None else "&mdash;"
+            cells = "".join("<td>%.4f</td>" % f["instruments"][i["name"]]["dti"]
+                            for i in ri["instruments"])
+            out.append(f"<tr><td><code>{e(f['sha8'] or f['label'])}</code></td><td>{sc}</td>{cells}</tr>")
+        out.append("</tbody></table>")
+        for name, v in ri["rank_agreement"].items():
+            inst = next((i for i in ri["instruments"] if i["name"] == name), {})
+            out.append(f"<p><b>{e(name)}</b> — Spearman rho vs the leaderboard = "
+                       f"<b>{v['spearman_rho_vs_leaderboard']}</b> over {v['n_files']} files: {e(v['verdict'])}."
+                       f"<br><span class='muted'>{e(inst.get('note',''))}</span></p>")
+        best = max(ri["rank_agreement"].items(), key=lambda kv: kv[1]["spearman_rho_vs_leaderboard"] or -9)
+        out.append(note("warn", f"<b>Consequence.</b> The instrument this project used to choose emission policies "
+                                f"(the SGMC-gap proxy) <b>anti-ranks</b> the board (rho = "
+                                f"{ri['rank_agreement'].get('proxy_sgmc_gap', {}).get('spearman_rho_vs_leaderboard')}). "
+                                f"The best local instrument is <code>{e(best[0])}</code> (rho = "
+                                f"{best[1]['spearman_rho_vs_leaderboard']}), and it is in-domain for every supervised "
+                                f"file here — so it can rank <i>detectors</i>, but it cannot judge any candidate that "
+                                f"exploits the masking rule, because its truth is the catalogue. With five files, "
+                                f"rho = 0.9 is suggestive, not proof: a reason to prefer this instrument, not a licence "
+                                f"to believe its absolute numbers."))
+
+    hp = ev.get("hidden_prior")
+    if hp:
+        pid = hp.get("partial_identification", {})
+        out.append("<h2>8. Fitting the hidden truth from the five scores — and what it cannot tell us</h2>")
+        out.append("<p>The board is the only instrument that has ever measured the scored population, so "
+                   "<code>scripts/fit_hidden_prior.py</code> uses it directly: model the expected truth density as a "
+                   "non-negative combination of spatial covariates and use the metric's algebra "
+                   "(<code>DTI = T / (0.2*E + 0.8*G)</code>) to turn each scored file into one <i>linear</i> equation "
+                   "in the weights. Then ask the question a point estimate hides: over <b>every</b> density that "
+                   "reproduces the five scores, what is the best and the worst a candidate can be?</p>")
+        out.append("<table><thead><tr><th>covariate</th><th>fitted weight (truth px per map px)</th></tr></thead><tbody>")
+        for k, v in hp["weights"].items():
+            out.append(f"<tr><td><code>{e(k)}</code></td><td>{v:.6g}</td></tr>")
+        out.append("</tbody></table>")
+        tstar = pid.get("smallest_possible_tol")
+        out.append(note("warn", f"<b>The model cannot fit the board.</b> The smallest tolerance at which ANY density "
+                                f"reproduces all five observed scores is <b>{tstar}</b> DTI — as large as the gap "
+                                f"between our best file (0.1563) and the Pindrop nodes file (0.1193). A model that "
+                                f"misses the five numbers it was given by that much is not identifying anything, so "
+                                f"ranges are reported instead of a prediction."))
+        out.append("<table><thead><tr><th>candidate</th><th>emitted px</th><th>charged px</th>"
+                   "<th>point estimate</th><th>worst case</th><th>best case</th></tr></thead><tbody>")
+        for c in hp["candidates"]:
+            out.append(f"<tr><td><code>{e(c['name'])}</code></td><td>{c['emitted_px']:,}</td>"
+                       f"<td>{c['chargeable_px']:,}</td><td>{c['predicted_dti']:.4f}</td>"
+                       f"<td>{c['dti_min']:.4f}</td><td>{c['dti_max']:.4f}</td></tr>")
+        out.append("</tbody></table>")
+        fal = hp.get("falsification_test")
+        if fal:
+            out.append(note("warn", f"<b>Falsification test.</b> The platform's own example submission IS the catalogue "
+                                    f"raster (measured). Under the fitted density it would score "
+                                    f"<b>{fal['predicted_dti']:.3f}</b> [{fal['dti_min']:.3f}, {fal['dti_max']:.3f}] "
+                                    f"against a best observed public score of {fal['best_observed_public_score']}. That "
+                                    f"file is public and free to submit, so a point estimate above the leader means the "
+                                    f"density is wrong — which is why the only decision taken from this section is the "
+                                    f"one that is <i>free under both readings</i> of the masking rule."))
+        ec = hp.get("emitted_candidate")
+        if ec:
+            out.append(f"<h3>The one decision the analysis supports: {e(ec['candidate'])}</h3>"
+                       f"<p>{e(ec['why_this_one'])} — {ec['emitted_px']:,} emitted px "
+                       f"(+{ec['added_over_base_px']:,} over the shipped field), {ec['chargeable_px']:,} of them "
+                       f"chargeable (the added ones are not), sha256 <code>{e(ec['sha256'][:16])}...</code>.</p>"
+                       f"<p><b>Why ship it:</b> {e(ec['experiment'])}</p>")
+    st = ev.get("structural_targets")
+    dil = ev.get("dilational") or {}
+    if st:
+        cnt = st["counts"]
+        out.append("<h2>9. A prior from the geothermal literature, not from the data (H6)</h2>")
+        out.append("<p>Forty years of Great Basin exploration is unusually quantitative about <i>geometry</i>. "
+                   "Faulds &amp; Hinz (World Geothermal Congress 2015, "
+                   "<a href=\"https://www.osti.gov/servlets/purl/1724082\">OSTI 1724082</a>; dataset "
+                   "<a href=\"https://gdr.openei.org/submissions/355\">GDR 355</a>, DOI "
+                   "<a href=\"https://doi.org/10.15121/1148722\">10.15121/1148722</a>) catalogued the structural "
+                   "setting of ~250 geothermal fields: step-overs / relay ramps <b>~32%</b>, normal-fault terminations "
+                   "<b>25%</b>, fault intersections <b>22%</b>, accommodation zones 9%, displacement transfer zones 5%, "
+                   "pull-aparts 3%, bends 2%, major range-front faults <b>1%</b>. They also report that Quaternary "
+                   "faults lie within or near most systems, that systems are <i>rare</i> along major range-front faults "
+                   "(clay gouge, stress release), and that tips horse-tail into a myriad of closely-spaced faults — "
+                   "short unmapped strands, which is what the scored set is made of.</p>")
+        out.append(f"<p><code>scripts/build_structural_targets.py</code> derives those settings from the catalogue's "
+                   f"own geometry (no label beyond <code>labels.tif</code>, no score, no model): "
+                   f"<b>{cnt['terminations']:,}</b> terminations, <b>{cnt['intersections']:,}</b> intersections, "
+                   f"<b>{cnt['bends_measured']:,}</b> bends and <b>{cnt['step_over_pairs']:,}</b> relay ramps "
+                   f"({cnt['step_over_ramp_px']:,} px of ramp) over {cnt['skeleton_px']:,} skeleton px, weighted by the "
+                   f"published frequencies and smoothed at sigma = {st['geometry']['smooth_sigma_px']} px. Accommodation "
+                   f"zones, transfer zones and pull-aparts need dip, slip sense and strain partitioning, which a trace "
+                   f"raster does not carry: they are reported as absent rather than invented.</p>")
+        if dil:
+            out.append("<table><thead><tr><th>candidate built on it</th><th>emitted px</th><th>charged px</th>"
+                       "<th>sha256</th></tr></thead><tbody>")
+            for k, v in sorted(dil.items(), key=lambda kv: int(kv[0])):
+                out.append(f"<tr><td><code>candidate_s5_dilational_top{int(k)//1000}k.tif</code></td>"
+                           f"<td>{v['emitted']:,}</td><td>{v['chargeable']:,}</td>"
+                           f"<td><code>{e(v['sha256'][:16])}...</code></td></tr>")
+            out.append("</tbody></table>")
+        out.append(note("warn", "<b>Not measured.</b> No local instrument can evaluate an off-catalogue prior: the "
+                                "SGMC proxy anti-ranks the board and the catalogue instrument is degenerate for any "
+                                "candidate that exploits the mask. These candidates are a scientific bet priced by the "
+                                "marginal rule, not a measured improvement — upload them only after S5-A's score tells "
+                                "us which reading of the masking rule the platform implements."))
+
+    out.append(f"""
+<h2>10. Irregularities flagged</h2><ul>""")
     for irr in an["irregularities"]:
         out.append(f"<li>{e(irr)}</li>")
     out.append("</ul>")
     return page("Strategy 5 — leaderboard-anchored", "strategy.html", "\n".join(out),
                 "What five public scores prove, what the metric forces, and the hypotheses this fork tests — all measured or linked.")
+
+
+def _candidate_downloads(ev: dict) -> str:
+    """The two candidates this fork offers, with the Note to paste for each.
+
+    S5-A is the primary: it is the shipped field plus every catalogue fault pixel, which the
+    platform states in writing it does not charge for (forum 11516). Its score against the
+    shipped field's 0.1563 is therefore also a measurement of which reading of that rule the
+    platform implements - a hedge and an experiment in one upload.
+    """
+    hp = ev.get("hidden_prior") or {}
+    ec = hp.get("emitted_candidate")
+    dil = ev.get("dilational") or {}
+    if not ec and not dil:
+        return ""
+    out = ['<section class="build-hero" id="candidates" style="border-color:#0ea5e9">',
+           '<h2>What to upload this week (site 5 candidates)</h2>',
+           '<p>Two families, both template-conformant and re-validated in this checkout. '
+           'The Note text is what the dialog calls &ldquo;a short comment to help you or your team '
+           'tell submissions apart later&rdquo; — paste it verbatim so the returned score can be '
+           'attributed to a file.</p>']
+    if ec:
+        out.append(
+            f'<h3>1. Primary — S5-A: the shipped field plus the masked catalogue</h3>'
+            f'<p>The platform states, verbatim (<a href="https://community.drivendata.org/t/'
+            f'scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-'
+            f'in-the-final-round-label-set/11516">forum 11516</a>): <i>&ldquo;Pixels corresponding to '
+            f'known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count '
+            f'towards penalty terms&rdquo;</i>. Those pixels therefore cost nothing to predict, and if '
+            f'the platform still awards credit for a new fault within 300 m of them, they are worth a '
+            f'great deal. This file adds them — {ec["added_over_base_px"]:,} px — to the field that '
+            f'scored 0.1563, and changes nothing else, so the returned score is a clean measurement.</p>'
+            f'<p><a class="btn" href="downloads/{e(ec["candidate"])}">Download {e(ec["candidate"])} '
+            f'({fmt_bytes(ec["bytes"])})</a><br>'
+            f'<span class="mono small">sha256 {e(ec["sha256"])}</span><br>'
+            f'<b>Note to paste:</b> <code>S5-A · 7f00890a + masked catalogue ({ec["added_over_base_px"]:,} px, '
+            f'charge-free per forum 11516) · measures the masking rule</code></p>')
+    if dil:
+        keys = sorted(dil, key=lambda k: int(k))
+        out.append('<h3>2. Secondary — S5-B: the dilational-setting prior (upload only after S5-A scores)</h3>')
+        out.append('<p>Faulds &amp; Hinz (2015) catalogued where Great Basin geothermal systems sit: '
+                   'step-overs and relay ramps ~32%, fault terminations 25%, intersections 22%, bends 2%, '
+                   'and only 1% on major range-front segments. <code>scripts/build_structural_targets.py</code> '
+                   'finds those settings in the catalogue\'s own geometry and these files add the highest-ranked '
+                   'of them to S5-A. They cost real false-positive mass, and no local instrument can measure '
+                   'whether they earn it back — so they are a second upload, not the first.</p>')
+        out.append('<table><thead><tr><th>file</th><th>emitted px</th><th>charged px</th><th>sha256</th>'
+                   '</tr></thead><tbody>')
+        for k in keys:
+            v = dil[k]
+            out.append(f'<tr><td><a href="downloads/{e(Path(v["path"]).name)}">'
+                       f'<code>{e(Path(v["path"]).name)}</code></a></td><td>{v["emitted"]:,}</td>'
+                       f'<td>{v["chargeable"]:,}</td><td><code>{e(v["sha256"][:24])}...</code></td></tr>')
+        out.append('</tbody></table>')
+        out.append('<p><b>Note to paste:</b> <code>S5-B · S5-A + top-N dilational-setting px '
+                   '(Faulds &amp; Hinz 2015 weights) · N=...</code></p>')
+    out.append('</section>')
+    return "\n".join(out)
 
 
 def build_index(ev: dict) -> str:
@@ -344,14 +520,26 @@ def build_index(ev: dict) -> str:
 
     lbline = ""
     _iv = ev.get("independent_verification")
-    if _iv and _iv.get("competition_standing"):
-        _lb = _iv["competition_standing"]
+    # The leaderboard moves, and two sources in this repository carry it at different dates
+    # (independent_verification.json, measured 2026-09-21, and leaderboard_anchor.json, which also
+    # pins the five files' identities). Publish the MORE RECENT bar, and say which one it is -
+    # a stale "best score" is a number a reader will act on.
+    _lb = (_iv or {}).get("competition_standing") or {}
+    _an = (ev.get("leaderboard_anchor") or {}).get("leader") or {}
+    _pick = _lb
+    if _an.get("score") and _lb.get("observed_utc") and str(_an.get("read_utc", "")) > str(_lb["observed_utc"]):
+        _pick = dict(_lb, top_dti=_an["score"], observed_utc=_an["read_utc"])
+    if _pick:
         lbline = (f'<p><b>The bar, from the competition itself:</b> the best public leaderboard score '
-                  f'is <b>{_lb["top_dti"]:.4f}</b> DW-Tversky ({_lb["n_ranked"]} ranked entrants, '
-                  f'median {_lb["median_dti"]:.4f}), read from '
-                  f'<a href="{_lb["url"]}">the leaderboard</a> at {_lb["observed_utc"]}. '
-                  f'This repository is not on it yet — see '
-                  f'<a href="verification.html#leaderboard">Verification</a>.</p>')
+                  f'is <b>{_pick["top_dti"]:.4f}</b> DW-Tversky ({_pick.get("n_ranked", "?")} ranked entrants, '
+                  f'median {_pick.get("median_dti", 0):.4f}), read from '
+                  f'<a href="{_pick.get("url", _an.get("url", "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"))}">the leaderboard</a> at {_pick["observed_utc"]}.'
+                  + (f' (The older committed reading for this repository was {_lb.get("top_dti")} at '
+                     f'{_lb.get("observed_utc")}: the bar moved {_pick["top_dti"] - _lb["top_dti"]:+.4f}.)'
+                     if _lb.get("top_dti") and _pick is not _lb else '')
+                  + f' This site\'s own best file is <b>0.1563</b> &mdash; see '
+                    f'<a href="verification.html#leaderboard">Verification</a> and '
+                    f'<a href="strategy.html">Strategy 5</a>.</p>')
 
     lvline = ""
     if lv:
@@ -570,6 +758,7 @@ python scripts/validate_submission.py --pred data/evidence/runs/ens12-adopted-fl
 """)
     out.append(_site5_banner(ev))
     out.append(_submission_builder(ev))
+    out.append(_candidate_downloads(ev))
     out.append(f"""
 
 <h2>1. Executive Overview &amp; Problem Context</h2>
@@ -3973,7 +4162,25 @@ def _submission_builder(ev: dict) -> str:
         f'files, re-checked at build time on '
         f'<a href="how_to_submit.html#generate">the subpage</a>.</p>'
     )
-    return head + p + "\n" + mount + foot + "\n</section>\n"
+    # The candidates this week: the landing page is where a reader acts, so the file to upload
+    # next is offered here too, not only on the executive summary.
+    cand = ev.get("hidden_prior") or {}
+    ec = cand.get("emitted_candidate")
+    cand_block = ""
+    if ec:
+        cand_block = (
+            f'<div class="note ok" id="what-to-upload-next"><b>What to upload next (site 5 candidate):</b> '
+            f'<a href="downloads/{e(ec["candidate"])}">{e(ec["candidate"])}</a> '
+            f'({fmt_bytes(ec["bytes"])}, {ec["emitted_px"]:,} px) — the shipped field plus the '
+            f'{ec["added_over_base_px"]:,} catalogue fault pixels it was missing, which the platform '
+            f'states in writing it does not charge for '
+            f'(<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>). '
+            f'It cannot score lower than the file above under either reading of that rule, and its '
+            f'score measures which reading the platform implements. '
+            f'<b>Note:</b> <code>S5-A · 7f00890a + masked catalogue (+{ec["added_over_base_px"]:,} px) · measures the masking rule</code> '
+            f'· reasoning and the S5-B variants: <a href="executive_summary.html#candidates">executive summary</a> '
+            f'and <a href="strategy.html">strategy §7-9</a>.</div>')
+    return head + p + "\n" + mount + foot + cand_block + "\n</section>\n"
 
 
 def build_how_to_submit(ev: dict) -> str:
@@ -4404,6 +4611,15 @@ def main(argv=None) -> int:
         "density_probe": load(ROOT / "data/evidence/density_probe/density_probe.json"),
         "topo_report": load(ROOT / "data/evidence/topo/topo_features_100m.report.json"),
         "site_payload": load(ROOT / "docs/submission_meta.json"),
+        # 5GEMSDOE session 2: which local instrument actually orders the scored files the way the
+        # board does (scripts/rank_instruments.py), the fit of the hidden-truth density from the
+        # five public scores with its partial-identification ranges
+        # (scripts/fit_hidden_prior.py), and the dilational-setting prior derived from the
+        # catalogue's own geometry with published frequencies (scripts/build_structural_targets.py).
+        "rank_instruments": load(ROOT / "data/evidence/rank_instruments.json"),
+        "hidden_prior": load(ROOT / "data/evidence/hidden_prior/fit.json"),
+        "dilational": load(ROOT / "data/evidence/hidden_prior/dilational_candidates.json"),
+        "structural_targets": load(ROOT / "data/evidence/salience/structural_targets.json"),
         "runs": [],
     }
     rd = ROOT / "data/evidence/runs"

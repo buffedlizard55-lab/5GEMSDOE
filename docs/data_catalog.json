@@ -640,7 +640,7 @@
   {
    "id": "L1",
    "category": "Literature (competition-listed)",
-   "dataset_or_item": "Mattéo et al 2021 Automatic fault mapping in remote optical images and topographic data with deep learning - JGR Solid Earth 126 e2020JB021269",
+   "dataset_or_item": "Matt\u00e9o et al 2021 Automatic fault mapping in remote optical images and topographic data with deep learning - JGR Solid Earth 126 e2020JB021269",
    "publisher_or_agency": "JGR Solid Earth / AGU",
    "official_link": "https://doi.org/10.1029/2020JB021269",
    "doi": "10.1029/2020JB021269",
@@ -1065,6 +1065,45 @@
    "verification_method": "pip install in-sandbox from pypi.org + files.pythonhosted.org; versions pinned in requirements.verified.txt; albumentations removed (unused after the numpy-augmentation rewrite)",
    "verification_date": "2026-09-12",
    "verification_result": "VERIFIED - numpy 2.4.6, rasterio 1.4.4, scikit-image 0.26.0, scipy 1.17.1, torch 2.14.0 (CPU run), segmentation_models_pytorch 0.5.0, torchvision 0.29.0, geopandas 1.1.4 all import; train->inference->validate executed"
+  },
+  {
+   "id": "E44",
+   "category": "External data official",
+   "dataset_or_item": "Faulds & Hinz 2015 - Favorable Tectonic and Structural Settings of Geothermal Systems in the Great Basin (WGC 2015): step-overs ~32%, terminations 25%, intersections 22%, accommodation zones 9%, transfer zones 5%, pull-aparts 3%, bends 2%, range-front 1%",
+   "publisher_or_agency": "Nevada Bureau of Mines and Geology / OSTI",
+   "official_link": "https://www.osti.gov/servlets/purl/1724082",
+   "doi": "",
+   "license": "Publicly accessible (OSTI)",
+   "role_in_project": "Scientific prior for where unmapped faults are likely: weights the dilational-setting prior in scripts/build_structural_targets.py (H6) and the S5-B candidates",
+   "verification_method": "fetch_page",
+   "verification_date": "2026-09-25",
+   "verification_result": "VERIFIED - full text retrieved; abstract and section 2 read; percentages transcribed from the abstract"
+  },
+  {
+   "id": "E45",
+   "category": "External data official",
+   "dataset_or_item": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (426 systems: structural setting, primary fault orientation, Quaternary faulting, lithology, geothermometry, blind vs surface) - 244.5 kB xls",
+   "publisher_or_agency": "University of Nevada / Geothermal Data Repository (OpenEI)",
+   "official_link": "https://gdr.openei.org/submissions/355",
+   "doi": "10.15121/1148722",
+   "license": "CC BY 4.0",
+   "role_in_project": "Overlooked dataset: an independent geothermal truth set for this region (incl. western Nevada) usable as a validation population and as a target prior; not yet downloaded",
+   "verification_method": "fetch_page",
+   "verification_date": "2026-09-25",
+   "verification_result": "VERIFIED - landing page retrieved: DOI, licence, contents and download link confirmed"
+  },
+  {
+   "id": "E46",
+   "category": "External data official",
+   "dataset_or_item": "Faulds & Hinz - Structural investigations of Great Basin geothermal fields (NW Great Basin; N- to NNE-striking normal faults; dilation from Walker Lane dextral-shear transfer into WNW extension)",
+   "publisher_or_agency": "Nevada Bureau of Mines and Geology / OSTI",
+   "official_link": "https://www.osti.gov/servlets/purl/1110517",
+   "doi": "",
+   "license": "Publicly accessible (OSTI)",
+   "role_in_project": "Tectonic setting of the study region: motivates the orientation prior and the step-over/termination emphasis in H6",
+   "verification_method": "fetch_page",
+   "verification_date": "2026-09-25",
+   "verification_result": "VERIFIED - full text retrieved; abstract quoted"
   }
  ]
 }

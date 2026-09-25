@@ -1,0 +1,31 @@
+workflow: Tests
+run: 36186200347
+sha: 49fffeb5f5cede431cbd3ef28281d2a6c5528086
+branch: arena/01a0da01-5gemsdoe
+
+--- pytest tail ---
+tests/test_ensemble.py::test_blend_refuses_all_zero_submission
+tests/test_hidden_prior_instruments.py::test_the_fp_region_excludes_the_pixels_the_platform_masks
+tests/test_submission_identity.py::test_pixel_hash_ignores_metadata_but_the_file_hash_does_not
+tests/test_submission_identity.py::test_nan_footprint_is_part_of_the_pixel_identity
+  /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+
+tests/test_ensemble.py::test_save_ensemble_writes_the_pre_shaping_input
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_ensemble.py:416: RuntimeWarning: Mean of empty slice
+    expect = np.nanmean(np.stack([p for _, p in folds]), axis=0)
+
+tests/test_proxy_catalogue.py: 54 warnings
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_proxy_catalogue.py:63: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    x, y = transform * (col + 0.5, r)
+
+tests/test_topo_features.py::test_end_to_end_on_template_grid
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_topo_features.py:92: RuntimeWarning: Mean of empty slice
+    col_peak = int(np.nanargmax(np.nanmean(a[1], axis=0)))
+
+tests/test_topo_features.py::test_aux_feature_hook_appends_bands_and_rejects_grid_drift
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_topo_features.py:114: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    transform=tr * Affine.translation(1, 0), nodata=np.nan) as ds:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+532 passed, 5 skipped, 146 warnings in 64.55s (0:01:04)

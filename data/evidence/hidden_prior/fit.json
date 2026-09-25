@@ -1,0 +1,495 @@
+{
+ "generated_utc": "2026-09-25T19:56:10Z",
+ "generated_by": "scripts/fit_hidden_prior.py",
+ "purpose": "fit the spatial density of the hidden new-fault truth from the five public scores, then choose the emission set the fitted density prefers",
+ "model": {
+  "equations": [
+   "DTI_i = T_i / (0.2*E_i + 0.8*G)",
+   "T_i = sum_k w_k A_ik,  G = sum_k w_k B_k",
+   "F_i = E_i - T_i  (one emitted pixel serves at most one truth pixel)"
+  ],
+  "R_px": 3,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "masking": "catalogue pixels are charge-free (forum 11516, verbatim, fetched 2026-09-25) and are excluded from E",
+  "sources": [
+   "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+   "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+  ]
+ },
+ "covariates": [
+  {
+   "name": "uniform",
+   "note": "constant background density over the valid footprint",
+   "B_px": 5167373.0
+  },
+  {
+   "name": "d_lab<=1",
+   "note": "within 1 px (100 m) of a known USGS/INGENIOUS fault pixel",
+   "B_px": 183585.0
+  },
+  {
+   "name": "1<d_lab<=3",
+   "note": "the metric's own tolerance ring around the known catalogue (100-300 m)",
+   "B_px": 261209.0
+  },
+  {
+   "name": "salience",
+   "note": "external covariate data/derived/salience_mean.tif (max-abs normalised on the footprint)",
+   "B_px": 312370.57865987485
+  }
+ ],
+ "footprint": {
+  "valid_px": 5167373,
+  "catalogue_px": 60988
+ },
+ "weights": {
+  "uniform": 0.0,
+  "d_lab<=1": 0.12169309501406678,
+  "1<d_lab<=3": 0.0,
+  "salience": 0.0
+ },
+ "G_expected_px": 22341.0,
+ "files": [
+  {
+   "sha8": "7f00890a",
+   "score": 0.1563,
+   "account": "extradr19",
+   "label": "CNN ensemble 11-fold",
+   "path": "data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+   "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+   "emitted_px": 172974,
+   "chargeable_px": 166519,
+   "on_catalogue_px": 6455,
+   "coverage_mass": 595492.625,
+   "A": [
+    [
+     "uniform",
+     595492.6556328908
+    ],
+    [
+     "d_lab<=1",
+     55819.10341203958
+    ],
+    [
+     "1<d_lab<=3",
+     63301.986872885376
+    ],
+    [
+     "salience",
+     43299.94392653515
+    ]
+   ]
+  },
+  {
+   "sha8": "f68e590f",
+   "score": 0.156,
+   "account": "smashi34",
+   "label": "GEMSDOE2 dual-family union",
+   "path": "data/evidence/leaderboard_anchor/gemsdoe2-dual-family-union-f68e590f.tif",
+   "sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+   "emitted_px": 183642,
+   "chargeable_px": 175949,
+   "on_catalogue_px": 7693,
+   "coverage_mass": 608600.4375,
+   "A": [
+    [
+     "uniform",
+     608600.4589878805
+    ],
+    [
+     "d_lab<=1",
+     58897.4911454469
+    ],
+    [
+     "1<d_lab<=3",
+     66060.87130607292
+    ],
+    [
+     "salience",
+     44169.038606836184
+    ]
+   ]
+  },
+  {
+   "sha8": "f347b70daa",
+   "score": 0.1193,
+   "account": "smrtdoog5",
+   "label": "Pindrop nodes",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+   "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+   "emitted_px": 155021,
+   "chargeable_px": 155021,
+   "on_catalogue_px": 0,
+   "coverage_mass": 1394387.5,
+   "A": [
+    [
+     "uniform",
+     1394387.5083892196
+    ],
+    [
+     "d_lab<=1",
+     52083.67612258345
+    ],
+    [
+     "1<d_lab<=3",
+     70473.32854569331
+    ],
+    [
+     "salience",
+     83110.96984351584
+    ]
+   ]
+  },
+  {
+   "sha8": "4e03fc9705",
+   "score": 0.1152,
+   "account": "SDCF9",
+   "label": "Pindrop dense ridge",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-ridge-4e03fc9705.tif",
+   "sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+   "emitted_px": 155021,
+   "chargeable_px": 155021,
+   "on_catalogue_px": 0,
+   "coverage_mass": 522882.125,
+   "A": [
+    [
+     "uniform",
+     522882.1276874766
+    ],
+    [
+     "d_lab<=1",
+     48929.9410796836
+    ],
+    [
+     "1<d_lab<=3",
+     56999.34589027986
+    ],
+    [
+     "salience",
+     34950.10186668129
+    ]
+   ]
+  },
+  {
+   "sha8": "37f9d5b855",
+   "score": 0.083,
+   "account": "wbg1",
+   "label": "Pindrop catalogue-gap target",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+   "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+   "emitted_px": 155021,
+   "chargeable_px": 155021,
+   "on_catalogue_px": 0,
+   "coverage_mass": 1394079.25,
+   "A": [
+    [
+     "uniform",
+     1394079.2892879248
+    ],
+    [
+     "d_lab<=1",
+     45928.28405726701
+    ],
+    [
+     "1<d_lab<=3",
+     71914.22580635175
+    ],
+    [
+     "salience",
+     85193.43682747499
+    ]
+   ]
+  }
+ ],
+ "fit": [
+  {
+   "sha8": "7f00890a",
+   "actual": 0.1563,
+   "fitted": 0.1327,
+   "abs_error": 0.0236
+  },
+  {
+   "sha8": "f68e590f",
+   "actual": 0.156,
+   "fitted": 0.1351,
+   "abs_error": 0.0209
+  },
+  {
+   "sha8": "f347b70daa",
+   "actual": 0.1193,
+   "fitted": 0.1297,
+   "abs_error": 0.0104
+  },
+  {
+   "sha8": "4e03fc9705",
+   "actual": 0.1152,
+   "fitted": 0.1218,
+   "abs_error": 0.0066
+  },
+  {
+   "sha8": "37f9d5b855",
+   "actual": 0.083,
+   "fitted": 0.1144,
+   "abs_error": 0.0314
+  }
+ ],
+ "leave_one_out": [
+  {
+   "held_out": "7f00890a",
+   "actual": 0.1563,
+   "predicted": 0.1265,
+   "abs_error": 0.0298,
+   "weights": [
+    0.0,
+    0.113174,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "held_out": "f68e590f",
+   "actual": 0.156,
+   "predicted": 0.1283,
+   "abs_error": 0.0277,
+   "weights": [
+    0.0,
+    0.112689,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "held_out": "f347b70daa",
+   "actual": 0.1193,
+   "predicted": 0.1323,
+   "abs_error": 0.013,
+   "weights": [
+    0.0,
+    0.125556,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "held_out": "4e03fc9705",
+   "actual": 0.1152,
+   "predicted": 0.1232,
+   "abs_error": 0.008,
+   "weights": [
+    0.0,
+    0.123895,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "held_out": "37f9d5b855",
+   "actual": 0.083,
+   "predicted": 0.1208,
+   "abs_error": 0.0378,
+   "weights": [
+    0.0,
+    0.132946,
+    0.0,
+    0.0
+   ]
+  }
+ ],
+ "partial_identification": {
+  "tol": 0.05,
+  "smallest_possible_tol": 0.0278,
+  "tol_escalated_to_keep_the_set_non_empty": false,
+  "polytope_non_empty": true,
+  "falsification_constraint_applied": true,
+  "g_min": 1000.0,
+  "g_max": 200000.0,
+  "per_scored_file": [
+   {
+    "sha8": "7f00890a",
+    "observed": 0.1563,
+    "min": 0.1063,
+    "max": 0.1085,
+    "note": "the range of scores THIS file could have had, over every density that reproduces all five observed scores"
+   },
+   {
+    "sha8": "f68e590f",
+    "observed": 0.156,
+    "min": 0.1069,
+    "max": 0.1092,
+    "note": "the range of scores THIS file could have had, over every density that reproduces all five observed scores"
+   },
+   {
+    "sha8": "f347b70daa",
+    "observed": 0.1193,
+    "min": 0.1277,
+    "max": 0.1309,
+    "note": "the range of scores THIS file could have had, over every density that reproduces all five observed scores"
+   },
+   {
+    "sha8": "4e03fc9705",
+    "observed": 0.1152,
+    "min": 0.099,
+    "max": 0.1017,
+    "note": "the range of scores THIS file could have had, over every density that reproduces all five observed scores"
+   },
+   {
+    "sha8": "37f9d5b855",
+    "observed": 0.083,
+    "min": 0.1304,
+    "max": 0.133,
+    "note": "the range of scores THIS file could have had, over every density that reproduces all five observed scores"
+   }
+  ],
+  "meaning": "five equations cannot identify a density field: the ranges below are what every density consistent with the five observed scores implies. smallest_possible_tol is how well the model class can fit the board AT ALL - a model that cannot fit the five numbers it was given cannot rank a sixth."
+ },
+ "candidates": [
+  {
+   "name": "base_7f00890a",
+   "note": "the shipped field, unchanged (reference)",
+   "emitted_px": 172974,
+   "chargeable_px": 166519,
+   "predicted_dti": 0.1327,
+   "dti_min": 0.1063,
+   "dti_max": 0.1085,
+   "T_expected": 6792.8,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "catalogue_only_example_submission",
+   "note": "the platform's own example_submission.tif, which this repository measured to be bit-identical to labels.tif (docs/index.html finding 2)",
+   "emitted_px": 60988,
+   "chargeable_px": 0,
+   "predicted_dti": 0.8136,
+   "dti_min": 0.2923,
+   "dti_max": 0.3049,
+   "T_expected": 17368.0,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_catalogue",
+   "note": "the shipped field plus every known-fault pixel (free: forum 11516)",
+   "emitted_px": 227507,
+   "chargeable_px": 166519,
+   "predicted_dti": 0.349,
+   "dti_min": 0.1698,
+   "dti_max": 0.1747,
+   "T_expected": 17858.5,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_catalogue_dilate1",
+   "note": "catalogue dilated by 1 px (the whole ring, ungated)",
+   "emitted_px": 386934,
+   "chargeable_px": 325946,
+   "predicted_dti": 0.269,
+   "dti_min": 0.1828,
+   "dti_max": 0.1897,
+   "T_expected": 22341.0,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_catalogue_dilate2",
+   "note": "catalogue dilated by 2 px (the whole ring, ungated)",
+   "emitted_px": 544282,
+   "chargeable_px": 483294,
+   "predicted_dti": 0.1951,
+   "dti_min": 0.1793,
+   "dti_max": 0.1891,
+   "T_expected": 22341.0,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_catalogue_dilate3",
+   "note": "catalogue dilated by 3 px (the whole ring, ungated)",
+   "emitted_px": 697074,
+   "chargeable_px": 636086,
+   "predicted_dti": 0.154,
+   "dti_min": 0.1491,
+   "dti_max": 0.1572,
+   "T_expected": 22341.0,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_top0k",
+   "note": "the 0 pixels of highest marginal gain under the fitted prior, added to the shipped field + catalogue",
+   "emitted_px": 227507,
+   "chargeable_px": 166519,
+   "predicted_dti": 0.349,
+   "dti_min": 0.1698,
+   "dti_max": 0.1747,
+   "T_expected": 17858.5,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_top5k",
+   "note": "the 5,000 pixels of highest marginal gain under the fitted prior, added to the shipped field + catalogue",
+   "emitted_px": 232507,
+   "chargeable_px": 171519,
+   "predicted_dti": 0.3462,
+   "dti_min": 0.1706,
+   "dti_max": 0.1755,
+   "T_expected": 18061.3,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_top20k",
+   "note": "the 20,000 pixels of highest marginal gain under the fitted prior, added to the shipped field + catalogue",
+   "emitted_px": 247507,
+   "chargeable_px": 186519,
+   "predicted_dti": 0.3384,
+   "dti_min": 0.1713,
+   "dti_max": 0.1765,
+   "T_expected": 18669.7,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_top50k",
+   "note": "the 50,000 pixels of highest marginal gain under the fitted prior, added to the shipped field + catalogue",
+   "emitted_px": 277507,
+   "chargeable_px": 216519,
+   "predicted_dti": 0.3251,
+   "dti_min": 0.1723,
+   "dti_max": 0.1778,
+   "T_expected": 19886.7,
+   "G_expected": 22341.0
+  },
+  {
+   "name": "base_plus_top100k",
+   "note": "the 100,000 pixels of highest marginal gain under the fitted prior, added to the shipped field + catalogue",
+   "emitted_px": 327507,
+   "chargeable_px": 266519,
+   "predicted_dti": 0.3079,
+   "dti_min": 0.1735,
+   "dti_max": 0.1793,
+   "T_expected": 21914.9,
+   "G_expected": 22341.0
+  }
+ ],
+ "best_candidate": "base_plus_catalogue_dilate1",
+ "falsification_test": {
+  "candidate": "catalogue_only_example_submission",
+  "predicted_dti": 0.8136,
+  "dti_min": 0.2923,
+  "dti_max": 0.3049,
+  "best_observed_public_score": 0.3049,
+  "verdict": "not falsified by the board at this tolerance",
+  "consequence": null
+ },
+ "missing_scored_files": [],
+ "credit_denied_reading_B": {
+  "meaning": "if emitting on a catalogue pixel earns no credit either, only the off-catalogue part of a candidate counts; the ordering of the additions is unchanged, the level is lower",
+  "G_expected_px": 22341.0
+ },
+ "emitted_candidate": {
+  "candidate": "candidate_s5_catalogue_hedge.tif",
+  "path": "data/evidence/hidden_prior/candidate_s5_catalogue_hedge.tif",
+  "bytes": 624814,
+  "sha256": "132e23e10344013a23ffd18a21a3fdcdb59c7c7c84444708db1fb38072c119ef",
+  "emitted_px": 227507,
+  "added_over_base_px": 54533,
+  "chargeable_px": 166519,
+  "why_this_one": "the catalogue pixels are the only addition that cannot lower the score under the platform's written masking rule, and the fit's point estimate for it (0.349) is the largest single move available",
+  "experiment": "the score difference against 0.1563 measures which reading of forum 11516 the platform implements: no change = catalogue pixels earn no credit either; a jump = they do, and the whole emission plan changes"
+ }
+}

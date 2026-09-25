@@ -15,6 +15,7 @@ Pinned here:
 """
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import sys
@@ -328,8 +329,17 @@ def test_the_committed_qfaults_refusal_is_the_documented_finding():
     assert pop["B_in_footprint_px"] == stats["mask_px"] - stats["outside_footprint_px"]
     assert stats["catalogue_already_covers_fraction"] == pytest.approx(1.0)
     assert pop["B_code1_fraction"] > 0.999
-    # the shipped submission is the prediction the refusal was measured against
-    assert rep["sources"]["prediction"]["grid"]["sha256"].startswith("a3dcd6d5")
+    # The shipped submission is the prediction the refusal was measured against. Its NAME is the
+    # pin, not a byte hash: the artifact was conformed to the official template on 2026-09-25
+    # (NaN exactly outside the footprint), which changed its bytes and therefore its sha256
+    # (a3dcd6d5... -> 7f00890a...) without changing a single pixel. A hash pinned here would have
+    # to be edited every time the container is re-written; the path plus the measured sha below
+    # is the property that actually matters.
+    assert rep["sources"]["prediction"]["path"] == \
+        "data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif"
+    _art = ROOT / rep["sources"]["prediction"]["path"]
+    assert _art.exists()
+    assert rep["sources"]["prediction"]["grid"]["sha256"] == hashlib.sha256(_art.read_bytes()).hexdigest()
 
 
 # --------------------------------------------------------------------------------------
