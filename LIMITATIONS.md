@@ -1,5 +1,34 @@
 # Limitations — 5GEMSDOE addendum (2026-09-25)
 
+## Session 26 (2026-09-25) — the site directory: what public endpoints cannot see
+
+- **Private repositories are invisible.** `buffedlizard55-lab` may hold private repos (with Pages
+  built from them), and `kanlerxz87-cyber` has 0 *public* repos but the account exists; any Pages
+  site it hosts from private repos cannot be inventoried from public APIs. The directory records
+  exactly what is verifiable and flags the gap. The 86 is a count of *public* repos — not a proof
+  that nothing else exists.
+- **Liveness in this checkout is merged, not re-fetched.** The sandbox has no egress to
+  `*.github.io` (SSL 35); the 86 liveness records were measured on 2026-09-25 by server-side
+  fetches and merged verbatim with their own dates. Re-running
+  `scripts/make_site_directory_evidence.py` without `--liveness-file` re-fetches live (the API
+  inventory is always fetched live from GitHub either way).
+- **`pushed_at` is last push, not last used.** A static site with no recent pushes may still be
+  the one actually in use; the table shows both the last push and the 2026-09-25 live-verification
+  date but cannot distinguish "actively used" from "built once and abandoned".
+- **SPA shells limit what a title can attest.** ParlaySports and NFLPARLAYCOMP serve app shells
+  ("Loading…") that render client-side; only their shell titles were verifiable, not the deep
+  content behind the URL.
+- **Descriptions are editorial.** Only 1 of 86 repos carries a GitHub-API description
+  ("Korea"); every other description in the table is a short summary written from the verified
+  page (labelled as such there). They are review aids, not machine metadata — the verified title
+  column is the machine-measured field.
+- **Regeneration hazard (pre-existing, now documented).** Re-running `scripts/build_site.py` on a
+  fresh checkout (which lacks the gitignored `data/*.tif` rasters) flips
+  `docs/submission.html`'s state from "Ready" to "ABSENT". This session therefore generated the
+  directory with its own script and patched the nav in place instead of regenerating the GEMS
+  pages; the `test_site_pages.py` byte-comparison test confirms the patched pages still equal a
+  fresh rebuild modulo the documented live-state markers.
+
 - **Sandbox egress**: only github.com / api.github.com / pypi.org are reachable. The 3DEP VRT, ScienceBase zips and Dropbox
   mirrors are fetched by GitHub Actions runners, never here; `build-topo-features.yml` is the route for the scarp channel.
 - **No GPU here**; the paired H1 training (`config_topo.yaml` vs `config.yaml`) runs on runners (~300 min/fold) or a GPU box.
