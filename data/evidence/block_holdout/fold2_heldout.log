@@ -1,37 +1,30 @@
 config configs/config_block_holdout.yaml: block_holdout_eval={"R": 3, "alpha": 0.2, "beta": 0.8, "block_px": 512, "bootstraps": 2000, "crosscheck_sweep": "data/evidence/proxy/eval_sweep-mean12.json", "eps": 1e-07, "floors": "0.1,0.15,0.2,0.3,0.5", "folds": 4, "out": "data/evidence/block_holdout/block_stratified.json", "reference_floor": 0.1, "reference_width": 0, "seed": 0, "widths": "0,1,2,3,4,6,8,12,16,20"}
+Traceback (most recent call last):
+  File "rasterio/_base.pyx", line 311, in rasterio._base.DatasetBase.__init__
+  File "rasterio/_base.pyx", line 222, in rasterio._base.open_dataset
+  File "rasterio/_err.pyx", line 359, in rasterio._err.exc_wrap_pointer
+rasterio._err.CPLE_OpenFailedError: data/evidence/proxy/proxy_catalogue.tif: No such file or directory
 
-blocks: 512 px = 51.2 km; 9 of 56 scoreable (22 footprint-empty)
-footprint: 1,274,570 px (10.38 % of the grid)
-populations: catalogue 15,404 px (1,540.4 km) | proxy-only 12,427 px (1,242.7 km)
+During handling of the above exception, another exception occurred:
 
-reference candidate floor0.1_w0px:
-  proxy-only DTI 0.0480  block-bootstrap CI95 [0.0238, 0.0803]
-  catalogue  DTI 0.0593  (in-domain - see the note in the JSON)
-  worst single-block contrast +0.0000; 0 of 9 scoreable blocks gain
-  best of the recoverable sweep: floor0.2_w0px 0.0480 (+0.0000); reference is best: False
-  candidates swept 50, DISTINCT emissions 31 (floor axis degenerate: False)
-  best genuinely different alternative: floor0.2_w0px 0.0480 (+0.0000), P(beats reference over block resamples) = 0.9565, worst single block +0.0000
-  prediction field: 1158649 distinct values, 1,273,339 emitted px, hard band False
-
-  candidate                  proxy DTI   CI95 (block bootstrap)     P(>ref)  catalogue DTI
-  floor0.1_w0px              0.0480      [0.0238, 0.0803]       ref    0.0593
-  floor0.1_w1px              0.0476      [0.0234, 0.0789]      0.00   0.0589
-  floor0.1_w2px              0.0472      [0.0232, 0.0777]      0.00   0.0584
-  floor0.1_w3px              0.0468      [0.0230, 0.0766]      0.00   0.0579
-  floor0.1_w4px              0.0464      [0.0228, 0.0757]      0.00   0.0574
-  floor0.1_w6px              0.0456      [0.0223, 0.0734]      0.00   0.0564
-  floor0.1_w8px              0.0449      [0.0218, 0.0711]      0.00   0.0555
-  floor0.1_w12px             0.0434      [0.0210, 0.0680]      0.00   0.0537
-  floor0.1_w16px             0.0420      [0.0202, 0.0643]      0.00   0.0520
-  floor0.1_w20px             0.0407      [0.0196, 0.0619]      0.00   0.0504
-  floor0.15_w0px             0.0480      [0.0238, 0.0803]      0.00   0.0593
-  floor0.15_w1px             0.0476      [0.0234, 0.0789]      0.00   0.0589
-  floor0.15_w2px             0.0472      [0.0232, 0.0777]      0.00   0.0584
-  floor0.15_w3px             0.0468      [0.0230, 0.0766]      0.00   0.0579
-  floor0.15_w4px             0.0464      [0.0228, 0.0757]      0.00   0.0574
-  floor0.15_w6px             0.0456      [0.0223, 0.0734]      0.00   0.0564
-
-  mean per-block sign agreement between the two populations: 0.907 (1.00 = they prefer the same candidate in the same block every time)
-  largest population conflict: floor0.3_w0px gains on the new-fault-like proxy population in 1 of 9 blocks where both populations are scoreable while the catalogue population loses in the same block
-
-wrote data/evidence/block_holdout/fold2_heldout.json (757,808 bytes)
+Traceback (most recent call last):
+  File "/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/block_holdout_eval.py", line 1016, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/block_holdout_eval.py", line 991, in main
+    rep = build_report(Path(a.pred), Path(a.labels), Path(a.proxy),
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/block_holdout_eval.py", line 361, in build_report
+    proxy_raw, proxy_grid = read_band(proxy_path)
+                            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/block_holdout_eval.py", line 104, in read_band
+    with rasterio.open(path) as src:
+         ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/env.py", line 463, in wrapper
+    return f(*args, **kwds)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/__init__.py", line 356, in open
+    dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "rasterio/_base.pyx", line 313, in rasterio._base.DatasetBase.__init__
+rasterio.errors.RasterioIOError: data/evidence/proxy/proxy_catalogue.tif: No such file or directory
