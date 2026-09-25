@@ -1,0 +1,196 @@
+........................................................................ [ 13%]
+........................................................................ [ 27%]
+..............................................................EEEFFFFFFF [ 40%]
+FF..FFFFF.F.F.FFFFFF.................................................... [ 54%]
+.................s..........................FF.......................... [ 68%]
+.........................s.........................F......FFFss.ssss.... [ 81%]
+..F...F....FF...........................s.....................ss..s..... [ 95%]
+.......................                                                  [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_r3_not_measurable_blocks_adopt_even_when_everything_else_passes _
+E   rasterio._err.CPLE_OpenFailedError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+E   rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+______________ ERROR at setup of test_adopt_path_when_r3_measured ______________
+E   rasterio._err.CPLE_OpenFailedError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+E   rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+__________ ERROR at setup of test_contrast_margin_is_a_rule_constant ___________
+E   rasterio._err.CPLE_OpenFailedError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+E   rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif: No such file or directory
+=================================== FAILURES ===================================
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   rasterio._err.CPLE_OpenFailedError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+E   rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+rasterio/_base.pyx:313: rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+E   rasterio._err.CPLE_OpenFailedError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+E   rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+rasterio/_base.pyx:313: rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+E   KeyError: 'bytes'
+/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py:4190: KeyError: 'bytes'
+E   AssertionError: the adopted artifact is committed; a fresh clone needs `git pull`
+    assert False
+     +  where False = exists()
+     +    where exists = PosixPath('/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif').exists
+/home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_site_generator.py:117: AssertionError: the adopted artifact is committed; a fresh clone needs `git pull`
+E   AssertionError: MISSING  /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif
+        the artifact is committed in the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one
+      
+    assert 2 == 0
+     +  where 2 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', 'scripts/build_submission_payload.py', '-...n the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one\n', stderr='').returncode
+/home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_site_generator.py:129: AssertionError: MISSING  /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif
+E   FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif'
+/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif'
+E   AssertionError: a FAIL verdict must exit 1 (2 = missing prerequisites, 0 = pass)
+    assert 2 == 1
+----------------------------- Captured stdout call -----------------------------
+MISSING prerequisites: data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif
+  build the payload with: python scripts/build_submission_payload.py
+/home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_site_generator.py:335: AssertionError: a FAIL verdict must exit 1 (2 = missing prerequisites, 0 = pass)
+E   AssertionError: the manifest points at files that are not in the repo: ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+    assert not ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+/home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_site_generator.py:408: AssertionError: the manifest points at files that are not in the repo: ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+E   subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_the_build_reproduces_the_0/docs']' returned non-zero exit status 1.
+/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/subprocess.py:571: subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_the_build_reproduces_the_0/docs']' returned non-zero exit status 1.
+E   subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_building_twice_in_one_env0/docs0']' returned non-zero exit status 1.
+/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/subprocess.py:571: subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_building_twice_in_one_env0/docs0']' returned non-zero exit status 1.
+=============================== warnings summary ===============================
+../../../../../opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/transform.py:178: 3 warnings
+tests/test_adopted_policy.py: 11 warnings
+tests/test_baseline_submission.py: 5 warnings
+tests/test_ensemble.py: 3 warnings
+tests/test_external_data.py: 2 warnings
+tests/test_fetch_qfaults.py: 12 warnings
+tests/test_metric.py: 1 warning
+tests/test_miss_distance.py: 15 warnings
+tests/test_package_submission.py: 5 warnings
+tests/test_proxy_catalogue.py: 9 warnings
+tests/test_submission_writer.py: 4 warnings
+tests/test_template_conformance.py: 10 warnings
+tests/test_union_selection.py: 1 warning
+  /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/transform.py:178: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    return Affine.translation(west, north) * Affine.scale(xsize, -ysize)
+
+tests/test_ensemble.py::test_blend_refuses_all_zero_submission
+tests/test_submission_identity.py::test_pixel_hash_ignores_metadata_but_the_file_hash_does_not
+tests/test_submission_identity.py::test_nan_footprint_is_part_of_the_pixel_identity
+  /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/__init__.py:366: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    dataset = writer(
+
+tests/test_ensemble.py::test_blend_refuses_all_zero_submission
+tests/test_submission_identity.py::test_pixel_hash_ignores_metadata_but_the_file_hash_does_not
+tests/test_submission_identity.py::test_nan_footprint_is_part_of_the_pixel_identity
+  /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+    dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+
+tests/test_ensemble.py::test_save_ensemble_writes_the_pre_shaping_input
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_ensemble.py:416: RuntimeWarning: Mean of empty slice
+    expect = np.nanmean(np.stack([p for _, p in folds]), axis=0)
+
+tests/test_proxy_catalogue.py: 54 warnings
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_proxy_catalogue.py:63: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    x, y = transform * (col + 0.5, r)
+
+tests/test_topo_features.py::test_end_to_end_on_template_grid
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_topo_features.py:92: RuntimeWarning: Mean of empty slice
+    col_peak = int(np.nanargmax(np.nanmean(a[1], axis=0)))
+
+tests/test_topo_features.py::test_aux_feature_hook_appends_bands_and_rejects_grid_drift
+  /home/runner/work/5GEMSDOE/5GEMSDOE/tests/test_topo_features.py:114: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    transform=tr * Affine.translation(1, 0), nodata=np.nan) as ds:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_how_to_submit_generator.py::test_the_generator_has_its_own_numbered_section_and_mount_point - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_routes_now_include_the_browser_and_the_workflow_and_stay_ordered - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_route_commands_reference_files_that_exist - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_provenance_numbers_come_from_the_payload_not_from_prose - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_a_stale_payload_is_rendered_as_stale - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_the_generator_verification_table_reflects_its_evidence - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_a_fail_verdict_on_the_generator_is_visible_as_a_failure - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_claims_table_names_the_generator_and_its_evidence_files - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_generator.py::test_the_page_never_implies_the_file_was_uploaded - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_nav_lists_the_subpage_and_marks_it_active_when_open - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_page_declares_itself_a_subpage_and_points_at_the_long_form_page - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_each_gate_is_rendered_with_its_own_status - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_missing_readiness_evidence_renders_a_gap_not_a_pass - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_human_only_steps_are_never_rendered_as_complete - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_committed_artifact_row_shows_a_hash_no_human_typed - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_deadline_absence_is_stated_and_not_invented - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_every_route_command_points_at_something_that_exists - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_no_repository_path_on_the_page_is_missing - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_validation_section_shows_the_committed_validator_checks - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_rules_sentences_are_quoted_by_id_with_their_badge - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_page_links_only_to_urls_the_catalog_knows - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_cpu_route_caveat_is_rendered_from_the_report - KeyError: 'bytes'
+FAILED tests/test_pseudo_labels.py::test_load_pseudo_mask_on_committed_proxy_catalogue - rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+FAILED tests/test_pseudo_labels.py::test_load_pseudo_mask_rejects_wrong_code - rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+FAILED tests/test_site.py::test_builder_without_payload_shows_the_gap_not_a_panel - KeyError: 'bytes'
+FAILED tests/test_site_generator.py::test_the_committed_payload_still_reproduces_the_artifact - AssertionError: the adopted artifact is committed; a fresh clone needs `git pull`
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif').exists
+FAILED tests/test_site_generator.py::test_payload_verify_mode_decodes_back_to_the_artifact - AssertionError: MISSING  /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif
+    the artifact is committed in the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one
+  
+assert 2 == 0
+ +  where 2 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', 'scripts/build_submission_payload.py', '-...n the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one\n', stderr='').returncode
+FAILED tests/test_site_generator.py::test_manifest_pins_agree_with_the_bytes_on_disk - FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif'
+FAILED tests/test_site_generator.py::test_without_placed_data_the_judge_names_the_gap_not_a_keyerror - AssertionError: a FAIL verdict must exit 1 (2 = missing prerequisites, 0 = pass)
+assert 2 == 1
+FAILED tests/test_site_generator.py::test_every_repository_path_the_manifest_names_actually_exists - AssertionError: the manifest points at files that are not in the repo: ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+assert not ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+FAILED tests/test_site_pages.py::test_the_build_reproduces_the_committed_pages - subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_the_build_reproduces_the_0/docs']' returned non-zero exit status 1.
+FAILED tests/test_site_pages.py::test_building_twice_in_one_environment_is_byte_identical - subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_building_twice_in_one_env0/docs0']' returned non-zero exit status 1.
+32 failed, 480 passed, 12 skipped, 144 warnings, 3 errors in 58.15s
