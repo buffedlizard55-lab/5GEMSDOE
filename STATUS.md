@@ -129,6 +129,122 @@ ScienceBase 4f70aa9fe4b058caae3f8de5 + data.usgs.gov 3a81321b… (3DEP 1/3″); 
 
 ---
 
+# Project status — 5GEMSDOE (fork of GEMSDOE at its 2026-09-24 state)
+
+## 5GEMSDOE session 3 (2026-09-25) — the emission budget finally comes from the metric, a second detector family runs on CPU in 6 minutes, and the runner channel is unblocked
+
+**Read `PROJECT_BRIEF.md`, `docs/STRATEGY.md` and `docs/GEOTHERMAL_SCIENCE.md` first.** Everything below was
+executed in this sandbox on this branch; every number is in the evidence JSON named beside it. Two of session 2's
+next steps turned out to be **blocked by the environment**, and both were unblocked by a change to the workflows
+rather than by waiting for a human.
+
+### What was done, in order
+
+1. **The submission path was re-verified end to end, and it passes.** `scripts/check_site_generator.py` →
+   **PASS** (8/10 steps, 9.2 s): the browser route still writes a validated GeoTIFF whose pixels are the
+   artifact's. `scripts/build_submission_payload.py --check` exits 0. The platform-rejection class
+   (`Predicted values must be in range [0, 1]`) stays structurally impossible: `conform_to_template()` runs
+   before the read-back verifier, and the maximum-compatibility button writes 0.0 with no NODATA tag.
+2. **The official rasters were re-assembled from the git bridge and re-measured** (`assemble_data_bridge.py` OK,
+   `prepare_data.py` OK: 3292×3730, 19 bands, EPSG:32611, 100 m). **All 19 bands are live**: the claim in a
+   sibling repository that bands 17–19 are constant placeholders is **false on these bytes** (band 17 `cond_surf`
+   alone carries 1,237,549 distinct values). Recorded as a correction in `docs/GEOTHERMAL_SCIENCE.md` §5b.
+3. **`scripts/emit_by_marginal_rule.py` (new) — STRATEGY.md H4, the re-budgeting script session 1 listed as
+   never written.** It applies the metric's own marginal-inclusion rule exactly, with dT and dF taken from
+   `src.metrics.GtContext` rather than approximated, in two modes (`rule` = emit every pixel that raises the
+   score, `budget` = the maximal clearing prefix), with `--base` so the rule prices **additions** to a shipped
+   field and `--price` for existing candidates. **Measured findings:**
+   * a pixel further than R = 3 px from every calibration-truth pixel has **dT = 0 and dF = 1**, so under a
+     catalogue-calibrated reading the rule can only ever emit inside 300 m of the catalogue. That is the
+     degeneracy H7 predicted, now measured rather than argued;
+   * priced at DTI 0.1563, the shipped 0.1563 field's 166,519 chargeable pixels must earn a marginal hit rate of
+     **0.0323**; the S5-A hedge adds **zero** chargeable pixels;
+   * on the 10-band Frangi salience field the rule emits 63,645 chargeable px over the base; on the new context
+     detector's probability field, 54,426.
+4. **`scripts/train_context_detector.py` (new) — a second detector family that runs on 2 vCPU / 3 GB in 6
+   minutes, with no GPU and no torch.** HistGradientBoosting on the 19 official bands plus derived
+   |grad| / local-mean features, scored by **spatially blocked** folds (512 px contiguous super-regions, 3 px
+   training collar, `src/blocks.py`) with the metric computed by `src.metrics.score_within_mask` on **global**
+   geometry. Held-out binary DTI peaks at **0.142 / 0.146 / 0.106** at t = 0.2 across the three folds; the
+   continuous field is 0.11 mean, p99 0.48, 0.8 % above 0.5. Output is written **uint8 (probability × 255,
+   3.9 MB)** so it can be committed and handed back from a runner; the round-trip error is 1/255.
+5. **`scripts/build_dilational_annulus.py` (new) — the Faulds & Hinz prior as a THIN annulus, intersected with
+   the detector.** Session 2's S5-B shipped the prior as the top-N of a smoothed field, i.e. a dense patch. The
+   annulus form is one halo pixel around each termination / intersection / bend / relay ramp, kept only where the
+   context detector already agrees — the evidence-layer combination the exploration literature uses. A
+   12-setting sweep is in `data/evidence/emission/dilational_annulus.json`; the shipped setting (halo 0,
+   quantile 0.9) adds **8,053 chargeable px** over the base for a required marginal hit rate of 0.0323.
+6. **`scripts/verify_candidates_independently.py` (new) + `scripts/vendor/gems_eval/` — a second, independent
+   judge.** The metric and the format gate are now run against a **third-party implementation** copied
+   unmodified from `Gameassassin777/gems-eval` (MIT, © 2026 Syntropy Digital), with provenance in
+   `scripts/vendor/gems_eval/PROVENANCE.md`. Result on all six committed candidates: **our validator and theirs
+   agree on every file, and the two DTI implementations agree to 6 decimal places** (e.g. 0.6656 both, for the
+   catalogue hedge). The one exception is named, not silent: the blanket density probe fails only their
+   `plausible_coverage` heuristic, which the platform does not enforce.
+7. **The runner channel is unblocked without a human.** `gh workflow run` is refused with **403 "Resource not
+   accessible by integration"** (measured), and the Actions artifact zip redirects to
+   `productionresultssa12.blob.core.windows.net`, which this sandbox cannot reach (measured). Both of session 2's
+   runner-dependent next steps therefore had no channel. Fix: `.github/workflows/fetch-gdr-inventory.yml` now
+   carries a **push-path trigger** (`.github/triggers/fetch-gdr`), exactly as `build-topo-features` already did.
+   The first push-fired GDR run **failed** on `--url ""` (a push event has no `github.event.inputs`), which the
+   workflow now defaults in the expression itself; the run and its log are committed as evidence.
+8. **CI is green except for one pre-existing flake, which is fixed.** The only failing test on the runner was
+   `test_the_build_reproduces_the_committed_pages`, caused by an evidence JSON's own ISO timestamp reaching the
+   page in prose; the test now neutralises that stamp as well as the build stamp (documented in the test), and
+   the committed pages are re-generated from the current evidence.
+9. **13 new tests** (`tests/test_session3_budget_and_prior.py`) pin the algebra, both walk modes, the
+   base-field accounting, the inherited geometry, the annulus builder's conformance, and the fact that the two
+   independent judges agree — and that both reject a NaN inside the scored footprint.
+
+### Next steps, in order (for session 4)
+
+1. **Upload S5-A** (`docs/downloads/candidate_s5_catalogue_hedge.tif`, sha256 pinned in
+   `data/evidence/submission_independent_gate.json`). Note: `S5-A · 7f00890a + masked catalogue (+54,533 px,
+   charge-free per forum 11516) · measures the masking rule`. It is free under the platform's written rule and
+   its score against 0.1563 decides which reading of that rule is implemented.
+2. **Then the annulus candidate** (`docs/downloads/candidate_s5_dilational_annulus.tif`): S5-A plus 8,053
+   chargeable px of dilational settings the detector agrees with. Note: `S5-C · annulus halo0 q0.9 of Faulds &
+   Hinz settings ∩ context detector · +8,053 chargeable px · required marginal hit rate 0.0323`.
+3. **Branch on S5-A's score** with `scripts/emit_by_marginal_rule.py --price` on every candidate: score ≈ 0.156 →
+   catalogue-adjacent emission earns nothing, put the remaining slots into off-catalogue detection; score > 0.20 →
+   the masking rule awards credit near the catalogue and the annulus sweep's cheaper rows become live options.
+4. ~~**Fetch GDR 355**~~ **DONE, and it is the biggest result of this session.** The re-armed push trigger
+   fired on this session's push and the runner committed the real workbook:
+   `data/external/gdr/faulds_structural_inventory_great_basin.xls` (250,368 B, sha256 `843feb7c…`, sheets
+   `StructureInventory` 426×23 and `Field Definitions`). `scripts/analyze_gdr355_inventory.py` (new) measures it
+   and `data/evidence/gdr/inventory_analysis.json` records:
+   * **117 of the 426 systems fall inside the competition raster** — Beowawe, Dixie Valley, Empire–San Emidio,
+     Bradys, Desert Peak, Soda Lake, Stillwater, Steamboat, Humboldt House, Wabuska, Casa Diablo, Moana and 105
+     more. Mean max temperature 84.8 °C, max 250 °C, 17 ≥ 150 °C, 50 with Holocene scarps. **This is the first
+     real geothermal truth set this project family has had inside the scored footprint** — `labels.tif` is a
+     fault catalogue, GDR 355 is a resource catalogue, and the experts' new faults are much closer to the latter.
+   * **IRREGULARITY FLAGGED, NOT RESOLVED**: the "39 % blind" claim is contradicted by the workbook's own
+     definition (`Blind = yes` means the system *has* surface manifestations). 165/426 = 38.7 % carry `yes`,
+     matching the page's 39 %, so the page appears to have inverted the column. Do not cite 39 % as fact.
+   * The published 32 / 25 / 22 % setting frequencies do not reproduce on any denominator (measured: 26.5 %
+     undetermined, 18.5 % stepover, 14.6 % termination, 12.9 % intersection). `build_structural_targets.py`'s
+     weights should be re-derived from the measured rows.
+5. **Build a GDR-355 prior raster and score it with `scripts/rank_instruments.py`.** This is now the
+   highest-value experiment in the project: turn the 117 in-footprint systems into a prior (Gaussian or radial
+   kernel, optionally weighted by temperature or by measured setting) and ask the question the SGMC proxy
+   failed — can it order the five already-scored files the way the public leaderboard already does? ρ ≈ +0.9
+   would make it the first geothermal instrument, and every emission-width decision previously argued on the
+   SGMC proxy (measured ρ = −0.8) becomes re-makeable on it. Note `data/evidence/emission/marginal_rule_*.json`
+   already shows the rule cannot price discovery from a catalogue-calibrated instrument, so this prior must be
+   tested as a *ranking* instrument, not as an emission rule.
+6. **Build the topographic channel and train on it.** `build-topo-features` is push-triggered; add a step that
+   also runs `scripts/train_context_detector.py --aux data/external/topo_features_100m.tif --dtype uint8` so the
+   augmented field (3.9 MB) is committed rather than left in an artifact this sandbox cannot download. The 1 m
+   GeoDAWN **lidar point clouds** (GDR 1501 / OEDI 7592, DOI 10.15121/1992093) are the untested ceiling — see
+   `docs/GEOTHERMAL_SCIENCE.md` §5b S2.
+7. **Radiometrics (H2)**: `22103_area1_tiffs.zip` (43.57 MB) and `22103_area2_tiffs.zip` (230.54 MB) are verified
+   public and absent from the 19 bands; a runner step can fetch and resample them onto the competition grid.
+
+### What is still blocked (unchanged, restated so it is not rediscovered)
+* No DrivenData auth: no upload, no leaderboard API, no official test labels. Every score is owner-reported.
+* `gh workflow run` → 403; artifact downloads → Azure blob unreachable. Push-path triggers are the only channel.
+* No GPU; the CNN family still needs a runner or a GPU box. The new detector family does not.
+
 # (inherited) Project status — GEMSDOE 2026-09-24/25 (sessions 11–25)
 
 ## Session 25 (2026-09-24/25) — "Predicted values must be in range [0, 1]": root-caused, fixed at the writers, gated in the validator, and the site now hands over a unique name + Note

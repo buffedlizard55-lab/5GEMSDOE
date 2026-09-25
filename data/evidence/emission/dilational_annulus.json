@@ -1,0 +1,211 @@
+{
+ "generated_utc": "2026-09-25T21:54:16Z",
+ "generated_by": "scripts/build_dilational_annulus.py",
+ "prior": {
+  "source": "Faulds & Hinz, World Geothermal Congress 2015, OSTI 1724082 (https://www.osti.gov/servlets/purl/1724082); dataset GDR 355 (https://gdr.openei.org/submissions/355, DOI 10.15121/1148722)",
+  "weights": {
+   "step_over": 0.32,
+   "termination": 0.25,
+   "intersection": 0.22,
+   "bend": 0.02
+  },
+  "settings_used": [
+   "termination",
+   "intersection",
+   "bend",
+   "step_over"
+  ],
+  "settings_not_computable": {
+   "accommodation_zone": 0.09,
+   "displacement_transfer_zone": 0.05,
+   "pull_apart": 0.03,
+   "range_front": 0.01
+  },
+  "counts": {
+   "skeleton_px": 59209,
+   "terminations": 6938,
+   "intersections": 2633,
+   "bends_measured": 1558,
+   "bend_pixels_sampled": 24638,
+   "step_over_pairs": 5432,
+   "step_over_ramp_px": 111579
+  }
+ },
+ "detector": {
+  "path": "data/derived/context_detector_prob_u8.tif",
+  "note": "CPU HistGradientBoosting on the official bands (scripts/train_context_detector.py), spatially blocked CV"
+ },
+ "chosen": {
+  "halo": 0,
+  "quantile": 0.9,
+  "min_prob": 117.0,
+  "annulus_px": 92029,
+  "kept_px": 9556,
+  "emitted_px": 235887,
+  "chargeable_px": 174899,
+  "on_masked_catalogue_px": 60988,
+  "added_over_base_px": 62913,
+  "required_marginal_hit_rate_at_0_1563": 0.03227
+ },
+ "sweep": [
+  {
+   "halo": 0,
+   "quantile": 0.25,
+   "threshold": 45.0,
+   "annulus_px": 92029,
+   "kept_px": 69361,
+   "emitted_px": 290091,
+   "chargeable_px": 229103,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.61968
+  },
+  {
+   "halo": 0,
+   "quantile": 0.5,
+   "threshold": 66.0,
+   "annulus_px": 92029,
+   "kept_px": 46217,
+   "emitted_px": 268786,
+   "chargeable_px": 207798,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.63493
+  },
+  {
+   "halo": 0,
+   "quantile": 0.75,
+   "threshold": 91.0,
+   "annulus_px": 92029,
+   "kept_px": 23381,
+   "emitted_px": 248307,
+   "chargeable_px": 187319,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.65003
+  },
+  {
+   "halo": 0,
+   "quantile": 0.9,
+   "threshold": 117.0,
+   "annulus_px": 92029,
+   "kept_px": 9556,
+   "emitted_px": 235887,
+   "chargeable_px": 174899,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.65941
+  },
+  {
+   "halo": 1,
+   "quantile": 0.25,
+   "threshold": 42.0,
+   "annulus_px": 176928,
+   "kept_px": 132746,
+   "emitted_px": 347811,
+   "chargeable_px": 286823,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.57525
+  },
+  {
+   "halo": 1,
+   "quantile": 0.5,
+   "threshold": 63.0,
+   "annulus_px": 176928,
+   "kept_px": 88528,
+   "emitted_px": 306865,
+   "chargeable_px": 245877,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.60437
+  },
+  {
+   "halo": 1,
+   "quantile": 0.75,
+   "threshold": 87.0,
+   "annulus_px": 176928,
+   "kept_px": 45688,
+   "emitted_px": 268218,
+   "chargeable_px": 207230,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.6336
+  },
+  {
+   "halo": 1,
+   "quantile": 0.9,
+   "threshold": 115.0,
+   "annulus_px": 176928,
+   "kept_px": 17694,
+   "emitted_px": 243039,
+   "chargeable_px": 182051,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.65361
+  },
+  {
+   "halo": 2,
+   "quantile": 0.25,
+   "threshold": 39.0,
+   "annulus_px": 278352,
+   "kept_px": 209846,
+   "emitted_px": 418694,
+   "chargeable_px": 357706,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.52014
+  },
+  {
+   "halo": 2,
+   "quantile": 0.5,
+   "threshold": 59.0,
+   "annulus_px": 278352,
+   "kept_px": 142356,
+   "emitted_px": 355658,
+   "chargeable_px": 294670,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.56314
+  },
+  {
+   "halo": 2,
+   "quantile": 0.75,
+   "threshold": 84.0,
+   "annulus_px": 278352,
+   "kept_px": 70965,
+   "emitted_px": 290788,
+   "chargeable_px": 229800,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.61264
+  },
+  {
+   "halo": 2,
+   "quantile": 0.9,
+   "threshold": 111.0,
+   "annulus_px": 278352,
+   "kept_px": 28404,
+   "emitted_px": 252517,
+   "chargeable_px": 191529,
+   "required_marginal_hit_rate_at_0_1563": 0.03227,
+   "in_domain_dti": 0.64478
+  }
+ ],
+ "in_domain_score": {
+  "dti": 0.659408,
+  "T": 60988.0,
+  "F": 157505.06,
+  "note": "against the catalogue: an in-domain monitor, NOT the test set"
+ },
+ "output": {
+  "path": "data/derived/candidate_s5_dilational_annulus.tif",
+  "download": "docs/downloads/candidate_s5_dilational_annulus.tif",
+  "sha256": "542eaf30766ba57b122cc85fb239e407294a282e1259dcceae0c55575ee19f95",
+  "bytes": 626178
+ },
+ "conformance": {
+  "pixels": 12279160,
+  "template_valid_px": 5167373,
+  "filled_inside": 0,
+  "masked_outside": 7111787,
+  "clipped": 0,
+  "unchanged": 5167373
+ },
+ "note": "a prior intersected with a detector, not a fitted model; its cost is the chargeable pixel count above and its required marginal hit rate is printed beside it",
+ "sources": [
+  "https://www.osti.gov/servlets/purl/1724082",
+  "https://gbcge.org/recent-projects/characterizing-structural-controls/",
+  "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+ ]
+}

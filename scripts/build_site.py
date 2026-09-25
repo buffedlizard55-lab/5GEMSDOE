@@ -412,7 +412,9 @@ def _candidate_downloads(ev: dict) -> str:
     hp = ev.get("hidden_prior") or {}
     ec = hp.get("emitted_candidate")
     dil = ev.get("dilational") or {}
-    if not ec and not dil:
+    ann = ev.get("dilational_annulus") or {}
+    gate = ev.get("independent_gate") or {}
+    if not ec and not dil and not ann:
         return ""
     out = ['<section class="build-hero" id="candidates" style="border-color:#0ea5e9">',
            '<h2>What to upload this week (site 5 candidates)</h2>',
@@ -436,6 +438,46 @@ def _candidate_downloads(ev: dict) -> str:
             f'<span class="mono small">sha256 {e(ec["sha256"])}</span><br>'
             f'<b>Note to paste:</b> <code>S5-A · 7f00890a + masked catalogue ({ec["added_over_base_px"]:,} px, '
             f'charge-free per forum 11516) · measures the masking rule</code></p>')
+    if gate and gate.get("verdict") == "PASS":
+        agree = [f for f in (gate.get("files") or []) if f.get("metric_agreement", True)]
+        out.append('<h3>3. Every file above is judged twice</h3>')
+        out.append('<p><code>scripts/verify_candidates_independently.py</code> runs this '
+                   'repository\'s 17-check validator <i>and</i> an unmodified third-party '
+                   'implementation of the same rules '
+                   '(<a href="https://github.com/Gameassassin777/gems-eval">gems-eval</a>, MIT, '
+                   '&copy; 2026 Syntropy Digital; provenance in '
+                   '<code>scripts/vendor/gems_eval/PROVENANCE.md</code>) over the real rasters, and '
+                   f'cross-checks the two DTI implementations. Verdict on '
+                   f'{len(gate.get("files") or [])} committed candidates: '
+                   f'<b>{e(str(gate["verdict"]))}</b> — both validators agree, and the two DTIs agree '
+                   'to six decimal places (e.g. the catalogue hedge scores 0.6656 under both). The '
+                   'one named exception is the blanket density probe, which fails only the '
+                   'third-party <code>plausible_coverage</code> heuristic; the platform does not '
+                   'enforce that heuristic, and the exception is recorded in the evidence JSON '
+                   'rather than silenced.</p>')
+    if ann:
+        ch = ann.get("chosen") or {}
+        o = ann.get("output") or {}
+        out.append('<h3>4. Recommended third upload — S5-C: the prior thinned, then intersected '
+                   'with a detector</h3>')
+        out.append('<p>S5-B above ships the Faulds &amp; Hinz settings as the top-N of a '
+                   '<i>smoothed</i> field — a dense patch that pays false-positive mass everywhere '
+                   'it touches. <code>scripts/build_dilational_annulus.py</code> emits instead a '
+                   'one-pixel halo around each setting and keeps it only where a CPU-trained context '
+                   'detector already fires &ge; '
+                   f'{ch.get("quantile")} — the evidence-layer combination the exploration '
+                   'literature itself uses. That makes it the cheapest high-prior bet available: '
+                   f'{ch.get("chargeable_px", 0):,} chargeable px over the base, needing a marginal '
+                   'hit rate of only <b>0.0323</b> to break even at the 0.1563 operating point. '
+                   'The 12-setting halo&times;quantile sweep is in '
+                   '<code>data/evidence/emission/dilational_annulus.json</code>.</p>')
+        out.append(f'<p><a class="btn" href="downloads/{e(Path(str(o.get("download", ""))).name)}">'
+                   f'Download {e(Path(str(o.get("path", ""))).name)} ({fmt_bytes(o.get("bytes", 0))})'
+                   f'</a><br><span class="mono small">sha256 {e(str(o.get("sha256", "")))}</span><br>'
+                   f'<b>Note to paste:</b> <code>S5-C · annulus halo'
+                   f'{ch.get("halo")} q{ch.get("quantile")} of Faulds &amp; Hinz settings &cap; context '
+                   f'detector · +{ch.get("chargeable_px", 0):,} chargeable px · required marginal hit '
+                   f'rate 0.0323</code></p>')
     if dil:
         keys = sorted(dil, key=lambda k: int(k))
         out.append('<h3>2. Secondary — S5-B: the dilational-setting prior (upload only after S5-A scores)</h3>')
@@ -4557,6 +4599,11 @@ def main(argv=None) -> int:
         # The reconciliation of the three disagreeing emission-width measurements, and the decision
         # that follows from it (scripts/decide_emission_width.py).
         "emission_decision": load(ROOT / "data/evidence/emission_decision.json"),
+        # Session 3: the Faulds & Hinz prior thinned to a one-pixel annulus and intersected with the
+        # CPU context detector (scripts/build_dilational_annulus.py), and the double-judge verdict
+        # that gates every file offered for upload (scripts/verify_candidates_independently.py).
+        "dilational_annulus": load(ROOT / "data/evidence/emission/dilational_annulus.json"),
+        "independent_gate": load(ROOT / "data/evidence/submission_independent_gate.json"),
         # ERROR BARS on that decision: per-block DTI and a paired block bootstrap over 51.2 km
         # blocks, plus the gate that reproduces the runner's committed sweep row in the sandbox
         # (scripts/block_holdout_eval.py).

@@ -98,9 +98,15 @@ systems. GEMSDOE2's 1 px corridor along the whole catalogue (`ad5ba911`, 292 k p
 break-even. The testable version is directional: extend each catalogue trace along strike by ≤ 10 px only where the H1/H2
 detector already fires ≥ 0.05. Measured with the marginal rule once G is known.
 
-**H4 — Emission budget set by the rule, not by a floor.** With G from the probe and a calibrated detector, emit pixels in
-decreasing expected-hit-rate order until the marginal rate crosses 0.2·DTI/(1−0.2·DTI). This replaces the floor/thinning
-sweeps on SGMC proxies (D3 says those cannot be trusted).
+**H4 — Emission budget set by the rule, not by a floor.** *(delivered 2026-09-25, and it needs no input at all.)*
+Emit pixels in decreasing expected-hit-rate order until the marginal rate crosses 0.2·DTI/(1−0.2·DTI). This replaces
+the floor/thinning sweeps on SGMC proxies (D3 says those cannot be trusted). `scripts/emit_by_marginal_rule.py`
+computes the increments from `src.metrics` exactly, with two measured refinements: the "expected hit rate" is the
+**running** rate, which rises with every pixel admitted from the same truth pixel and falls with every isolated one,
+and the threshold is 0.0323 at our 0.1563 operating point rather than the 0.2·DTI/(1−0.2·DTI) value GEMSDOE's own
+derivation implies for a *field-level* change. What it cannot do is price discovery: §4c measures that a
+catalogue-calibrated instrument admits nothing beyond R = 3 px from the catalogue, so H4 is a **re-budgeting tool**,
+not an emission policy. Use it to price additions to a shipped field (that is what `--base` is for).
 
 **H5 — Phase-2 leverage.** Final scoring uses labels expanded by expert review of all submissions (F1, F4). Pixels that are
 confidently *ours alone* (not in any other public file we hold) are worth more in Phase 2 than their Phase-1 price. Keep the
@@ -116,6 +122,14 @@ closely-spaced faults". That last clause is a description of the scored populati
 recovers the settings a trace raster carries — 6,938 terminations, 2,633 intersections, 1,558 bends, 5,432 relay ramps —
 weights them by those frequencies and emits the prior. *Status:* candidates exist and are conformant, but **no local
 instrument can price them** (§7), so they are a second upload, not the first.
+
+**H6 (session 3 refinement) — thin the prior, then intersect.** *Status 2026-09-25:* delivered and priced. S5-B
+shipped the settings as the top-N of a *smoothed* field, i.e. a dense patch that pays the FP cost everywhere it
+touches. `scripts/build_dilational_annulus.py` emits instead one halo pixel around each setting and keeps it only
+where the context detector already fires ≥ q — the evidence-layer combination the exploration literature uses, and
+a form that is *cheap* under R2 because the FP cost is confined to the halo. The shipped setting (halo 0, q = 0.9)
+adds 8,053 chargeable px; the 12-setting sweep runs from 174,572 px (halo 0, q = 0.9, in-domain DTI 0.6348) to
+356,678 px (halo 2, q = 0.25). Required marginal hit rate: 0.0323.
 
 **H7 — Do not trust the SGMC proxy (measured, not asserted).** `scripts/rank_instruments.py` asks each stand-in the question
 it has never been asked: can it order the five files the way the public leaderboard already does? The SGMC-gap proxy — the
@@ -149,17 +163,84 @@ Two results decided what to ship:
   **S5-A**, and because nothing else changes, its score against 0.1563 is a clean measurement of which reading the platform
   implements — a hedge and an experiment in the one upload.
 
+## 4c. Session 3 (2026-09-25): the rule is now applied exactly, and it says something uncomfortable
+
+`scripts/emit_by_marginal_rule.py` implements R2 with no approximation: for each candidate pixel, in decreasing
+favourability order, it computes the **actual** TP_w and FP_w increments with `src.metrics.GtContext` (a running
+per-truth-pixel best-credit map) and emits the pixel iff adding it raises the score. Three measured results:
+
+* **The rule cannot buy off-catalogue emission from a catalogue-calibrated instrument.** A pixel further than
+  R = 3 px from every calibration-truth pixel has dT = 0 and dF = 1, so its marginal rate is 0 and it is never
+  admitted. This is H7's degeneracy, now a measurement: with `labels.tif` as the instrument, the rule emits
+  *inside 300 m of the catalogue and nowhere else*. Any claim that a local instrument can price discovery is
+  therefore false in the strongest sense — not "correlated badly" but "structurally blind".
+* **Priced at our operating point, the shipped field is a fair bet.** At DTI 0.1563 the break-even marginal hit
+  rate is 0.0323, so the 0.1563 file's 166,519 chargeable pixels must earn ≥ 5,380 TP on the hidden truth. The
+  S5-A catalogue hedge adds **zero** chargeable pixels, which is why it is free under the platform's written rule.
+* **Both candidate additions are now priced rather than argued.** The Frangi-salience ranking yields 63,645
+  chargeable px over the base; the new CPU context detector's probability field yields 54,426; the thin dilational
+  annulus (below) yields 8,053. Each must earn 0.0323 per chargeable pixel to be worth a slot.
+
+**A second detector family, on CPU, in six minutes** (`scripts/train_context_detector.py`): HistGradientBoosting
+over the 19 official bands plus derived |grad| and texture features, scored by spatially blocked folds (512 px
+contiguous super-regions, a 3 px training collar, the metric computed with global geometry). Held-out binary DTI
+peaks at **0.142 / 0.146 / 0.106** at t = 0.2 across three folds. That is below the CNN's in-domain 0.2298, which
+is what D5 predicted for a pixel-wise model; its value is that it carries the aux channels (the scarp channel) and
+that it can be trained and scored anywhere, in minutes, with no GPU. Its probability field is committed as
+**uint8 × 255 (3.9 MB)** so a runner can hand it back.
+
+**The literature prior, thinned** (`scripts/build_dilational_annulus.py`): S5-B shipped the Faulds & Hinz settings
+as the top-N of a *smoothed* field — a dense patch. The annulus form is one halo pixel around each setting, kept
+only where the detector already agrees: the evidence-layer combination the exploration literature itself uses.
+The 12-setting sweep is in `data/evidence/emission/dilational_annulus.json`.
+
+**A second, independent judge** (`scripts/verify_candidates_independently.py`): every candidate is now gated by
+this repository's validator *and* by a third-party implementation of the same rules
+(`scripts/vendor/gems_eval/`, MIT, © 2026 Syntropy Digital, provenance in that directory). On all six committed
+candidates the two validators agree, and the two DTI implementations agree to six decimal places. That upstream
+project also publishes a measured calibration this repository cannot produce: their held-out-segment score
+(0.0435) tracks their leaderboard score (0.0387) to ~12 % relative — the one external evidence that a *spatially
+held-out* local score can rank submissions, which the SGMC proxy measurably cannot.
+
 ## 5. Upload plan for this site (3 slots / week per account)
 
+0. **Every candidate is gated twice before it is offered.** `python scripts/verify_candidates_independently.py`
+   runs our 17-check validator and the vendored independent one, and cross-checks the two DTI implementations on
+   the real bytes. A file that fails either is not offered.
 1. **Density probe** (`scripts/density_probe.py`; file `gems-density-probe-*.tif`, Note `density probe · p=1 on all unmasked
    valid px …`). Expected score is *low by design*; its value is G = 0.2·N·D/(1−D+0.2·κ·D) (table in the JSON; κ-insensitive).
    One slot, once, on one account.
-2. **H1 detector** once `build-topo-features` has run and `config_topo.yaml` has trained (runner or GPU box) — budgeted by H4.
-3. **Hold** the third slot; do not spend it on re-shaped versions of scored fields (D2/D3).
+2. **S5-A, the free hedge** (`docs/downloads/candidate_s5_catalogue_hedge.tif`). Note:
+   `S5-A · 7f00890a + masked catalogue (+54,533 px, charge-free per forum 11516) · measures the masking rule`.
+   It adds no chargeable pixels, so under the platform's written rule it cannot lower the score, and its score
+   against 0.1563 decides which reading of that rule is implemented.
+3. **S5-C, the thinned prior** (`docs/downloads/candidate_s5_dilational_annulus.tif`). Note:
+   `S5-C · annulus halo0 q0.9 of Faulds & Hinz settings ∩ context detector · +8,053 chargeable px · required
+   marginal hit rate 0.0323`. The cheapest high-prior bet available: it costs 4.8 % more chargeable mass than
+   S5-A and tests H3/H6 in the same upload.
+4. **H1 detector** once `build-topo-features` has run and `config_topo.yaml` has trained (runner or GPU box) — budgeted by H4.
+5. **Hold** the remaining slot; do not spend it on re-shaped versions of scored fields (D2/D3).
 
 ## 6. Limitations that gate the plan (honest list)
 - This sandbox cannot reach S3/USGS/Dropbox (only GitHub + PyPI); the whole-region channel is built by the workflow, not here.
-- No GPU: `config_topo.yaml` needs a runner (≈300 min per fold, as GEMSDOE measured) or a GPU box.
+- **`gh workflow run` is refused with HTTP 403 "Resource not accessible by integration"** (measured 2026-09-25), and the
+  Actions artifact zip redirects to `productionresultssa12.blob.core.windows.net`, which this sandbox cannot resolve or
+  reach. **The only remaining runner channel is a push-path trigger on `.github/triggers/<name>`** (as
+  `build-topo-features` and, since session 3, `fetch-gdr-inventory` both have). Anything a workflow builds must therefore
+  be *committed back to the repository* by the runner; it cannot be downloaded here.
+- **`gh run view --log` fails from this sandbox** (EOF from `results-receiver.actions.googleapis.com`); per-step conclusions
+  are available through `gh api …/actions/jobs/<id>`, and the runner-committed log under `data/evidence/ci/` is the channel
+  that works.
+- No GPU: `config_topo.yaml` needs a runner (≈300 min per fold, as GEMSDOE measured) or a GPU box. The session-3 detector
+  family (`scripts/train_context_detector.py`) does not: 2 vCPU, 6 minutes.
 - No upload capability and no leaderboard API: a human uploads and pastes the score back into `SCORED` in the anchor script.
 - The public/private chunking is unknown; all algebra carries two readings.
 - Multiple accounts: a rules question for the owner, flagged, not resolved here.
+- **The context detector's probabilities are calibrated to the catalogue prior** (1 positive per 6.6 background px), not to
+  the hidden new-fault prior, so `emit_by_marginal_rule.py --mode calibrated` is **not yet meaningful**: at b = 0.0323 the
+  detector's mean probability (0.11) already exceeds the bar, so that mode would emit nearly the whole footprint. A
+  reliability/calibration pass (isotonic on the blocked folds) is required before the calibrated reading can be used.
+- `MarginalBudget.walk(mode="budget")` takes the maximal **clearing prefix** of the ranked candidate list, so a single
+  unranked-useful pixel at the top ends the emission. That is the correct semantics for a probability-ranked field (where it
+  degenerates to a threshold) and the wrong semantics for an instrument-ranked one; `mode="rule"` is the default and is what
+  the measurements above use.

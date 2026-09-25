@@ -71,6 +71,13 @@ def test_no_page_links_to_a_page_that_does_not_exist():
 
 
 STAMP = re.compile(rb"\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC")
+# A second, ISO-8601 stamp reaches the pages from the evidence JSONs' own `generated_utc`
+# (e.g. how_to_submit.html renders the site-generator run's instant in prose).  Re-measuring
+# any evidence file rewrites that instant and nothing else, which the byte comparison used to
+# report as "stale pages" - a false positive that fired on the very first run after a
+# re-measurement.  It is the same category as the build stamp: the one thing that is supposed to
+# move.  Everything else on the page is still compared byte for byte.
+ISO_STAMP = re.compile(rb"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 
 
 def _normalised(p: Path) -> bytes:
@@ -81,7 +88,7 @@ def _normalised(p: Path) -> bytes:
     therefore make this test fail on a minute boundary - a flake, not a defect.  The stamp is the
     one thing on the page that is *supposed* to change, and everything else is not.
     """
-    return STAMP.sub(b"<STAMP>", p.read_bytes())
+    return ISO_STAMP.sub(b"<STAMP>", STAMP.sub(b"<STAMP>", p.read_bytes()))
 
 
 # The build reads the working tree as well as the committed evidence: `docs/submission.html`

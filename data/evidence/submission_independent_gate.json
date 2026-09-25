@@ -1,0 +1,255 @@
+{
+ "generated_utc": "2026-09-25T22:00:09Z",
+ "generated_by": "scripts/verify_candidates_independently.py",
+ "judges": {
+  "ours": "scripts/validate_submission.py (17 checks; exit code gates CI)",
+  "theirs": "scripts/vendor/gems_eval/validate.py - unmodified copy of https://github.com/Gameassassin777/gems-eval (MIT, (c) 2026 Syntropy Digital); provenance in scripts/vendor/gems_eval/PROVENANCE.md"
+ },
+ "metric_cross_check": "src/metrics.GtContext.score (this repository, fast path) vs gems_eval.dti.dti (independent full-raster formulation), on the real rasters, for every candidate",
+ "files": [
+  {
+   "file": "candidate_s5_catalogue_hedge.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5_catalogue_hedge.tif",
+   "sha256": "132e23e10344013a23ffd18a21a3fdcdb59c7c7c84444708db1fb38072c119ef",
+   "bytes": 624814,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.04402759298682213,
+    "frac_ge_0.5_inside": 0.04402759390506549,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.665633,
+    "independent_dti": 0.665633,
+    "abs_diff": 0.0,
+    "agree": true,
+    "T": 60988.0,
+    "F": 153180.33,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "candidate_s5_dilational_annulus.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5_dilational_annulus.tif",
+   "sha256": "542eaf30766ba57b122cc85fb239e407294a282e1259dcceae0c55575ee19f95",
+   "bytes": 626178,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.04564930871129036,
+    "frac_ge_0.5_inside": 0.04564930768496875,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.659408,
+    "independent_dti": 0.659408,
+    "abs_diff": 1e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 157505.06,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "candidate_s5_dilational_top10k.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5_dilational_top10k.tif",
+   "sha256": "f11c8684b152c2ccefc51c1f725491e31499bbef2091a0284b47cc35d785f93e",
+   "bytes": 627566,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.04596281424164772,
+    "frac_ge_0.5_inside": 0.045962813212825936,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.658507,
+    "independent_dti": 0.658507,
+    "abs_diff": 1e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 158138.08,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "candidate_s5_dilational_top25k.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5_dilational_top25k.tif",
+   "sha256": "10bf2c4d3885d06116664226705712c3656a7a21364ec8559b4ec8200efd1f5e",
+   "bytes": 632252,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.04886564239859581,
+    "frac_ge_0.5_inside": 0.0488656421744666,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.647264,
+    "independent_dti": 0.647264,
+    "abs_diff": 2e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 166181.66,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "candidate_s5_dilational_top50k.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5_dilational_top50k.tif",
+   "sha256": "d4a5de924057eec12c4e4ee9bdb5de361754b7bc9ace8691f86cb1ace51e57e2",
+   "bytes": 637066,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.05370369181036949,
+    "frac_ge_0.5_inside": 0.053703690443867705,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.628234,
+    "independent_dti": 0.628234,
+    "abs_diff": 1e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 180452.45,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+   "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+   "bytes": 527755,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": false
+    },
+    "ok": false,
+    "mean_inside": 0.9881975054740906,
+    "frac_ge_0.5_inside": 0.9881974844858307,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.038763,
+    "independent_dti": 0.038763,
+    "abs_diff": 0.0,
+    "agree": true,
+    "T": 40633.74,
+    "F": 4956731.46,
+    "FN_w": 20354.26,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": "intentional blanket probe: fails only the independent validator's plausible_coverage heuristic, which the platform itself does not enforce",
+   "verdict": "PASS"
+  }
+ ],
+ "verdict": "PASS",
+ "blanket_exceptions": [
+  "gems-density-probe-20260925T184215Z-9cdae9b4.tif"
+ ]
+}

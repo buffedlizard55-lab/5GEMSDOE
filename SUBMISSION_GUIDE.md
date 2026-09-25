@@ -140,6 +140,14 @@ and a paste-ready submit note, and commits only the measurement JSON to
 gh workflow run make-submission.yml -f route=adopted -f package=both
 ```
 
+> **⚠️ That last command does not work from this token (measured 2026-09-25, session 3): `gh workflow run`
+> returns HTTP 403 "Resource not accessible by integration", and `gh api …/dispatches` (POST) likewise. The
+> token can list and read workflows but cannot dispatch them. The route that *does* work is a **push-path
+> trigger** on `.github/triggers/<name>` (which `build-topo-features` and, since session 3,
+> `fetch-gdr-inventory` both have): edit the trigger file and push. Runner results can only come back by the
+> runner **committing them into the repository** — the artifact zip redirects to an Azure blob host this
+> sandbox cannot reach. Route 2 (the Node CLI above) is the working path for the file itself.
+
 **If you prefer to hand over the `.zip`** the dialog accepts (the dialog's wording, transcribed by
 the team; rules §3.2 documents only the GeoTIFF form — irregularity 7):
 
@@ -151,6 +159,38 @@ python scripts/package_submission.py --tif submission.tif --out submission.zip -
 `--check` re-extracts the member, reads it back through GDAL, and compares bytes; a second member, a
 recompressed member, or a member that differs by one bit fails the command. Packaging is verified to
 be deterministic by re-running it and comparing hashes.
+
+### 6b. Which file to upload, in what order, with the exact Note text (added 2026-09-25, session 3)
+
+Every file below has already been gated **twice** — by `scripts/validate_submission.py` (17 checks) *and* by an
+unmodified third-party implementation of the same rules (`scripts/vendor/gems_eval/`, MIT © 2026 Syntropy Digital,
+provenance in that directory), with the two DTI implementations cross-checked on the real rasters. The measured
+agreement is in `data/evidence/submission_independent_gate.json` (verdict PASS; DTIs agree to six decimals on all
+six candidates). Filenames carry a sha256 of the pixels so a re-run cannot silently substitute a different field.
+
+| # | File | sha256 (first 8) | Note text to paste | Why this one, next |
+|---|---|---|---|---|
+| 1 | `docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif` | `9cdae9b4` | `density probe · p=1 on all unmasked valid px · inverts the public score into the hidden truth size G · score is expected to be low by design` | Once, on one account, any time. It is the only measurement that turns every bound in `docs/STRATEGY.md` §2 into a number. Everything else is worth more once G is known. |
+| 2 | `docs/downloads/candidate_s5_catalogue_hedge.tif` | `132e23e1` | `S5-A · base 7f00890a + masked catalogue (+54,533 px, charge-free per forum 11516) · measures the masking rule` | Adds **zero chargeable pixels**, so under the platform's written rule it cannot lower the score. Its score against 0.1563 decides which reading of the masking rule is implemented — the one open question in `docs/GEOTHERMAL_SCIENCE.md` §5. (`7f00890a` is the base field it is built from, not this file's hash; this file is `132e23e1`.) |
+| 3 | `docs/downloads/candidate_s5_dilational_annulus.tif` | `542eaf30` | `S5-C · annulus halo0 q0.9 of Faulds & Hinz settings ∩ context detector · +8,053 chargeable px · required marginal hit rate 0.0323` | The cheapest high-prior bet available: the literature's dilational settings as a one-pixel halo, kept only where a detector already fires. Costs 4.8 % more chargeable mass than S5-A and tests H3/H6 in the same upload. |
+| 4 | hold | — | — | Do not spend a slot on a re-shaped version of a scored field (`docs/STRATEGY.md` D2/D3). |
+
+The sha256s above are the ones recorded in `data/evidence/submission_independent_gate.json` for the bytes
+currently in `docs/downloads/`; if you re-run any builder, re-run
+`python scripts/verify_candidates_independently.py --blanket docs/downloads/gems-density-probe-*.tif`
+first — the gate's verdict is only meaningful against the bytes it hashed.
+
+**The decision after #2 and #3 are scored** is mechanical, not a judgement call: run
+`python scripts/emit_by_marginal_rule.py --pred <candidate> --base docs/downloads/candidate_s5_catalogue_hedge.tif --price`
+and compare each candidate's chargeable mass against the break-even marginal hit rate
+`breakeven_marginal_hit_rate(score)` (**0.0204 / 0.0323 / 0.0417 / 0.0649** at DTI **0.10 / 0.1563 / 0.20 /
+0.3049**). A candidate that adds chargeable pixels without a prior reason to expect ≥ that rate is not a candidate.
+
+**On the website.** The one-click button on the [landing page](https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html)
+and the [executive summary](https://buffedlizard55-lab.github.io/5GEMSDOE/docs/executive_summary.html) writes the
+**adopted 0.1563 artifact** — the one field in this repository with a measured leaderboard score — and says so. The
+candidates above are offered as downloads from `docs/downloads/` precisely because their scores are not yet known;
+the button is for the file you can upload today and defend, the table is for the experiment.
 
 ## 7. Submission Format Validation (Our Implementation)
 

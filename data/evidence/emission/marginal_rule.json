@@ -1,0 +1,74 @@
+{
+ "generated_utc": "2026-09-25T21:25:51Z",
+ "generated_by": "scripts/emit_by_marginal_rule.py",
+ "metric": {
+  "R_px": 3,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "formula": "DTI = T / (alpha*(T+F) + beta*G); emit binary (R1); marginal rule dT > alpha*DTI*dF/(1-alpha*DTI) (R2)"
+ },
+ "sources": [
+  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric",
+  "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+ ],
+ "calibration_truth": {
+  "path": "data/labels.tif",
+  "px": 60988,
+  "note": "the catalogue the supervised files trained on; an in-domain monitor, not a generalisation test, and degenerate for candidates that exploit the mask"
+ },
+ "footprint": {
+  "valid_px": 5167373,
+  "catalogue_px": 60988,
+  "chargeable_px": 5106385
+ },
+ "priced": [
+  {
+   "path": "docs/downloads/candidate_s5_catalogue_hedge.tif",
+   "sha256": "132e23e10344013a23ffd18a21a3fdcdb59c7c7c84444708db1fb38072c119ef",
+   "bytes": 624814,
+   "emitted_px": 227507,
+   "on_masked_catalogue_px": 60988,
+   "chargeable_px": 166519,
+   "chargeable_mass": 166519.0,
+   "required_marginal_hit_rate": {
+    "0.1000": 0.02041,
+    "0.1563": 0.03227,
+    "0.2000": 0.04167,
+    "0.3049": 0.06494
+   },
+   "note": "chargeable_px is the false-positive mass a score of 0 would pay for; the rule says those pixels are worth emitting only where their expected hit rate exceeds the required_marginal_hit_rate at the operating point"
+  },
+  {
+   "path": "docs/downloads/candidate_s5_dilational_top10k.tif",
+   "sha256": "f11c8684b152c2ccefc51c1f725491e31499bbef2091a0284b47cc35d785f93e",
+   "bytes": 627566,
+   "emitted_px": 237507,
+   "on_masked_catalogue_px": 60988,
+   "chargeable_px": 176519,
+   "chargeable_mass": 176519.0,
+   "required_marginal_hit_rate": {
+    "0.1000": 0.02041,
+    "0.1563": 0.03227,
+    "0.2000": 0.04167,
+    "0.3049": 0.06494
+   },
+   "note": "chargeable_px is the false-positive mass a score of 0 would pay for; the rule says those pixels are worth emitting only where their expected hit rate exceeds the required_marginal_hit_rate at the operating point"
+  },
+  {
+   "path": "docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+   "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+   "bytes": 527755,
+   "emitted_px": 5106385,
+   "on_masked_catalogue_px": 0,
+   "chargeable_px": 5106385,
+   "chargeable_mass": 5106385.0,
+   "required_marginal_hit_rate": {
+    "0.1000": 0.02041,
+    "0.1563": 0.03227,
+    "0.2000": 0.04167,
+    "0.3049": 0.06494
+   },
+   "note": "chargeable_px is the false-positive mass a score of 0 would pay for; the rule says those pixels are worth emitting only where their expected hit rate exceeds the required_marginal_hit_rate at the operating point"
+  }
+ ]
+}

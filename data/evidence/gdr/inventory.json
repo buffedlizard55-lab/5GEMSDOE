@@ -1,0 +1,105 @@
+{
+ "generated_utc": "2026-09-25T22:07:12Z",
+ "source": {
+  "dataset": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings",
+  "landing_page": "https://gdr.openei.org/submissions/355",
+  "doi": "10.15121/1148722",
+  "license": "CC BY 4.0",
+  "author": "Faulds, James E. (University of Nevada, 2013)"
+ },
+ "fetch": {
+  "url": "https://gdr.openei.org/files/355/Faulds_Structural_Inventory_Great_Basin_DE-EE0002748%20(1).xls",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "bytes": 250368,
+  "sha256": "843feb7c93f0a2325ee2651cd63ab0739a43593d2d3e8cafe6e87a0d2014c2ac",
+  "magic": "ole2-xls",
+  "path": "data/external/gdr/faulds_structural_inventory_great_basin.xls"
+ },
+ "looks_like_a_spreadsheet": true,
+ "published_frequencies_for_comparison": {
+  "step_over_relay_ramp": 0.32,
+  "termination": 0.25,
+  "intersection": 0.22,
+  "accommodation_zone": 0.09,
+  "displacement_transfer_zone": 0.05,
+  "pull_apart": 0.03,
+  "bend": 0.02,
+  "range_front": 0.01
+ },
+ "summary": {
+  "read": true,
+  "sheets": {
+   "StructureInventory": {
+    "rows": 426,
+    "cols": 23,
+    "columns": [
+     "Id",
+     "NAME",
+     "MAX_TEMP",
+     "THERMOM",
+     "MAX_MAXT",
+     "Field_Visit",
+     "Blind",
+     "Primary_S_Code",
+     "Cashman_S_Code",
+     "Second_S_Code",
+     "Structural_Setting_Comment",
+     "Primary_Structure_Orientation",
+     "Primary_Structure_Orientation.1",
+     "MAGMATIC",
+     "Quaternary faulting Bell",
+     "Fault name Bell",
+     "Distance to fault (km) Bell",
+     "Distance to fault code",
+     "Fault distance/age code",
+     "Q_Fault_Ref_Comment",
+     "POWER",
+     "X_Nad83",
+     "Y_Nad83"
+    ],
+    "setting_counts": {
+     "nan": 89,
+     "Qal": 7,
+     "Stepover (from google)": 3,
+     "Fault intersection": 3,
+     "Qal; Klamath Falls area; NW structural grain": 3,
+     "Complex normal FZ, seismic gap, stepover": 2,
+     "magmatic": 2,
+     "Fault termination-normal FZ": 2,
+     "Small stepover (right) in range front": 2,
+     "NNE and NNW faults": 2,
+     "Fault intersection?": 2,
+     "Accommodation Zone": 2,
+     "Fault intersection-NNE and NW faults": 2,
+     "unknown, within Grouse Creek Range drainage": 2,
+     "Fault intersection, ENE and NNW faults, and small pull apart": 1,
+     "Stepover, complex normal FZ": 1,
+     "Accommodation Zone, stepover": 1,
+     "Stepover": 1,
+     "Accommodation zone based on reflection data--NNE faults": 1,
+     "rupture barrier; S termination of Stillwater, N termination of Rainbow Mtn": 1,
+     "Broad Azone, Fault intersection-Normal and ENE, And Termination": 1,
+     "Fault termination?": 1,
+     "Probable transfer zone between N-striking normal faults to south and ENE-left-lateral fault; also intersection with NW-striking faults exposed in Desert Mts": 1,
+     "Dextral pull apart zone+fault intersections": 1,
+     "Accommodation zone, fault termination; within Long Valley caldera": 1,
+     "stepover based on new Henry map": 1,
+     "along young range-front normal fault; poss. Overprinted on termination of older splays": 1,
+     "Fault apex in major normal FZ": 1,
+     "Sits just west of major N-NNE trending normal fault that bounds the snake mountains": 1,
+     "Broad stepover (left) in major range-front": 1
+    }
+   },
+   "Field Definitions": {
+    "rows": 68,
+    "cols": 3,
+    "columns": [
+     "Unnamed: 0",
+     "Unnamed: 1",
+     "Unnamed: 2"
+    ]
+   }
+  }
+ }
+}

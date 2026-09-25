@@ -1,0 +1,328 @@
+{
+ "generated_utc": "2026-09-25T21:48:32Z",
+ "generated_by": "scripts/train_context_detector.py",
+ "detector": "sklearn HistGradientBoostingClassifier (CPU, no torch, no GPU)",
+ "inputs": {
+  "features": "data/training_features.tif",
+  "labels": "data/labels.tif",
+  "template": "data/sample_submission.tif",
+  "aux": [],
+  "feature_names": [
+   "mag_anom",
+   "|grad|_mag_anom",
+   "rtp",
+   "|grad|_rtp",
+   "mean5_rtp",
+   "tmi_hg",
+   "geod_2ndinv",
+   "|grad|_geod_2ndinv",
+   "iso_grav_anom_slope",
+   "tc",
+   "geod_shearrate",
+   "|grad|_geod_shearrate",
+   "geod_dilaterate",
+   "tmi_vg",
+   "deq_n100a15",
+   "iso_grav_anom_vg",
+   "det_elev",
+   "|grad|_det_elev",
+   "mean5_det_elev",
+   "iso_grav_anom",
+   "|grad|_iso_grav_anom",
+   "mean5_iso_grav_anom",
+   "tmi",
+   "|grad|_tmi",
+   "depth_to_base_surf",
+   "ieq_n100a15",
+   "cond_surf",
+   "iso_grav_anom_hg",
+   "det_elev_slope",
+   "|grad|_det_elev_slope"
+  ],
+  "band_percentiles": {
+   "mag_anom": [
+    -291.4226,
+    311.8615
+   ],
+   "|grad|_mag_anom": [
+    -462.4186,
+    395.6387
+   ],
+   "rtp": [
+    0.6402,
+    189.195
+   ],
+   "|grad|_rtp": [
+    1.7,
+    57.7697
+   ],
+   "mean5_rtp": [
+    0.0155,
+    0.3678
+   ],
+   "tmi_hg": [
+    7.179,
+    29.0991
+   ],
+   "geod_2ndinv": [
+    0.0,
+    38.5
+   ],
+   "|grad|_geod_2ndinv": [
+    -9.7239,
+    27.0
+   ],
+   "iso_grav_anom_slope": [
+    -0.7102,
+    0.7933
+   ],
+   "tc": [
+    116.2705,
+    50237.1992
+   ],
+   "geod_shearrate": [
+    -4.392,
+    4.2417
+   ],
+   "|grad|_geod_shearrate": [
+    -471.6967,
+    707.3258
+   ],
+   "geod_dilaterate": [
+    -33.0007,
+    12.8943
+   ],
+   "tmi_vg": [
+    -435.3819,
+    354.6006
+   ],
+   "deq_n100a15": [
+    1.1536,
+    3415.3501
+   ],
+   "iso_grav_anom_vg": [
+    262.8007,
+    5082.2002
+   ],
+   "det_elev": [
+    1.1678,
+    4.4883
+   ],
+   "|grad|_det_elev": [
+    -5.1886,
+    5.404
+   ],
+   "mean5_det_elev": [
+    0.0679,
+    32.7198
+   ]
+  }
+ },
+ "spatial_cv": {
+  "block_px": 512,
+  "collar_px": 3,
+  "folds": 3,
+  "rule": "contiguous 512 px super-regions; the collar is excluded from training, never from scoring (src/blocks.py)"
+ },
+ "per_fold": [
+  {
+   "fold": 0,
+   "held_out_px": 3220480,
+   "held_out_fault_px": 20448,
+   "train_px": 306643,
+   "dti": 0.05908319053495454,
+   "TP_w": 3398.27,
+   "FP_w": 202393.48,
+   "FN_w": 17049.73,
+   "n_gt": 20448,
+   "pred_mass": 213265.7,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.07608,
+     "TP_w": 17758.5,
+     "FP_w": 1067528.7,
+     "pred_px": 1125490
+    },
+    "0.10": {
+     "dti": 0.10369,
+     "TP_w": 14427.6,
+     "FP_w": 599512.3,
+     "pred_px": 641907
+    },
+    "0.20": {
+     "dti": 0.142,
+     "TP_w": 7337.9,
+     "FP_w": 169254.2,
+     "pred_px": 186550
+    },
+    "0.30": {
+     "dti": 0.13503,
+     "TP_w": 3727.1,
+     "FP_w": 52490.0,
+     "pred_px": 60262
+    },
+    "0.50": {
+     "dti": 0.06665,
+     "TP_w": 1221.3,
+     "FP_w": 8600.1,
+     "pred_px": 10849
+    },
+    "0.70": {
+     "dti": 0.01774,
+     "TP_w": 294.0,
+     "FP_w": 789.6,
+     "pred_px": 1209
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 1,
+   "held_out_px": 2734080,
+   "held_out_fault_px": 20871,
+   "train_px": 306360,
+   "dti": 0.045620918398187146,
+   "TP_w": 3023.63,
+   "FP_w": 244878.99,
+   "FN_w": 17847.37,
+   "n_gt": 20871,
+   "pred_mass": 254557.6,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.04263,
+     "TP_w": 18680.4,
+     "FP_w": 2088986.6,
+     "pred_px": 2149083
+    },
+    "0.10": {
+     "dti": 0.11009,
+     "TP_w": 14453.4,
+     "FP_w": 558482.5,
+     "pred_px": 599223
+    },
+    "0.20": {
+     "dti": 0.14627,
+     "TP_w": 6380.2,
+     "FP_w": 128231.9,
+     "pred_px": 142198
+    },
+    "0.30": {
+     "dti": 0.11298,
+     "TP_w": 2557.9,
+     "FP_w": 27161.0,
+     "pred_px": 31867
+    },
+    "0.50": {
+     "dti": 0.01984,
+     "TP_w": 338.9,
+     "FP_w": 1568.3,
+     "pred_px": 1941
+    },
+    "0.70": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 14.0,
+     "pred_px": 14
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 2,
+   "held_out_px": 2284544,
+   "held_out_fault_px": 19669,
+   "train_px": 302138,
+   "dti": 0.05069440744091927,
+   "TP_w": 2971.22,
+   "FP_w": 211405.26,
+   "FN_w": 16697.78,
+   "n_gt": 19669,
+   "pred_mass": 221412.3,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.05112,
+     "TP_w": 17493.7,
+     "FP_w": 1614978.0,
+     "pred_px": 1672153
+    },
+    "0.10": {
+     "dti": 0.08727,
+     "TP_w": 12524.8,
+     "FP_w": 626394.7,
+     "pred_px": 663563
+    },
+    "0.20": {
+     "dti": 0.10568,
+     "TP_w": 6665.2,
+     "FP_w": 230015.6,
+     "pred_px": 247165
+    },
+    "0.30": {
+     "dti": 0.10838,
+     "TP_w": 3381.1,
+     "FP_w": 73931.9,
+     "pred_px": 81015
+    },
+    "0.50": {
+     "dti": 0.03343,
+     "TP_w": 550.4,
+     "FP_w": 3091.5,
+     "pred_px": 3943
+    },
+    "0.70": {
+     "dti": 0.00251,
+     "TP_w": 39.5,
+     "FP_w": 44.4,
+     "pred_px": 82
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  }
+ ],
+ "full_field_in_domain": {
+  "dti": 0.120767,
+  "T": 18603.42,
+  "F": 507660.81,
+  "FN_w": 42384.58,
+  "note": "scored against the catalogue the model trained on: an in-domain monitor, NOT the competition test set"
+ },
+ "train_score_head": [
+  -0.39073,
+  -0.38506,
+  -0.38048,
+  -0.37637,
+  -0.37269
+ ],
+ "feature_importance_permutation": null,
+ "output": {
+  "path": "data/derived/context_detector_prob.tif",
+  "sha256": "21354c393012ee4f712afaad1af3c36a6b3520bb475bd4b9184077991afee17b",
+  "bytes": 22948051,
+  "valid_px": 5167373,
+  "mean": 0.109695,
+  "p99": 0.47774,
+  "frac_gt_0_5": 0.008053
+ },
+ "caveat": "a second detector family, not a better one: STRATEGY.md D5 measured pixel-wise boosting ~+0.04 BELOW the CNN at equal budget.  Its value is the channels it can carry (the 10 m scarp channel) and that it can be trained and scored anywhere, on CPU, in minutes",
+ "sources": [
+  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "https://www.osti.gov/servlets/purl/1724082",
+  "https://gbcge.org/recent-projects/characterizing-structural-controls/"
+ ],
+ "seconds": 359.4
+}
