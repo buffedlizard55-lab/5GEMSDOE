@@ -1,0 +1,5 @@
+# Touch this file (change any line) and push to fire .github/workflows/build-topo-features.yml on this branch.
+# The run reads the public USGS 3DEP 1/3" DEM VRT over HTTP, builds data/external/topo_features_100m.tif on the
+# exact competition grid, uploads it as the artifact `topo_features_100m` (90 days) and commits only the small
+# report JSON to data/evidence/topo/. It uploads nothing to DrivenData and uses no credentials.
+fire=1  # 2026-09-25 first whole-region build (fine_res=10, chunk=256)

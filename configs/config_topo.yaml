@@ -1,0 +1,89 @@
+# GEMS Prize - 5GEMSDOE hypothesis H1: the official 19 bands PLUS the 9-band topographic scarp
+# channel built by scripts/build_topo_features.py (10 m 3DEP -> 100 m sub-pixel statistics).
+# Everything else is identical to configs/config.yaml so a paired comparison isolates the channel.
+#
+# Before training: download the `topo_features_100m` artifact of a build-topo-features run to
+# data/external/topo_features_100m.tif (or run the script locally on a machine that reaches S3).
+# src/dataset.py refuses to start if the raster is missing or its grid differs from the features.
+data:
+  feature_path: "data/training_features.tif"
+  label_path: "data/labels.tif"
+  sample_submission_path: "data/sample_submission.tif"
+  dem_links_csv: "data/1m_DEM_links.csv"
+  external_dir: "data/external"
+  external_dem_path: null
+  aux_feature_paths:
+    - "data/external/topo_features_100m.tif"
+  output_dir: "outputs_topo"
+  norm_mode: "clip_zscore"
+  clip_percentile: [1.0, 99.0]
+  use_external_dem: false
+  use_ingenious_extra: false
+
+# ---- sections below are copied verbatim from configs/config.yaml (paired comparison) ----
+training:
+  patch_size: 256
+  train_step: 128
+  test_proportion: 0.3
+  neg_fraction: 0.35
+  mc_splits: 10
+  batch_size: 16
+  epochs: 60
+  init_lr: 0.0001
+  weight_decay: 0.0001
+  scheduler: onecycle
+  alpha: 0.2
+  beta: 0.8
+  loss: combined_dw
+  use_global_fp_weight: true
+  augment: true
+  noise_std: 0.01
+  rand_crop_scale:
+  - 0.75
+  - 1.0
+  early_stopping_patience: 10
+  num_workers: 8
+  seed: 42
+  good_channels: null
+  calibrate_shaping: true
+  shaping_grid: 15
+  shaping_windows: 48
+model:
+  architectures:
+  - unetplusplus
+  - deeplabv3plus
+  - segformer
+  - unet
+  encoder: efficientnet-b5
+  segformer_encoder: mit_b2
+  pretrained: true
+  in_channels: null
+  classes: 1
+inference:
+  overlap: 0.75
+  batch_size: 32
+  tta: true
+  threshold: null
+  blend_mode: gaussian
+  ensemble_weights: null
+  submission_shaping:
+    t0: null
+    thin: null
+    hard: true
+    gamma: 1.0
+postprocess:
+  frangi_filter: true
+  frangi_scale_range:
+  - 1
+  - 10
+  frangi_weight: 0.35
+  morphological_closing: true
+  closing_kernel: 3
+  min_fault_length: 5
+  skeletonize: false
+metric:
+  R_meters: 300
+  resolution_m: 100
+  alpha: 0.2
+  beta: 0.8
+  epsilon: 1.0e-07

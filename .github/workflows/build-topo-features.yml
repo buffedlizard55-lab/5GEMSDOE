@@ -1,0 +1,133 @@
+name: build-topo-features
+# =============================================================================
+# Topographic scarp channel (5GEMSDOE hypothesis H1, docs/STRATEGY.md §4).
+#
+# Runs scripts/build_topo_features.py over the WHOLE competition grid on a GitHub-hosted runner,
+# reading the public-domain USGS 3DEP seamless 1/3 arc-second (~10 m) DEM straight from the S3 VRT
+# (no download step, no credentials, no auth):
+#   https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt
+# The development sandbox cannot reach S3 (egress allow-list), which is the only reason this is a
+# workflow rather than a local command.  Output:
+#   data/external/topo_features_100m.tif   (9 bands, float32, EXACT competition grid)  -> artifact
+#   data/external/topo_features_100m.report.json                                        -> committed
+# The raster is ~400 MB uncompressed (9 x 3292 x 3730 x 4 B) and is uploaded as a run artifact,
+# never committed.  Point configs/config_topo.yaml at the downloaded artifact to train with it.
+#
+# Fire from Actions -> Run workflow, or push .github/triggers/build-topo-features on the branch.
+# =============================================================================
+on:
+  workflow_dispatch:
+    inputs:
+      fine_res:
+        description: "fine cell size in metres (10 = 1/3 arc-second; 30 for a quick coarse pass)"
+        default: "10"
+      chunk:
+        description: "chunk edge in 100 m cells"
+        default: "256"
+      max_chunks:
+        description: "stop after N non-empty chunks ('' = whole grid)"
+        default: ""
+      dem:
+        description: "GDAL-readable DEM source"
+        default: "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt"
+  push:
+    branches: ["arena/**", "main"]
+    paths: [".github/triggers/build-topo-features"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-topo-features-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  # GDAL over HTTP: read only the tiles a chunk needs, retry transient S3 errors
+  GDAL_DISABLE_READDIR_ON_OPEN: "EMPTY_DIR"
+  CPL_VSIL_CURL_ALLOWED_EXTENSIONS: ".tif,.vrt"
+  GDAL_HTTP_MAX_RETRY: "5"
+  GDAL_HTTP_RETRY_DELAY: "3"
+  VSI_CACHE: "TRUE"
+  VSI_CACHE_SIZE: "268435456"
+
+jobs:
+  build:
+    name: 10 m 3DEP -> 100 m scarp statistics on the competition grid
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: install
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet numpy scipy rasterio pytest
+          python -c "import rasterio; print('rasterio', rasterio.__version__, 'GDAL', rasterio.__gdal_version__)"
+      - name: unit tests for the channel (synthetic scarp)
+        run: python -m pytest tests/test_topo_features.py -q
+      - name: place the official template (sha256-pinned git bridge)
+        run: |
+          set -euo pipefail
+          python scripts/assemble_data_bridge.py
+          python scripts/prepare_data.py
+      - name: probe the DEM source (fail loudly if S3 is unreachable)
+        run: |
+          set -euo pipefail
+          python - <<'EOF'
+          import os, rasterio
+          src = os.environ.get("DEM_SRC")
+          with rasterio.open(src) as ds:
+              print("DEM", ds.crs, ds.res, ds.width, ds.height, "nodata", ds.nodata)
+          EOF
+        env:
+          DEM_SRC: ${{ github.event.inputs.dem || 'https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt' }}
+      - name: build the channel
+        run: |
+          set -euo pipefail
+          MAXC="${{ github.event.inputs.max_chunks }}"
+          EXTRA=""
+          if [ -n "$MAXC" ]; then EXTRA="--max-chunks $MAXC"; fi
+          python scripts/build_topo_features.py \
+            --dem "${{ github.event.inputs.dem || 'https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt' }}" \
+            --fine-res "${{ github.event.inputs.fine_res || '10' }}" \
+            --chunk "${{ github.event.inputs.chunk || '256' }}" \
+            --out data/external/topo_features_100m.tif $EXTRA 2>&1 | tee data/external/build_topo_features.log
+      - name: verify the channel stacks onto the official features with zero drift
+        run: |
+          set -euo pipefail
+          python - <<'EOF'
+          import numpy as np, sys
+          sys.path.insert(0, ".")
+          from src.dataset import load_features_and_labels
+          X, y, fmeta, lmeta, tags = load_features_and_labels(
+              "data/training_features.tif", "data/labels.tif",
+              aux_feature_paths=["data/external/topo_features_100m.tif"])
+          print("stacked", X.shape, "last bands", [t.get("band_name") for t in tags[-9:]])
+          assert X.shape[-1] == 19 + 9
+          EOF
+      - name: upload the raster (artifact; 90 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: topo_features_100m
+          path: |
+            data/external/topo_features_100m.tif
+            data/external/topo_features_100m.report.json
+            data/external/build_topo_features.log
+          retention-days: 90
+          if-no-files-found: error
+      - name: commit the report (small JSON only, never the raster)
+        run: |
+          set -euo pipefail
+          mkdir -p data/evidence/topo
+          cp data/external/topo_features_100m.report.json data/evidence/topo/topo_features_100m.report.json
+          cp data/external/build_topo_features.log data/evidence/topo/build_topo_features.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/evidence/topo
+          git commit -m "build-topo-features: run ${{ github.run_id }} report [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"

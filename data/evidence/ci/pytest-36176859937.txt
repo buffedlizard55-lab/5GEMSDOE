@@ -1,0 +1,31 @@
+workflow: Tests
+run: 36176859937
+sha: 03b65f6250320df298e33195261a664152d3ac4b
+branch: arena/01a0d9d4-5gemsdoe
+
+--- pytest tail ---
+FAILED tests/test_how_to_submit_page.py::test_no_repository_path_on_the_page_is_missing - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_validation_section_shows_the_committed_validator_checks - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_rules_sentences_are_quoted_by_id_with_their_badge - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_page_links_only_to_urls_the_catalog_knows - KeyError: 'bytes'
+FAILED tests/test_how_to_submit_page.py::test_cpu_route_caveat_is_rendered_from_the_report - KeyError: 'bytes'
+FAILED tests/test_pseudo_labels.py::test_load_pseudo_mask_on_committed_proxy_catalogue - rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+FAILED tests/test_pseudo_labels.py::test_load_pseudo_mask_rejects_wrong_code - rasterio.errors.RasterioIOError: /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/proxy/proxy_catalogue.tif: No such file or directory
+FAILED tests/test_site.py::test_builder_without_payload_shows_the_gap_not_a_panel - KeyError: 'bytes'
+FAILED tests/test_site_generator.py::test_the_committed_payload_still_reproduces_the_artifact - AssertionError: the adopted artifact is committed; a fresh clone needs `git pull`
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif').exists
+FAILED tests/test_site_generator.py::test_payload_verify_mode_decodes_back_to_the_artifact - AssertionError: MISSING  /home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif
+    the artifact is committed in the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one
+  
+assert 2 == 0
+ +  where 2 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', 'scripts/build_submission_payload.py', '-...n the repository; `git pull` or run the CPU route (python scripts/baseline_submission.py) to produce one\n', stderr='').returncode
+FAILED tests/test_site_generator.py::test_manifest_pins_agree_with_the_bytes_on_disk - FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/5GEMSDOE/5GEMSDOE/data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif'
+FAILED tests/test_site_generator.py::test_without_placed_data_the_judge_names_the_gap_not_a_keyerror - AssertionError: a FAIL verdict must exit 1 (2 = missing prerequisites, 0 = pass)
+assert 2 == 1
+FAILED tests/test_site_generator.py::test_every_repository_path_the_manifest_names_actually_exists - AssertionError: the manifest points at files that are not in the repo: ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+assert not ['data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif']
+FAILED tests/test_site_pages.py::test_the_build_reproduces_the_committed_pages - subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_the_build_reproduces_the_0/docs']' returned non-zero exit status 1.
+FAILED tests/test_site_pages.py::test_building_twice_in_one_environment_is_byte_identical - subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.16/x64/bin/python', '/home/runner/work/5GEMSDOE/5GEMSDOE/scripts/build_site.py', '--out-dir', '/tmp/pytest-of-runner/pytest-0/test_building_twice_in_one_env0/docs0']' returned non-zero exit status 1.
+32 failed, 480 passed, 12 skipped, 144 warnings, 3 errors in 58.15s
