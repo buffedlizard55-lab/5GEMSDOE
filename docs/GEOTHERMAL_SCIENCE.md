@@ -125,6 +125,34 @@ contribution: potential-field lineaments at 100 m do not, by themselves, tell us
 
 ---
 
+## 5b. Session 5GEMSDOE-3 (2026-09-25): five more verified facts, one of them a correction
+
+Every row below was retrieved on 2026-09-25 through a server-side fetch of the named official page; none
+of it is from memory, and the one claim that failed verification is recorded as a correction rather than
+quietly dropped.
+
+| # | Fact | Source | How verified |
+|---|---|---|---|
+| S1 | **39 % of the 426 catalogued Great Basin geothermal systems are BLIND** — "no surface hot springs or fumaroles". The structural setting of ~25 % could not be determined at all, and 21 % are hybrid/compound systems. Of the 426: step-overs/relay ramps ~32 %, terminations 25 %, intersections 22 % | [Great Basin Center for Geothermal Energy, award DE-EE0002748](https://gbcge.org/recent-projects/characterizing-structural-controls/) | **fetched 2026-09-25** |
+| S2 | **GeoDAWN lidar point clouds exist** for the same region: "GeoDAWN West Central Nevada EarthMRI Data", work units 1–6, `.laz` files plus OPR/processed TIFFs, published as EPT (Entwine) resources on the AWS USGS Lidar Public Dataset | [GDR 1501](https://gdr.openei.org/submissions/1501) · [OEDI 7592](https://data.openei.org/submissions/7592) · DOI [10.15121/1992093](https://doi.org/10.15121/1992093) · [AWS registry](https://registry.opendata.aws/usgs-lidar/) · [hobu/usgs-lidar](https://github.com/hobu/usgs-lidar/) | **fetched 2026-09-25** (landing pages, file inventory, DOI) |
+| S3 | The GeoDAWN **radiometric/magnetic GeoTIFF inventory** is exactly: `22103_area1_tiffs.zip` **43.57 MB**, `22103_area2_tiffs.zip` **230.54 MB** (geoTIFF images of the geophysical grids), `22103_area1_grids.zip` 42.43 MB, `22103_area2_grids.zip` 227.39 MB, ternary maps 9.68 / 51.37 MB, `22103_ternary_a1_pdf.zip` 4.77 MB | [ScienceBase 657e1d85d34e23d3533209f7](https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7), DOI [10.5066/P93LGLVQ](https://doi.org/10.5066/P93LGLVQ) | **fetched 2026-09-25** — the attached-files table was read line by line |
+| S4 | An **independent third party** publishes a measured calibration of this competition's metric: raw probabilities 0.088 → binarised top-2 % 0.106 → **skeleton of the top-5 % 0.132 (+49 %)**, "adding a 3-px band back around the skeleton loses", and their U-Net scores **0.0435 on held-out segments vs 0.0387 on the public leaderboard** | [Gameassassin777/gems-eval](https://github.com/Gameassassin777/gems-eval) (MIT, © 2026 Syntropy Digital) | **fetched 2026-09-25**; the two files this repository vendors from it are in `scripts/vendor/gems_eval/` with provenance |
+| S5 | **CORRECTION.** A sibling repository's pull request states that "feature bands 17–19 are constant placeholders despite carrying plausible descriptions". On the official bytes in this repository that is **false**: band 17 `cond_surf` carries 1,237,549 distinct values (range −3.4e38…4.969), band 18 `iso_grav_anom_hg` 5,008,543 and band 19 `det_elev_slope` 4,954,390. All 19 bands are measured live in `scripts/train_context_detector.py`'s percentile pass. | measured on `data/training_features.tif` (sha256-pinned, 418,912,844 B) | **measured 2026-09-25** |
+
+**What S1 changes about the strategy.** If 39 % of the systems are blind, then a surface-geophysical detector
+is not merely imperfect — for a large share of the target population there is *no surface expression to
+find*, and the best a 100 m potential-field model can do is detect the faults that host them. That is an
+argument for spending the remaining effort on (a) the topographic channel (the one surface expression an
+expert mapper can see, per Hermant et al. 2025) and (b) the structural setting prior, rather than on more
+capacity for the same 19 bands.
+
+**What S2 changes about the ceiling.** The 1 m DEM links the organizers shipped cover 867 tiles of selected
+projects; the GeoDAWN lidar point clouds cover work units 1–6 of west-central Nevada. If any of those work
+units overlaps the competition footprint, a 1 m channel is available from a public, no-auth source that no
+team in this competition family has used. **This is the single highest-value untested lead in this file.**
+
+---
+
 ## 6. Standing brief (owner's non-negotiables, carried into every session)
 
 * Work line by line; verify from official, verified, trusted sources; provide links for manual review.

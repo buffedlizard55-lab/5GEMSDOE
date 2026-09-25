@@ -7,6 +7,31 @@
 - **Unknown |G| and unknown public/private chunking**: the algebra yields lines and bounds until the density probe is scored.
 - **Compliance flag**: five accounts from one project family are on the board; the official rules PDF governs this.
 
+## Session 3 additions (2026-09-25) — three hard blockers measured this session, each with the channel it removed
+
+- **`gh workflow run` → HTTP 403 "Resource not accessible by integration"** for every workflow, every `-f` combination, with
+  and without `--ref`; `gh api .../dispatches` (POST) likewise. The token can list, read and trigger-on-push, but it cannot
+  *dispatch*. Consequence: a workflow that exists only to be dispatched has never run, and the two runner-dependent items
+  session 2 queued (radiometric fetch, topo training) had **no channel at all**.
+- **Workflow artifacts cannot be downloaded here.** `gh api .../actions/artifacts/<id>/zip` returns a 302 to
+  `productionresultssa12.blob.core.windows.net`, which does not resolve in this sandbox. Consequence: **a runner can only
+  give results back by committing them into the repository.** Every workflow step that produces something the agent needs must
+  write it under `data/` and commit.
+- **`gh run view --log` cannot be read here** either (EOF from `results-receiver.actions.githubusercontent.com`). The only
+  working log channel is the runner-committed file under `data/evidence/ci/`.
+- **The site's byte-comparison test is timestamp-fragile** (fixed this session): an evidence JSON's own `generated_at` value
+  reached a page in prose, so re-measuring changed the page and broke the reproducibility test. The test now normalises both
+  the build stamp and that prose stamp; `tests/test_site_pages.py` 6 passed.
+- **The sandbox Python has no torch.** The CNN family cannot be trained or evaluated here, only the ensemble/inference pieces
+  that do not need a GPU. `scripts/train_context_detector.py` was written specifically to be outside that limitation.
+- **The density probe has not been uploaded**, so G remains unknown; the marginal-rule work therefore uses DTI 0.1563 as the
+  operating point and reports the threshold as a function of DTI (0.0204 / 0.0323 / 0.0417 / 0.0649 at DTI 0.10 / 0.1563 /
+  0.20 / 0.3049).
+- **The context detector's probabilities are not calibrated to the new-fault prior.** They are calibrated to the catalogue
+  prior (1 positive per 6.6 background px). Until an isotonic reliability pass on the blocked folds is done, the calibrated
+  reading of the emission rule is unavailable — and using it as-is would emit nearly the whole footprint (mean probability
+  0.11 > bar 0.0323).
+
 ## Session 21 additions (2026-09-21)
 
 1. **The leaderboard bar is a moving target, and it moved while we were reading it.** Top of the

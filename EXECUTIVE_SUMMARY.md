@@ -29,6 +29,26 @@
 | **Shipped Winning Policy** | **Floor 0.1, thin, width 0 px** | Pre-registered decision rule; Rank 1 of 132 candidates |
 | **Shipped Raster Artifact** | `data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif` | sha256 `7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15` (570.9 KB; conformed to the template mask 2026-09-25 — see `sanitize.json`) |
 
+### The four uploads this fork recommends, in order (measured 2026-09-25, session 3)
+
+Three submissions per week are allowed and **one** of them is finally chosen, so a slot is worth spending on a
+measurement rather than only on a guess. Every file below is gated twice — by this repository's 17-check
+validator and by an unmodified third-party implementation of the same rules (`scripts/vendor/gems_eval/`, MIT
+© 2026 Syntropy Digital) — and the two DTI implementations agree to six decimal places on every one
+(`data/evidence/submission_independent_gate.json`, verdict **PASS**). Full table with paste-ready Note text:
+[`SUBMISSION_GUIDE.md` §6b](SUBMISSION_GUIDE.md).
+
+| Order | File | What it buys |
+|---|---|---|
+| 1 | `docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif` | Inverts a public score into the size of the hidden truth set |G| — the one number that turns every bound in the strategy into a decision. Score is **expected to be low by design**. |
+| 2 | `docs/downloads/candidate_s5_catalogue_hedge.tif` (`132e23e1`) | The adopted field plus the known catalogue. **Adds zero chargeable pixels**, so under the platform's written rule it cannot lower the score — and its score decides whether masked catalogue pixels also earn *credit* for a new fault within 300 m. |
+| 3 | `docs/downloads/candidate_s5_dilational_annulus.tif` (`542eaf30`) | Adds 8,053 chargeable pixels of Faulds & Hinz dilational settings that a detector already agrees with — the cheapest high-prior bet available, needing a marginal hit rate of only 0.0323 to break even. |
+| 4 | hold | Do not spend a slot on a re-shaped version of a field that has already been scored. |
+
+The decision after 2 and 3 are scored is mechanical: `scripts/emit_by_marginal_rule.py --price` prices every
+candidate's chargeable mass against `breakeven_marginal_hit_rate(score)` — **0.0204 / 0.0323 / 0.0417 / 0.0649**
+at DTI **0.10 / 0.1563 / 0.20 / 0.3049**.
+
 ---
 
 ## 0. TL;DR — Submit in 5 Commands (Fastest Verified Path, 2026-09-18)

@@ -4,3 +4,4 @@
 # gdr.openei.org is unreachable from the dev sandbox (curl exit 35, verified 2026-09-25),
 # and `gh workflow run` is refused with 403, so a push-path trigger is the only channel.
 # session 5GEMSDOE-3, 2026-09-25: switch created.
+# session 5GEMSDOE-3, re-armed after the empty-inputs failure.

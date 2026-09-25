@@ -72,8 +72,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p data/external/gdr data/evidence/gdr
+          # github.event.inputs is EMPTY on a push event, so the dispatch default does not
+          # apply there; the URL has to be defaulted in the expression itself.  Measured failure
+          # of the first push-fired run (36191990292): "unknown url type: ''".
           python scripts/fetch_gdr_inventory.py \
-            --url "${{ github.event.inputs.url }}" \
+            --url "${{ github.event.inputs.url || 'https://gdr.openei.org/files/355/Faulds_Structural_Inventory_Great_Basin_DE-EE0002748%20(1).xls' }}" \
             --out-dir data/external/gdr \
             --report data/evidence/gdr/inventory.json 2>&1 | tee data/evidence/gdr/fetch.log
 

@@ -127,25 +127,15 @@ def local_strike(skel: np.ndarray, y: int, x: int, window: int = BEND_WINDOW) ->
     return float(np.degrees(np.arctan2(vy, vx)) % 180.0)
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--labels", default="data/labels.tif")
-    ap.add_argument("--template", default="data/sample_submission.tif")
-    ap.add_argument("--smooth", type=float, default=2.0,
-                    help="sigma (px) of the Gaussian that spreads each mark: the metric tolerates "
-                         "300 m, so a mark is worth more as a 300 m-wide target than as a pixel")
-    ap.add_argument("--out", default="data/derived/structural_targets.tif")
-    ap.add_argument("--report", default="data/evidence/salience/structural_targets.json")
-    a = ap.parse_args()
+def structural_marks(labels: np.ndarray, valid: np.ndarray) -> dict:
+    """The four dilational settings a trace raster carries, as boolean masks + counts.
 
-    with rasterio.open(a.template) as src:
-        valid = np.isfinite(src.read(1))
-        profile = src.profile.copy()
-    with rasterio.open(a.labels) as src:
-        labels = np.nan_to_num(src.read(1), nan=0.0) > 0.5
-    labels &= valid
-
+    Split out of ``main`` (session 5GEMSDOE-3, 2026-09-25) so that other builders can weight the
+    SAME geometry instead of re-deriving it: ``scripts/build_dilational_annulus.py`` intersects
+    these marks with a detector's confidence, which is the evidence-layer combination the
+    geothermal-exploration literature uses (Faulds et al., DE-EE0002748) and which a second
+    implementation of skeletonisation would quietly change.
+    """
     skel = skeletonize(labels)
     nb = neighbours8(skel)
     skel_only = skel & valid
@@ -157,10 +147,6 @@ def main() -> int:
     step = max(2, len(yy) // 40000)          # cap the O(n) pass on a 12 M px grid
     checked = 0
     for y, x in zip(yy[::step], xx[::step]):
-        pts_back, pts_fwd = [], []
-        for d in range(1, BEND_WINDOW + 1):
-            pass
-        # sample the trace on a small disc and split it by the pixel's own position
         disc = [(dy, dx) for dy in range(-BEND_WINDOW, BEND_WINDOW + 1)
                 for dx in range(-BEND_WINDOW, BEND_WINDOW + 1)
                 if skel_only[min(max(y + dy, 0), skel.shape[0] - 1),
@@ -187,7 +173,6 @@ def main() -> int:
     ramps = np.zeros(skel.shape, dtype=bool)
     ramp_pairs = []
     keys = list(strikes)
-    # bucket tips spatially so the pair search is O(n) rather than O(n^2)
     cell = 12
     buckets: dict[tuple[int, int], list] = {}
     for (y, x) in keys:
@@ -217,16 +202,48 @@ def main() -> int:
                         continue
                     ramp_pairs.append(dict(a=[y1, x1], b=[y2, x2],
                                            along_px=round(along, 2), across_px=round(across, 2)))
-    # the ramp is the lens between the two tips: draw the segment and dilate it by the across gap
     for pr in ramp_pairs:
         (y1, x1), (y2, x2) = pr["a"], pr["b"]
         n = int(max(abs(y2 - y1), abs(x2 - x1)) * 2) + 1
         for t in np.linspace(0.0, 1.0, n):
-            yy = int(round(y1 + t * (y2 - y1)))
-            xx = int(round(x1 + t * (x2 - x1)))
-            if 0 <= yy < ramps.shape[0] and 0 <= xx < ramps.shape[1]:
-                ramps[yy, xx] = True
+            yy2 = int(round(y1 + t * (y2 - y1)))
+            xx2 = int(round(x1 + t * (x2 - x1)))
+            if 0 <= yy2 < ramps.shape[0] and 0 <= xx2 < ramps.shape[1]:
+                ramps[yy2, xx2] = True
     ramps = binary_dilation(ramps, structure=np.ones((3, 3), bool)) & valid
+    return dict(skeleton=skel_only, ends=ends & valid, joins=joins & valid,
+                bends=bends & valid, ramps=ramps,
+                counts=dict(skeleton_px=int(skel_only.sum()),
+                            terminations=int((ends & valid).sum()),
+                            intersections=int((joins & valid).sum()),
+                            bends_measured=int(bends.sum()),
+                            bend_pixels_sampled=int(checked),
+                            step_over_pairs=len(ramp_pairs),
+                            step_over_ramp_px=int(ramps.sum())))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--labels", default="data/labels.tif")
+    ap.add_argument("--template", default="data/sample_submission.tif")
+    ap.add_argument("--smooth", type=float, default=2.0,
+                    help="sigma (px) of the Gaussian that spreads each mark: the metric tolerates "
+                         "300 m, so a mark is worth more as a 300 m-wide target than as a pixel")
+    ap.add_argument("--out", default="data/derived/structural_targets.tif")
+    ap.add_argument("--report", default="data/evidence/salience/structural_targets.json")
+    a = ap.parse_args()
+
+    with rasterio.open(a.template) as src:
+        valid = np.isfinite(src.read(1))
+        profile = src.profile.copy()
+    with rasterio.open(a.labels) as src:
+        labels = np.nan_to_num(src.read(1), nan=0.0) > 0.5
+    labels &= valid
+
+    mk = structural_marks(labels, valid)
+    skel_only, ends, joins, bends, ramps = (mk["skeleton"], mk["ends"], mk["joins"],
+                                            mk["bends"], mk["ramps"])
 
     # ---- the favourability field ------------------------------------------------------------
     marks = ((ends & valid) * WEIGHTS["termination"] +
@@ -257,16 +274,7 @@ def main() -> int:
                          step_max_across_px=STEP_MAX_ACROSS,
                          step_min_overlap_px=STEP_MIN_OVERLAP, step_max_angle_deg=STEP_MAX_ANGLE,
                          smooth_sigma_px=a.smooth),
-        "counts": {
-            "catalogue_px": int(labels.sum()),
-            "skeleton_px": int((skel_only).sum()),
-            "terminations": int((ends & valid).sum()),
-            "intersections": int((joins & valid).sum()),
-            "bends_measured": int(bends.sum()),
-            "bend_pixels_sampled": int(checked),
-            "step_over_pairs": len(ramp_pairs),
-            "step_over_ramp_px": int(ramps.sum()),
-        },
+        "counts": dict(catalogue_px=int(labels.sum()), **mk["counts"]),
         "output": dict(path=str(out_path), sha256=sha256(out_path), size=out_path.stat().st_size,
                        max=round(float(field.max()), 6), mean=round(float(field[valid].mean()), 6)),
         "note": ("a prior built from published structural geology and the catalogue's own geometry; "

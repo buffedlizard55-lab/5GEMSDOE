@@ -190,7 +190,8 @@ class MarginalBudget:
             if rate < b:
                 skipped += 1
                 last_rate = rate
-                if mode == "budget" and n > 0:
+                if mode == "budget":
+                    # the maximal PREFIX of the ranked list whose pixels all clear the bar
                     stopped = "budget: marginal rate fell below break-even"
                     break
                 continue
@@ -303,8 +304,13 @@ def main() -> int:
     if not a.field:
         ap.error("give --field to budget, or --price to price an existing candidate")
     with rasterio.open(a.field) as src:
-        field = src.read(1).astype(np.float64)
+        raw = src.read(1)
         field_tags = {src.descriptions[i] for i in range(src.count)}
+        uint8_field = src.dtypes[0] == "uint8"
+    field = raw.astype(np.float64)
+    if uint8_field:
+        # probability x 255, as written by scripts/train_context_detector.py --dtype uint8
+        field = field / 255.0
     field = np.where(np.isfinite(field), field, 0.0)
 
     b = breakeven_marginal_hit_rate(a.dti)
@@ -340,7 +346,8 @@ def main() -> int:
 
     dti_cal, (T, F, FN) = ctx.score(field_out, return_components=True)
     out.update(
-        field=dict(path=a.field, descriptions=sorted(t for t in field_tags if t)),
+        field=dict(path=a.field, descriptions=sorted(t for t in field_tags if t),
+                   dtype="uint8 (probability x 255)" if uint8_field else "float32"),
         base=(None if base is None else dict(path=a.base, px=int(base.sum()),
                                              note="the walk prices additions to this field, "
                                                   "starting from the credit it already earns")),
