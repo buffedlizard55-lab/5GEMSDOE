@@ -48,7 +48,9 @@ sandbox on this branch; every number is in the evidence JSONs named alongside it
 2. **Branch on the result.** Score ≈ 0.156 → catalogue pixels earn no credit: abandon all catalogue-adjacent emission, put the
    remaining weekly slots into off-catalogue detection. Score > 0.20 → the masking rule awards credit near the catalogue:
    upload an S5-B variant and a corridor sweep next.
-3. **The `topo_features_100m` artifact is still undownloaded** (194 MB, run 36177863986, `gh run download` EOFs). Retry with
+3. **The `topo_features_100m` artifact itself is still undownloaded** (194 MB, run 36177863986, `gh run download` EOFs) —
+   but its **report landed on `main` on 2026-09-25** (`data/evidence/topo/topo_features_100m.report.json`) and the strategy
+   page now shows the channel's coverage. Retry the 194 MB raster with
    `gh api repos/.../actions/artifacts/<id>/zip` + `curl` with retries, or re-fire the workflow and download in chunks.
 4. **Train on the topographic channel** (H1) once it is in `data/external/` — `configs/config_topo.yaml` is wired
    (`data.aux_feature_paths`), and the runner reported the channel builds over the whole footprint.
