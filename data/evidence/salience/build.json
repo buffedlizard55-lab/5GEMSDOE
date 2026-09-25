@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T19:41:21Z",
+ "generated_utc": "2026-09-25T21:27:33Z",
  "generated_by": "scripts/build_structural_salience.py",
  "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
  "bands": [
@@ -26,85 +26,85 @@
  "per_band": [
   {
    "band": "rtp",
-   "mean": 0.092223,
-   "p99": 0.913705,
+   "mean": 0.100211,
+   "p99": 0.948114,
    "max": 1.0,
-   "frac_above_half": 0.061107
+   "frac_above_half": 0.070564
   },
   {
    "band": "tmi",
-   "mean": 0.087682,
-   "p99": 0.906731,
+   "mean": 0.095694,
+   "p99": 0.944393,
    "max": 1.0,
-   "frac_above_half": 0.056489
+   "frac_above_half": 0.065927
   },
   {
    "band": "iso_grav_anom",
-   "mean": 0.022569,
-   "p99": 0.963951,
+   "mean": 0.024277,
+   "p99": 0.972364,
    "max": 1.0,
-   "frac_above_half": 0.017177
+   "frac_above_half": 0.017817
   },
   {
    "band": "det_elev",
-   "mean": 0.079085,
-   "p99": 0.910096,
+   "mean": 0.091903,
+   "p99": 0.952847,
    "max": 1.0,
-   "frac_above_half": 0.041163
+   "frac_above_half": 0.056112
   },
   {
    "band": "det_elev_slope",
-   "mean": 0.157383,
-   "p99": 0.935378,
+   "mean": 0.175159,
+   "p99": 0.95894,
    "max": 1.0,
-   "frac_above_half": 0.119552
+   "frac_above_half": 0.146974
   },
   {
    "band": "geod_2ndinv",
-   "mean": 0.019688,
-   "p99": 0.9451,
+   "mean": 0.02214,
+   "p99": 0.963425,
    "max": 1.0,
-   "frac_above_half": 0.015292
+   "frac_above_half": 0.016485
   },
   {
    "band": "geod_shearrate",
-   "mean": 0.021738,
-   "p99": 0.904275,
+   "mean": 0.02491,
+   "p99": 0.935677,
    "max": 1.0,
-   "frac_above_half": 0.015232
+   "frac_above_half": 0.017261
   },
   {
    "band": "deq_n100a15",
-   "mean": 0.026632,
-   "p99": 0.979857,
+   "mean": 0.028196,
+   "p99": 0.99016,
    "max": 1.0,
-   "frac_above_half": 0.02271
+   "frac_above_half": 0.024064
   },
   {
    "band": "cond_surf",
-   "mean": 0.048131,
-   "p99": 0.968234,
+   "mean": 0.050442,
+   "p99": 0.977447,
    "max": 1.0,
-   "frac_above_half": 0.033212
+   "frac_above_half": 0.035337
   },
   {
    "band": "depth_to_base_surf",
-   "mean": 0.040566,
-   "p99": 0.93233,
+   "mean": 0.045026,
+   "p99": 0.956344,
    "max": 1.0,
-   "frac_above_half": 0.02489
+   "frac_above_half": 0.028497
   }
  ],
  "outputs": {
   "max": {
    "path": "data/derived/salience.tif",
-   "sha256": "4a24f346dc50ae70054554ac59c2f22d3454b3d8fe92e5ee73dc5227006b1881",
-   "size": 24730339
+   "sha256": "f4f386f6b86c4a9c6a5d8a11235a6e3d5a44531f4509068ffb7c4b2a47b3166d",
+   "size": 25603969
   },
   "mean": {
    "path": "data/derived/salience_mean.tif",
-   "sha256": "e1dc5cfdabe8b7b9f0a2d1a893771e7ee81650b0f97b3023b5300e368eaf7419",
-   "size": 26104370
+   "sha256": "e2df2f75e79eec1098da5732aa93674c80c2fb8b581f77b2bfd6e7a921d9208a",
+   "size": 26096592
   }
  },
  "note": "unsupervised: no label, no catalogue and no score entered this computation; it is a spatial covariate to be scored downstream, not a prediction"

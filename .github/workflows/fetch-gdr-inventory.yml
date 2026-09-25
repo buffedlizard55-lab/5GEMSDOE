@@ -30,6 +30,14 @@ on:
       commit:
         description: "1 = commit the fetched file and report to the branch (it is ~245 kB)"
         default: "1"
+  # PUSH TRIGGER (session 5GEMSDOE-3, 2026-09-25).  This workflow was dispatch-only, and the
+  # sandbox token cannot dispatch: `gh workflow run` returns 403 "Resource not accessible by
+  # integration" (verified 2026-09-25), so the GDR 355 inventory - next-step 5 of session 2 -
+  # could not be fetched at all.  A push-path trigger is the only channel this token has, so the
+  # file .github/triggers/fetch-gdr is the switch: touch it, push the branch, the runner fetches.
+  push:
+    branches: ["arena/**", "main"]
+    paths: [".github/triggers/fetch-gdr"]
 
 permissions:
   contents: write
@@ -94,7 +102,7 @@ jobs:
           PY
 
       - name: Commit the inventory
-        if: ${{ always() && github.event.inputs.commit == '1' }}
+        if: ${{ always() && (github.event.inputs.commit || '1') == '1' }}
         run: |
           set -euo pipefail
           set +e

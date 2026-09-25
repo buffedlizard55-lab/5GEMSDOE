@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T20:19:43Z",
+ "generated_utc": "2026-09-25T21:18:05Z",
  "script": "scripts/check_site_generator.py",
  "purpose": "the in-browser generator on docs/how_to_submit.html is executed here under node and its output is judged by rasterio and by the repository's own validator",
  "artifact": "data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
@@ -236,7 +236,7 @@
      "--no-deflate"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_0.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_0.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -257,7 +257,7 @@
      "1"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_1.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_1.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -278,7 +278,7 @@
      "3730"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_2.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_2.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -321,7 +321,7 @@
      "--no-deflate"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_0.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_0.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -336,7 +336,7 @@
      "1"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_1.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_1.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -351,7 +351,7 @@
      "3730"
     ],
     "exit_code": 0,
-    "path": "/tmp/gems-gen-3uzskq1g/variant_2.tif",
+    "path": "/tmp/gems-gen-_je3ceq0/variant_2.tif",
     "readable": true,
     "bits_identical": true,
     "grid_ok": true,
@@ -361,5 +361,5 @@
    }
   ]
  },
- "seconds": 8.52
+ "seconds": 9.2
 }
