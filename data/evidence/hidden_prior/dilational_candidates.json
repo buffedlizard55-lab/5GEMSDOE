@@ -1,0 +1,23 @@
+{
+ "10000": {
+  "path": "data/evidence/hidden_prior/candidate_s5_dilational_top10k.tif",
+  "bytes": 627566,
+  "sha256": "f11c8684b152c2ccefc51c1f725491e31499bbef2091a0284b47cc35d785f93e",
+  "emitted": 237507,
+  "chargeable": 176519
+ },
+ "25000": {
+  "path": "data/evidence/hidden_prior/candidate_s5_dilational_top25k.tif",
+  "bytes": 632252,
+  "sha256": "10bf2c4d3885d06116664226705712c3656a7a21364ec8559b4ec8200efd1f5e",
+  "emitted": 252507,
+  "chargeable": 191519
+ },
+ "50000": {
+  "path": "data/evidence/hidden_prior/candidate_s5_dilational_top50k.tif",
+  "bytes": 637066,
+  "sha256": "d4a5de924057eec12c4e4ee9bdb5de361754b7bc9ace8691f86cb1ace51e57e2",
+  "emitted": 277507,
+  "chargeable": 216519
+ }
+}

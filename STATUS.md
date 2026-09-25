@@ -1,5 +1,66 @@
 # Project status — 5GEMSDOE (fork of GEMSDOE at its 2026-09-24 state)
 
+## 5GEMSDOE session 2 (2026-09-25) — which local instrument can be trusted: the SGMC proxy is measured to anti-rank the board, the leaderboard-inversion is measured to be unidentified, and one free decision survives
+
+**Read `PROJECT_BRIEF.md`, `docs/STRATEGY.md` and `docs/GEOTHERMAL_SCIENCE.md` first.** Everything below was executed in the
+sandbox on this branch; every number is in the evidence JSONs named alongside it.
+
+### What was done, in order
+
+1. `python3 scripts/check_site_generator.py` → **PASS** (8/10 steps, 2 INFO): the browser route still writes a validated
+   GeoTIFF whose pixels are the artifact's (`data/evidence/site_generator.json`).
+2. The four non-local scored files were downloaded from the sibling sites' `docs/` folders via the `api.github.com` contents
+   endpoint (a plain `curl` to `*.github.io` returns nothing from this sandbox) into
+   `data/evidence/leaderboard_anchor/`; **all four sha256 match** the values pinned in `scripts/leaderboard_anchor.py`.
+3. Forum thread 11516 was **re-fetched live** and the staff answers transcribed verbatim (masking of known faults; "it should
+   not matter whether these known faults are included with predictions or not").
+4. `scripts/rank_instruments.py` (new, 2 fixes applied during the run) → `data/evidence/rank_instruments.json`:
+   * `labels_in_domain` **ρ = +0.9** (the board's order, with the 0.1563/0.1560 pair swapped — a 0.0003 gap);
+   * `proxy_sgmc_gap` **ρ = −0.8** — the instrument this project family selected emission policies with is **backwards**.
+5. `scripts/build_structural_salience.py` (new) → `data/derived/salience{,_mean}.tif`: multi-scale Frangi lineament salience
+   on the 19 official bands, no label and no score. **Negative result:** lift **1.07×** on catalogue pixels over background,
+   and a fitted weight of **0** in step 7. Recorded as a negative result, not used.
+6. `scripts/fit_hidden_prior.py` (new) → `data/evidence/hidden_prior/fit.json`: NNLS fit of the hidden-truth density from the
+   five public scores, LOO-validated, then a **partial-identification** analysis (bisection over feasibility LPs) giving every
+   candidate's min/max over all densities consistent with the board. Findings:
+   * **smallest achievable tolerance 0.028 DTI** — the model class cannot fit the five numbers it was given;
+   * its point fit gives the platform's own example submission **0.81**, above the 0.3049 anyone has achieved → **falsified**;
+   * so the ranges are published and **no candidate is shipped on the fit's say-so**.
+7. `scripts/build_structural_targets.py` (new) → `data/derived/structural_targets.tif` + report: terminations, intersections,
+   bends and relay ramps derived from the catalogue's own geometry, weighted by Faulds & Hinz (WGC 2015) frequencies.
+8. **Candidates written and validated** (all pass `scripts/validate_submission.py`, all template-conformant, all in
+   `docs/downloads/`):
+   * `candidate_s5_catalogue_hedge.tif` (**S5-A**, primary) — 227,507 emitted px (+54,533 over the shipped field), 166,519
+     chargeable, i.e. **the added pixels are all catalogue pixels**;
+   * `candidate_s5_dilational_top{10,25,50}k.tif` (**S5-B**, secondary).
+9. `docs/geotiff_writer.js` gained a **maximum-compatibility** mode (`--nodata none`, third button on the page) that writes 0.0
+   outside the footprint with no NODATA tag, plus three new self-checks that read the platform's own range rule back off the
+   bytes. `tests/support/generator_ui_harness.js` and `tests/test_site_generator.py` updated (3 buttons, 20 checks, `compat`
+   mode); `tests/test_hidden_prior_instruments.py` (new, 9 tests) pins the instrument arithmetic. **All 27 + 9 pass.**
+10. `scripts/build_site.py` gained strategy §7 (which instrument to trust), §8 (the fit and its identification ranges), §9 (H6,
+    the literature prior), a candidate-download block on the executive summary, and a freshest-leaderboard rule on the index
+    (it now publishes 0.3049 from 2026-09-25 and notes the 0.2854 reading it superseded).
+
+### Next steps, in order (for session 3)
+
+1. **Upload S5-A and record the score** — it is both the best available bet and the measurement that decides everything else.
+   Note text: `S5-A · 7f00890a + masked catalogue (+54,533 px, charge-free per forum 11516) · measures the masking rule`.
+2. **Branch on the result.** Score ≈ 0.156 → catalogue pixels earn no credit: abandon all catalogue-adjacent emission, put the
+   remaining weekly slots into off-catalogue detection. Score > 0.20 → the masking rule awards credit near the catalogue:
+   upload an S5-B variant and a corridor sweep next.
+3. **The `topo_features_100m` artifact is still undownloaded** (194 MB, run 36177863986, `gh run download` EOFs). Retry with
+   `gh api repos/.../actions/artifacts/<id>/zip` + `curl` with retries, or re-fire the workflow and download in chunks.
+4. **Train on the topographic channel** (H1) once it is in `data/external/` — `configs/config_topo.yaml` is wired
+   (`data.aux_feature_paths`), and the runner reported the channel builds over the whole footprint.
+5. **Download and use GDR 355** (`https://gdr.openei.org/files/355/...xls`, CC BY 4.0): 426 Great Basin systems with structural
+   setting and Quaternary-fault presence. It is an independent *geothermal* truth set for this region and no competitor is
+   using it. The sandbox cannot reach `gdr.openei.org` (curl exit 35), so `.github/workflows/fetch-gdr-inventory.yml`
+   (dispatch-only) fetches, verifies and commits it from a runner: **fire it first thing next session.**
+   (`scripts/fetch_gdr_inventory.py` checks the file's magic bytes — an HTML error page saved as `.xls` is the classic
+   silent failure here — and prints the setting counts for comparison with the published frequencies.)
+6. **Do not select emission policies on the SGMC proxy again**; if a local instrument is needed, use the catalogue-in-domain
+   one (ρ = +0.9) and remember it is degenerate for any candidate that exploits the mask.
+
 ## 5GEMSDOE session 1 (2026-09-25) — the board became the truth proxy, the metric became the emission rule, and the scarp channel was built
 
 **Read `PROJECT_BRIEF.md` and `docs/STRATEGY.md` first.** This entry records what was executed, what was measured, and

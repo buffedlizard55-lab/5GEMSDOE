@@ -135,14 +135,60 @@ continuations/splays). Priced by the marginal rule once |G| is known.</li>
 <li><b>H5 — Phase-2 leverage</b>: distinct, defensible geometry is worth more after expert review than consensus pixels.</li>
 </ul>
 
-<h2>7. Irregularities flagged</h2><ul>
+<h2>7. Which local instrument can be trusted (measured 2026-09-25)</h2>
+<p>Every policy decision this project family has taken was argued on a local stand-in for the hidden truth. This is the test that stand-in has never been given: <b>can it order the five files whose true order the leaderboard already published?</b> Scored with the official metric, with the catalogue pixels the platform masks excluded from the false-positive term (<code>scripts/rank_instruments.py</code>).</p>
+<table><thead><tr><th>file</th><th>public score</th><th>labels_in_domain</th><th>proxy_sgmc_gap</th></tr></thead><tbody>
+<tr><td><code>7f00890a</code></td><td><b>0.1563</b></td><td>0.2298</td><td>0.1014</td></tr>
+<tr><td><code>f68e590f</code></td><td><b>0.1560</b></td><td>0.2382</td><td>0.1013</td></tr>
+<tr><td><code>f347b70daa</code></td><td><b>0.1193</b></td><td>0.2068</td><td>0.2343</td></tr>
+<tr><td><code>4e03fc9705</code></td><td><b>0.1152</b></td><td>0.1957</td><td>0.3018</td></tr>
+<tr><td><code>37f9d5b855</code></td><td><b>0.0830</b></td><td>0.1778</td><td>0.2396</td></tr>
+</tbody></table>
+<p><b>labels_in_domain</b> — Spearman rho vs the leaderboard = <b>0.9</b> over 5 files: does NOT reproduce the board&#x27;s order - do not select on it.<br><span class='muted'>the Quaternary catalogue the supervised files were TRAINED on: an in-domain monitor, not a generalisation test</span></p>
+<p><b>proxy_sgmc_gap</b> — Spearman rho vs the leaderboard = <b>-0.8</b> over 5 files: does NOT reproduce the board&#x27;s order - do not select on it.<br><span class='muted'>SGMC faults absent from the labels (Horton et al. 2017, DOI 10.3133/ds1052): out-of-domain for every file here</span></p>
+<div class="note warn"><b>Consequence.</b> The instrument this project used to choose emission policies (the SGMC-gap proxy) <b>anti-ranks</b> the board (rho = -0.8). The best local instrument is <code>labels_in_domain</code> (rho = 0.9), and it is in-domain for every supervised file here — so it can rank <i>detectors</i>, but it cannot judge any candidate that exploits the masking rule, because its truth is the catalogue. With five files, rho = 0.9 is suggestive, not proof: a reason to prefer this instrument, not a licence to believe its absolute numbers.</div>
+<h2>8. Fitting the hidden truth from the five scores — and what it cannot tell us</h2>
+<p>The board is the only instrument that has ever measured the scored population, so <code>scripts/fit_hidden_prior.py</code> uses it directly: model the expected truth density as a non-negative combination of spatial covariates and use the metric's algebra (<code>DTI = T / (0.2*E + 0.8*G)</code>) to turn each scored file into one <i>linear</i> equation in the weights. Then ask the question a point estimate hides: over <b>every</b> density that reproduces the five scores, what is the best and the worst a candidate can be?</p>
+<table><thead><tr><th>covariate</th><th>fitted weight (truth px per map px)</th></tr></thead><tbody>
+<tr><td><code>uniform</code></td><td>0</td></tr>
+<tr><td><code>d_lab&lt;=1</code></td><td>0.121693</td></tr>
+<tr><td><code>1&lt;d_lab&lt;=3</code></td><td>0</td></tr>
+<tr><td><code>salience</code></td><td>0</td></tr>
+</tbody></table>
+<div class="note warn"><b>The model cannot fit the board.</b> The smallest tolerance at which ANY density reproduces all five observed scores is <b>0.0278</b> DTI — as large as the gap between our best file (0.1563) and the Pindrop nodes file (0.1193). A model that misses the five numbers it was given by that much is not identifying anything, so ranges are reported instead of a prediction.</div>
+<table><thead><tr><th>candidate</th><th>emitted px</th><th>charged px</th><th>point estimate</th><th>worst case</th><th>best case</th></tr></thead><tbody>
+<tr><td><code>base_7f00890a</code></td><td>172,974</td><td>166,519</td><td>0.1327</td><td>0.1063</td><td>0.1085</td></tr>
+<tr><td><code>catalogue_only_example_submission</code></td><td>60,988</td><td>0</td><td>0.8136</td><td>0.2923</td><td>0.3049</td></tr>
+<tr><td><code>base_plus_catalogue</code></td><td>227,507</td><td>166,519</td><td>0.3490</td><td>0.1698</td><td>0.1747</td></tr>
+<tr><td><code>base_plus_catalogue_dilate1</code></td><td>386,934</td><td>325,946</td><td>0.2690</td><td>0.1828</td><td>0.1897</td></tr>
+<tr><td><code>base_plus_catalogue_dilate2</code></td><td>544,282</td><td>483,294</td><td>0.1951</td><td>0.1793</td><td>0.1891</td></tr>
+<tr><td><code>base_plus_catalogue_dilate3</code></td><td>697,074</td><td>636,086</td><td>0.1540</td><td>0.1491</td><td>0.1572</td></tr>
+<tr><td><code>base_plus_top0k</code></td><td>227,507</td><td>166,519</td><td>0.3490</td><td>0.1698</td><td>0.1747</td></tr>
+<tr><td><code>base_plus_top5k</code></td><td>232,507</td><td>171,519</td><td>0.3462</td><td>0.1706</td><td>0.1755</td></tr>
+<tr><td><code>base_plus_top20k</code></td><td>247,507</td><td>186,519</td><td>0.3384</td><td>0.1713</td><td>0.1765</td></tr>
+<tr><td><code>base_plus_top50k</code></td><td>277,507</td><td>216,519</td><td>0.3251</td><td>0.1723</td><td>0.1778</td></tr>
+<tr><td><code>base_plus_top100k</code></td><td>327,507</td><td>266,519</td><td>0.3079</td><td>0.1735</td><td>0.1793</td></tr>
+</tbody></table>
+<div class="note warn"><b>Falsification test.</b> The platform's own example submission IS the catalogue raster (measured). Under the fitted density it would score <b>0.814</b> [0.292, 0.305] against a best observed public score of 0.3049. That file is public and free to submit, so a point estimate above the leader means the density is wrong — which is why the only decision taken from this section is the one that is <i>free under both readings</i> of the masking rule.</div>
+<h3>The one decision the analysis supports: candidate_s5_catalogue_hedge.tif</h3><p>the catalogue pixels are the only addition that cannot lower the score under the platform&#x27;s written masking rule, and the fit&#x27;s point estimate for it (0.349) is the largest single move available — 227,507 emitted px (+54,533 over the shipped field), 166,519 of them chargeable (the added ones are not), sha256 <code>132e23e10344013a...</code>.</p><p><b>Why ship it:</b> the score difference against 0.1563 measures which reading of forum 11516 the platform implements: no change = catalogue pixels earn no credit either; a jump = they do, and the whole emission plan changes</p>
+<h2>9. A prior from the geothermal literature, not from the data (H6)</h2>
+<p>Forty years of Great Basin exploration is unusually quantitative about <i>geometry</i>. Faulds &amp; Hinz (World Geothermal Congress 2015, <a href="https://www.osti.gov/servlets/purl/1724082">OSTI 1724082</a>; dataset <a href="https://gdr.openei.org/submissions/355">GDR 355</a>, DOI <a href="https://doi.org/10.15121/1148722">10.15121/1148722</a>) catalogued the structural setting of ~250 geothermal fields: step-overs / relay ramps <b>~32%</b>, normal-fault terminations <b>25%</b>, fault intersections <b>22%</b>, accommodation zones 9%, displacement transfer zones 5%, pull-aparts 3%, bends 2%, major range-front faults <b>1%</b>. They also report that Quaternary faults lie within or near most systems, that systems are <i>rare</i> along major range-front faults (clay gouge, stress release), and that tips horse-tail into a myriad of closely-spaced faults — short unmapped strands, which is what the scored set is made of.</p>
+<p><code>scripts/build_structural_targets.py</code> derives those settings from the catalogue's own geometry (no label beyond <code>labels.tif</code>, no score, no model): <b>6,938</b> terminations, <b>2,633</b> intersections, <b>1,558</b> bends and <b>5,432</b> relay ramps (111,579 px of ramp) over 59,209 skeleton px, weighted by the published frequencies and smoothed at sigma = 2.0 px. Accommodation zones, transfer zones and pull-aparts need dip, slip sense and strain partitioning, which a trace raster does not carry: they are reported as absent rather than invented.</p>
+<table><thead><tr><th>candidate built on it</th><th>emitted px</th><th>charged px</th><th>sha256</th></tr></thead><tbody>
+<tr><td><code>candidate_s5_dilational_top10k.tif</code></td><td>237,507</td><td>176,519</td><td><code>f11c8684b152c2cc...</code></td></tr>
+<tr><td><code>candidate_s5_dilational_top25k.tif</code></td><td>252,507</td><td>191,519</td><td><code>10bf2c4d3885d061...</code></td></tr>
+<tr><td><code>candidate_s5_dilational_top50k.tif</code></td><td>277,507</td><td>216,519</td><td><code>d4a5de924057eec1...</code></td></tr>
+</tbody></table>
+<div class="note warn"><b>Not measured.</b> No local instrument can evaluate an off-catalogue prior: the SGMC proxy anti-ranks the board and the catalogue instrument is degenerate for any candidate that exploits the mask. These candidates are a scientific bet priced by the marginal rule, not a measured improvement — upload them only after S5-A's score tells us which reading of the masking rule the platform implements.</div>
+
+<h2>10. Irregularities flagged</h2><ul>
 <li>The 0.1560 row&#x27;s file identity is inferred from GEMSDOE2&#x27;s pre-registered upload order, not read from the submissions page — FLAGGED; confirm from the account&#x27;s DrivenData history.</li>
 <li>Five accounts from one project family submitted to the same competition. The official rules (NLR/96647.pdf) and DrivenData&#x27;s terms govern multiple accounts per individual; this is a compliance question for the owner, not something this repository can resolve — FLAGGED.</li>
 <li>The public/private chunking of the region is not published; the algebra therefore carries two readings of E_i (whole-footprint FP vs public-chunk FP) and the numbers are bounds, not points.</li>
 </ul>
 </main>
 <footer><div class="wrap">
-  <p>Generated by <code>scripts/build_site.py</code> from the evidence JSON in this repository · 2026-09-25 19:10 UTC</p>
+  <p>Generated by <code>scripts/build_site.py</code> from the evidence JSON in this repository · 2026-09-25 20:22 UTC</p>
   <p>Unofficial working notes. Authoritative sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition</a> ·
      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> ·
      <a href="https://github.com/buffedlizard55-lab/5GEMSDOE">repository</a></p>

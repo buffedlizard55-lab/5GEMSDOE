@@ -1,0 +1,117 @@
+name: Fetch the Great Basin geothermal structural inventory (GDR 355)
+
+# =============================================================================
+# THE MEASUREMENT THIS WORKFLOW EXISTS FOR
+#
+# Every truth population this project has ever scored against is a FAULT catalogue: the training
+# labels, the SGMC proxy (measured to anti-rank the leaderboard, rho = -0.8) and QFaults (measured
+# to be the same lines as the labels in this footprint). None of them is a GEOTHERMAL catalogue,
+# and the prize is about geothermal discovery.
+#
+# GDR submission 355 (DOI 10.15121/1148722, CC BY 4.0) is a public catalogue of 426 Great Basin
+# geothermal systems with their structural setting, primary fault orientation, presence/absence of
+# Quaternary faulting, lithology, geothermometry and blind-vs-surface expression, covering western
+# Nevada - the GeoDAWN footprint. Its published frequencies (step-overs ~32 %, terminations 25 %,
+# intersections 22 %, range-front 1 %) already weight scripts/build_structural_targets.py; the
+# spreadsheet itself would let the next session use it as an independent target AND validation
+# population rather than only as a prior.
+#
+# WHY A RUNNER: gdr.openei.org is not reachable from the development sandbox (curl exit 35,
+# verified 2026-09-25), exactly like earthquake.usgs.gov and prd-tnm.s3.amazonaws.com before it.
+#
+# DISPATCH ONLY: nothing in this workflow runs on push, and nothing downstream depends on it yet.
+# =============================================================================
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "download URL of the inventory spreadsheet"
+        default: "https://gdr.openei.org/files/355/Faulds_Structural_Inventory_Great_Basin_DE-EE0002748%20(1).xls"
+      commit:
+        description: "1 = commit the fetched file and report to the branch (it is ~245 kB)"
+        default: "1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-gdr-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  fetch:
+    name: download, verify it is a spreadsheet, summarise
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps (pandas + xlrd so the sheet is actually read, not just saved)
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet pandas xlrd openpyxl
+
+      - name: Fetch and summarise
+        id: fetch
+        run: |
+          set -euo pipefail
+          mkdir -p data/external/gdr data/evidence/gdr
+          python scripts/fetch_gdr_inventory.py \
+            --url "${{ github.event.inputs.url }}" \
+            --out-dir data/external/gdr \
+            --report data/evidence/gdr/inventory.json 2>&1 | tee data/evidence/gdr/fetch.log
+
+      - name: Report in the job summary
+        if: always()
+        run: |
+          set -euo pipefail
+          python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          p = pathlib.Path("data/evidence/gdr/inventory.json")
+          if not p.exists():
+              print("### GDR 355 - no report written"); raise SystemExit(0)
+          r = json.loads(p.read_text())
+          f = r["fetch"]
+          print("### Great Basin geothermal structural inventory (GDR 355)\n")
+          print(f"- {f['bytes']:,} B, magic `{f['magic']}`, sha256 `{f['sha256'][:16]}...`")
+          print(f"- looks like a spreadsheet: **{r['looks_like_a_spreadsheet']}**")
+          s = r.get("summary") or {}
+          if s.get("read"):
+              for name, sh in (s.get("sheets") or {}).items():
+                  print(f"\n**sheet `{name}`** - {sh['rows']:,} rows x {sh['cols']} cols")
+                  for k, v in (sh.get("setting_counts") or {}).items():
+                      print(f"  - {k}: {v}")
+          else:
+              print(f"\nnot parsed: {s.get('note')}")
+          PY
+
+      - name: Commit the inventory
+        if: ${{ always() && github.event.inputs.commit == '1' }}
+        run: |
+          set -euo pipefail
+          set +e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/external/gdr data/evidence/gdr || true
+          git diff --cached --quiet && echo "nothing to commit" || {
+            git commit -m "data(gdr355): Great Basin geothermal structural inventory fetched [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          }
+
+      - name: Upload the raw file
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gdr-355-inventory-${{ github.run_id }}
+          path: data/external/gdr/
+          retention-days: 30
+          if-no-files-found: ignore

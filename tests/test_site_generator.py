@@ -291,7 +291,7 @@ def test_writer_refuses_a_same_length_tamper_via_the_pinned_hash(tmp_path):
 
 
 # --------------------------------------------------------------------- the glue (DOM shim)
-@pytest.mark.parametrize("mode", ["tif", "zip"])
+@pytest.mark.parametrize("mode", ["tif", "zip", "compat"])
 def test_page_glue_builds_the_file_it_claims(mode):
     node = _node()
     p = subprocess.run([node, str(HARNESS), str(ROOT / "docs"), mode], cwd=ROOT,

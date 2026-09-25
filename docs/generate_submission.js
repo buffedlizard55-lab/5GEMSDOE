@@ -80,12 +80,22 @@
     var actions = el('div', 'gen-actions');
     els.btnTif = el('button', 'gen-btn primary', 'Build submission.tif');
     els.btnZip = el('button', 'gen-btn', 'Build submission.zip (same file, zipped)');
-    els.btnTif.type = 'button'; els.btnZip.type = 'button';
+    els.btnCompat = el('button', 'gen-btn', 'Build maximum-compatibility .tif (0.0 outside, no NaN)');
+    els.btnTif.type = 'button'; els.btnZip.type = 'button'; els.btnCompat.type = 'button';
     els.btnTif.addEventListener('click', function () { run('tif'); });
     els.btnZip.addEventListener('click', function () { run('zip'); });
+    els.btnCompat.addEventListener('click', function () { run('compat'); });
     actions.appendChild(els.btnTif);
     actions.appendChild(els.btnZip);
+    actions.appendChild(els.btnCompat);
     mount.appendChild(actions);
+    mount.appendChild(el('p', 'small',
+      'Which of the three? The spec asks for NaN outside the scored footprint, and that is what the '
+      + 'official template does — use the first button. The third writes the identical prediction with '
+      + '0.0 outside instead of NaN and no NODATA tag: under the official scorer the two are the same '
+      + 'number (NaN is read as 0.0, and 0.0 costs nothing), so it cannot change the score, but no '
+      + 'range check of any kind can complain about it. Use it only if the dialog has already '
+      + 'rejected the first one with “Predicted values must be in range [0, 1]”.'));
 
     els.status = el('p', 'gen-status', 'Idle — nothing has been built yet.');
     mount.appendChild(els.status);
@@ -142,9 +152,10 @@
     state.busy = true; state.mode = mode;
     clearStages();
     els.result.textContent = '';
-    els.btnTif.disabled = els.btnZip.disabled = true;
+    els.btnTif.disabled = els.btnZip.disabled = els.btnCompat.disabled = true;
     say('Building — ' + (mode === 'zip' ? 'submission.zip' : 'submission.tif') + ' …', 'run');
 
+    var isCompat = (mode === 'compat' || mode === 'zipcompat');
     var s1 = stage('load writer', typeof window.GemsGeoTIFF === 'object' ? 'geotiff_writer.js loaded' : 'MISSING',
       typeof window.GemsGeoTIFF === 'object' ? 'ok' : 'bad');
     var s2, s3, s4;
@@ -187,7 +198,8 @@
       if (!state.meta || !state.blob) throw new Error('the payload did not load');
       s3 = stage('rebuild the field, write the TIFF, re-read it', 'decode → deflate ' +
         (state.meta.grid.height + 63 >> 6) + ' strips → verify', 'run');
-      return window.GemsGeoTIFF.generateFromPayload({ meta: state.meta, fieldBytes: state.blob });
+      return window.GemsGeoTIFF.generateFromPayload({ meta: state.meta, fieldBytes: state.blob,
+                                                      nodata: isCompat ? 'none' : 'nan' });
     }).then(function (res) {
       s4 = stage('self-check', '', res.ok ? 'ok' : 'bad');
       state.result = res;
@@ -195,13 +207,13 @@
       if (!res.ok) throw new Error('self-check failed: ' + res.failed.join('; '));
       renderDownload(res, state.meta);
       say('Ready — ' + fmt(res.bytes.length) + ' B written locally, all ' + res.checks.length +
-        ' self-checks passed.', 'ok');
+        ' self-checks passed, including the platform\'s own range rule read back from the bytes.', 'ok');
     }).catch(function (err) {
       say('Failed: ' + (err && err.message ? err.message : err) +
         '  ·  use route A (curl the artifact) or route C (scripts/baseline_submission.py) instead', 'bad');
       if (window.console) console.error('[generate_submission]', err);
     }).then(function () {
-      els.btnTif.disabled = els.btnZip.disabled = false;
+      els.btnTif.disabled = els.btnZip.disabled = els.btnCompat.disabled = false;
       state.busy = false;
     });
   }
@@ -231,7 +243,9 @@
   // are read (payload/artifact) or clocked, never typed into this file - the test suite
   // fails the glue for any literal figure. The Note's stated purpose on the platform is
   // "a short comment to help you or your team tell submissions apart later".
-  function buildIdentity(meta, res) {
+  function buildIdentity(meta, res, mode) {
+    // mode is threaded in so the Note names the variant: two files with the same pixels but a
+    // different treatment of the footprint are two different submissions to tell apart.
     var stamp = new Date().toISOString()
       .replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');           // 20260924T215531Z
     var sha8 = String(((meta.artifact || {}).sha256) || res.sha256 || '').slice(0, 8);
@@ -239,11 +253,12 @@
     var policy = tags.shaping_t0
       ? ('floor ' + tags.shaping_t0 + (tags.shaping_thin === 'True' ? ' thin' : ''))
       : 'adopted policy';
+    var variant = (mode === 'compat' || mode === 'zipcompat') ? ' · noNaN' : '';
     return {
       stamp: stamp,
       sha8: sha8,
-      fileStem: 'gems-submission-' + stamp + '-' + sha8,
-      note: policy + ' · build ' + sha8 + ' · ' + stamp
+      fileStem: 'gems-submission-' + stamp + '-' + sha8 + (variant ? '-noNaN' : ''),
+      note: policy + ' · build ' + sha8 + ' · ' + stamp + variant
     };
   }
 
@@ -282,9 +297,9 @@
   function renderDownload(res, meta) {
     var wrap = el('div', 'gen-download');
     var bytes = res.bytes, type = 'image/tiff';
-    var id = buildIdentity(meta, res);
+    var id = buildIdentity(meta, res, state.mode);
     var name = id.fileStem + '.tif';
-    if (state.mode === 'zip') {
+    if (state.mode === 'zip' || state.mode === 'zipcompat') {
       // no date: buildZip()'s default is the fixed 2020-01-01 instant that
       // scripts/package_submission.py uses, so the CLI and the browser write the same container
       // semantics (a stored member named submission.tif) rather than two near-identical ones.
@@ -316,7 +331,7 @@
       ? 'geotiff_writer.js did not load (open the page from the deployed site, or run ' +
         '`python -m http.server` in docs/ and open http://127.0.0.1:8000/how_to_submit.html)'
       : 'this browser has no fetch(); use route A on the page instead';
-    els.btnTif.disabled = els.btnZip.disabled = true;
+    els.btnTif.disabled = els.btnZip.disabled = els.btnCompat.disabled = true;
     say('Generator unavailable: ' + why, 'bad');
   } else {
     // preload only the manifest so the provenance table is filled without a click

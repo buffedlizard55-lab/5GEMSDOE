@@ -1,0 +1,111 @@
+{
+ "generated_utc": "2026-09-25T19:41:21Z",
+ "generated_by": "scripts/build_structural_salience.py",
+ "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+ "bands": [
+  "rtp",
+  "tmi",
+  "iso_grav_anom",
+  "det_elev",
+  "det_elev_slope",
+  "geod_2ndinv",
+  "geod_shearrate",
+  "deq_n100a15",
+  "cond_surf",
+  "depth_to_base_surf"
+ ],
+ "sigmas": [
+  1.0,
+  2.0,
+  4.0
+ ],
+ "frangi": {
+  "beta": 0.5,
+  "c": 0.3
+ },
+ "per_band": [
+  {
+   "band": "rtp",
+   "mean": 0.092223,
+   "p99": 0.913705,
+   "max": 1.0,
+   "frac_above_half": 0.061107
+  },
+  {
+   "band": "tmi",
+   "mean": 0.087682,
+   "p99": 0.906731,
+   "max": 1.0,
+   "frac_above_half": 0.056489
+  },
+  {
+   "band": "iso_grav_anom",
+   "mean": 0.022569,
+   "p99": 0.963951,
+   "max": 1.0,
+   "frac_above_half": 0.017177
+  },
+  {
+   "band": "det_elev",
+   "mean": 0.079085,
+   "p99": 0.910096,
+   "max": 1.0,
+   "frac_above_half": 0.041163
+  },
+  {
+   "band": "det_elev_slope",
+   "mean": 0.157383,
+   "p99": 0.935378,
+   "max": 1.0,
+   "frac_above_half": 0.119552
+  },
+  {
+   "band": "geod_2ndinv",
+   "mean": 0.019688,
+   "p99": 0.9451,
+   "max": 1.0,
+   "frac_above_half": 0.015292
+  },
+  {
+   "band": "geod_shearrate",
+   "mean": 0.021738,
+   "p99": 0.904275,
+   "max": 1.0,
+   "frac_above_half": 0.015232
+  },
+  {
+   "band": "deq_n100a15",
+   "mean": 0.026632,
+   "p99": 0.979857,
+   "max": 1.0,
+   "frac_above_half": 0.02271
+  },
+  {
+   "band": "cond_surf",
+   "mean": 0.048131,
+   "p99": 0.968234,
+   "max": 1.0,
+   "frac_above_half": 0.033212
+  },
+  {
+   "band": "depth_to_base_surf",
+   "mean": 0.040566,
+   "p99": 0.93233,
+   "max": 1.0,
+   "frac_above_half": 0.02489
+  }
+ ],
+ "outputs": {
+  "max": {
+   "path": "data/derived/salience.tif",
+   "sha256": "4a24f346dc50ae70054554ac59c2f22d3454b3d8fe92e5ee73dc5227006b1881",
+   "size": 24730339
+  },
+  "mean": {
+   "path": "data/derived/salience_mean.tif",
+   "sha256": "e1dc5cfdabe8b7b9f0a2d1a893771e7ee81650b0f97b3023b5300e368eaf7419",
+   "size": 26104370
+  }
+ },
+ "note": "unsupervised: no label, no catalogue and no score entered this computation; it is a spatial covariate to be scored downstream, not a prediction"
+}

@@ -9,7 +9,7 @@
  * the same bytes the CLI produces. Those are the failure modes that would leave a live button
  * printing nothing, and none of them are visible to a Python test.
  *
- * Usage: node tests/support/generator_ui_harness.js <docs-dir> <mode: tif|zip|broken>
+ * Usage: node tests/support/generator_ui_harness.js <docs-dir> <mode: tif|zip|compat|broken>
  * Prints one JSON object; exit 0 only when the assertions inside it hold.
  */
 'use strict';
@@ -112,9 +112,13 @@ function assert(name, cond, detail) {
 
   // 3. click "Build submission.tif" (or the zip variant) and wait for the status line
   const btnTif = mount.children.find((c) => c.tag === 'div' && c.className === 'gen-actions');
-  assert('two build buttons exist', btnTif && btnTif.children.length === 2,
+  // three build buttons: the spec-conformant .tif, the same file zipped, and the
+  // maximum-compatibility variant (0.0 outside the footprint, no NaN anywhere) that the page
+  // offers for the case where the platform's dialog has already rejected the first one.
+  assert('three build buttons exist', btnTif && btnTif.children.length === 3,
     btnTif ? btnTif.children.length : 'no actions row');
-  const btn = btnTif.children[MODE === 'zip' ? 1 : 0];
+  const BTN = { tif: 0, zip: 1, compat: 2, broken: 0 };
+  const btn = btnTif.children[BTN[MODE] === undefined ? 0 : BTN[MODE]];
   btn.click();
   for (let i = 0; i < 300 && !/Ready —|Failed:/.test(statusText()); i++) {
     await new Promise((r) => setTimeout(r, 100));
@@ -142,7 +146,7 @@ function assert(name, cond, detail) {
   const link = dl && dl.children.find((c) => c.tag === 'a');
   // The download name is unique per build: UTC instant + the artifact's sha prefix, so a
   // team's Downloads folder and the platform's Note field can always be told apart.
-  const wantName = /^gems-submission-\d{8}T\d{6}Z-[0-9a-f]{8}\.(tif|zip)$/;
+  const wantName = /^gems-submission-\d{8}T\d{6}Z-[0-9a-f]{8}(-noNaN)?\.(tif|zip)$/;
   const wantExt = MODE === 'zip' ? '.zip' : '.tif';
   assert('download link names a unique per-build file',
     link && wantName.test(link.download) && link.download.endsWith(wantExt),
@@ -161,6 +165,18 @@ function assert(name, cond, detail) {
   assert('the identity repeats the download name stem',
     new RegExp(link.download.replace(/\.(tif|zip)$/, '')).test(identTxt),
     identTxt.slice(0, 300));
+  if (MODE === 'compat') {
+    // the whole point of the variant: the file the reader is handed must contain no NaN at all,
+    // and the Note must say so, because two files with the same pixels but a different treatment
+    // of the footprint are two different submissions.
+    assert('the compatibility variant is named noNaN in the Note', /· noNaN/.test(identTxt),
+      identTxt.slice(0, 300));
+    assert('the compatibility variant reports zero NaN in the file',
+      /0 NaN px of /.test(identTxt + JSON.stringify(resultRow || {})), 'no zero-NaN check row');
+  } else {
+    assert('the spec variant keeps the template NaN region',
+      !/· noNaN/.test(identTxt), identTxt.slice(0, 300));
+  }
 
   const { createHash } = require('crypto');
   const bytes = await blobBytes(blob);
@@ -170,7 +186,12 @@ function assert(name, cond, detail) {
   const checks = resultRow ? resultRow.children.filter((c) => c.className === 'gen-checks') : [];
   assert('a self-check table was rendered', checks.length === 1, checks.length);
   const rows = checks.length ? checks[0].children.slice(1) : [];
-  assert('17 self-checks are shown', rows.length === 17, rows.length + ' rows');
+  // 17 container/provenance checks + 3 that read the platform's own range rule back off the
+  // bytes ("Predicted values must be in range [0, 1]" is the one error the dialog has printed).
+  assert('20 self-checks are shown', rows.length === 20, rows.length + ' rows');
+  assert('the platform range rule is checked on the written bytes',
+    rows.filter((r) => JSON.stringify(r).includes('platform rule')).length === 3,
+    rows.filter((r) => JSON.stringify(r).includes('platform rule')).length + ' platform rows');
   assert('every self-check row shows the pass glyph',
     rows.every((r) => JSON.stringify(r).includes('"✓"')), 'one or more rows without a tick');
 

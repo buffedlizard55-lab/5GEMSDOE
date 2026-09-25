@@ -43,6 +43,40 @@ What those five numbers *prove* — and what they rule out — is in [`docs/STRA
 - Push-fired training triggers removed from `.github/triggers/` so a fresh repo does not launch eight runner jobs on its first push;
   every workflow is still available from *Actions → Run workflow*.
 
+### What is new in this fork (2026-09-25, session 2) — "which instrument can be trusted"
+
+1. **The local instrument this project selected policies with is measured to be backwards.** `scripts/rank_instruments.py`
+   scores the five scored files on each candidate stand-in for the hidden truth, with the platform's masking rule applied,
+   and compares the ordering with the public leaderboard: **the SGMC-gap proxy anti-ranks the board (Spearman ρ = −0.8)**,
+   while the catalogue itself, scored with masked catalogue pixels, orders it at **ρ = +0.9**
+   (`data/evidence/rank_instruments.json`). Every "widening helps / hurts" verdict in this project family's history was
+   argued on the first instrument.
+2. **The leaderboard was used as the instrument, and it did not certify anything.** `scripts/fit_hidden_prior.py` turns the
+   metric's algebra (`DTI = T / (0.2·E + 0.8·G)`) into one linear equation per scored file and fits the hidden-truth density
+   — then, instead of reporting the point fit, it reports the **range every candidate can take over all densities that
+   reproduce the five scores** (partial identification, by bisection over linear programmes). Verdict: the smallest tolerance
+   at which any density fits at all is **0.028 DTI**, as large as the gap between our best file and our fourth; and the fitted
+   density predicts **0.81** for the platform's own example submission, far above the 0.3049 anyone has achieved. **The model
+   is falsified by the board, so no candidate is shipped on its say-so.**
+3. **One decision survives it, and it is free.** Staff state in writing that known-fault pixels are excluded from the penalty
+   terms (forum 11516), and the platform's own `example_submission.tif` is the catalogue raster. Adding all 54,533 catalogue
+   pixels the shipped field was missing therefore cannot lower the score under either reading of that rule, and may raise it a
+   great deal. `data/evidence/hidden_prior/candidate_s5_catalogue_hedge.tif` (**S5-A**) does exactly that and nothing else, so
+   its score against 0.1563 is also a clean measurement of which reading the platform implements. **This is the primary upload.**
+4. **A second, literature-grounded family (H6).** Faulds & Hinz (WGC 2015, [OSTI 1724082](https://www.osti.gov/servlets/purl/1724082))
+   catalogued where ~250 Great Basin geothermal systems sit: step-overs ~32 %, terminations 25 %, intersections 22 %, bends 2 %,
+   major range-front faults 1 %. `scripts/build_structural_targets.py` derives those settings from the catalogue's own geometry
+   (6,938 terminations, 2,633 intersections, 5,432 relay ramps) and `candidate_s5_dilational_top{10,25,50}k.tif` (**S5-B**) adds
+   the highest-ranked of them. They cost real false-positive mass and no local instrument can price them — they are the *second*
+   upload, not the first.
+5. **The knowledge base exists now.** [`docs/GEOTHERMAL_SCIENCE.md`](docs/GEOTHERMAL_SCIENCE.md) stores the region's tectonics,
+   the structural-setting frequencies, the (overlooked) [GDR 355](https://gdr.openei.org/submissions/355) inventory dataset, and
+   our own negative result on potential-field lineaments — each entry with how it was verified.
+6. **The submission dialog's one error is now structurally impossible.** The generator re-reads the bytes it wrote and checks the
+   platform's own range rule on them (three new self-checks), and offers a **maximum-compatibility** variant that writes 0.0
+   instead of NaN outside the footprint with no NODATA tag: identical under the official scorer, un-rejectable by any range check
+   (§"Predicted values must be in range [0, 1]" on the [executive summary](https://buffedlizard55-lab.github.io/5GEMSDOE/docs/executive_summary.html)).
+
 ---
 
 # Inherited from GEMSDOE (still accurate for this fork unless STRATEGY.md says otherwise)

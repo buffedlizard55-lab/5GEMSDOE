@@ -167,6 +167,15 @@
                    1024, 0, 1, 1,                 // GTModelTypeGeoKey  = 1 (Projected)
                    1025, 0, 1, 1,                 // GTRasterTypeGeoKey = 1 (AreaPixel)
                    3072, 0, 1, grid.epsg | 0];    // ProjectedCSTypeGeoKey = EPSG
+    // NODATA POLICY.  The submission spec asks for NaN outside the scored footprint, and that is
+    // what the artifact and the official template do, so 'nan' stays the default. But the platform
+    // once rejected a conformant file with `Predicted values must be in range [0, 1]`, and a
+    // checker that compares every value without masking would report NaN as out of range no matter
+    // where it sits. 'none' writes the same prediction with 0.0 outside the footprint and no
+    // NODATA tag at all: under the official scorer NaN and 0.0 are the same number (NaN is read as
+    // 0.0 and 0.0 contributes nothing to either error term), so the score cannot change - while
+    // the file becomes un-rejectable by any range check, however it is written.
+    var nodataMode = opts.nodata === 'none' ? 'none' : 'nan';
     var nodataBytes = asciiBytes('nan');
     var xmlBytes = asciiBytes('<GDALMetadata>\n  <Item name="AREA_OR_POINT">Area</Item>\n</GDALMetadata>\n');
     var descBytes = grid.band_description ? asciiBytes(grid.band_description) : null;
@@ -187,9 +196,11 @@
       { tag: 33550, type: T_DOUBLE, blob: doubles(pixelScale) },      // ModelPixelScale
       { tag: 33922, type: T_DOUBLE, blob: doubles(tiePoint) },        // ModelTiePoint
       { tag: 34735, type: T_SHORT, blob: shorts(geoKeys) },            // GeoKeyDirectory
-      { tag: 42112, type: T_ASCII, blob: xmlBytes },                   // GDAL_METADATA
-      { tag: 42113, type: T_ASCII, blob: nodataBytes }                 // GDAL_NODATA
+      { tag: 42112, type: T_ASCII, blob: xmlBytes }                    // GDAL_METADATA
     ];
+    if (nodataMode === 'nan') {
+      specs.push({ tag: 42113, type: T_ASCII, blob: nodataBytes });    // GDAL_NODATA = "nan"
+    }
     if (descBytes) specs.push({ tag: 270, type: T_ASCII, blob: descBytes });   // ImageDescription
 
     // count + inline flag per spec.  The rule libtiff/GDAL apply is byte-size based: a value whose
@@ -444,7 +455,16 @@
     check('decoded field hashes to the pinned float32 buffer', fieldHex === meta.field.float32_sha256,
           fieldHex.slice(0, 16) + '… vs ' + String(meta.field.float32_sha256).slice(0, 16) + '…');
 
-    var built = await buildGeoTIFF(field, grid, { compression: opts.compression, rowsPerStrip: opts.rowsPerStrip });
+    var noDataMode = opts.nodata === 'none' ? 'none' : 'nan';
+    var outField = field;
+    if (noDataMode === 'none') {
+      outField = new Float32Array(field.length);
+      for (var q = 0; q < field.length; q++) outField[q] = (field[q] === field[q]) ? field[q] : 0;
+    }
+
+    var built = await buildGeoTIFF(outField, grid, { compression: opts.compression,
+                                                     rowsPerStrip: opts.rowsPerStrip,
+                                                     nodata: noDataMode });
     var bytes = built.bytes;
 
     var info = parseGeoTIFF(bytes);
@@ -464,13 +484,39 @@
     var tieOk = tp && tp[0] === 0 && tp[1] === 0 && Math.abs(tp[3] - ox) < 1e-6 && Math.abs(tp[4] - oy) < 1e-6;
     check('re-read: ModelTiePoint carries the upper-left origin', tieOk,
           tp ? 'x ' + tp[3] + ' · y ' + tp[4] : 'absent');
-    check('re-read: GDAL_NODATA is "nan"', info.nodata === 'nan', JSON.stringify(info.nodata));
+    check('re-read: GDAL_NODATA matches the chosen policy',
+          noDataMode === 'nan' ? info.nodata === 'nan' : !info.nodata,
+          noDataMode === 'nan' ? JSON.stringify(info.nodata) : 'no NODATA tag (0.0 outside)');
     var rt = await readField(bytes, info);
     var rt32 = new Uint32Array(rt.buffer);
+    var want32 = noDataMode === 'nan' ? u32v : new Uint32Array(outField.buffer);
     var diff = 0;
-    for (var j = 0; j < rt.length; j++) if (rt32[j] !== u32v[j]) diff++;
+    for (var j = 0; j < rt.length; j++) if (rt32[j] !== want32[j]) diff++;
     check('re-read: every float32 bit survives the container', diff === 0,
           diff + ' px differ of ' + rt.length.toLocaleString());
+
+    // THE PLATFORM'S RULE, CHECKED ON THE BYTES THIS PAGE JUST WROTE.
+    // "Predicted values must be in range [0, 1]" is the only error the submission dialog ever
+    // printed for this project, and it was produced by a file whose every finite value WAS in
+    // [0, 1]. A range check that does not mask will call NaN out of range, so count it here.
+    var rtNan = 0, rtLo = 0, rtHi = 0, rtMin = Infinity, rtMax = -Infinity;
+    for (var n = 0; n < rt.length; n++) {
+      var rv = rt[n];
+      if (rv !== rv) { rtNan++; continue; }
+      if (rv < rtMin) rtMin = rv;
+      if (rv > rtMax) rtMax = rv;
+      if (rv < 0) rtLo++; else if (rv > 1) rtHi++;
+    }
+    var expectedValid = (meta.encoding && meta.encoding.expected_pixels) ? meta.encoding.expected_pixels : field.length;
+    var finitePx = rt.length - rtNan;
+    check('platform rule: no NaN anywhere in the file', noDataMode === 'none' ? rtNan === 0 : true,
+          noDataMode === 'none' ? rtNan + ' NaN px of ' + rt.length.toLocaleString()
+                                : rtNan.toLocaleString() + ' NaN px (the template\'s own invalid region)');
+    check('platform rule: every finite value is in [0,1]', rtLo === 0 && rtHi === 0,
+          'min ' + rtMin + ' · max ' + rtMax + ' · below 0: ' + rtLo + ' · above 1: ' + rtHi);
+    check('platform rule: the scored region carries no NaN',
+          noDataMode === 'none' ? true : rtNan === (expectedValid - (meta.field.one_px + meta.field.zero_px)),
+          'finite ' + finitePx.toLocaleString() + ' px · NaN ' + rtNan.toLocaleString() + ' px');
     check('re-read: strip table is self-consistent',
           info.stripOffsets.length === info.stripByteCounts.length &&
           info.stripOffsets.length === Math.ceil(info.height / info.rowsPerStrip),
@@ -483,7 +529,10 @@
     return {
       bytes: bytes, sha256: hex, layout: built.layout, info: info, checks: checks,
       ok: failed.length === 0, failed: failed.map(function (c) { return c.name; }),
+      nodata: noDataMode,
       field: { one_px: onePx, zero_px: zeroPx, nan_px: nanPx, runs: dec.runs },
+      platform: { nan_px: rtNan, finite_px: finitePx, min: rtMin, max: rtMax,
+                  below_zero: rtLo, above_one: rtHi },
       compression: built.layout.compression === COMPRESSION_DEFLATE ? 'deflate (zlib-wrapped, per strip — tag 8, as GDAL writes)' : 'none (uncompressed strips)'
     };
   }
@@ -505,7 +554,7 @@
         var args = process.argv.slice(2);
         // Positional = the output paths. An option that takes a value (--rows-per-strip N) must
         // swallow its argument, or "64" lands in `pos` and silently becomes a fourth output file.
-        var OPTS_WITH_VALUE = { '--rows-per-strip': 1 };
+        var OPTS_WITH_VALUE = { '--rows-per-strip': 1, '--nodata': 1 };
         var pos = [], flags = [];
         for (var ai = 0; ai < args.length; ai++) {
           var a = args[ai];
@@ -517,7 +566,7 @@
         }
         if (pos.length < 3) {
           process.stderr.write('usage: node docs/geotiff_writer.js <meta.json> <field.bin> <out.tif> ' +
-                               '[out.zip] [--no-deflate] [--rows-per-strip N]\n');
+                               '[out.zip] [--no-deflate] [--rows-per-strip N] [--nodata nan|none]\n');
           process.exit(2);
         }
         var meta = JSON.parse(fs.readFileSync(pos[0], 'utf8'));
@@ -531,10 +580,15 @@
           rps = parseInt(flags[ri + 1], 10);
           if (!(rps > 0)) throw new Error('--rows-per-strip needs a positive integer, got ' + flags[ri + 1]);
         }
+        var ndi = flags.indexOf('--nodata');
+        var nodataMode = ndi >= 0 ? flags[ndi + 1] : 'nan';
+        if (nodataMode !== 'nan' && nodataMode !== 'none') {
+          throw new Error('--nodata takes nan or none, got ' + nodataMode);
+        }
         var res = await generateFromPayload({
           meta: meta, fieldBytes: blob,
           compression: flags.indexOf('--no-deflate') >= 0 ? 'none' : 'deflate',
-          rowsPerStrip: rps
+          rowsPerStrip: rps, nodata: nodataMode
         });
         if (!res.ok) {
           // Write nothing. A file left on disk by a failed build is the exact artefact someone

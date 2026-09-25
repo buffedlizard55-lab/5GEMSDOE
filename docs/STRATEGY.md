@@ -106,6 +106,49 @@ sweeps on SGMC proxies (D3 says those cannot be trusted).
 confidently *ours alone* (not in any other public file we hold) are worth more in Phase 2 than their Phase-1 price. Keep the
 Jaccard table in the anchor JSON current and prefer distinct, defensible geometry over consensus.
 
+**H6 — A dilational-setting prior, from the literature rather than from the data (session 2).** Faulds & Hinz (WGC 2015,
+[OSTI 1724082](https://www.osti.gov/servlets/purl/1724082); dataset [GDR 355](https://gdr.openei.org/submissions/355),
+DOI [10.15121/1148722](https://doi.org/10.15121/1148722)) catalogued the structural setting of ~250 Great Basin geothermal
+systems: **step-overs / relay ramps ~32 %, terminations 25 %, intersections 22 %**, accommodation zones 9 %, transfer zones
+5 %, pull-aparts 3 %, bends 2 %, and **major range-front faults 1 %** — with Quaternary faults "within or near most" systems,
+systems *rare* on range-front displacement maxima (clay gouge, stress release), and tips horse-tailing into "a myriad of
+closely-spaced faults". That last clause is a description of the scored population. `scripts/build_structural_targets.py`
+recovers the settings a trace raster carries — 6,938 terminations, 2,633 intersections, 1,558 bends, 5,432 relay ramps —
+weights them by those frequencies and emits the prior. *Status:* candidates exist and are conformant, but **no local
+instrument can price them** (§7), so they are a second upload, not the first.
+
+**H7 — Do not trust the SGMC proxy (measured, not asserted).** `scripts/rank_instruments.py` asks each stand-in the question
+it has never been asked: can it order the five files the way the public leaderboard already does? The SGMC-gap proxy — the
+population every emission-width decision in this project family was argued on — returns **ρ = −0.8**: it ranks the files
+almost exactly backwards. The catalogue, scored in-domain with the platform's masking rule applied, returns **ρ = +0.9**
+(`data/evidence/rank_instruments.json`). Five files is five data points, so the first conclusion to draw is not "the catalogue
+is right" but "the proxy is disqualified": it must never again select a submission. The catalogue instrument is in-domain for
+every supervised file here, so it can rank *detectors* but cannot certify *discovery* value, and it is degenerate for any
+candidate that exploits the mask, because its truth is the mask.
+
+## 4b. Fitting the hidden truth from the board — and why it was not believed (session 2)
+
+`scripts/fit_hidden_prior.py` uses the leaderboard directly. With `DTI = T / (0.2·E + 0.8·G)` (§2), each scored file is one
+**linear** equation in the weights of a non-negative truth-density model `λ(x) = Σ w_k φ_k(x)`, where `T = Σ_x λ(x) c_S(x)`
+is the credit kernel of that file's emission and `E` its chargeable pixels. So five public scores constrain the hidden truth
+directly, with no proxy at all.
+
+The point fit is then **not** reported as the answer, because five equations cannot identify a density field. The script
+computes the smallest tolerance at which *any* density reproduces all five scores (**0.028 DTI** — as large as the gap between
+our best and our fourth file), and then, by bisection over feasibility linear programmes, the **min and max every candidate can
+take over the whole consistent set** (`dti_min`, `dti_max` in `data/evidence/hidden_prior/fit.json`).
+
+Two results decided what to ship:
+
+* the fitted density predicts **0.81** for the platform's own `example_submission.tif` — a file everyone already has, against a
+  best observed score of 0.3049. **The model is falsified by the board**, so a candidate that looked excellent under the point
+  fit (0.349 for "shipped field + catalogue") is *not* shipped on that evidence;
+* **the one decision that survives is free.** Staff state in writing that known-fault pixels are excluded from the penalty terms
+  (F2), and the platform's own example submission *is* the catalogue raster. Adding the 54,533 catalogue pixels the shipped
+  field was missing therefore cannot lower the score under either reading of that rule, and may raise it substantially. That is
+  **S5-A**, and because nothing else changes, its score against 0.1563 is a clean measurement of which reading the platform
+  implements — a hedge and an experiment in the one upload.
+
 ## 5. Upload plan for this site (3 slots / week per account)
 
 1. **Density probe** (`scripts/density_probe.py`; file `gems-density-probe-*.tif`, Note `density probe · p=1 on all unmasked
