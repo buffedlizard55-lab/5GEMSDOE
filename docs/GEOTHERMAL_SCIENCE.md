@@ -133,11 +133,15 @@ quietly dropped.
 
 | # | Fact | Source | How verified |
 |---|---|---|---|
-| S1 | **39 % of the 426 catalogued Great Basin geothermal systems are BLIND** — "no surface hot springs or fumaroles". The structural setting of ~25 % could not be determined at all, and 21 % are hybrid/compound systems. Of the 426: step-overs/relay ramps ~32 %, terminations 25 %, intersections 22 % | [Great Basin Center for Geothermal Energy, award DE-EE0002748](https://gbcge.org/recent-projects/characterizing-structural-controls/) | **fetched 2026-09-25** |
+| S1 | **⚠️ IRREGULARITY — the "39 % blind" claim is contradicted by the dataset's own field definition.** 165 of the 426 rows carry `Blind = yes` (38.7 %), which matches the page's 39 % — but the workbook's *Field Definitions* sheet says `Blind = yes` means the system **is** associated with active surface manifestations (hot springs, warm springs > 20 °C, fumaroles), i.e. the opposite. The page's other figure does reproduce: 113/426 = 26.5 % carry primary setting code 10 "Undertermined", against the page's "~25 % could not be determined" | [GBCGE award page](https://gbcge.org/recent-projects/characterizing-structural-controls/) vs the workbook itself, GDR 355, DOI [10.15121/1148722](https://doi.org/10.15121/1148722) | **fetched 2026-09-25** (page); **measured 2026-09-25** on the spreadsheet by `scripts/analyze_gdr355_inventory.py` |
 | S2 | **GeoDAWN lidar point clouds exist** for the same region: "GeoDAWN West Central Nevada EarthMRI Data", work units 1–6, `.laz` files plus OPR/processed TIFFs, published as EPT (Entwine) resources on the AWS USGS Lidar Public Dataset | [GDR 1501](https://gdr.openei.org/submissions/1501) · [OEDI 7592](https://data.openei.org/submissions/7592) · DOI [10.15121/1992093](https://doi.org/10.15121/1992093) · [AWS registry](https://registry.opendata.aws/usgs-lidar/) · [hobu/usgs-lidar](https://github.com/hobu/usgs-lidar/) | **fetched 2026-09-25** (landing pages, file inventory, DOI) |
 | S3 | The GeoDAWN **radiometric/magnetic GeoTIFF inventory** is exactly: `22103_area1_tiffs.zip` **43.57 MB**, `22103_area2_tiffs.zip` **230.54 MB** (geoTIFF images of the geophysical grids), `22103_area1_grids.zip` 42.43 MB, `22103_area2_grids.zip` 227.39 MB, ternary maps 9.68 / 51.37 MB, `22103_ternary_a1_pdf.zip` 4.77 MB | [ScienceBase 657e1d85d34e23d3533209f7](https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7), DOI [10.5066/P93LGLVQ](https://doi.org/10.5066/P93LGLVQ) | **fetched 2026-09-25** — the attached-files table was read line by line |
 | S4 | An **independent third party** publishes a measured calibration of this competition's metric: raw probabilities 0.088 → binarised top-2 % 0.106 → **skeleton of the top-5 % 0.132 (+49 %)**, "adding a 3-px band back around the skeleton loses", and their U-Net scores **0.0435 on held-out segments vs 0.0387 on the public leaderboard** | [Gameassassin777/gems-eval](https://github.com/Gameassassin777/gems-eval) (MIT, © 2026 Syntropy Digital) | **fetched 2026-09-25**; the two files this repository vendors from it are in `scripts/vendor/gems_eval/` with provenance |
 | S5 | **CORRECTION.** A sibling repository's pull request states that "feature bands 17–19 are constant placeholders despite carrying plausible descriptions". On the official bytes in this repository that is **false**: band 17 `cond_surf` carries 1,237,549 distinct values (range −3.4e38…4.969), band 18 `iso_grav_anom_hg` 5,008,543 and band 19 `det_elev_slope` 4,954,390. All 19 bands are measured live in `scripts/train_context_detector.py`'s percentile pass. | measured on `data/training_features.tif` (sha256-pinned, 418,912,844 B) | **measured 2026-09-25** |
+
+| S6 | **The catalogue's own structural-setting frequencies do not reproduce.** Measured over all 426 rows: undetermined 26.5 %, stepover 18.5 %, termination 14.6 %, fault intersection 12.9 %, accommodation zone 5.2 %, displacement transfer 3.3 %, pull-apart 1.6 %, bend 0.7 %, major normal fault 0.7 %. The page's 32 / 25 / 22 % are roughly 1.7× higher on every row, so they are quoted over a different denominator (most plausibly the favourable settings only, or the secondary Cashman codes). **`scripts/build_structural_targets.py` weights must be re-derived from the measured rows, not from the page.** | same workbook, measured | **measured 2026-09-25** — `data/evidence/gdr/inventory_analysis.json` |
+| S7 | **117 of the 426 systems fall inside the competition raster** (coordinates transformed from NAD83 to EPSG:32611 and tested against the raster bounds): Beowawe, Dixie Valley, Empire–San Emidio, Bradys, Desert Peak, Soda Lake, Stillwater, Steamboat, Humboldt House, Wabuska, Casa Diablo, Moana and 105 more. Mean maximum temperature 84.8 °C, maximum 250 °C, 17 systems ≥ 150 °C; 50 have Holocene fault scarps. | same workbook, measured | **measured 2026-09-25** |
+| S8 | The workbook has no surface-geophysical column at all — it is a **field-and-literature inventory** (23 columns: temperature, geothermometry, structural setting, Quaternary faulting age, distance to fault, power, coordinates). It cannot be used as a detector target; it can only be used as a *location prior* | same workbook | **measured 2026-09-25** |
 
 **What S1 changes about the strategy.** If 39 % of the systems are blind, then a surface-geophysical detector
 is not merely imperfect — for a large share of the target population there is *no surface expression to
@@ -145,6 +149,18 @@ find*, and the best a 100 m potential-field model can do is detect the faults th
 argument for spending the remaining effort on (a) the topographic channel (the one surface expression an
 expert mapper can see, per Hermant et al. 2025) and (b) the structural setting prior, rather than on more
 capacity for the same 19 bands.
+
+**What S6–S8 change about the strategy — this is the largest single finding of session 3.**
+S7 says there is a **real, public, geothermal truth set of 117 systems inside the scored footprint**.
+`labels.tif` is a *fault* catalogue (USGS/INGENIOUS); GDR 355 is a *geothermal-resource* catalogue, and
+they are not the same population — the experts' new faults are, by the problem statement, faults "not
+already captured by USGS/INGENIOUS", which is much closer to S7's population than to the mask. The
+obvious session-4 experiment is the one `scripts/rank_instruments.py` already performs for every other
+instrument: build a prior raster from the 117 in-footprint systems (a Gaussian or radial kernel, possibly
+weighted by temperature or by setting) and ask whether it orders the five scored files the way the public
+leaderboard already does. If it does, it is the first *geothermal* instrument this project family has had,
+and every emission-width decision that was previously argued on the SGMC proxy (measured ρ = −0.8,
+`docs/STRATEGY.md` §4b) can be re-made on it.
 
 **What S2 changes about the ceiling.** The 1 m DEM links the organizers shipped cover 867 tiles of selected
 projects; the GeoDAWN lidar point clouds cover work units 1–6 of west-central Nevada. If any of those work

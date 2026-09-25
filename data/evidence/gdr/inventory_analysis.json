@@ -1,0 +1,233 @@
+{
+ "generated_by": "scripts/analyze_gdr355_inventory.py",
+ "source": {
+  "dataset": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings",
+  "landing_page": "https://gdr.openei.org/submissions/355",
+  "doi": "10.15121/1148722",
+  "license": "CC BY 4.0",
+  "author": "Faulds, James E. (University of Nevada, 2013)",
+  "file": "data/external/gdr/faulds_structural_inventory_great_basin.xls",
+  "sha256": "843feb7c93f0a2325ee2651cd63ab0739a43593d2d3e8cafe6e87a0d2014c2ac"
+ },
+ "shape": {
+  "rows": 426,
+  "cols": 23
+ },
+ "blind": {
+  "counts": {
+   "no": 261,
+   "yes": 165
+  },
+  "fraction_yes": 0.3873,
+  "definition_verbatim": "Yes if the system is associated with active surface manifestations including natural hot springs (not open flowing wells), warm springs (>20\u00b0C), or fumaroles; otherwise No",
+  "irregularity": "The GBCGE award page states that 39 % of the 426 catalogued systems are BLIND, meaning no surface hot springs or fumaroles. The workbook's own Field Definitions sheet defines Blind = 'Yes if the system is associated with active surface manifestations including natural hot springs (not open flowing wells), warm springs (>20 C), or fumaroles; otherwise No' - i.e. the OPPOSITE. 165/426 = 38.7 % carry 'yes', which matches the page's 39 %, so the page appears to have counted the column's 'yes' values as blind. This script records the disagreement and does not resolve it: until the dataset owner clarifies, the 39 % figure must not be cited as fact in this repository."
+ },
+ "structural_settings": {
+  "counts": {
+   "undetermined": 113,
+   "stepover": 79,
+   "termination of normal fault": 62,
+   "fault intersection": 55,
+   "accommodation zone": 21,
+   "displacement transfer zone": 14,
+   "pull apart": 8,
+   "fault bend": 5,
+   "major normal fault": 3,
+   "volcanic": 2
+  },
+  "rows_total": 426,
+  "rows_with_a_primary_code": 362,
+  "rows_without_a_primary_code": 64,
+  "frequency_all_rows": {
+   "undetermined": 0.2653,
+   "stepover": 0.1854,
+   "termination of normal fault": 0.1455,
+   "fault intersection": 0.1291,
+   "accommodation zone": 0.0493,
+   "displacement transfer zone": 0.0329,
+   "pull apart": 0.0188,
+   "fault bend": 0.0117,
+   "major normal fault": 0.007,
+   "volcanic": 0.0047
+  },
+  "frequency_coded_rows": {
+   "undetermined": 0.3122,
+   "stepover": 0.2182,
+   "termination of normal fault": 0.1713,
+   "fault intersection": 0.1519,
+   "accommodation zone": 0.058,
+   "displacement transfer zone": 0.0387,
+   "pull apart": 0.0221,
+   "fault bend": 0.0138,
+   "major normal fault": 0.0083,
+   "volcanic": 0.0055
+  },
+  "published_vs_measured": {
+   "stepover": {
+    "published": 0.32,
+    "measured_all_rows": 0.18544600938967137,
+    "measured_coded_rows": 0.21823204419889503
+   },
+   "termination of normal fault": {
+    "published": 0.25,
+    "measured_all_rows": 0.14553990610328638,
+    "measured_coded_rows": 0.1712707182320442
+   },
+   "fault intersection": {
+    "published": 0.22,
+    "measured_all_rows": 0.12910798122065728,
+    "measured_coded_rows": 0.15193370165745856
+   },
+   "accommodation zone": {
+    "published": 0.09,
+    "measured_all_rows": 0.04929577464788732,
+    "measured_coded_rows": 0.058011049723756904
+   },
+   "displacement transfer zone": {
+    "published": 0.05,
+    "measured_all_rows": 0.03286384976525822,
+    "measured_coded_rows": 0.03867403314917127
+   },
+   "pull apart": {
+    "published": 0.03,
+    "measured_all_rows": 0.018779342723004695,
+    "measured_coded_rows": 0.022099447513812154
+   },
+   "fault bend": {
+    "published": 0.02,
+    "measured_all_rows": 0.011737089201877934,
+    "measured_coded_rows": 0.013812154696132596
+   },
+   "major normal fault": {
+    "published": 0.01,
+    "measured_all_rows": 0.007042253521126761,
+    "measured_coded_rows": 0.008287292817679558
+   }
+  },
+  "note": "The published 32/25/22 % frequencies do not reproduce on either denominator. They are most plausibly quoted over the *favourable* settings only, or over the secondary (Cashman) codes; both are reported in inventory.json. scripts/build_structural_targets.py weights the settings it can recover from a trace raster, so its weights should be re-derived from frequency_all_rows rather than from the page."
+ },
+ "quaternary_faulting": {
+  "Holocene": 128,
+  "None mapped": 115,
+  "Late Quaternary": 28,
+  "Late Quaternary?": 17,
+  "Quaternary": 15,
+  "Quaternary?": 13,
+  "nan": 9,
+  "Late Quaternary; possible Holocene": 7,
+  "Late Pleistocene": 6,
+  "mid-Quaternary": 4,
+  "none mapped": 4,
+  "late Quaternary": 4,
+  "Holocene?": 3,
+  "Late Pleistocene; possible Holocene": 3,
+  "Possible Holocene": 3,
+  "magmatic?": 2,
+  "Quaternary; possible Holocene": 2,
+  "late Pleistocene": 2,
+  "Late Quat?": 2,
+  "Late Quaternary; possible latest Pleistocene": 2,
+  "Holocene/historic": 2,
+  "Late Pleistocene/likely Holocene": 2,
+  "Historic, 1954": 1,
+  "Holocene; historic 1980": 1,
+  "Late Pleistocene/Holocene": 1,
+  "Late Pleistocene/Holocene?": 1,
+  "Holocene; historic 1915": 1,
+  "10 km north of Holocene": 1,
+  "Late Pleistocene; possible Holocene?": 1,
+  "Late Pleistocene/possible Holocene": 1,
+  "Likely Holocene": 1,
+  "Late Pleistocene;likely Holocene": 1,
+  "none mapped; probable late Pleistocene": 1,
+  "Possible late Pleistocene?": 1,
+  "Holocene/historic 1915": 1,
+  "Holocene/historic 1954": 1,
+  "Historic 1954 and late Quaternary": 1,
+  "Late Quaternary; possible Holocne": 1,
+  "Quaternary; mid- to late Q": 1,
+  "Quaternary; probable late Quat": 1,
+  "Late Quaternary; likely Holocene": 1,
+  "mid- late Quaternary": 1,
+  "Quaternary; late Pleistocene": 1,
+  "Probable Holocene": 1,
+  "Late Quaternary; probable Holocene": 1,
+  "Holocene/Late Quat": 1,
+  "Quaternary/Holocene?": 1,
+  "Holocene/1915": 1,
+  "Historic; 1915": 1,
+  "Holocene; 1954": 1,
+  "Quaternary/possible Holocene": 1,
+  "Quaternary; possible Holocene?": 1,
+  "NA  Volcanic": 1,
+  "Mid-late Pleistocene": 1,
+  "Late Pleistocene to Holocene": 1,
+  "No obvious": 1,
+  "Location error? Center of Mono Crater": 1,
+  "East rim Mono Lake; magmatic?": 1,
+  "Holocene/Historic 1980": 1,
+  "Late Quaternary; Holocene?": 1,
+  "Quaternary ": 1,
+  "Quaternary undiff": 1,
+  "none obvious; on Mt Lassen": 1,
+  "Holocene/historic ": 1,
+  "late Quaternary/Holocene?": 1,
+  "Late Quateranry": 1,
+  "Late Quaternary/Holocene": 1,
+  "Late Q to Holocene": 1,
+  "Historic/late Quat": 1,
+  "Holocene ": 1,
+  "mid-late Quaternary": 1,
+  "Late Pleistocene; likely  Holocene": 1,
+  "Location?; possible late Quaternary": 1,
+  "Not in geotrain.shp": 1,
+  "Location error?": 1
+ },
+ "max_temp_c": {
+  "count": 425,
+  "min": 0.0,
+  "max": 268.0,
+  "mean": 60.5,
+  "mean_blind_yes": 55.2,
+  "mean_blind_no": 63.9,
+  "note": "The temperature contrast is the wrong way round for the usual 'blind systems are hotter' heuristic, which is a second reason not to lean on the Blind column."
+ },
+ "footprint": {
+  "raster": "data/training_features.tif",
+  "crs": "EPSG:32611",
+  "bounds": [
+   243350.0,
+   4135550.0,
+   572550.0,
+   4508550.0
+  ],
+  "coordinate_columns": "X_Nad83 / Y_Nad83 (NAD83 degrees) transformed to EPSG:32611",
+  "systems_with_coordinates": 426,
+  "systems_inside": 117,
+  "systems_outside": 309,
+  "min_distance_outside_km": 1.0,
+  "median_distance_outside_km": 209.9,
+  "inside_names": [
+   "Beowawe",
+   "Dixie Valley",
+   "Empire - San Emidio",
+   "Bradys",
+   "Desert Peak",
+   "Soda Lake",
+   "Stillwater",
+   "Steamboat",
+   "Humboldt House",
+   "Wabuska",
+   "Casa Diablo",
+   "Moana",
+   "Bowers Mansion",
+   "Walleys Hot Springs",
+   "Darroughs Hot Springs",
+   "Fish Lake Valley",
+   "Alum-Silver Peak",
+   "Colado",
+   "Leach Hot Springs",
+   "Gerlach"
+  ]
+ }
+}

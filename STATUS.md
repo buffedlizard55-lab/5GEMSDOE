@@ -208,14 +208,36 @@ rather than by waiting for a human.
 3. **Branch on S5-A's score** with `scripts/emit_by_marginal_rule.py --price` on every candidate: score ≈ 0.156 →
    catalogue-adjacent emission earns nothing, put the remaining slots into off-catalogue detection; score > 0.20 →
    the masking rule awards credit near the catalogue and the annulus sweep's cheaper rows become live options.
-4. **Retry the GDR 355 fetch** — the push trigger is re-armed in `.github/triggers/fetch-gdr`; a push fires it and
-   the runner commits the 244 kB spreadsheet. It is the only *geothermal* truth set available for this region.
-5. **Build the topographic channel and train on it.** `build-topo-features` is push-triggered; add a step that
+4. ~~**Fetch GDR 355**~~ **DONE, and it is the biggest result of this session.** The re-armed push trigger
+   fired on this session's push and the runner committed the real workbook:
+   `data/external/gdr/faulds_structural_inventory_great_basin.xls` (250,368 B, sha256 `843feb7c…`, sheets
+   `StructureInventory` 426×23 and `Field Definitions`). `scripts/analyze_gdr355_inventory.py` (new) measures it
+   and `data/evidence/gdr/inventory_analysis.json` records:
+   * **117 of the 426 systems fall inside the competition raster** — Beowawe, Dixie Valley, Empire–San Emidio,
+     Bradys, Desert Peak, Soda Lake, Stillwater, Steamboat, Humboldt House, Wabuska, Casa Diablo, Moana and 105
+     more. Mean max temperature 84.8 °C, max 250 °C, 17 ≥ 150 °C, 50 with Holocene scarps. **This is the first
+     real geothermal truth set this project family has had inside the scored footprint** — `labels.tif` is a
+     fault catalogue, GDR 355 is a resource catalogue, and the experts' new faults are much closer to the latter.
+   * **IRREGULARITY FLAGGED, NOT RESOLVED**: the "39 % blind" claim is contradicted by the workbook's own
+     definition (`Blind = yes` means the system *has* surface manifestations). 165/426 = 38.7 % carry `yes`,
+     matching the page's 39 %, so the page appears to have inverted the column. Do not cite 39 % as fact.
+   * The published 32 / 25 / 22 % setting frequencies do not reproduce on any denominator (measured: 26.5 %
+     undetermined, 18.5 % stepover, 14.6 % termination, 12.9 % intersection). `build_structural_targets.py`'s
+     weights should be re-derived from the measured rows.
+5. **Build a GDR-355 prior raster and score it with `scripts/rank_instruments.py`.** This is now the
+   highest-value experiment in the project: turn the 117 in-footprint systems into a prior (Gaussian or radial
+   kernel, optionally weighted by temperature or by measured setting) and ask the question the SGMC proxy
+   failed — can it order the five already-scored files the way the public leaderboard already does? ρ ≈ +0.9
+   would make it the first geothermal instrument, and every emission-width decision previously argued on the
+   SGMC proxy (measured ρ = −0.8) becomes re-makeable on it. Note `data/evidence/emission/marginal_rule_*.json`
+   already shows the rule cannot price discovery from a catalogue-calibrated instrument, so this prior must be
+   tested as a *ranking* instrument, not as an emission rule.
+6. **Build the topographic channel and train on it.** `build-topo-features` is push-triggered; add a step that
    also runs `scripts/train_context_detector.py --aux data/external/topo_features_100m.tif --dtype uint8` so the
    augmented field (3.9 MB) is committed rather than left in an artifact this sandbox cannot download. The 1 m
    GeoDAWN **lidar point clouds** (GDR 1501 / OEDI 7592, DOI 10.15121/1992093) are the untested ceiling — see
    `docs/GEOTHERMAL_SCIENCE.md` §5b S2.
-6. **Radiometrics (H2)**: `22103_area1_tiffs.zip` (43.57 MB) and `22103_area2_tiffs.zip` (230.54 MB) are verified
+7. **Radiometrics (H2)**: `22103_area1_tiffs.zip` (43.57 MB) and `22103_area2_tiffs.zip` (230.54 MB) are verified
    public and absent from the 19 bands; a runner step can fetch and resample them onto the competition grid.
 
 ### What is still blocked (unchanged, restated so it is not rediscovered)

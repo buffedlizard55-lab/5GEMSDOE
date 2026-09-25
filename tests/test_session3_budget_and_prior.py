@@ -296,3 +296,53 @@ def test_uint8_probability_field_round_trips(tmp_path):
         assert src.dtypes[0] == "uint8"
         back = src.read(1).astype(np.float32) / 255.0
     assert float(np.max(np.abs(back - p))) <= 1.0 / 255.0 + 1e-6
+
+
+# ---------------------------------------------------------------------------
+# GDR 355: the first real geothermal truth set, and the contradiction it exposes
+# ---------------------------------------------------------------------------
+
+def _gdr_analysis():
+    ag = importlib.import_module("scripts.analyze_gdr355_inventory")
+    return ag
+
+
+def test_the_gdr355_workbook_is_read_from_its_own_bytes():
+    """The catalogue is in the repository, so its frequencies are measured, not quoted."""
+    xls = ROOT / "data/external/gdr/faulds_structural_inventory_great_basin.xls"
+    if not xls.exists():
+        pytest.skip("the runner has not fetched GDR 355 into this checkout")
+    rep = _gdr_analysis().analyse(xls, None)
+    assert rep["shape"]["rows"] == 426 and rep["shape"]["cols"] == 23
+    b = rep["blind"]
+    assert b["counts"]["yes"] == 165 and b["counts"]["no"] == 261
+    # the irregularity is recorded in the evidence, not silently resolved
+    assert "opposite" in b["irregularity"].lower() or "OPPOSITE" in b["irregularity"]
+    # and the measured frequencies are all BELOW the published ones
+    for name, row in rep["structural_settings"]["published_vs_measured"].items():
+        assert row["measured_all_rows"] < row["published"], name
+
+
+def test_the_blind_column_definition_is_quoted_verbatim_from_the_workbook():
+    xls = ROOT / "data/external/gdr/faulds_structural_inventory_great_basin.xls"
+    if not xls.exists():
+        pytest.skip("the runner has not fetched GDR 355 into this checkout")
+    rep = _gdr_analysis().analyse(xls, None)
+    definition = rep["blind"]["definition_verbatim"]
+    assert "surface manifestations" in definition
+    assert "hot springs" in definition
+
+
+def test_the_117_in_footprint_systems_are_found_only_after_transforming_coordinates():
+    """Degrees compared against metres reports 0 inside; the transform is what makes S7 real."""
+    xls = ROOT / "data/external/gdr/faulds_structural_inventory_great_basin.xls"
+    raster = ROOT / "data/training_features.tif"
+    if not xls.exists() or not raster.exists():
+        pytest.skip("GDR 355 or the assembled feature stack is absent from this checkout")
+    rep = _gdr_analysis().analyse(xls, raster)
+    fp = rep["footprint"]
+    assert fp["coordinate_columns"].startswith("X_Nad83")
+    assert fp["systems_inside"] == 117, fp["systems_inside"]
+    assert fp["systems_outside"] == 309
+    assert "Beowawe" in fp["inside_names"] and "Steamboat" in fp["inside_names"]
+    assert fp["median_distance_outside_km"] > 100.0
