@@ -1,1 +1,11 @@
-FAILED to fetch : ValueError: unknown url type: ''
+{
+ "bytes": 250368,
+ "magic": "ole2-xls",
+ "sha256": "843feb7c93f0a232",
+ "ok": true,
+ "sheets": [
+  "StructureInventory",
+  "Field Definitions"
+ ]
+}
+wrote data/external/gdr/faulds_structural_inventory_great_basin.xls and data/evidence/gdr/inventory.json
