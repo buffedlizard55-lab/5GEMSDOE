@@ -1,0 +1,6 @@
+# Change any line and push an arena/** branch to fire .github/workflows/build-aux-channels.yml.
+# It builds the 3DEP scarp channel and the GeoDAWN radiometric channel on a runner and commits
+# both back to the same branch as sha256-pinned uint8 parts under data/aux_bridge/<name>/.
+# Then, in the sandbox: python scripts/aux_bridge.py unpack --name topo
+#                       python scripts/aux_bridge.py unpack --name radiometric
+fire=1  # 2026-09-25 session 4: first build of both channels through the git bridge

@@ -27,6 +27,9 @@ data/*
 # rejects blobs >= 100 MB) - see scripts/assemble_data_bridge.py
 !data/bridge/
 !data/bridge/**
+# aux channels built on a runner and brought back as sha256-pinned uint8 parts (scripts/aux_bridge.py)
+!data/aux_bridge/
+!data/aux_bridge/**
 !data/*.md
 # aux-feature directory: only its README travels in git; the rasters are Actions artifacts
 !data/external/
