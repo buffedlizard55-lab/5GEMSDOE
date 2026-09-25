@@ -1,5 +1,22 @@
 # Suggestions and Improvements — Implemented for Top Leaderboard
 
+## Session 26 (2026-09-25) — master directory of all 86 GitHub Pages sites, measured from GitHub's API and live-verified
+
+| Area | What changed | Why it matters | Evidence |
+|---|---|---|---|
+| `data/evidence/site_directory.json` — the complete machine-measured inventory | All 86 public repos of `buffedlizard55-lab` (Pages API status, build type, source branch/path, canonical site URL, `created_at`/`updated_at`/`pushed_at`, archived flag) plus the live-verified URL and document title of every site; and the second in-scope account `kanlerxz87-cyber` measured too (account exists, 0 public repos, 0 public events, official 404 user page) | The brief asked for a master list of every Pages site both accounts host, with name, description, dates, live URL and verified source links. This file is the measured base — no manual input | `data/evidence/site_directory.json` (measured 2026-09-25T23:32Z, 86/86 live-verified) |
+| `scripts/make_site_directory_evidence.py` — reproducible measurement | Re-fetches the inventory from public GitHub REST and live-HTTP-GETs all 86 site URLs plus both user pages; `--liveness-file` fallback for sandboxes without egress to `*.github.io` (records merged verbatim with their own measured-at dates) | The inventory is re-measurable by anyone, including a GitHub runner — never a hand-typed list | ran green in this checkout |
+| `scripts/build_site_directory.py` + `docs/site_directory.html` — the published directory | One page: a how-each-column-was-measured table, both in-scope accounts, a 10-item irregularities register, and all 86 sites in a filterable/searchable table (name, verified title, description, category, created, last push, LIVE status + verified date, and repo/pages/api source links on every row). Descriptions are labelled editorial and sit next to the machine-measured title so each row can be checked against the live site | The clean, user-friendly deliverable, on the same site: nav entry added to all 14 pages (the `build_site.py` nav list was updated to the identical anchor so the byte-comparison test `test_site_pages.py` stays green) | `docs/site_directory.html` (104 KB, 86 rows); `tests/test_site_pages.py` 6/6 |
+| Irregularities register (10 items, each linked to its evidence) | 11 GEMSDOE repos publishing one competition (rule-relevant — the 6GEMSDOE site itself recommends keeping one and archiving the other ten); MasterSite already being a directory of this account (consolidation candidate); Itinerary-Korea ≡ HotelSeoulRoughdraft1 duplicate pair; 8 title-only sites; 3 README stubs (one citing the off-account upstream karagemop466-tech/StatcastMLB); 3 archived repos with live Pages; MLB-Live-PBP ≡ MLBSCORINGCHANGE identical verified titles; kanlerxz87-cyber's empty public surface; the vanished MALTAOffline companion repo; both user pages 404 | "Flag any irregularities for review" — the two consolidation decisions (GEMS family, MasterSite) are the ones to make next | docs/site_directory.html §Irregularities |
+| Gate wiring | `kanlerxz87-cyber.github.io` added to the audit's `CONTEXT_HOSTS` with a stated reason; `scripts/audit_docs.py` PASSES with 0 uncatalogued-host warnings; `compileall src scripts tests` clean | The no-hallucination gate covers the new page without being loosened | CI `docs-audit` job commands pre-validated locally |
+
+**Remaining work (suggestions).**
+1. Consolidate the GEMS family per item 1 of the register (keep the canonical entry, archive/delete the other ten) — this needs the account owner's call and human repo deletion.
+2. Retire or re-point MasterSite per item 2 so the account publishes one directory, not two.
+3. Decide the fate of the 8 title-only sites and the 2-repo duplicate pair (item 3/4).
+4. If kanlerxz87-cyber is expected to host sites, confirm the username or the private-repo scope — public endpoints cannot see either.
+5. Re-run `make_site_directory_evidence.py` on a runner (full egress) to refresh liveness from the runner itself rather than merged records.
+
 ## Session 3 (2026-09-25) — H4 delivered as a re-budgeting tool, a GPU-free detector family, a thinned prior, and an independent judge
 
 | Area | What changed | Why it matters | Evidence |

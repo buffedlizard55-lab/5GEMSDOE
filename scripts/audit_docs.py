@@ -89,6 +89,7 @@ CONTEXT_HOSTS = {
     "academic.oup.com": "GJI abstract cited in docs/literature.md",
     "www.tandfonline.com": "Exploratory Geophysics article cited in docs/literature.md",
     "buffedlizard55-lab.github.io": "this project's own GitHub Pages site",
+    "kanlerxz87-cyber.github.io": "second in-scope account's user page; the verified 404 is recorded in docs/site_directory.html",
     "gdr.openei.org": "INGENIOUS GDR landing page (catalog E13) cited in prose",
     "www.osti.gov": "OSTI record for the rules PDF and INGENIOUS (catalog E14/V4)",
     "www.sciencebase.gov": "ScienceBase item pages cited in prose (catalog E1-E4)",

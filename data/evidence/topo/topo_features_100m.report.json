@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T19:23:53Z",
+ "generated_utc": "2026-09-25T23:40:29Z",
  "generated_by": "scripts/build_topo_features.py",
  "dem_source": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt",
  "template": "/home/runner/work/5GEMSDOE/5GEMSDOE/data/sample_submission.tif",
@@ -26,7 +26,7 @@
  "footprint_px": 5167373,
  "finite_px_band1": 5167373,
  "coverage_of_footprint": 1.0,
- "seconds": 874.2,
+ "seconds": 455.8,
  "band_stats": {
   "slope_p90": {
    "finite_px": 5167373,

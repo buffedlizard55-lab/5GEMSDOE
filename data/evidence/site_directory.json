@@ -1,0 +1,3233 @@
+{
+ "schema": "site-directory-evidence-v1",
+ "measured_at": "2026-09-25T23:32:19Z",
+ "method": {
+  "inventory": "GitHub REST API (public): users/{acct}/repos?per_page=100&type=owner, then repos/{acct}/{repo}/pages for every repo",
+  "liveness": "plain HTTPS GET of each Pages URL; final URL, HTTP status and document <title> recorded",
+  "liveness_source": "previously measured records from liveness_bl55.json (merged verbatim; sandbox has no egress to *.github.io)",
+  "notes": [
+   "Private repositories are invisible to public API calls; any Pages sites hosted from private repos cannot be inventoried here and are flagged, not guessed.",
+   "pushed_at is GitHub's last-push timestamp for the repo (last update); live.measured_at is when the published site was last verified working."
+  ]
+ },
+ "accounts": {
+  "buffedlizard55-lab": {
+   "profile_url": "https://github.com/buffedlizard55-lab",
+   "api_url": "https://api.github.com/users/buffedlizard55-lab",
+   "public_repo_count": 86,
+   "user_page": {
+    "url": "https://buffedlizard55-lab.github.io/",
+    "final_url": null,
+    "http_ok": false,
+    "http_status": 404,
+    "title": "Site not found · GitHub Pages",
+    "verdict": "github_404_page",
+    "measured_at": "2026-09-25",
+    "method": "HTTP GET of the user-level Pages URL (server-side fetch); official 404 page recorded"
+   },
+   "repos": [
+    {
+     "name": "11GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-25T18:33:56Z",
+     "updated_at": "2026-09-25T18:34:01Z",
+     "pushed_at": "2026-09-25T18:33:58Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/11GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/11GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/11GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/11GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/11GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "11GEMSDOE",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "5GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T18:21:09Z",
+     "updated_at": "2026-09-25T23:17:45Z",
+     "pushed_at": "2026-09-25T23:17:41Z",
+     "archived": false,
+     "size_kb": 404531,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/5GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/5GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/5GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/5GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Overview — GEMS Prize",
+      "note": "This repository. Identical verified title as GEMSDOE/GEMSDOE2/GEMSDOE4 - same project family.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "6GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T18:21:36Z",
+     "updated_at": "2026-09-25T22:07:31Z",
+     "pushed_at": "2026-09-25T22:07:26Z",
+     "archived": false,
+     "size_kb": 3194,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/6GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/6GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/6GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/6GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/6GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "GEMS Prize — 6GEMSDOE entry",
+      "note": "Declares itself the canonical GEMS entry; page contains its own audit flagging the 11 GEMSDOE repos as rule-relevant duplication.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "7GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-25T18:22:01Z",
+     "updated_at": "2026-09-25T18:22:06Z",
+     "pushed_at": "2026-09-25T18:22:03Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/7GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/7GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/7GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/7GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/7GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "7GEMSDOE",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "8GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-25T18:22:21Z",
+     "updated_at": "2026-09-25T18:22:27Z",
+     "pushed_at": "2026-09-25T18:22:23Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/8GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/8GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/8GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/8GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/8GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "8GEMSDOE",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "AirPremia",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-11T19:07:00Z",
+     "updated_at": "2026-09-11T21:02:04Z",
+     "pushed_at": "2026-09-11T21:01:59Z",
+     "archived": false,
+     "size_kb": 81,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/AirPremia",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/AirPremia",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/AirPremia/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/AirPremia/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/AirPremia/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Air Premia Refund Playbook — SFO ⇄ ICN, Oct–Nov 2026",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "BathTubOverflowSF",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-10T21:23:42Z",
+     "updated_at": "2026-09-17T21:00:21Z",
+     "pushed_at": "2026-09-17T21:00:16Z",
+     "archived": false,
+     "size_kb": 1497,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/BathTubOverflowSF",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/BathTubOverflowSF",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/BathTubOverflowSF/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/BathTubOverflowSF/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/BathTubOverflowSF/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Sunset Repair",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "BusanL7HaeundaeLotteHotelStay",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-30T19:42:20Z",
+     "updated_at": "2026-09-01T23:58:59Z",
+     "pushed_at": "2026-09-01T23:58:51Z",
+     "archived": false,
+     "size_kb": 252,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/BusanL7HaeundaeLotteHotelStay",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/BusanL7HaeundaeLotteHotelStay",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/BusanL7HaeundaeLotteHotelStay/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/BusanL7HaeundaeLotteHotelStay/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/BusanL7HaeundaeLotteHotelStay/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Busan L7 Haeundae Stay — Verified Travel Itinerary & Vlog Planner (Nov 9–16, 2026)",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Commodities",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-19T21:42:20Z",
+     "updated_at": "2026-09-25T23:30:29Z",
+     "pushed_at": "2026-09-25T23:30:25Z",
+     "archived": false,
+     "size_kb": 8747,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Commodities",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Commodities",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Commodities/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Commodities/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Commodities/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Kalshi Research Exchange · Commodities",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Coupons",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T00:15:05Z",
+     "updated_at": "2026-09-23T00:32:20Z",
+     "pushed_at": "2026-09-23T00:32:15Z",
+     "archived": false,
+     "size_kb": 719,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Coupons",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Coupons",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Coupons/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Coupons/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Coupons/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Bay Area Verified Coupons — official-source product coupons, rebates and BOGO deals",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "CruiseDeals",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-26T18:59:54Z",
+     "updated_at": "2026-08-30T02:00:50Z",
+     "pushed_at": "2026-08-30T02:00:30Z",
+     "archived": false,
+     "size_kb": 539,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/CruiseDeals",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/CruiseDeals",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/CruiseDeals/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/CruiseDeals/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/CruiseDeals/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "U.S. Ports 2027 · Verified cruise + flight planner",
+      "note": "Served from /docs/.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "DrugAnalysis",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-10T21:10:50Z",
+     "updated_at": "2026-09-22T17:12:48Z",
+     "pushed_at": "2026-09-22T17:12:38Z",
+     "archived": false,
+     "size_kb": 59494,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/DrugAnalysis",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/DrugAnalysis",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/DrugAnalysis/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/DrugAnalysis/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/DrugAnalysis/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "FDA Decision Engine (v29)",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Elections",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-18T22:42:36Z",
+     "updated_at": "2026-09-25T18:09:21Z",
+     "pushed_at": "2026-09-25T18:08:54Z",
+     "archived": false,
+     "size_kb": 38354,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Elections",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Elections",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Elections/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Elections/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Elections/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "collect, analyze, project & estimate",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "FLABSENGY",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T18:18:43Z",
+     "updated_at": "2026-09-22T18:50:56Z",
+     "pushed_at": "2026-09-22T18:50:51Z",
+     "archived": false,
+     "size_kb": 89,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/FLABSENGY",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/FLABSENGY",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/FLABSENGY/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/FLABSENGY/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/FLABSENGY/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "FLABSENGY — Overview",
+      "note": "Root redirects to /docs/.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "FUTURESCOMMODITIES",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-22T18:21:03Z",
+     "updated_at": "2026-09-25T22:45:21Z",
+     "pushed_at": "2026-09-25T22:45:15Z",
+     "archived": false,
+     "size_kb": 5834,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/FUTURESCOMMODITIES",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/FUTURESCOMMODITIES",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/FUTURESCOMMODITIES/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/FUTURESCOMMODITIES/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/FUTURESCOMMODITIES/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "FUTURESCOMMODITIES — verified paper-trading competition",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-12T18:46:56Z",
+     "updated_at": "2026-09-24T23:07:23Z",
+     "pushed_at": "2026-09-24T23:07:17Z",
+     "archived": false,
+     "size_kb": 400811,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Overview — GEMS Prize",
+      "note": "Root redirects to /docs/. Identical verified title as GEMSDOE2/GEMSDOE4/5GEMSDOE - same project family.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE10",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-25T18:31:23Z",
+     "updated_at": "2026-09-25T18:31:29Z",
+     "pushed_at": "2026-09-25T18:31:25Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE10",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE10",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE10/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "GEMSDOE10",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE2",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T00:24:39Z",
+     "updated_at": "2026-09-25T17:32:12Z",
+     "pushed_at": "2026-09-25T17:32:05Z",
+     "archived": false,
+     "size_kb": 421640,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE2",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE2",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE2/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE2/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE2/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Overview — GEMS Prize",
+      "note": "Root redirects to /docs/. Identical verified title as GEMSDOE/GEMSDOE4/5GEMSDOE - same project family.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE3",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T00:41:42Z",
+     "updated_at": "2026-09-25T17:36:05Z",
+     "pushed_at": "2026-09-25T17:36:01Z",
+     "archived": false,
+     "size_kb": 24765,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE3",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE3",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE3/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE3/",
+      "final_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+      "http_ok": true,
+      "http_status": null,
+      "title": "Mission control · GEMSDOE3",
+      "note": "Root redirects to /docs/index.html.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE4",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T18:16:35Z",
+     "updated_at": "2026-09-25T21:03:05Z",
+     "pushed_at": "2026-09-25T21:03:01Z",
+     "archived": false,
+     "size_kb": 55484,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE4",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE4",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE4/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE4/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE4/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Overview — GEMS Prize",
+      "note": "'New-fault-first' line of the GEMS family. Identical verified title as GEMSDOE/GEMSDOE2/5GEMSDOE - same project family.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GEMSDOE9",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-25T18:31:01Z",
+     "updated_at": "2026-09-25T18:31:05Z",
+     "pushed_at": "2026-09-25T18:31:02Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GEMSDOE9",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE9",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GEMSDOE9/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GEMSDOE9/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE9/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "GEMSDOE9",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "GOLD",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-17T21:05:38Z",
+     "updated_at": "2026-08-28T20:50:10Z",
+     "pushed_at": "2026-08-28T20:50:03Z",
+     "archived": false,
+     "size_kb": 1195,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/GOLD",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/GOLD",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/GOLD/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/docs"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/GOLD/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/GOLD/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Solid Gold Ring Directory",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "HongdaeStay",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-01T04:32:20Z",
+     "updated_at": "2026-09-02T02:01:45Z",
+     "pushed_at": "2026-09-02T02:00:49Z",
+     "archived": false,
+     "size_kb": 211,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/HongdaeStay",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/HongdaeStay",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/HongdaeStay/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/HongdaeStay/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/HongdaeStay/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Mercure Ambassador Seoul Hongdae, Nov 16–22 2026",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "HotelSeoulRoughdraft1",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-10T03:27:08Z",
+     "updated_at": "2026-08-19T04:24:54Z",
+     "pushed_at": "2026-08-18T22:12:49Z",
+     "archived": true,
+     "size_kb": 1336,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/HotelSeoulRoughdraft1",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/HotelSeoulRoughdraft1",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/HotelSeoulRoughdraft1/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/HotelSeoulRoughdraft1/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/HotelSeoulRoughdraft1/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Korea Compass · Master trip planner",
+      "note": "Archived repo; Pages still built and live. Identical verified title as Itinerary-Korea - duplicate pair.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "InjuryAlerTNFL",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-23T20:07:43Z",
+     "updated_at": "2026-09-25T00:14:16Z",
+     "pushed_at": "2026-09-25T00:14:09Z",
+     "archived": false,
+     "size_kb": 340,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/InjuryAlerTNFL",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/InjuryAlerTNFL",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/InjuryAlerTNFL/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/InjuryAlerTNFL/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/InjuryAlerTNFL/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Sideline Signal — NFL in-game injury alerts with receipts",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Insider-trades",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-07T00:24:35Z",
+     "updated_at": "2026-08-19T17:08:56Z",
+     "pushed_at": "2026-08-19T17:06:22Z",
+     "archived": false,
+     "size_kb": 3816,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Insider-trades",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Insider-trades",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Insider-trades/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Insider-trades/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Insider-trades/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "SEC Form 4 research dashboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Itinerary-Korea",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-10T01:58:52Z",
+     "updated_at": "2026-08-19T04:26:18Z",
+     "pushed_at": "2026-08-18T20:40:06Z",
+     "archived": true,
+     "size_kb": 981,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Itinerary-Korea",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Itinerary-Korea",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Itinerary-Korea/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Itinerary-Korea/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Itinerary-Korea/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Korea Compass · Master trip planner",
+      "note": "Archived repo; Pages still built and live. Identical verified title as HotelSeoulRoughdraft1 - duplicate pair.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "KalshiPaperSim",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-17T18:39:16Z",
+     "updated_at": "2026-09-25T23:17:46Z",
+     "pushed_at": "2026-09-25T23:17:40Z",
+     "archived": false,
+     "size_kb": 94437,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/KalshiPaperSim",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/KalshiPaperSim",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/KalshiPaperSim/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/KalshiPaperSim/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/KalshiPaperSim/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Paper Trading Championship on Real Kalshi Market Data",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Korea",
+     "description": "Freebies and deals korea",
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-03T18:16:02Z",
+     "updated_at": "2026-08-29T01:05:08Z",
+     "pushed_at": "2026-08-29T01:04:54Z",
+     "archived": false,
+     "size_kb": 558,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Korea",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Korea",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Korea/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Korea/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Korea/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Korea deals, organized",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Korea-emergency",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-05T17:04:39Z",
+     "updated_at": "2026-08-21T22:42:48Z",
+     "pushed_at": "2026-08-21T22:41:38Z",
+     "archived": false,
+     "size_kb": 432,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Korea-emergency",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Korea-emergency",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Korea-emergency/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Korea-emergency/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Korea-emergency/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Korea Emergency Guide — Seoul & Busan · Nov 1–22, 2026",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "KoreaHotels",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-10T02:13:22Z",
+     "updated_at": "2026-08-30T17:52:29Z",
+     "pushed_at": "2026-08-30T17:52:07Z",
+     "archived": false,
+     "size_kb": 3014,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/KoreaHotels",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/KoreaHotels",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/KoreaHotels/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/KoreaHotels/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/KoreaHotels/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "South Korea Hotel Shortlist — verified findings",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "LSTARENGY",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-22T18:19:19Z",
+     "updated_at": "2026-09-23T00:06:06Z",
+     "pushed_at": "2026-09-23T00:06:01Z",
+     "archived": false,
+     "size_kb": 181,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/LSTARENGY",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/LSTARENGY",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/LSTARENGY/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/LSTARENGY/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/LSTARENGY/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "LSTARENGY — Sports Projection Research",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Leg3SeoulTrip",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-08-30T23:59:40Z",
+     "updated_at": "2026-08-31T00:00:08Z",
+     "pushed_at": "2026-08-30T23:59:41Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Leg3SeoulTrip",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Leg3SeoulTrip",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Leg3SeoulTrip/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Leg3SeoulTrip/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Leg3SeoulTrip/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Leg3SeoulTrip",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MALTASUPPLEMENTAL",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-23T22:08:39Z",
+     "updated_at": "2026-09-24T17:18:20Z",
+     "pushed_at": "2026-09-24T17:18:15Z",
+     "archived": false,
+     "size_kb": 277,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MALTASUPPLEMENTAL",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MALTASUPPLEMENTAL",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MALTASUPPLEMENTAL/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MALTASUPPLEMENTAL/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MALTASUPPLEMENTAL/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MALTASUPPLEMENTAL — Malta Trip Guide & Recreation Companion",
+      "note": "Page states its companion repo MALTAOffline no longer resolves (checked 2026-09-24 per the page) - deleted/renamed repo not in the current 86.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLB-Live-PBP",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-08-07T00:18:05Z",
+     "updated_at": "2026-09-23T01:20:24Z",
+     "pushed_at": "2026-09-23T01:20:19Z",
+     "archived": false,
+     "size_kb": 1073,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLB-Live-PBP",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLB-Live-PBP",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLB-Live-PBP/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLB-Live-PBP/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLB-Live-PBP/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MLB Live Scoreboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLB-PBP",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-11T08:36:07Z",
+     "updated_at": "2026-09-22T20:32:30Z",
+     "pushed_at": "2026-09-22T20:32:26Z",
+     "archived": false,
+     "size_kb": 77,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLB-PBP",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLB-PBP",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLB-PBP/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLB-PBP/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLB-PBP/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MLB Plaintext Archive",
+      "note": "Root redirects to /docs/?date=<current date>; archive page verified.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLB-Prediction-model-backtest",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-17T07:21:43Z",
+     "updated_at": "2026-08-17T23:49:41Z",
+     "pushed_at": "2026-08-17T23:49:33Z",
+     "archived": false,
+     "size_kb": 1388,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLB-Prediction-model-backtest",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLB-Prediction-model-backtest",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLB-Prediction-model-backtest/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLB-Prediction-model-backtest/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLB-Prediction-model-backtest/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MLB-Prediction-model-backtest",
+      "note": "Page renders the repo README only (README stub); the README cites external repo karagemop466-tech/StatcastMLB (off-account upstream, not a hosted site).",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLBComp",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T18:36:45Z",
+     "updated_at": "2026-09-22T23:57:27Z",
+     "pushed_at": "2026-09-22T23:57:23Z",
+     "archived": false,
+     "size_kb": 2352,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLBComp",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLBComp",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLBComp/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLBComp/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLBComp/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Auditable MLB Research",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLBRainDelay",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-21T02:00:24Z",
+     "updated_at": "2026-09-22T07:08:41Z",
+     "pushed_at": "2026-09-22T07:08:37Z",
+     "archived": false,
+     "size_kb": 469,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLBRainDelay",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLBRainDelay",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLBRainDelay/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLBRainDelay/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLBRainDelay/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MLB Rain Delay — Live Weather Scoreboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MLBSCORINGCHANGE",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-24T17:51:50Z",
+     "updated_at": "2026-09-25T22:28:51Z",
+     "pushed_at": "2026-09-25T22:28:40Z",
+     "archived": false,
+     "size_kb": 4706,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MLBSCORINGCHANGE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MLBSCORINGCHANGE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MLBSCORINGCHANGE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MLBSCORINGCHANGE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MLBSCORINGCHANGE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "MLB Live Scoreboard",
+      "note": "Identical verified title as MLB-Live-PBP - duplicate-content candidate.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MasterSelfLearn",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-21T22:41:35Z",
+     "updated_at": "2026-09-25T10:11:08Z",
+     "pushed_at": "2026-09-25T10:11:02Z",
+     "archived": false,
+     "size_kb": 12484,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MasterSelfLearn",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MasterSelfLearn",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MasterSelfLearn/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MasterSelfLearn/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MasterSelfLearn/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Today's briefing — MasterSelfLearn",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "MasterSite",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-12T00:16:13Z",
+     "updated_at": "2026-09-25T04:24:49Z",
+     "pushed_at": "2026-09-25T04:24:44Z",
+     "archived": false,
+     "size_kb": 1375,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/MasterSite",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/MasterSite",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/MasterSite/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/MasterSite/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/MasterSite/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Verified GitHub Pages Directory · buffedlizard55-lab",
+      "note": "Pre-existing Pages directory of this account (74 entries at its snapshot, generated from the GitHub REST API). Overlaps this page - consolidation candidate.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NBAComp",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T18:37:59Z",
+     "updated_at": "2026-09-25T21:43:35Z",
+     "pushed_at": "2026-09-25T21:43:29Z",
+     "archived": false,
+     "size_kb": 28675,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NBAComp",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NBAComp",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NBAComp/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NBAComp/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NBAComp/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Dashboard — NBAComp",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NBAInjScoreboard",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-24T04:59:41Z",
+     "updated_at": "2026-09-25T23:10:09Z",
+     "pushed_at": "2026-09-25T23:10:04Z",
+     "archived": false,
+     "size_kb": 238,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NBAInjScoreboard",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NBAInjScoreboard",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NBAInjScoreboard/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NBAInjScoreboard/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NBAInjScoreboard/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NBA Courtside | Live Scoreboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NBAInjuryReport",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-17T02:22:32Z",
+     "updated_at": "2026-09-25T22:59:46Z",
+     "pushed_at": "2026-09-25T22:59:42Z",
+     "archived": false,
+     "size_kb": 2367,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NBAInjuryReport",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NBAInjuryReport",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NBAInjuryReport/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NBAInjuryReport/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NBAInjuryReport/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NBA Injury Alert System",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NBASCOREBOARD",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T18:55:57Z",
+     "updated_at": "2026-09-25T23:01:52Z",
+     "pushed_at": "2026-09-25T23:01:49Z",
+     "archived": false,
+     "size_kb": 1801,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NBASCOREBOARD",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NBASCOREBOARD",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NBASCOREBOARD/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NBASCOREBOARD/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NBASCOREBOARD/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NBA Scoreboard | Official-source scores & play-by-play",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFL-PLAYER-PROP-SIM",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-09-22T23:52:54Z",
+     "updated_at": "2026-09-22T23:52:59Z",
+     "pushed_at": "2026-09-22T23:52:56Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFL-PLAYER-PROP-SIM",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFL-PLAYER-PROP-SIM",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFL-PLAYER-PROP-SIM/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFL-PLAYER-PROP-SIM/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFL-PLAYER-PROP-SIM/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFL-PLAYER-PROP-SIM",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFL-scoreboard",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-08-21T08:42:57Z",
+     "updated_at": "2026-09-10T17:41:40Z",
+     "pushed_at": "2026-09-10T17:41:32Z",
+     "archived": false,
+     "size_kb": 775,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFL-scoreboard",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFL-scoreboard",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFL-scoreboard/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFL-scoreboard/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFL-scoreboard/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFL Scoreboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFLComp",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T18:37:22Z",
+     "updated_at": "2026-09-23T17:27:44Z",
+     "pushed_at": "2026-09-23T17:28:00Z",
+     "archived": false,
+     "size_kb": 17733,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFLComp",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFLComp",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFLComp/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFLComp/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFLComp/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Autonomous NFL Betting Strategy Competition",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFLInjuryReport",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-10T21:59:35Z",
+     "updated_at": "2026-09-25T23:24:00Z",
+     "pushed_at": "2026-09-25T23:23:56Z",
+     "archived": false,
+     "size_kb": 59981,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFLInjuryReport",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFLInjuryReport",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFLInjuryReport/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFLInjuryReport/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFLInjuryReport/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFL Injury Report — live, source-verified",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFLMAIN",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-25T04:33:49Z",
+     "updated_at": "2026-09-25T23:20:06Z",
+     "pushed_at": "2026-09-25T23:20:02Z",
+     "archived": false,
+     "size_kb": 3229,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFLMAIN",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFLMAIN",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFLMAIN/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFLMAIN/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFLMAIN/",
+      "final_url": "https://buffedlizard55-lab.github.io/NFLMAIN/docs/index.html",
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFL Scoreboard — live and historical, sourced from NFL data",
+      "note": "Root redirects to /docs/index.html.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFLPARLAYCOMP",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T18:48:01Z",
+     "updated_at": "2026-09-25T21:41:52Z",
+     "pushed_at": "2026-09-25T21:41:46Z",
+     "archived": false,
+     "size_kb": 14610,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFLPARLAYCOMP",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFLPARLAYCOMP",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFLPARLAYCOMP/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFLPARLAYCOMP/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFLPARLAYCOMP/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFL Parlay Trading Competition",
+      "note": "Served from /docs/; SPA shell ('Loading…' at check time, app renders client-side).",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NFLPRED",
+     "description": null,
+     "homepage": null,
+     "language": null,
+     "created_at": "2026-08-17T21:26:42Z",
+     "updated_at": "2026-08-17T21:26:53Z",
+     "pushed_at": "2026-08-17T21:26:44Z",
+     "archived": false,
+     "size_kb": 0,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NFLPRED",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NFLPRED",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NFLPRED/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NFLPRED/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NFLPRED/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NFLPRED",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NHL-SCOREBOARD",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-25T18:56:20Z",
+     "updated_at": "2026-09-25T22:13:16Z",
+     "pushed_at": "2026-09-25T22:13:12Z",
+     "archived": false,
+     "size_kb": 862,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NHL-SCOREBOARD",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NHL-SCOREBOARD",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NHL-SCOREBOARD/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NHL-SCOREBOARD/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NHL-SCOREBOARD/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NHL Scoreboard — Live & Historical Games",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NHLComp",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T18:37:41Z",
+     "updated_at": "2026-09-23T00:31:01Z",
+     "pushed_at": "2026-09-23T00:30:56Z",
+     "archived": false,
+     "size_kb": 37282,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NHLComp",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NHLComp",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NHLComp/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NHLComp/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NHLComp/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Dashboard · NHLComp",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "NOBEL-PRIZE",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-24T00:32:52Z",
+     "updated_at": "2026-09-24T17:36:06Z",
+     "pushed_at": "2026-09-24T17:34:55Z",
+     "archived": false,
+     "size_kb": 4382,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/NOBEL-PRIZE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/NOBEL-PRIZE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/NOBEL-PRIZE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/NOBEL-PRIZE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/NOBEL-PRIZE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Nobel Prize Record",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Ncaa-football-alerts",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-08-25T07:59:11Z",
+     "updated_at": "2026-09-06T00:31:06Z",
+     "pushed_at": "2026-09-06T00:31:02Z",
+     "archived": false,
+     "size_kb": 302,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Ncaa-football-alerts",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Ncaa-football-alerts",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Ncaa-football-alerts/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Ncaa-football-alerts/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Ncaa-football-alerts/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "NCAA Football Scoreboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "OLBG-Competition",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-19T18:11:58Z",
+     "updated_at": "2026-09-22T23:39:27Z",
+     "pushed_at": "2026-09-22T23:39:23Z",
+     "archived": false,
+     "size_kb": 1644,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/OLBG-Competition",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/OLBG-Competition",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/OLBG-Competition/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/OLBG-Competition/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/OLBG-Competition/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Northstar // OLBG Competition Lab",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "PFFNFL",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-17T16:29:40Z",
+     "updated_at": "2026-08-17T21:13:32Z",
+     "pushed_at": "2026-08-17T21:12:44Z",
+     "archived": false,
+     "size_kb": 35,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/PFFNFL",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/PFFNFL",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/PFFNFL/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/PFFNFL/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/PFFNFL/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "PFFNFL",
+      "note": "Page renders the repo README only (README stub).",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "PRICINGEXPERT",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T23:01:18Z",
+     "updated_at": "2026-09-25T23:29:42Z",
+     "pushed_at": "2026-09-25T23:29:38Z",
+     "archived": false,
+     "size_kb": 3935,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/PRICINGEXPERT",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/PRICINGEXPERT",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/PRICINGEXPERT/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/PRICINGEXPERT/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/PRICINGEXPERT/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "PRICINGEXPERT — Kalshi Paper-Trading Competition & Research Desk",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "ParlaySports",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-21T23:59:04Z",
+     "updated_at": "2026-09-25T13:45:34Z",
+     "pushed_at": "2026-09-25T13:45:29Z",
+     "archived": false,
+     "size_kb": 4324,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/ParlaySports",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/ParlaySports",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/ParlaySports/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/ParlaySports/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/ParlaySports/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "ParlaySports — Simulated Multi-Sport Parlay Research",
+      "note": "SPA: app shell loads, content renders client-side ('Loading…' at check time).",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "PlumbingSF",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-03T23:18:30Z",
+     "updated_at": "2026-09-04T20:12:30Z",
+     "pushed_at": "2026-09-04T20:12:24Z",
+     "archived": false,
+     "size_kb": 1176,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/PlumbingSF",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/PlumbingSF",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/PlumbingSF/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/PlumbingSF/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/PlumbingSF/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Verified San Francisco Plumbers",
+      "note": "Served from /docs/.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "PriceKalshiHistorical",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-17T21:27:55Z",
+     "updated_at": "2026-08-19T17:11:00Z",
+     "pushed_at": "2026-08-19T17:06:24Z",
+     "archived": false,
+     "size_kb": 132,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/PriceKalshiHistorical",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/PriceKalshiHistorical",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/PriceKalshiHistorical/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/PriceKalshiHistorical/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/PriceKalshiHistorical/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "kalshi — trade on what's next",
+      "note": "Served from /docs/.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "ProjX",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-06T00:31:14Z",
+     "updated_at": "2026-09-07T17:32:09Z",
+     "pushed_at": "2026-09-07T17:31:35Z",
+     "archived": false,
+     "size_kb": 8253,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/ProjX",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/ProjX",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/ProjX/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/ProjX/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/ProjX/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Verified Directory",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "RGENGY",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-22T18:19:58Z",
+     "updated_at": "2026-09-23T00:33:21Z",
+     "pushed_at": "2026-09-23T00:33:18Z",
+     "archived": false,
+     "size_kb": 565,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/RGENGY",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/RGENGY",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/RGENGY/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/RGENGY/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/RGENGY/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Dashboard · RGENGY",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SABERENGY",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T18:20:21Z",
+     "updated_at": "2026-09-22T23:38:20Z",
+     "pushed_at": "2026-09-22T23:38:15Z",
+     "archived": false,
+     "size_kb": 138,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SABERENGY",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SABERENGY",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SABERENGY/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SABERENGY/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SABERENGY/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "SABERENGY — public-data DFS research",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SFLateNight",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-05T20:58:20Z",
+     "updated_at": "2026-09-06T04:26:22Z",
+     "pushed_at": "2026-09-06T04:26:17Z",
+     "archived": false,
+     "size_kb": 450,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SFLateNight",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SFLateNight",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SFLateNight/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SFLateNight/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SFLateNight/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "SF Late Night — verified transit-friendly places",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SFWeather",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-17T04:26:19Z",
+     "updated_at": "2026-09-25T12:58:17Z",
+     "pushed_at": "2026-09-25T12:58:13Z",
+     "archived": false,
+     "size_kb": 13421,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SFWeather",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SFWeather",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SFWeather/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SFWeather/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SFWeather/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Rainy-season outlook for San Francisco 94122",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SIM-COMP-NOBEL-PRIZE",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-24T17:01:59Z",
+     "updated_at": "2026-09-25T18:06:18Z",
+     "pushed_at": "2026-09-25T18:06:11Z",
+     "archived": false,
+     "size_kb": 26642,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SIM-COMP-NOBEL-PRIZE",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SIM-COMP-NOBEL-PRIZE",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SIM-COMP-NOBEL-PRIZE/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SIM-COMP-NOBEL-PRIZE/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SIM-COMP-NOBEL-PRIZE/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "SIM-COMP Nobel Prize",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "ScheduleFreeTime",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-08-27T20:17:13Z",
+     "updated_at": "2026-09-17T23:52:29Z",
+     "pushed_at": "2026-09-17T23:52:24Z",
+     "archived": false,
+     "size_kb": 914,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/ScheduleFreeTime",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/ScheduleFreeTime",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/ScheduleFreeTime/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/ScheduleFreeTime/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/ScheduleFreeTime/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "When are you free? (Aug 2026 – Feb 2027)",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SelfLearn",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-21T22:41:15Z",
+     "updated_at": "2026-09-25T21:41:37Z",
+     "pushed_at": "2026-09-25T21:41:32Z",
+     "archived": false,
+     "size_kb": 5093,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SelfLearn",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SelfLearn",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SelfLearn/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SelfLearn/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SelfLearn/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "SelfLearn - autonomous evidence-verifying research engine",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "ShoulderPain",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-19T21:41:43Z",
+     "updated_at": "2026-09-21T04:26:48Z",
+     "pushed_at": "2026-09-21T04:26:43Z",
+     "archived": false,
+     "size_kb": 471,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/ShoulderPain",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/ShoulderPain",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/ShoulderPain/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/ShoulderPain/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/ShoulderPain/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Start here · Shoulder Guide",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SocialMediaComp",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T17:01:27Z",
+     "updated_at": "2026-09-21T23:23:49Z",
+     "pushed_at": "2026-09-21T23:23:44Z",
+     "archived": false,
+     "size_kb": 113,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SocialMediaComp",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SocialMediaComp",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SocialMediaComp/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SocialMediaComp/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SocialMediaComp/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Social Media Comp — Leaderboard",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "SportsPred",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-08-31T00:01:45Z",
+     "updated_at": "2026-09-05T08:23:59Z",
+     "pushed_at": "2026-09-05T08:23:56Z",
+     "archived": false,
+     "size_kb": 16526,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/SportsPred",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/SportsPred",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/SportsPred/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/SportsPred/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/SportsPred/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "multi-sport scoreboard, OLBG markets and written predictions",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "StanfordStay",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-08-20T05:35:20Z",
+     "updated_at": "2026-08-22T08:47:32Z",
+     "pushed_at": "2026-08-22T08:46:47Z",
+     "archived": false,
+     "size_kb": 358,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/StanfordStay",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/StanfordStay",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/StanfordStay/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/StanfordStay/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/StanfordStay/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Seoul Itineraries · Nov 1–9, 2026 · Stanford Hotel Myeongdong",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "StockPaperSim",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-17T18:39:45Z",
+     "updated_at": "2026-09-22T04:14:55Z",
+     "pushed_at": "2026-09-24T23:52:52Z",
+     "archived": false,
+     "size_kb": 20149,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/StockPaperSim",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/StockPaperSim",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/StockPaperSim/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/StockPaperSim/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/StockPaperSim/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Paper-trading stock competition, audited line by line",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "StokEngineer",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-22T17:54:25Z",
+     "updated_at": "2026-09-23T01:42:47Z",
+     "pushed_at": "2026-09-23T01:42:41Z",
+     "archived": false,
+     "size_kb": 288,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/StokEngineer",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/StokEngineer",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/StokEngineer/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/StokEngineer/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/StokEngineer/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "StokEngineer",
+      "note": "Page is the repo README (DFS projection / lineup-optimization engine).",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "TAXKALSHI",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-24T23:03:18Z",
+     "updated_at": "2026-09-24T23:58:40Z",
+     "pushed_at": "2026-09-24T23:58:35Z",
+     "archived": false,
+     "size_kb": 111,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/TAXKALSHI",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/TAXKALSHI",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/TAXKALSHI/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/TAXKALSHI/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/TAXKALSHI/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "TAXKALSHI — How Kalshi earnings are taxed, federal and California",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "THUNDERPICK-WC-2026",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-23T22:30:53Z",
+     "updated_at": "2026-09-24T17:09:09Z",
+     "pushed_at": "2026-09-24T17:09:03Z",
+     "archived": false,
+     "size_kb": 244,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/THUNDERPICK-WC-2026",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/THUNDERPICK-WC-2026",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/THUNDERPICK-WC-2026/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/THUNDERPICK-WC-2026/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/THUNDERPICK-WC-2026/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Overview — Thunderpick World Championship 2026 · Expert Hub",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "THUNDERPICKCOMP",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-24T01:19:34Z",
+     "updated_at": "2026-09-25T10:38:15Z",
+     "pushed_at": "2026-09-25T20:30:17Z",
+     "archived": false,
+     "size_kb": 4394,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/THUNDERPICKCOMP",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/THUNDERPICKCOMP",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/THUNDERPICKCOMP/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/THUNDERPICKCOMP/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/THUNDERPICKCOMP/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Thunderpick WC 2026 · Prediction Competition Hub",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "TinoLunchSpecial",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-09-07T19:05:24Z",
+     "updated_at": "2026-09-17T16:58:07Z",
+     "pushed_at": "2026-09-17T16:58:02Z",
+     "archived": false,
+     "size_kb": 2076,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/TinoLunchSpecial",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/TinoLunchSpecial",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/TinoLunchSpecial/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/TinoLunchSpecial/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/TinoLunchSpecial/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Lunch specials in and around Cupertino",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "TradingViewTheLeap",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-16T01:36:38Z",
+     "updated_at": "2026-09-25T19:40:20Z",
+     "pushed_at": "2026-09-25T19:40:16Z",
+     "archived": false,
+     "size_kb": 12155,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/TradingViewTheLeap",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/TradingViewTheLeap",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/TradingViewTheLeap/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/TradingViewTheLeap/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/TradingViewTheLeap/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "The Leap Research Lab",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "Tradingview-pinescript-editor",
+     "description": null,
+     "homepage": null,
+     "language": "JavaScript",
+     "created_at": "2026-08-08T18:27:58Z",
+     "updated_at": "2026-08-19T04:53:13Z",
+     "pushed_at": "2026-08-10T01:43:17Z",
+     "archived": true,
+     "size_kb": 112,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/Tradingview-pinescript-editor",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/Tradingview-pinescript-editor",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/Tradingview-pinescript-editor/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/Tradingview-pinescript-editor/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/Tradingview-pinescript-editor/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "PinePilot — TradingView Strategy Lab",
+      "note": "Archived repo; Pages still built and live.",
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "VacationSchedule",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-20T00:48:59Z",
+     "updated_at": "2026-09-25T18:01:37Z",
+     "pushed_at": "2026-09-25T18:01:33Z",
+     "archived": false,
+     "size_kb": 1791,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/VacationSchedule",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/VacationSchedule",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/VacationSchedule/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/VacationSchedule/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/VacationSchedule/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "Vacation windows · Bay Area sports planner",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "VapePods",
+     "description": null,
+     "homepage": null,
+     "language": "Python",
+     "created_at": "2026-09-14T17:26:14Z",
+     "updated_at": "2026-09-15T22:43:23Z",
+     "pushed_at": "2026-09-15T22:43:19Z",
+     "archived": false,
+     "size_kb": 110,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/VapePods",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/VapePods",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/VapePods/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/VapePods/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/VapePods/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "STIIIZY Pod Deals — San Francisco (94122 / Stonestown)",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    },
+    {
+     "name": "WoWForever",
+     "description": null,
+     "homepage": null,
+     "language": "HTML",
+     "created_at": "2026-09-18T20:11:30Z",
+     "updated_at": "2026-09-21T13:47:21Z",
+     "pushed_at": "2026-09-21T13:47:16Z",
+     "archived": false,
+     "size_kb": 490,
+     "fork": false,
+     "has_pages": true,
+     "html_url": "https://github.com/buffedlizard55-lab/WoWForever",
+     "api_url": "https://api.github.com/repos/buffedlizard55-lab/WoWForever",
+     "pages_settings_url": "https://github.com/buffedlizard55-lab/WoWForever/pages",
+     "pages": {
+      "status": "built",
+      "build_type": "legacy",
+      "source": {
+       "branch": "main",
+       "path": "/"
+      },
+      "html_url": "https://buffedlizard55-lab.github.io/WoWForever/",
+      "error": null
+     },
+     "live": {
+      "url": "https://buffedlizard55-lab.github.io/WoWForever/",
+      "final_url": null,
+      "http_ok": true,
+      "http_status": null,
+      "title": "WoW Forever Hub",
+      "note": null,
+      "measured_at": "2026-09-25",
+      "method": "HTTP GET of the live Pages URL (server-side fetch); document <title> and final URL recorded",
+      "verdict": null
+     }
+    }
+   ]
+  },
+  "kanlerxz87-cyber": {
+   "profile_url": "https://github.com/kanlerxz87-cyber",
+   "api_url": "https://api.github.com/users/kanlerxz87-cyber",
+   "public_repo_count": 0,
+   "public_events_seen": 0,
+   "account_exists": true,
+   "user_page": {
+    "url": "https://kanlerxz87-cyber.github.io/",
+    "final_url": null,
+    "http_ok": false,
+    "http_status": 404,
+    "title": "Site not found · GitHub Pages",
+    "verdict": "github_404_page",
+    "measured_at": "2026-09-25",
+    "method": "HTTP GET of the user-level Pages URL (server-side fetch); official 404 page recorded"
+   },
+   "repos": [],
+   "note": "No verifiable public GitHub Pages surface: 0 public repositories and the user page returns GitHub's official 404.  Any sites this account hosts would be in private repos (invisible to public APIs) or under a different name - flagged for review, not guessed."
+  }
+ }
+}

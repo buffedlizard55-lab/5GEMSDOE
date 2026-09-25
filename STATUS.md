@@ -2119,3 +2119,42 @@ without being scored. The lesson kept from the merge: the fold-weight question s
 per-fold held-out footprints (queued in `SUGGESTIONS.md`), and a number that cannot be measured
 should be `None`, not a plausible-looking float.
 
+
+## Session 26 (2026-09-25) — the master directory of all 86 Pages sites (PR from branch arena/01a0dae2-5gemsdoe)
+
+**Task.** Master list + directory of ALL GitHub Pages sites hosted by `buffedlizard55-lab` and
+`kanlerxz87-cyber`: name, brief description, date created, last update, live URL, links to
+official verified sources for manual review — delivered as a clean GitHub Pages site here,
+PR'd and merged to main, closing with suggestions and limitations.
+
+**What was done, in order.**
+1. Inventoried the primary account from public GitHub REST: 86 public repos, all
+   `has_pages: true`, all Pages API `status: built` (legacy, `main /`), no forks, no
+   `.github.io` user-site repo.
+2. Live-fetched all 86 Pages URLs (server-side, in 7 batches) — 86/86 live, titles +
+   final URLs recorded; also fetched both user-level pages (both GitHub's official 404).
+3. Measured the second in-scope account: `kanlerxz87-cyber` exists, 0 public repos,
+   0 public events, 404 user page — recorded as a verifiable fact and flagged, not guessed.
+4. `scripts/make_site_directory_evidence.py` → `data/evidence/site_directory.json`
+   (reproducible; `--liveness-file` fallback for this egress-less sandbox).
+5. `scripts/build_site_directory.py` → `docs/site_directory.html` (method table, both
+   accounts, 10-item irregularities register, all 86 sites filterable/searchable with
+   repo/pages/api source links per row) + idempotent nav patch of the 13 existing pages;
+   `build_site.py`'s nav list updated to the identical anchor so the byte-comparison test
+   stays green. Did NOT re-run `build_site.py` (fresh checkout lacks the gitignored
+   `data/*.tif` rasters; regeneration would regress the published `submission.html`).
+6. Gate: `audit_docs.py` PASS (0 uncatalogued-host warnings; `kanlerxz87-cyber.github.io`
+   added to `CONTEXT_HOSTS` with reason), `compileall` clean, `test_site_pages.py` 6/6,
+   full suite: 114 passed; the 29 failures + 34 collection errors are the pre-existing
+   sandbox numpy/torch/rasterio gaps (verified identical on the pristine tree).
+
+**Irregularities surfaced (on the page).** 11 GEMSDOE repos for one competition (the
+6GEMSDOE site itself recommends keeping one and archiving the rest); MasterSite is already a
+directory of this account (consolidation candidate); Itinerary-Korea ≡ HotelSeoulRoughdraft1;
+8 title-only sites; 3 README stubs; 3 archived repos with live Pages; MLB-Live-PBP ≡
+MLBSCORINGCHANGE identical titles; the empty kanlerxz87-cyber public surface; the vanished
+MALTAOffline companion; both user pages 404.
+
+**Left for review.** The consolidation decisions (GEMS family, MasterSite, duplicates,
+title-only sites) need the account owner; anything hosted from private repos is invisible to
+public endpoints (documented in `LIMITATIONS.md`, session 26 section).
