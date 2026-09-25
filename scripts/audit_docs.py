@@ -63,6 +63,10 @@ GENERATED = {
     "outputs/submission.tif": "src/inference.py",
     "data/external": "scripts/download_external.sh (and scripts/build_reconstruction_dataset.py)",
     "data/external/jklinck": "scripts/download_external.sh",
+    # data/external/* is the aux-feature directory: only its README travels in git, the rasters are
+    # Actions artifacts (see data/external/README.md's producer table). A doc naming one is citing a
+    # runner product, not a missing artefact - the same rule as data/derived/ below.
+    "data/external/*": "a runner artifact; data/external/README.md's producer table names which workflow",
     # data/derived/ is a derived-products directory: rasters no script of this project reads back,
     # written only so the next script (or a reader reproducing the run) can consume them. They are
     # gitignored like outputs/, so a fresh checkout will not have them - a doc that names one is
