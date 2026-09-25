@@ -47,13 +47,16 @@ jobs:
           # The dependency list is derived from the imports in src/, scripts/ and tests/ (not from
           # memory): a first run of this workflow failed only because tqdm - imported by src/train.py
           # - was missing, which is exactly the kind of gap a hand-written list leaves.
+          # pandas + xlrd were added with scripts/analyze_gdr355_inventory.py, which reads the GDR
+          # 355 workbook the runner fetches (.xls needs xlrd >= 2.0.1). They were a real gap: the
+          # first run after that script landed failed with ModuleNotFoundError: pandas.
           python -m pip install --quiet numpy scipy rasterio scikit-image scikit-learn pyyaml \
-            pytest tqdm segmentation-models-pytorch pypdf reportlab
+            pandas xlrd pytest tqdm segmentation-models-pytorch pypdf reportlab
           python -m pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu \
             || python -m pip install --quiet torch
           python - <<'PY'
           import numpy, rasterio, skimage, torch, tqdm, segmentation_models_pytorch, pypdf, reportlab
-          import sklearn
+          import sklearn, pandas, xlrd
           print(f"numpy {numpy.__version__} rasterio {rasterio.__version__} "
                 f"skimage {skimage.__version__} torch {torch.__version__} "
                 f"smp {segmentation_models_pytorch.__version__} tqdm {tqdm.__version__} "
