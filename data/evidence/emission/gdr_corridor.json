@@ -1,0 +1,90 @@
+{
+ "generated_utc": "2026-09-26T05:59:58Z",
+ "generated_by": "scripts/build_gdr_corridor_candidate.py",
+ "hypothesis": "new faults cluster in the structural corridors of known geothermal systems (GDR 355); 91 of 117 in-footprint systems are >1 km off the supplied catalogue (median 7.07 km)",
+ "prior": {
+  "corridor": "data/derived/gdr355_prior_R20.tif",
+  "provenance": "scripts/build_gdr355_prior.py on GDR 355 (https://gdr.openei.org/submissions/355, DOI 10.15121/1148722, CC BY 4.0)",
+  "instrument_test": "FAILED as a ranking instrument: Spearman rho vs the leaderboard -0.2..-0.6 (data/evidence/rank_instruments_gdr355.json) - this file is therefore a budgeted bet, not a validated choice"
+ },
+ "detector": "data/derived/context_detector_prob_topo_rad.tif",
+ "base": "docs/downloads/candidate_s5_catalogue_hedge.tif",
+ "chosen": {
+  "corridor_px": 68597,
+  "eligible_px": 68597,
+  "quantile": 0.9,
+  "threshold": 0.2549,
+  "added_px": 6922,
+  "added_over_base_px": 6922,
+  "emitted_px": 234429,
+  "chargeable_px": 173441,
+  "on_masked_catalogue_px": 60988,
+  "far_from_catalogue_px": 3893,
+  "far_from_catalogue_fraction": 0.5624,
+  "required_marginal_hit_rate_at_0_1563": 0.03227
+ },
+ "sweep": [
+  {
+   "quantile": 0.5,
+   "threshold": 0.06667,
+   "added_px": 35288,
+   "emitted_px": 262795,
+   "chargeable_px": 201807,
+   "in_domain_dti": 0.62111
+  },
+  {
+   "quantile": 0.75,
+   "threshold": 0.14118,
+   "added_px": 17610,
+   "emitted_px": 245117,
+   "chargeable_px": 184129,
+   "in_domain_dti": 0.64373
+  },
+  {
+   "quantile": 0.9,
+   "threshold": 0.2549,
+   "added_px": 6922,
+   "emitted_px": 234429,
+   "chargeable_px": 173441,
+   "in_domain_dti": 0.65752
+  },
+  {
+   "quantile": 0.95,
+   "threshold": 0.34902,
+   "added_px": 3497,
+   "emitted_px": 231004,
+   "chargeable_px": 170016,
+   "in_domain_dti": 0.66186
+  },
+  {
+   "quantile": 0.99,
+   "threshold": 0.53725,
+   "added_px": 708,
+   "emitted_px": 228215,
+   "chargeable_px": 167227,
+   "in_domain_dti": 0.66502
+  }
+ ],
+ "in_domain_score": {
+  "dti": 0.657523,
+  "T": 60988.0,
+  "F": 158830.63,
+  "note": "against the supplied catalogue - an in-domain monitor; the added pixels are mostly OFF-catalogue where this monitor is blind (the measured H7 degeneracy)"
+ },
+ "output": {
+  "path": "data/derived/candidate_s5d_gdr_corridor.tif",
+  "download": "docs/downloads/candidate_s5d_gdr_corridor.tif",
+  "sha256": "629800b15ca54906b1bfcbde8811273a47b90d112038b86aea6701460070e1ed",
+  "bytes": 628232
+ },
+ "suggested_upload_name": "gems-submission-s5d-gdr-corridor-629800b1.tif",
+ "suggested_note": "S5-D \u00b7 629800b1 \u00b7 S5-A + GDR355 R20 corridor \u2229 context detector (q0.9) \u00b7 +6,922 off-catalogue px \u00b7 budgeted bet on systems-anchored new faults (H8)",
+ "conformance": {
+  "pixels": 12279160,
+  "template_valid_px": 5167373,
+  "filled_inside": 0,
+  "masked_outside": 7111787,
+  "clipped": 0,
+  "unchanged": 5167373
+ }
+}

@@ -1,0 +1,386 @@
+{
+ "generated_utc": "2026-09-26T05:34:56Z",
+ "generated_by": "scripts/train_context_detector.py",
+ "detector": "sklearn HistGradientBoostingClassifier (CPU, no torch, no GPU)",
+ "inputs": {
+  "features": "data/training_features.tif",
+  "labels": "data/labels.tif",
+  "template": "data/sample_submission.tif",
+  "aux": [],
+  "feature_names": [
+   "mag_anom",
+   "|grad|_mag_anom",
+   "rtp",
+   "|grad|_rtp",
+   "mean5_rtp",
+   "tmi_hg",
+   "geod_2ndinv",
+   "|grad|_geod_2ndinv",
+   "iso_grav_anom_slope",
+   "tc",
+   "geod_shearrate",
+   "|grad|_geod_shearrate",
+   "geod_dilaterate",
+   "tmi_vg",
+   "deq_n100a15",
+   "iso_grav_anom_vg",
+   "det_elev",
+   "|grad|_det_elev",
+   "mean5_det_elev",
+   "iso_grav_anom",
+   "|grad|_iso_grav_anom",
+   "mean5_iso_grav_anom",
+   "tmi",
+   "|grad|_tmi",
+   "depth_to_base_surf",
+   "ieq_n100a15",
+   "cond_surf",
+   "iso_grav_anom_hg",
+   "det_elev_slope",
+   "|grad|_det_elev_slope"
+  ],
+  "band_percentiles": {
+   "mag_anom": [
+    -291.4226,
+    311.8615
+   ],
+   "|grad|_mag_anom": [
+    -462.4186,
+    395.6387
+   ],
+   "rtp": [
+    0.6402,
+    189.195
+   ],
+   "|grad|_rtp": [
+    1.7,
+    57.7697
+   ],
+   "mean5_rtp": [
+    0.0155,
+    0.3678
+   ],
+   "tmi_hg": [
+    7.179,
+    29.0991
+   ],
+   "geod_2ndinv": [
+    0.0,
+    38.5
+   ],
+   "|grad|_geod_2ndinv": [
+    -9.7239,
+    27.0
+   ],
+   "iso_grav_anom_slope": [
+    -0.7102,
+    0.7933
+   ],
+   "tc": [
+    116.2705,
+    50237.1992
+   ],
+   "geod_shearrate": [
+    -4.392,
+    4.2417
+   ],
+   "|grad|_geod_shearrate": [
+    -471.6967,
+    707.3258
+   ],
+   "geod_dilaterate": [
+    -33.0007,
+    12.8943
+   ],
+   "tmi_vg": [
+    -435.3819,
+    354.6006
+   ],
+   "deq_n100a15": [
+    1.1536,
+    3415.3501
+   ],
+   "iso_grav_anom_vg": [
+    262.8007,
+    5082.2002
+   ],
+   "det_elev": [
+    1.1678,
+    4.4883
+   ],
+   "|grad|_det_elev": [
+    -5.1886,
+    5.404
+   ],
+   "mean5_det_elev": [
+    0.0679,
+    32.7198
+   ]
+  }
+ },
+ "spatial_cv": {
+  "block_px": 512,
+  "collar_px": 3,
+  "folds": 4,
+  "rule": "contiguous 512 px super-regions; the collar is excluded from training, never from scoring (src/blocks.py)"
+ },
+ "per_fold": [
+  {
+   "fold": 0,
+   "held_out_px": 1947648,
+   "held_out_fault_px": 14442,
+   "train_px": 340933,
+   "dti": 0.045212568428509264,
+   "TP_w": 1754.47,
+   "FP_w": 134502.17,
+   "FN_w": 12687.53,
+   "n_gt": 14442,
+   "pred_mass": 140149.0,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.04752,
+     "TP_w": 11401.0,
+     "FP_w": 1130527.1,
+     "pred_px": 1166616
+    },
+    "0.10": {
+     "dti": 0.13971,
+     "TP_w": 8259.8,
+     "FP_w": 229586.4,
+     "pred_px": 252121
+    },
+    "0.20": {
+     "dti": 0.15582,
+     "TP_w": 3174.6,
+     "FP_w": 40922.7,
+     "pred_px": 47281
+    },
+    "0.30": {
+     "dti": 0.09173,
+     "TP_w": 1261.7,
+     "FP_w": 9740.7,
+     "pred_px": 12144
+    },
+    "0.50": {
+     "dti": 0.03061,
+     "TP_w": 361.0,
+     "FP_w": 827.3,
+     "pred_px": 1285
+    },
+    "0.70": {
+     "dti": 0.00303,
+     "TP_w": 35.0,
+     "FP_w": 12.8,
+     "pred_px": 38
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 1,
+   "held_out_px": 1984512,
+   "held_out_fault_px": 16598,
+   "train_px": 352383,
+   "dti": 0.06660735811569014,
+   "TP_w": 2964.1,
+   "FP_w": 153149.23,
+   "FN_w": 13633.9,
+   "n_gt": 16598,
+   "pred_mass": 162762.0,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.08492,
+     "TP_w": 16059.5,
+     "FP_w": 863139.7,
+     "pred_px": 915996
+    },
+    "0.10": {
+     "dti": 0.10758,
+     "TP_w": 14042.5,
+     "FP_w": 572217.4,
+     "pred_px": 614246
+    },
+    "0.20": {
+     "dti": 0.15513,
+     "TP_w": 7661.6,
+     "FP_w": 172881.4,
+     "pred_px": 190359
+    },
+    "0.30": {
+     "dti": 0.13518,
+     "TP_w": 2808.6,
+     "FP_w": 34682.8,
+     "pred_px": 39804
+    },
+    "0.50": {
+     "dti": 0.03373,
+     "TP_w": 462.2,
+     "FP_w": 1652.5,
+     "pred_px": 2395
+    },
+    "0.70": {
+     "dti": 0.00676,
+     "TP_w": 90.0,
+     "FP_w": 90.3,
+     "pred_px": 209
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 2,
+   "held_out_px": 2359296,
+   "held_out_fault_px": 15404,
+   "train_px": 344596,
+   "dti": 0.04409414133516555,
+   "TP_w": 2393.46,
+   "FP_w": 207394.35,
+   "FN_w": 13010.54,
+   "n_gt": 15404,
+   "pred_mass": 215416.3,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.03404,
+     "TP_w": 13633.8,
+     "FP_w": 1927475.2,
+     "pred_px": 1972174
+    },
+    "0.10": {
+     "dti": 0.08728,
+     "TP_w": 10239.6,
+     "FP_w": 514767.9,
+     "pred_px": 546240
+    },
+    "0.20": {
+     "dti": 0.1126,
+     "TP_w": 5770.9,
+     "FP_w": 188864.4,
+     "pred_px": 203355
+    },
+    "0.30": {
+     "dti": 0.11124,
+     "TP_w": 2692.3,
+     "FP_w": 56702.4,
+     "pred_px": 61860
+    },
+    "0.50": {
+     "dti": 0.0242,
+     "TP_w": 314.0,
+     "FP_w": 2939.6,
+     "pred_px": 3469
+    },
+    "0.70": {
+     "dti": 0.00187,
+     "TP_w": 23.1,
+     "FP_w": 55.9,
+     "pred_px": 75
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 3,
+   "held_out_px": 1947648,
+   "held_out_fault_px": 14544,
+   "train_px": 337980,
+   "dti": 0.044891377749987235,
+   "TP_w": 2153.5,
+   "FP_w": 179527.55,
+   "FN_w": 12390.5,
+   "n_gt": 14544,
+   "pred_mass": 186405.8,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.04259,
+     "TP_w": 12209.4,
+     "FP_w": 1362846.0,
+     "pred_px": 1402185
+    },
+    "0.10": {
+     "dti": 0.04418,
+     "TP_w": 9234.0,
+     "FP_w": 977521.2,
+     "pred_px": 1003843
+    },
+    "0.20": {
+     "dti": 0.12673,
+     "TP_w": 4903.4,
+     "FP_w": 130381.0,
+     "pred_px": 141665
+    },
+    "0.30": {
+     "dti": 0.12275,
+     "TP_w": 2381.9,
+     "FP_w": 36463.7,
+     "pred_px": 40951
+    },
+    "0.50": {
+     "dti": 0.04062,
+     "TP_w": 495.4,
+     "FP_w": 2309.2,
+     "pred_px": 2884
+    },
+    "0.70": {
+     "dti": 0.00113,
+     "TP_w": 13.1,
+     "FP_w": 17.4,
+     "pred_px": 23
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  }
+ ],
+ "full_field_in_domain": {
+  "dti": 0.131438,
+  "T": 19837.2,
+  "F": 490833.67,
+  "FN_w": 41150.8,
+  "note": "scored against the catalogue the model trained on: an in-domain monitor, NOT the competition test set"
+ },
+ "train_score_head": [
+  -0.39073,
+  -0.38506,
+  -0.38048,
+  -0.37637,
+  -0.37269
+ ],
+ "feature_importance_permutation": null,
+ "output": {
+  "path": "data/derived/context_detector_prob_4fold_base.tif",
+  "sha256": "2505ac5fa1db2ba142b1ecbe5c3fc221e88f2156cc6e5b8d36d0e75cb290f107",
+  "bytes": 3901523,
+  "valid_px": 5167373,
+  "dtype": "uint8",
+  "mean": 0.107102,
+  "p99": 0.49754,
+  "frac_gt_0_5": 0.009768,
+  "note": "uint8 stores probability x 255 with 0 outside the footprint; readers must divide by 255 and mask with the template"
+ },
+ "caveat": "a second detector family, not a better one: STRATEGY.md D5 measured pixel-wise boosting ~+0.04 BELOW the CNN at equal budget.  Its value is the channels it can carry (the 10 m scarp channel) and that it can be trained and scored anywhere, on CPU, in minutes",
+ "sources": [
+  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "https://www.osti.gov/servlets/purl/1724082",
+  "https://gbcge.org/recent-projects/characterizing-structural-controls/"
+ ],
+ "seconds": 432.3
+}

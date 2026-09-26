@@ -1,0 +1,433 @@
+{
+ "generated_utc": "2026-09-26T04:35:16Z",
+ "generated_by": "scripts/train_context_detector.py",
+ "detector": "sklearn HistGradientBoostingClassifier (CPU, no torch, no GPU)",
+ "inputs": {
+  "features": "data/training_features.tif",
+  "labels": "data/labels.tif",
+  "template": "data/sample_submission.tif",
+  "aux": [
+   "data/external/topo_u8.tif"
+  ],
+  "feature_names": [
+   "mag_anom",
+   "|grad|_mag_anom",
+   "rtp",
+   "|grad|_rtp",
+   "mean5_rtp",
+   "tmi_hg",
+   "geod_2ndinv",
+   "|grad|_geod_2ndinv",
+   "iso_grav_anom_slope",
+   "tc",
+   "geod_shearrate",
+   "|grad|_geod_shearrate",
+   "geod_dilaterate",
+   "tmi_vg",
+   "deq_n100a15",
+   "iso_grav_anom_vg",
+   "det_elev",
+   "|grad|_det_elev",
+   "mean5_det_elev",
+   "iso_grav_anom",
+   "|grad|_iso_grav_anom",
+   "mean5_iso_grav_anom",
+   "tmi",
+   "|grad|_tmi",
+   "depth_to_base_surf",
+   "ieq_n100a15",
+   "cond_surf",
+   "iso_grav_anom_hg",
+   "det_elev_slope",
+   "|grad|_det_elev_slope",
+   "slope_p90",
+   "slope_max",
+   "steep_frac",
+   "slope_std",
+   "relief_local",
+   "curv_prof_absmax",
+   "aspect_coherence",
+   "hs_lineament",
+   "dem_mean"
+  ],
+  "band_percentiles": {
+   "mag_anom": [
+    -291.4226,
+    311.8615
+   ],
+   "|grad|_mag_anom": [
+    -462.4186,
+    395.6387
+   ],
+   "rtp": [
+    0.6402,
+    189.195
+   ],
+   "|grad|_rtp": [
+    1.7,
+    57.7697
+   ],
+   "mean5_rtp": [
+    0.0155,
+    0.3678
+   ],
+   "tmi_hg": [
+    7.179,
+    29.0991
+   ],
+   "geod_2ndinv": [
+    0.0,
+    38.5
+   ],
+   "|grad|_geod_2ndinv": [
+    -9.7239,
+    27.0
+   ],
+   "iso_grav_anom_slope": [
+    -0.7102,
+    0.7933
+   ],
+   "tc": [
+    116.2705,
+    50237.1992
+   ],
+   "geod_shearrate": [
+    -4.392,
+    4.2417
+   ],
+   "|grad|_geod_shearrate": [
+    -471.6967,
+    707.3258
+   ],
+   "geod_dilaterate": [
+    -33.0007,
+    12.8943
+   ],
+   "tmi_vg": [
+    -435.3819,
+    354.6006
+   ],
+   "deq_n100a15": [
+    1.1536,
+    3415.3501
+   ],
+   "iso_grav_anom_vg": [
+    262.8007,
+    5082.2002
+   ],
+   "det_elev": [
+    1.1678,
+    4.4883
+   ],
+   "|grad|_det_elev": [
+    -5.1886,
+    5.404
+   ],
+   "mean5_det_elev": [
+    0.0679,
+    32.7198
+   ],
+   "iso_grav_anom": [
+    0.0,
+    38.6959
+   ],
+   "|grad|_iso_grav_anom": [
+    0.0,
+    43.9706
+   ],
+   "mean5_iso_grav_anom": [
+    0.0,
+    1.0
+   ],
+   "tmi": [
+    0.0,
+    8.7533
+   ],
+   "|grad|_tmi": [
+    0.0,
+    73.5628
+   ],
+   "depth_to_base_surf": [
+    0.0,
+    35.0796
+   ],
+   "ieq_n100a15": [
+    0.1378,
+    0.9984
+   ],
+   "cond_surf": [
+    0.0,
+    0.5093
+   ],
+   "iso_grav_anom_hg": [
+    1148.6694,
+    2383.5789
+   ]
+  }
+ },
+ "spatial_cv": {
+  "block_px": 512,
+  "collar_px": 3,
+  "folds": 4,
+  "rule": "contiguous 512 px super-regions; the collar is excluded from training, never from scoring (src/blocks.py)"
+ },
+ "per_fold": [
+  {
+   "fold": 0,
+   "held_out_px": 1947648,
+   "held_out_fault_px": 14442,
+   "train_px": 340933,
+   "dti": 0.059803526916084336,
+   "TP_w": 1852.77,
+   "FP_w": 95284.11,
+   "FN_w": 12589.23,
+   "n_gt": 14442,
+   "pred_mass": 101119.3,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.10485,
+     "TP_w": 11397.7,
+     "FP_w": 474354.6,
+     "pred_px": 509567
+    },
+    "0.10": {
+     "dti": 0.15599,
+     "TP_w": 8349.2,
+     "FP_w": 201508.4,
+     "pred_px": 223723
+    },
+    "0.20": {
+     "dti": 0.17875,
+     "TP_w": 3673.5,
+     "FP_w": 41312.1,
+     "pred_px": 48596
+    },
+    "0.30": {
+     "dti": 0.1124,
+     "TP_w": 1578.6,
+     "FP_w": 10878.9,
+     "pred_px": 13812
+    },
+    "0.50": {
+     "dti": 0.04542,
+     "TP_w": 542.6,
+     "FP_w": 1427.4,
+     "pred_px": 2273
+    },
+    "0.70": {
+     "dti": 0.0072,
+     "TP_w": 83.5,
+     "FP_w": 105.4,
+     "pred_px": 193
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 1,
+   "held_out_px": 1984512,
+   "held_out_fault_px": 16598,
+   "train_px": 352383,
+   "dti": 0.07244264675170457,
+   "TP_w": 2886.72,
+   "FP_w": 129962.7,
+   "FN_w": 13711.28,
+   "n_gt": 16598,
+   "pred_mass": 139183.2,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.08917,
+     "TP_w": 15799.1,
+     "FP_w": 803668.0,
+     "pred_px": 854965
+    },
+    "0.10": {
+     "dti": 0.11907,
+     "TP_w": 13366.2,
+     "FP_w": 481531.0,
+     "pred_px": 520365
+    },
+    "0.20": {
+     "dti": 0.16176,
+     "TP_w": 7294.3,
+     "FP_w": 151774.7,
+     "pred_px": 168207
+    },
+    "0.30": {
+     "dti": 0.14719,
+     "TP_w": 3166.3,
+     "FP_w": 37997.8,
+     "pred_px": 43610
+    },
+    "0.50": {
+     "dti": 0.03441,
+     "TP_w": 472.5,
+     "FP_w": 1786.2,
+     "pred_px": 2507
+    },
+    "0.70": {
+     "dti": 0.00636,
+     "TP_w": 84.6,
+     "FP_w": 69.8,
+     "pred_px": 171
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 2,
+   "held_out_px": 2359296,
+   "held_out_fault_px": 15404,
+   "train_px": 344596,
+   "dti": 0.0578634195271774,
+   "TP_w": 2347.7,
+   "FP_w": 138901.73,
+   "FN_w": 13056.3,
+   "n_gt": 15404,
+   "pred_mass": 146607.8,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.07728,
+     "TP_w": 13471.0,
+     "FP_w": 796459.2,
+     "pred_px": 839524
+    },
+    "0.10": {
+     "dti": 0.09515,
+     "TP_w": 10415.4,
+     "FP_w": 475294.4,
+     "pred_px": 505540
+    },
+    "0.20": {
+     "dti": 0.12181,
+     "TP_w": 5485.8,
+     "FP_w": 158083.5,
+     "pred_px": 171295
+    },
+    "0.30": {
+     "dti": 0.11746,
+     "TP_w": 2557.6,
+     "FP_w": 44700.1,
+     "pred_px": 49611
+    },
+    "0.50": {
+     "dti": 0.03283,
+     "TP_w": 427.1,
+     "FP_w": 2995.9,
+     "pred_px": 3641
+    },
+    "0.70": {
+     "dti": 0.00083,
+     "TP_w": 10.2,
+     "FP_w": 60.8,
+     "pred_px": 73
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  },
+  {
+   "fold": 3,
+   "held_out_px": 1947648,
+   "held_out_fault_px": 14544,
+   "train_px": 337980,
+   "dti": 0.05876527657933012,
+   "TP_w": 2338.61,
+   "FP_w": 138464.47,
+   "FN_w": 12205.39,
+   "n_gt": 14544,
+   "pred_mass": 145764.2,
+   "binary_threshold_sweep": {
+    "0.05": {
+     "dti": 0.07399,
+     "TP_w": 12492.0,
+     "FP_w": 773497.3,
+     "pred_px": 813383
+    },
+    "0.10": {
+     "dti": 0.09692,
+     "TP_w": 9887.1,
+     "FP_w": 442010.6,
+     "pred_px": 470130
+    },
+    "0.20": {
+     "dti": 0.1363,
+     "TP_w": 5751.5,
+     "FP_w": 147061.9,
+     "pred_px": 160173
+    },
+    "0.30": {
+     "dti": 0.1456,
+     "TP_w": 2983.7,
+     "FP_w": 41300.4,
+     "pred_px": 46554
+    },
+    "0.50": {
+     "dti": 0.04776,
+     "TP_w": 572.3,
+     "FP_w": 1168.0,
+     "pred_px": 1665
+    },
+    "0.70": {
+     "dti": 0.00037,
+     "TP_w": 4.3,
+     "FP_w": 6.5,
+     "pred_px": 8
+    },
+    "0.90": {
+     "dti": 0.0,
+     "TP_w": 0.0,
+     "FP_w": 0.0,
+     "pred_px": 0
+    }
+   }
+  }
+ ],
+ "full_field_in_domain": {
+  "dti": 0.1384,
+  "T": 20632.03,
+  "F": 480795.21,
+  "FN_w": 40355.97,
+  "note": "scored against the catalogue the model trained on: an in-domain monitor, NOT the competition test set"
+ },
+ "train_score_head": [
+  -0.39073,
+  -0.38462,
+  -0.37971,
+  -0.37547,
+  -0.37194
+ ],
+ "feature_importance_permutation": null,
+ "output": {
+  "path": "data/derived/context_detector_prob_topo.tif",
+  "sha256": "ffaeea106e6ae36a25bc26001e42444e541d147ab37f82777f99a8500af95f19",
+  "bytes": 3990521,
+  "valid_px": 5167373,
+  "dtype": "uint8",
+  "mean": 0.105435,
+  "p99": 0.505422,
+  "frac_gt_0_5": 0.01052,
+  "note": "uint8 stores probability x 255 with 0 outside the footprint; readers must divide by 255 and mask with the template"
+ },
+ "caveat": "a second detector family, not a better one: STRATEGY.md D5 measured pixel-wise boosting ~+0.04 BELOW the CNN at equal budget.  Its value is the channels it can carry (the 10 m scarp channel) and that it can be trained and scored anywhere, on CPU, in minutes",
+ "sources": [
+  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "https://www.osti.gov/servlets/purl/1724082",
+  "https://gbcge.org/recent-projects/characterizing-structural-controls/"
+ ],
+ "seconds": 452.2
+}

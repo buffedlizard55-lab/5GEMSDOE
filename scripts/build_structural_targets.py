@@ -67,22 +67,43 @@ from skimage.morphology import skeletonize
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-# Faulds & Hinz (2015), OSTI 1724082 - share of the ~250 categorised Great Basin geothermal fields
+# Faulds & Hinz (2015), OSTI 1724082. Session 4 (2026-09-26) re-derivation: the published
+# "32 / 25 / 22 %" does not reproduce over all 426 GDR 355 rows (S6) but reproduces it to the
+# rounding digit over the FAVOURABLE-SETTING rows only - the 247 rows with a primary setting
+# code that is neither "undetermined" (113) nor volcanic (2) - measured from the workbook:
+#     step_over 79/247 = 0.320   termination 62/247 = 0.251   intersection 55/247 = 0.223
+#     accommodation 21/247 = 0.085   transfer 14/247 = 0.057   pull_apart 8/247 = 0.032
+#     bend 5/247 = 0.020   major normal fault 3/247 = 0.012   (published 32/25/22/9/5/3/2/1)
+# All eight rows match the published table within rounding, so the page and the workbook agree
+# once the denominator is the one the page quotes. The weights below are the measured fractions
+# (the published digits and the measured ones differ by < 0.005 on every row).
 WEIGHTS = {
-    "step_over": 0.32,
-    "termination": 0.25,
-    "intersection": 0.22,
-    "bend": 0.02,
+    "step_over": 79 / 247,      # published 0.32
+    "termination": 62 / 247,    # published 0.25
+    "intersection": 55 / 247,   # published 0.22
+    "bend": 5 / 247,            # published 0.02
 }
 NOT_COMPUTED = {
-    "accommodation_zone": 0.09,
-    "displacement_transfer_zone": 0.05,
-    "pull_apart": 0.03,
-    "range_front": 0.01,
+    "accommodation_zone": 21 / 247,           # published 0.09
+    "displacement_transfer_zone": 14 / 247,   # published 0.05
+    "pull_apart": 8 / 247,                    # published 0.03
+    "range_front": 3 / 247,                   # "major normal fault" row, published 0.01
+}
+WEIGHT_DERIVATION = {
+    "source_of_counts": "GDR 355 workbook (sha256-pinned, data/external/gdr/), primary structural-setting code",
+    "rows_total": 426,
+    "rows_excluded_undetermined": 113,
+    "rows_excluded_volcanic": 2,
+    "favourable_rows_denominator": 247,
+    "counts": {"step_over": 79, "termination": 62, "intersection": 55, "accommodation_zone": 21,
+               "displacement_transfer_zone": 14, "pull_apart": 8, "bend": 5, "major_normal_fault": 3},
+    "check": "8/8 rows reproduce the published table to the rounding digit",
+    "evidence": "data/evidence/gdr/inventory_analysis.json (published_vs_measured)",
 }
 SOURCE = ("https://www.osti.gov/servlets/purl/1724082 "
           "(Faulds & Hinz, World Geothermal Congress 2015) · dataset "
-          "https://gdr.openei.org/submissions/355 (DOI 10.15121/1148722)")
+          "https://gdr.openei.org/submissions/355 (DOI 10.15121/1148722) · "
+          "weights re-derived from the workbook rows 2026-09-26 (see WEIGHT_DERIVATION)")
 
 BEND_WINDOW = 4          # px either side of a pixel when measuring local strike
 BEND_MIN_DEG = 35.0
@@ -268,6 +289,7 @@ def main() -> int:
         "generated_by": "scripts/build_structural_targets.py",
         "labels_sha256": sha256(Path(a.labels)),
         "source_of_the_weights": SOURCE,
+        "weight_derivation": WEIGHT_DERIVATION,
         "weights_used": WEIGHTS,
         "weights_not_computable_from_a_trace_raster": NOT_COMPUTED,
         "geometry": dict(bend_window_px=BEND_WINDOW, bend_min_deg=BEND_MIN_DEG,

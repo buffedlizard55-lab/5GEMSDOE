@@ -21,7 +21,7 @@
 <p class="lede">What five public scores prove, what the metric forces, and the hypotheses this fork tests — all measured or linked.</p>
 
 <div class="note ok"><b>Every number on this page is measured by <code>scripts/leaderboard_anchor.py</code></b> on the committed
-bytes of the scored files (2026-09-25T18:57:05Z) and the official rasters; the derivations are in
+bytes of the scored files (2026-09-26T03:11:37Z) and the official rasters; the derivations are in
 <a href="https://github.com/buffedlizard55-lab/5GEMSDOE/blob/main/docs/STRATEGY.md">docs/STRATEGY.md</a>. Leader on 2026-09-25:
 <b>0.3049</b> (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>).</div>
 
@@ -126,7 +126,7 @@ Upload it <b>once</b>, from one account; it spends one of the daily submissions 
 (<a href="https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5">record</a>), aggregated to 9 statistics per 100 m cell
 (<code>scripts/build_topo_features.py</code>, tested on synthetic scarps), stacked with zero resampling via <code>data.aux_feature_paths</code>
 (<code>configs/config_topo.yaml</code>). Anchor: lidar-trained detectors in Nevada found faults later confirmed by experts on lidar
-(<a href="https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2025/Hermant.pdf">Hermant et al. 2025</a>). <div class='note ok'>Whole-region channel built on a runner: 105 chunks, coverage 100.0% of the footprint, 874.2 s (2026-09-25T19:23:53Z).</div></li>
+(<a href="https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2025/Hermant.pdf">Hermant et al. 2025</a>). <div class='note ok'>Whole-region channel built on a runner: 105 chunks, coverage 100.0% of the footprint, 455.8 s (2026-09-25T23:40:29Z).</div></li>
 <li><b>H2 — GeoDAWN radiometrics</b> (K, eTh, eU, TC): absent from the 19 bands, present as GeoTIFF grids in the
 <a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">USGS release</a> (area1 43.6 MB, area2 230.5 MB). Next session.</li>
 <li><b>H3 — directional catalogue continuation</b>: extend traces along strike only where the detector fires (staff: new faults include
@@ -181,6 +181,28 @@ continuations/splays). Priced by the marginal rule once |G| is known.</li>
 </tbody></table>
 <div class="note warn"><b>Not measured.</b> No local instrument can evaluate an off-catalogue prior: the SGMC proxy anti-ranks the board and the catalogue instrument is degenerate for any candidate that exploits the mask. These candidates are a scientific bet priced by the marginal rule, not a measured improvement — upload them only after S5-A's score tells us which reading of the masking rule the platform implements.</div>
 
+<h2>9b. Session 4 (2026-09-26): the geothermal prior is measured and rejected as an instrument, and the scarp channel is measured and adopted</h2>
+<p><b>The board, re-read 2026-09-26</b> (<code>scripts/fetch_leaderboard_snapshot.py</code>, raw capture stored, self-checks pinned to the committed bytes): 50 participants, leader DARD at <b>0.3049</b>, top-5 cutoff <b>0.2589</b>; this family at #23 (0.1563), #24 (0.1560), #40 (0.1193), #41 (0.1152), #50 (0.0830). The gap from our best file to the top-5 line is 0.1026 DTI — at §2's algebra a detection-quality gap, not a shaping gap.</p>
+<p><b>The GDR 355 geothermal prior</b> (<code>scripts/build_gdr355_prior.py</code>): 117 systems inside the footprint, mean max temperature 120.7 °C, 38 of them ≥ 150 °C. Distance to the nearest supplied-catalogue pixel: mean 22.45 km, median 7.07 km — <b>91 of 117 systems sit more than 1 km off the catalogue</b>, on the ground the hidden truth lives.</p>
+<table><thead><tr><th>instrument</th><th>Spearman ρ vs the board</th><th>verdict</th></tr></thead><tbody>
+<tr><td><code>labels_in_domain</code></td><td><b>0.9</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+<tr><td><code>proxy_sgmc_gap</code></td><td><b>-0.8</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+<tr><td><code>gdr355_R3</code></td><td><b>-0.6</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+<tr><td><code>gdr355_R10</code></td><td><b>-0.6</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+<tr><td><code>gdr355_R20</code></td><td><b>-0.2</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+<tr><td><code>gdr355_R30</code></td><td><b>-0.2</b></td><td>does NOT reproduce the board&#x27;s order - do not select on it</td></tr>
+</tbody></table>
+<div class="note warn"><b>NEGATIVE RESULT, recorded, not hidden.</b> The corridor prior (ρ = −0.2…−0.6) fails the instrument test exactly as the SGMC proxy did (ρ = −0.8): disk truth pays for coverage of geothermal ground, the board pays for precision on fault lines. Per this repository's own rule it may not select policy; it is used only as a weighted budget inside S5-D below.</div>
+<table><thead><tr><th>detector (same 4-fold spatial partition, same seed)</th><th>fold 0</th><th>fold 1</th><th>fold 2</th><th>fold 3</th><th>mean of fold peaks</th></tr></thead><tbody>
+<tr><td>19 official bands (strict 4-fold re-run)</td><td>0.156</td><td>0.155</td><td>0.113</td><td>0.127</td><td>0.138</td></tr>
+<tr><td><b>+ 9-band scarp channel (H1)</b></td><td>0.179</td><td>0.162</td><td>0.122</td><td>0.146</td><td><b>0.152</b></td></tr>
+<tr><td><b>+ scarp + 7-band radiometric (H1+H2)</b></td><td>0.182</td><td>0.160</td><td>0.131</td><td>0.142</td><td><b>0.154</b></td></tr>
+</tbody></table>
+<p>The runner's committed <b>uint8 aux channels</b> (<code>data/aux_bridge/</code>, sha256-pinned parts, verified and unpacked with <code>scripts/aux_bridge.py</code>) make this trainable on a laptop: the scarp channel is positive on every fold (mean 0.138 → 0.152, <b>+10.5%</b>), and the radiometric bands add a small further gain. <b>D7's missing channel is real.</b> Evidence: <code>data/evidence/context_detector_{base4fold,topo,topo_rad}.json</code>.</p>
+<h3>The two new submissions this session built</h3>
+<p><b>S5-D — the geothermal corridor</b> (unique to this fork; no scored file uses geothermal-system data): S5-A base + (GDR 355 R20 corridor ∩ H1+H2 detector at the corridor's own p0.9 ∩ off-catalogue) = <b>6,922 added px</b>, 56% of them &gt; 300 m off the catalogue, each needing the marginal hit rate 0.03227 at DTI 0.1563. Gated by both judges; download in the candidate block below.</p>
+<p><b>S5-F — the flagship for final selection</b>: S5-A base + the top 10,000 off-base pixels of the H1+H2 detector, budgeted at the D2 parity line (a same-family +9,430 px superset measured break-even). Chargeable 176,519 px; the 50k row of the sweep is the Phase-2 discovery end if the owner wants it at selection time. Gated by both judges.</p>
+
 <h2>10. Irregularities flagged</h2><ul>
 <li>The 0.1560 row&#x27;s file identity is inferred from GEMSDOE2&#x27;s pre-registered upload order, not read from the submissions page — FLAGGED; confirm from the account&#x27;s DrivenData history.</li>
 <li>Five accounts from one project family submitted to the same competition. The official rules (NLR/96647.pdf) and DrivenData&#x27;s terms govern multiple accounts per individual; this is a compliance question for the owner, not something this repository can resolve — FLAGGED.</li>
@@ -188,7 +210,7 @@ continuations/splays). Priced by the marginal rule once |G| is known.</li>
 </ul>
 </main>
 <footer><div class="wrap">
-  <p>Generated by <code>scripts/build_site.py</code> from the evidence JSON in this repository · 2026-09-25 23:05 UTC</p>
+  <p>Generated by <code>scripts/build_site.py</code> from the evidence JSON in this repository · 2026-09-26 05:38 UTC</p>
   <p>Unofficial working notes. Authoritative sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition</a> ·
      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> ·
      <a href="https://github.com/buffedlizard55-lab/5GEMSDOE">repository</a></p>

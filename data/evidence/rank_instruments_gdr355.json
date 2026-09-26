@@ -1,0 +1,500 @@
+{
+ "generated_utc": "2026-09-26T04:12:12Z",
+ "generated_by": "scripts/rank_instruments.py",
+ "purpose": "measure whether a local stand-in for the hidden truth orders the five scored files the way the public leaderboard does",
+ "metric": {
+  "R_px": 3,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "fp_region": "valid(template) & ~labels",
+  "source": "problem description page 967, forum 11516"
+ },
+ "inputs": {
+  "template": {
+   "path": "data/sample_submission.tif",
+   "valid_px": 5167373
+  },
+  "labels": {
+   "path": "data/labels.tif",
+   "px": 60988
+  },
+  "proxy": {
+   "path": "data/evidence/proxy/proxy_catalogue.tif",
+   "px": 61664
+  }
+ },
+ "instruments": [
+  {
+   "name": "labels_in_domain",
+   "note": "the Quaternary catalogue the supervised files were TRAINED on: an in-domain monitor, not a generalisation test",
+   "n_truth": 60988,
+   "fp_region_px": 5167373
+  },
+  {
+   "name": "proxy_sgmc_gap",
+   "note": "SGMC faults absent from the labels (Horton et al. 2017, DOI 10.3133/ds1052): out-of-domain for every file here",
+   "n_truth": 61664,
+   "fp_region_px": 5106385
+  },
+  {
+   "name": "gdr355_R3",
+   "note": "boolean raster gdr355_prior_R3.tif supplied via --instrument-tif (pixels > 0.5 are truth)",
+   "n_truth": 1638,
+   "fp_region_px": 5106385
+  },
+  {
+   "name": "gdr355_R10",
+   "note": "boolean raster gdr355_prior_R10.tif supplied via --instrument-tif (pixels > 0.5 are truth)",
+   "n_truth": 18034,
+   "fp_region_px": 5106385
+  },
+  {
+   "name": "gdr355_R20",
+   "note": "boolean raster gdr355_prior_R20.tif supplied via --instrument-tif (pixels > 0.5 are truth)",
+   "n_truth": 71638,
+   "fp_region_px": 5106385
+  },
+  {
+   "name": "gdr355_R30",
+   "note": "boolean raster gdr355_prior_R30.tif supplied via --instrument-tif (pixels > 0.5 are truth)",
+   "n_truth": 161275,
+   "fp_region_px": 5106385
+  }
+ ],
+ "files": [
+  {
+   "sha8": "7f00890a",
+   "score": 0.1563,
+   "account": "extradr19",
+   "label": "CNN ensemble 11-fold",
+   "path": "data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+   "status": "OK",
+   "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+   "emitted_px": 172974,
+   "emitted_mass": 172974.0,
+   "instruments": {
+    "labels_in_domain": {
+     "dti": 0.229799,
+     "TP_w": 19131.411,
+     "FP_w": 153180.328,
+     "FN_w": 41856.589,
+     "coverage": 0.313691
+    },
+    "proxy_sgmc_gap": {
+     "dti": 0.10142,
+     "TP_w": 8378.12,
+     "FP_w": 158006.741,
+     "FN_w": 53285.88,
+     "coverage": 0.135867
+    },
+    "gdr355_R3": {
+     "dti": 0.005031,
+     "TP_w": 174.042,
+     "FP_w": 166434.258,
+     "FN_w": 1412.958,
+     "coverage": 0.109667
+    },
+    "gdr355_R10": {
+     "dti": 0.033172,
+     "TP_w": 1580.006,
+     "FP_w": 166000.109,
+     "FN_w": 16062.994,
+     "coverage": 0.089554
+    },
+    "gdr355_R20": {
+     "dti": 0.074616,
+     "TP_w": 6760.35,
+     "FP_w": 164396.647,
+     "FN_w": 63702.65,
+     "coverage": 0.095942
+    },
+    "gdr355_R30": {
+     "dti": 0.102306,
+     "TP_w": 16642.052,
+     "FP_w": 161473.027,
+     "FN_w": 142165.948,
+     "coverage": 0.104794
+    }
+   }
+  },
+  {
+   "sha8": "f68e590f",
+   "score": 0.156,
+   "account": "smashi34",
+   "label": "GEMSDOE2 dual-family union",
+   "path": "data/evidence/leaderboard_anchor/gemsdoe2-dual-family-union-f68e590f.tif",
+   "status": "OK",
+   "sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+   "emitted_px": 183642,
+   "emitted_mass": 183642.0,
+   "instruments": {
+    "labels_in_domain": {
+     "dti": 0.238185,
+     "TP_w": 20239.302,
+     "FP_w": 160673.494,
+     "FN_w": 40748.698,
+     "coverage": 0.331857
+    },
+    "proxy_sgmc_gap": {
+     "dti": 0.10132,
+     "TP_w": 8551.441,
+     "FP_w": 166794.401,
+     "FN_w": 53112.559,
+     "coverage": 0.138678
+    },
+    "gdr355_R3": {
+     "dti": 0.004818,
+     "TP_w": 175.746,
+     "FP_w": 175857.773,
+     "FN_w": 1411.254,
+     "coverage": 0.110741
+    },
+    "gdr355_R10": {
+     "dti": 0.033111,
+     "TP_w": 1639.547,
+     "FP_w": 175374.611,
+     "FN_w": 16003.453,
+     "coverage": 0.092929
+    },
+    "gdr355_R20": {
+     "dti": 0.075509,
+     "TP_w": 6984.604,
+     "FP_w": 173662.005,
+     "FN_w": 63478.396,
+     "coverage": 0.099124
+    },
+    "gdr355_R30": {
+     "dti": 0.10402,
+     "TP_w": 17119.204,
+     "FP_w": 170532.514,
+     "FN_w": 141688.796,
+     "coverage": 0.107798
+    }
+   }
+  },
+  {
+   "sha8": "f347b70daa",
+   "score": 0.1193,
+   "account": "smrtdoog5",
+   "label": "Pindrop nodes",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+   "status": "OK",
+   "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+   "emitted_px": 155021,
+   "emitted_mass": 155021.0,
+   "instruments": {
+    "labels_in_domain": {
+     "dti": 0.206779,
+     "TP_w": 16945.785,
+     "FP_w": 148857.699,
+     "FN_w": 44042.215,
+     "coverage": 0.277854
+    },
+    "proxy_sgmc_gap": {
+     "dti": 0.234349,
+     "TP_w": 19403.433,
+     "FP_w": 147926.772,
+     "FN_w": 42260.567,
+     "coverage": 0.314664
+    },
+    "gdr355_R3": {
+     "dti": 0.013852,
+     "TP_w": 448.004,
+     "FP_w": 154919.415,
+     "FN_w": 1138.996,
+     "coverage": 0.282296
+    },
+    "gdr355_R10": {
+     "dti": 0.099353,
+     "TP_w": 4560.497,
+     "FP_w": 154377.957,
+     "FN_w": 13082.503,
+     "coverage": 0.258488
+    },
+    "gdr355_R20": {
+     "dti": 0.203452,
+     "TP_w": 18431.878,
+     "FP_w": 152695.612,
+     "FN_w": 52031.122,
+     "coverage": 0.261582
+    },
+    "gdr355_R30": {
+     "dti": 0.252143,
+     "TP_w": 41698.387,
+     "FP_w": 149948.957,
+     "FN_w": 117109.613,
+     "coverage": 0.262571
+    }
+   }
+  },
+  {
+   "sha8": "4e03fc9705",
+   "score": 0.1152,
+   "account": "SDCF9",
+   "label": "Pindrop dense ridge",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-ridge-4e03fc9705.tif",
+   "status": "OK",
+   "sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+   "emitted_px": 155021,
+   "emitted_mass": 155021.0,
+   "instruments": {
+    "labels_in_domain": {
+     "dti": 0.195672,
+     "TP_w": 15688.444,
+     "FP_w": 141246.414,
+     "FN_w": 45299.556,
+     "coverage": 0.257238
+    },
+    "proxy_sgmc_gap": {
+     "dti": 0.301768,
+     "TP_w": 24174.984,
+     "FP_w": 129724.292,
+     "FN_w": 37489.016,
+     "coverage": 0.392044
+    },
+    "gdr355_R3": {
+     "dti": 0.00518,
+     "TP_w": 167.254,
+     "FP_w": 154923.559,
+     "FN_w": 1419.746,
+     "coverage": 0.10539
+    },
+    "gdr355_R10": {
+     "dti": 0.033909,
+     "TP_w": 1536.332,
+     "FP_w": 154428.767,
+     "FN_w": 16106.668,
+     "coverage": 0.087079
+    },
+    "gdr355_R20": {
+     "dti": 0.070159,
+     "TP_w": 6187.229,
+     "FP_w": 152901.843,
+     "FN_w": 64275.771,
+     "coverage": 0.087808
+    },
+    "gdr355_R30": {
+     "dti": 0.089582,
+     "TP_w": 14330.387,
+     "FP_w": 150287.329,
+     "FN_w": 144477.613,
+     "coverage": 0.090237
+    }
+   }
+  },
+  {
+   "sha8": "37f9d5b855",
+   "score": 0.083,
+   "account": "wbg1",
+   "label": "Pindrop catalogue-gap target",
+   "path": "data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+   "status": "OK",
+   "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+   "emitted_px": 155021,
+   "emitted_mass": 155021.0,
+   "instruments": {
+    "labels_in_domain": {
+     "dti": 0.177807,
+     "TP_w": 14509.764,
+     "FP_w": 149558.428,
+     "FN_w": 46478.236,
+     "coverage": 0.237912
+    },
+    "proxy_sgmc_gap": {
+     "dti": 0.23962,
+     "TP_w": 19852.163,
+     "FP_w": 147734.818,
+     "FN_w": 41811.837,
+     "coverage": 0.321941
+    },
+    "gdr355_R3": {
+     "dti": 0.012268,
+     "TP_w": 396.706,
+     "FP_w": 154932.38,
+     "FN_w": 1190.294,
+     "coverage": 0.249972
+    },
+    "gdr355_R10": {
+     "dti": 0.098243,
+     "TP_w": 4508.728,
+     "FP_w": 154387.418,
+     "FN_w": 13134.272,
+     "coverage": 0.255553
+    },
+    "gdr355_R20": {
+     "dti": 0.19809,
+     "TP_w": 17928.232,
+     "FP_w": 152747.508,
+     "FN_w": 52534.768,
+     "coverage": 0.254435
+    },
+    "gdr355_R30": {
+     "dti": 0.249013,
+     "TP_w": 41157.019,
+     "FP_w": 150013.378,
+     "FN_w": 117650.981,
+     "coverage": 0.259162
+    }
+   }
+  }
+ ],
+ "missing_scored_files": [],
+ "rank_agreement": {
+  "labels_in_domain": {
+   "spearman_rho_vs_leaderboard": 0.9,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "f68e590f",
+    "7f00890a",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.229799,
+    "f68e590f": 0.238185,
+    "f347b70daa": 0.206779,
+    "4e03fc9705": 0.195672,
+    "37f9d5b855": 0.177807
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  },
+  "proxy_sgmc_gap": {
+   "spearman_rho_vs_leaderboard": -0.8,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "4e03fc9705",
+    "37f9d5b855",
+    "f347b70daa",
+    "7f00890a",
+    "f68e590f"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.10142,
+    "f68e590f": 0.10132,
+    "f347b70daa": 0.234349,
+    "4e03fc9705": 0.301768,
+    "37f9d5b855": 0.23962
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  },
+  "gdr355_R3": {
+   "spearman_rho_vs_leaderboard": -0.6,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "f347b70daa",
+    "37f9d5b855",
+    "4e03fc9705",
+    "7f00890a",
+    "f68e590f"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.005031,
+    "f68e590f": 0.004818,
+    "f347b70daa": 0.013852,
+    "4e03fc9705": 0.00518,
+    "37f9d5b855": 0.012268
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  },
+  "gdr355_R10": {
+   "spearman_rho_vs_leaderboard": -0.6,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "f347b70daa",
+    "37f9d5b855",
+    "4e03fc9705",
+    "7f00890a",
+    "f68e590f"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.033172,
+    "f68e590f": 0.033111,
+    "f347b70daa": 0.099353,
+    "4e03fc9705": 0.033909,
+    "37f9d5b855": 0.098243
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  },
+  "gdr355_R20": {
+   "spearman_rho_vs_leaderboard": -0.2,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "f347b70daa",
+    "37f9d5b855",
+    "f68e590f",
+    "7f00890a",
+    "4e03fc9705"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.074616,
+    "f68e590f": 0.075509,
+    "f347b70daa": 0.203452,
+    "4e03fc9705": 0.070159,
+    "37f9d5b855": 0.19809
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  },
+  "gdr355_R30": {
+   "spearman_rho_vs_leaderboard": -0.2,
+   "n_files": 5,
+   "board_order": [
+    "7f00890a",
+    "f68e590f",
+    "f347b70daa",
+    "4e03fc9705",
+    "37f9d5b855"
+   ],
+   "instrument_order": [
+    "f347b70daa",
+    "37f9d5b855",
+    "f68e590f",
+    "7f00890a",
+    "4e03fc9705"
+   ],
+   "instrument_values": {
+    "7f00890a": 0.102306,
+    "f68e590f": 0.10402,
+    "f347b70daa": 0.252143,
+    "4e03fc9705": 0.089582,
+    "37f9d5b855": 0.249013
+   },
+   "verdict": "does NOT reproduce the board's order - do not select on it"
+  }
+ }
+}

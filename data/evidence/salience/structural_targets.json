@@ -1,19 +1,38 @@
 {
- "generated_utc": "2026-09-25T21:49:49Z",
+ "generated_utc": "2026-09-26T05:49:55Z",
  "generated_by": "scripts/build_structural_targets.py",
  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
- "source_of_the_weights": "https://www.osti.gov/servlets/purl/1724082 (Faulds & Hinz, World Geothermal Congress 2015) \u00b7 dataset https://gdr.openei.org/submissions/355 (DOI 10.15121/1148722)",
+ "source_of_the_weights": "https://www.osti.gov/servlets/purl/1724082 (Faulds & Hinz, World Geothermal Congress 2015) \u00b7 dataset https://gdr.openei.org/submissions/355 (DOI 10.15121/1148722) \u00b7 weights re-derived from the workbook rows 2026-09-26 (see WEIGHT_DERIVATION)",
+ "weight_derivation": {
+  "source_of_counts": "GDR 355 workbook (sha256-pinned, data/external/gdr/), primary structural-setting code",
+  "rows_total": 426,
+  "rows_excluded_undetermined": 113,
+  "rows_excluded_volcanic": 2,
+  "favourable_rows_denominator": 247,
+  "counts": {
+   "step_over": 79,
+   "termination": 62,
+   "intersection": 55,
+   "accommodation_zone": 21,
+   "displacement_transfer_zone": 14,
+   "pull_apart": 8,
+   "bend": 5,
+   "major_normal_fault": 3
+  },
+  "check": "8/8 rows reproduce the published table to the rounding digit",
+  "evidence": "data/evidence/gdr/inventory_analysis.json (published_vs_measured)"
+ },
  "weights_used": {
-  "step_over": 0.32,
-  "termination": 0.25,
-  "intersection": 0.22,
-  "bend": 0.02
+  "step_over": 0.31983805668016196,
+  "termination": 0.25101214574898784,
+  "intersection": 0.22267206477732793,
+  "bend": 0.020242914979757085
  },
  "weights_not_computable_from_a_trace_raster": {
-  "accommodation_zone": 0.09,
-  "displacement_transfer_zone": 0.05,
-  "pull_apart": 0.03,
-  "range_front": 0.01
+  "accommodation_zone": 0.08502024291497975,
+  "displacement_transfer_zone": 0.05668016194331984,
+  "pull_apart": 0.032388663967611336,
+  "range_front": 0.012145748987854251
  },
  "geometry": {
   "bend_window_px": 4,
@@ -35,10 +54,10 @@
  },
  "output": {
   "path": "data/derived/structural_targets.tif",
-  "sha256": "09c1717f0e7a8a3be5a1d12b36e723de9b11360b476bbc2ce6463678846f3877",
-  "size": 6557496,
+  "sha256": "31266cdeacfa2ef777f6a901137e0c039a17d00d2cc3a6dbfa4554e1696a88cd",
+  "size": 6561178,
   "max": 1.0,
-  "mean": 0.018446
+  "mean": 0.01841
  },
  "note": "a prior built from published structural geology and the catalogue's own geometry; it has never been scored against the hidden truth and must not be reported as if it had been"
 }

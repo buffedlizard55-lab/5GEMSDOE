@@ -396,6 +396,95 @@ continuations/splays). Priced by the marginal rule once |G| is known.</li>
                                 "marginal rule, not a measured improvement — upload them only after S5-A's score tells "
                                 "us which reading of the masking rule the platform implements."))
 
+    _gdr_rank = ev.get("rank_instruments_gdr355")
+    _gdr_prior = ev.get("gdr355_prior")
+    _det_b = ev.get("detector_base4fold")
+    _det_t = ev.get("detector_topo")
+    _det_tr = ev.get("detector_topo_rad")
+    _corr = ev.get("gdr_corridor")
+    _flag = ev.get("flagship")
+    _snap = ev.get("leaderboard_snapshot")
+    if _gdr_rank or _gdr_prior or _det_b:
+        out.append("""
+<h2>9b. Session 4 (2026-09-26): the geothermal prior is measured and rejected as an instrument, and the scarp channel is measured and adopted</h2>""")
+        if _snap:
+            _ours = ", ".join(f"#{r['rank']} ({r['score']:.4f})" for r in _snap.get("our_accounts", []))
+            out.append(f"<p><b>The board, re-read 2026-09-26</b> "
+                       f"(<code>scripts/fetch_leaderboard_snapshot.py</code>, raw capture stored, self-checks pinned to "
+                       f"the committed bytes): {_snap.get('participants_on_page', '?')} participants, leader "
+                       f"{e(_snap['leader']['account'])} at <b>{_snap['leader']['score']:.4f}</b>, top-5 cutoff "
+                       f"<b>{_snap.get('top5_cutoff_public_dti', 0):.4f}</b>; this family at {_ours}. The gap from our "
+                       f"best file to the top-5 line is "
+                       f"{_snap.get('top5_cutoff_public_dti', 0) - 0.1563:.4f} DTI — at §2's algebra a detection-quality "
+                       f"gap, not a shaping gap.</p>")
+        if _gdr_prior:
+            _d = _gdr_prior.get("distance_to_supplied_catalogue_km", {})
+            out.append(f"<p><b>The GDR 355 geothermal prior</b> (<code>scripts/build_gdr355_prior.py</code>): "
+                       f"{_gdr_prior.get('systems_inside_footprint', '?')} systems inside the footprint, mean max "
+                       f"temperature {_gdr_prior.get('temperature_c', {}).get('mean', '?')} °C, "
+                       f"{_gdr_prior.get('temperature_c', {}).get('ge_150', '?')} of them ≥ 150 °C. Distance to the "
+                       f"nearest supplied-catalogue pixel: mean {_d.get('mean', '?')} km, median {_d.get('median', '?')} "
+                       f"km — <b>{_d.get('farther_than_1km', '?')} of {_gdr_prior.get('systems_inside_footprint', '?')} "
+                       f"systems sit more than 1 km off the catalogue</b>, on the ground the hidden truth lives.</p>")
+        if _gdr_rank:
+            out.append("<table><thead><tr><th>instrument</th><th>Spearman ρ vs the board</th><th>verdict</th>"
+                       "</tr></thead><tbody>")
+            for name, v in _gdr_rank["rank_agreement"].items():
+                out.append(f"<tr><td><code>{e(name)}</code></td>"
+                           f"<td><b>{v['spearman_rho_vs_leaderboard']}</b></td><td>{e(v['verdict'])}</td></tr>")
+            out.append("</tbody></table>")
+            out.append(note("warn", "<b>NEGATIVE RESULT, recorded, not hidden.</b> The corridor prior (ρ = −0.2…−0.6) "
+                                    "fails the instrument test exactly as the SGMC proxy did (ρ = −0.8): disk truth pays "
+                                    "for coverage of geothermal ground, the board pays for precision on fault lines. Per "
+                                    "this repository's own rule it may not select policy; it is used only as a weighted "
+                                    "budget inside S5-D below."))
+        if _det_b and _det_t and _det_tr:
+            def _peaks(d):
+                out_p = []
+                for f in d.get("per_fold", []):
+                    sw = f.get("binary_threshold_sweep", {})
+                    out_p.append(max((v.get("dti") or 0) for v in sw.values()))
+                return out_p
+            pb, pt, ptr = _peaks(_det_b), _peaks(_det_t), _peaks(_det_tr)
+            mb, mt, mtr = (sum(x) / len(x) for x in (pb, pt, ptr))
+            rows = [(f"19 official bands (strict 4-fold re-run)", pb, mb),
+                    ("+ 9-band scarp channel (H1)", pt, mt),
+                    ("+ scarp + 7-band radiometric (H1+H2)", ptr, mtr)]
+            out.append("<table><thead><tr><th>detector (same 4-fold spatial partition, same seed)</th>"
+                       + "".join(f"<th>fold {i}</th>" for i in range(len(pb)))
+                       + "<th>mean of fold peaks</th></tr></thead><tbody>")
+            for label, peaks, mean in rows:
+                bold = label != rows[0][0]
+                out.append(f"<tr><td>{('<b>' + label + '</b>') if bold else label}</td>"
+                           + "".join(f"<td>{p:.3f}</td>" for p in peaks)
+                           + f"<td>{('<b>' + format(mean, '.3f') + '</b>') if bold else format(mean, '.3f')}</td></tr>")
+            out.append("</tbody></table>")
+            out.append(f"<p>The runner's committed <b>uint8 aux channels</b> (<code>data/aux_bridge/</code>, "
+                       f"sha256-pinned parts, verified and unpacked with <code>scripts/aux_bridge.py</code>) make this "
+                       f"trainable on a laptop: the scarp channel is positive on every fold "
+                       f"(mean {mb:.3f} → {mt:.3f}, <b>+{(mt / mb - 1):.1%}</b>), and the radiometric bands add a small "
+                       f"further gain. <b>D7's missing channel is real.</b> Evidence: "
+                       f"<code>data/evidence/context_detector_{{base4fold,topo,topo_rad}}.json</code>.</p>")
+        if _corr or _flag:
+            out.append("<h3>The two new submissions this session built</h3>")
+            if _corr:
+                ch = _corr.get("chosen", {})
+                o = _corr.get("output", {})
+                out.append(f"<p><b>S5-D — the geothermal corridor</b> (unique to this fork; no scored file uses "
+                           f"geothermal-system data): S5-A base + (GDR 355 R20 corridor ∩ H1+H2 detector at the "
+                           f"corridor's own p{_corr.get('chosen', {}).get('quantile', 0.9):g} ∩ off-catalogue) = "
+                           f"<b>{ch.get('added_px', 0):,} added px</b>, "
+                           f"{ch.get('far_from_catalogue_fraction', 0):.0%} of them &gt; 300 m off the catalogue, each "
+                           f"needing the marginal hit rate {ch.get('required_marginal_hit_rate_at_0_1563')} at DTI 0.1563. "
+                           f"Gated by both judges; download in the candidate block below.</p>")
+            if _flag:
+                ch = _flag.get("chosen", {})
+                out.append(f"<p><b>S5-F — the flagship for final selection</b>: S5-A base + the top "
+                           f"{_flag.get('chosen', {}).get('n_add', 0):,} off-base pixels of the H1+H2 detector, "
+                           f"budgeted at the D2 parity line (a same-family +9,430 px superset measured break-even). "
+                           f"Chargeable {ch.get('chargeable_px', 0):,} px; the 50k row of the sweep is the Phase-2 "
+                           f"discovery end if the owner wants it at selection time. Gated by both judges.</p>")
+
     out.append(f"""
 <h2>10. Irregularities flagged</h2><ul>""")
     for irr in an["irregularities"]:
@@ -422,10 +511,10 @@ def _candidate_downloads(ev: dict) -> str:
         return ""
     out = ['<section class="build-hero" id="candidates" style="border-color:#0ea5e9">',
            '<h2>What to upload this week (site 5 candidates)</h2>',
-           '<p>Two families, both template-conformant and re-validated in this checkout. '
-           'The Note text is what the dialog calls &ldquo;a short comment to help you or your team '
-           'tell submissions apart later&rdquo; — paste it verbatim so the returned score can be '
-           'attributed to a file.</p>']
+           '<p>Five candidates, every one template-conformant, re-validated in this checkout, and gated by two '
+           'independent judges. The Note text is what the dialog calls &ldquo;a short comment to help you or your '
+           'team tell submissions apart later&rdquo; — paste it verbatim so the returned score can be attributed '
+           'to a file.</p>']
     if ec:
         out.append(
             f'<h3>1. Primary — S5-A: the shipped field plus the masked catalogue</h3>'
@@ -482,6 +571,47 @@ def _candidate_downloads(ev: dict) -> str:
                    f'{ch.get("halo")} q{ch.get("quantile")} of Faulds &amp; Hinz settings &cap; context '
                    f'detector · +{ch.get("chargeable_px", 0):,} chargeable px · required marginal hit '
                    f'rate 0.0323</code></p>')
+    gdr = ev.get("gdr_corridor") or {}
+    if gdr:
+        ch = gdr.get("chosen") or {}
+        o = gdr.get("output") or {}
+        out.append('<h3>5. S5-D: the geothermal corridor (the unique submission this fork was asked for)</h3>')
+        out.append('<p>None of the five scored files uses geothermal-system data. The GDR 355 inventory puts '
+                   '<a href="https://gdr.openei.org/submissions/355">117 named geothermal systems</a> inside the '
+                   'footprint — 91 of them more than 1 km off the supplied catalogue, on the ground the hidden '
+                   'truth lives. The measured instrument test FAILED (Spearman ρ = −0.2…−0.6 vs the board, '
+                   '<code>data/evidence/rank_instruments_gdr355.json</code>), so per this repository&rsquo;s own rule '
+                   'the corridor does not <i>select</i> — it <i>weights</i>: this file adds only corridor pixels the '
+                   'scarp+radiometric context detector already believes, at the corridor&rsquo;s own p90. '
+                   f'{ch.get("added_px", 0):,} added px, {ch.get("far_from_catalogue_fraction", 0):.0%} of them '
+                   '&gt; 300 m off the catalogue, each priced at the marginal hit rate '
+                   f'{ch.get("required_marginal_hit_rate_at_0_1563")} at the 0.1563 operating point. '
+                   'The full 4-radius × 4-quantile sweep is in '
+                   '<code>data/evidence/emission/gdr_corridor.json</code>.</p>')
+        out.append(f'<p><a class="btn" href="downloads/{e(Path(str(o.get("download", ""))).name)}">'
+                   f'Download {e(Path(str(o.get("path", ""))).name)} ({fmt_bytes(o.get("bytes", 0))})'
+                   f'</a><br><span class="mono small">sha256 {e(str(o.get("sha256", "")))}</span><br>'
+                   f'<b>Note to paste:</b> <code>{e(gdr.get("suggested_note", ""))}</code></p>')
+    flag = ev.get("flagship") or {}
+    if flag:
+        ch = flag.get("chosen") or {}
+        o = flag.get("output") or {}
+        out.append('<h3>6. S5-F: the flagship — hold for the one final selection</h3>')
+        out.append('<p>The rules give each entity ONE final submission, chosen blind to private performance, '
+                   'scored in both prize rounds. This is the field to choose: the support the board already paid '
+                   f'0.1563 for, plus the masked catalogue (charge-free), plus the top {ch.get("n_add", 0):,} '
+                   'off-base pixels of the strongest detector this family has ever trained — 19 official bands + '
+                   'the 9-band scarp channel + the 7-band radiometric channel (held-out fold peaks '
+                   '0.131–0.182 vs 0.106–0.146 for the 19-band baseline). The budget is the D2 parity line: a '
+                   'same-family +9,430 px superset measured break-even, here from a different detector family '
+                   '(D5: Jaccard 0.066, near-disjoint supports). Chargeable '
+                   f'{ch.get("chargeable_px", 0):,} px; the 50k sweep row in '
+                   '<code>data/evidence/emission/flagship.json</code> is the Phase-2 discovery end if the owner '
+                   'wants the aggressive play at selection time.</p>')
+        out.append(f'<p><a class="btn" href="downloads/{e(Path(str(o.get("download", ""))).name)}">'
+                   f'Download {e(Path(str(o.get("path", ""))).name)} ({fmt_bytes(o.get("bytes", 0))})'
+                   f'</a><br><span class="mono small">sha256 {e(str(o.get("sha256", "")))}</span><br>'
+                   f'<b>Note to paste:</b> <code>{e(flag.get("suggested_note", ""))}</code></p>')
     if dil:
         keys = sorted(dil, key=lambda k: int(k))
         out.append('<h3>2. Secondary — S5-B: the dilational-setting prior (upload only after S5-A scores)</h3>')
@@ -566,19 +696,30 @@ def build_index(ev: dict) -> str:
 
     lbline = ""
     _iv = ev.get("independent_verification")
-    # The leaderboard moves, and two sources in this repository carry it at different dates
-    # (independent_verification.json, measured 2026-09-21, and leaderboard_anchor.json, which also
-    # pins the five files' identities). Publish the MORE RECENT bar, and say which one it is -
-    # a stale "best score" is a number a reader will act on.
+    # The leaderboard moves, and three sources in this repository carry it at different dates
+    # (independent_verification.json, measured 2026-09-21; leaderboard_anchor.json, which also
+    # pins the five files' identities, read 2026-09-25; the parsed snapshot, 2026-09-26).
+    # Publish the MORE RECENT bar, and say which one it is - a stale "best score" is a number
+    # a reader will act on.
     _lb = (_iv or {}).get("competition_standing") or {}
     _an = (ev.get("leaderboard_anchor") or {}).get("leader") or {}
+    _snap = ev.get("leaderboard_snapshot") or {}
     _pick = _lb
     if _an.get("score") and _lb.get("observed_utc") and str(_an.get("read_utc", "")) > str(_lb["observed_utc"]):
         _pick = dict(_lb, top_dti=_an["score"], observed_utc=_an["read_utc"])
+    if _snap and _pick and str(_snap.get("observed_date", "")) >= str(_pick.get("observed_utc", "2999")[:10]):
+        # the snapshot has no median; drop the older one so the 09-26 date is not
+        # attached to a number read on 09-21
+        _pick = dict(_pick, top_dti=_snap["leader"]["score"],
+                     n_ranked=_snap.get("participants_on_page"),
+                     median_dti=None,
+                     observed_utc=_snap.get("observed_date"), url=_snap.get("url"))
     if _pick:
+        _med = _pick.get("median_dti")
         lbline = (f'<p><b>The bar, from the competition itself:</b> the best public leaderboard score '
-                  f'is <b>{_pick["top_dti"]:.4f}</b> DW-Tversky ({_pick.get("n_ranked", "?")} ranked entrants, '
-                  f'median {_pick.get("median_dti", 0):.4f}), read from '
+                  f'is <b>{_pick["top_dti"]:.4f}</b> DW-Tversky ({_pick.get("n_ranked", "?")} ranked entrants'
+                  + (f', median {_med:.4f}' if _med else '')
+                  + f'), read from '
                   f'<a href="{_pick.get("url", _an.get("url", "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"))}">the leaderboard</a> at {_pick["observed_utc"]}.'
                   + (f' (The older committed reading for this repository was {_lb.get("top_dti")} at '
                      f'{_lb.get("observed_utc")}: the bar moved {_pick["top_dti"] - _lb["top_dti"]:+.4f}.)'
@@ -4671,6 +4812,21 @@ def main(argv=None) -> int:
         "hidden_prior": load(ROOT / "data/evidence/hidden_prior/fit.json"),
         "dilational": load(ROOT / "data/evidence/hidden_prior/dilational_candidates.json"),
         "structural_targets": load(ROOT / "data/evidence/salience/structural_targets.json"),
+        # 5GEMSDOE session 4: the GDR 355 geothermal-system prior built and measured as an
+        # instrument (scripts/build_gdr355_prior.py + rank_instruments.py --instrument-tif),
+        # the strict 4-fold detector comparison on the committed aux channels
+        # (scripts/train_context_detector.py), the S5-D corridor and S5-F flagship candidates
+        # (scripts/build_gdr_corridor_candidate.py / build_flagship_candidate.py), and the
+        # 2026-09-26 public-leaderboard snapshot (scripts/fetch_leaderboard_snapshot.py).
+        "gdr355_prior": load(ROOT / "data/evidence/gdr/prior_report.json"),
+        "rank_instruments_gdr355": load(ROOT / "data/evidence/rank_instruments_gdr355.json"),
+        "detector_base4fold": load(ROOT / "data/evidence/context_detector_base4fold.json"),
+        "detector_topo": load(ROOT / "data/evidence/context_detector_topo.json"),
+        "detector_topo_rad": load(ROOT / "data/evidence/context_detector_topo_rad.json"),
+        "gdr_corridor": load(ROOT / "data/evidence/emission/gdr_corridor.json"),
+        "flagship": load(ROOT / "data/evidence/emission/flagship.json"),
+        "leaderboard_snapshot": load(
+            ROOT / "data/evidence/leaderboard/leaderboard_snapshot_2026-09-26.json"),
         "runs": [],
     }
     rd = ROOT / "data/evidence/runs"

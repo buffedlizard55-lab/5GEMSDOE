@@ -1,0 +1,63 @@
+{
+ "fetched_utc": "2026-09-26T03:11:34Z",
+ "fetched_by": "scripts/fetch_leaderboard_anchors.py",
+ "provenance": "bytes published by the sibling repositories under buffedlizard55-lab; each sha256 pinned in scripts/leaderboard_anchor.py SCORED",
+ "rows": [
+  {
+   "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+   "pin_sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+   "origin": "GEMSDOE data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif",
+   "bytes": 570890,
+   "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+   "status": "verified_local"
+  },
+  {
+   "file": "gemsdoe2-dual-family-union-f68e590f.tif",
+   "pin_sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+   "origin": "GEMSDOE2 docs/gemsdoe2-dual-family-union-f68e590f.tif",
+   "bytes": 568065,
+   "sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+   "status": "verified_local"
+  },
+  {
+   "file": "pindrop-v4-nodes-f347b70daa.tif",
+   "pin_sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+   "origin": "GEMSDOE3 docs/downloads/pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+   "bytes": 777822,
+   "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+   "status": "verified_local"
+  },
+  {
+   "file": "pindrop-v4-discovery-37f9d5b855.tif",
+   "pin_sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+   "origin": "GEMSDOE3 docs/downloads/pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+   "bytes": 777446,
+   "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+   "status": "verified_local"
+  },
+  {
+   "file": "pindrop-v4-ridge-4e03fc9705.tif",
+   "pin_sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+   "origin": "GEMSDOE3 docs/downloads/pindrop-v4-ridge-20260925T152422Z-4e03fc9705.tif",
+   "bytes": 651948,
+   "sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+   "status": "verified_local"
+  },
+  {
+   "file": "gemsdoe2-precision-arm-8bce5dfe.tif",
+   "pin_sha256": "8bce5dfe7302ad388a6bd36f9ae8a6402bde2bae6a295b0e66d174bfb25389a2",
+   "origin": "GEMSDOE2 docs/gemsdoe2-precision-arm-8bce5dfe.tif",
+   "bytes": 284520,
+   "sha256": "8bce5dfe7302ad388a6bd36f9ae8a6402bde2bae6a295b0e66d174bfb25389a2",
+   "status": "verified_local"
+  },
+  {
+   "file": "gemsdoe2-extension-arm-ad5ba911.tif",
+   "pin_sha256": "ad5ba91174b637bb77f399ae35506bebfa920a2e159ab593492f9baa64f3389f",
+   "origin": "GEMSDOE2 docs/gemsdoe2-extension-arm-ad5ba911.tif",
+   "bytes": 486705,
+   "sha256": "ad5ba91174b637bb77f399ae35506bebfa920a2e159ab593492f9baa64f3389f",
+   "status": "verified_local"
+  }
+ ]
+}

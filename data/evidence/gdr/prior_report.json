@@ -1,0 +1,1302 @@
+{
+ "generated_utc": "2026-09-26T04:10:42Z",
+ "generated_by": "scripts/build_gdr355_prior.py",
+ "purpose": "geothermal-system prior (GDR 355) as a geometric truth proxy to be tested as a RANKING instrument by scripts/rank_instruments.py before any use",
+ "source": {
+  "dataset": "Structural Inventory of Great Basin Geothermal Systems (Faulds 2013)",
+  "landing_page": "https://gdr.openei.org/submissions/355",
+  "doi": "10.15121/1148722",
+  "license": "CC BY 4.0",
+  "file": "data/external/gdr/faulds_structural_inventory_great_basin.xls",
+  "sha256": "843feb7c93f0a2325ee2651cd63ab0739a43593d2d3e8cafe6e87a0d2014c2ac",
+  "coordinate_transform": "EPSG:4269 (NAD83 geographic) -> EPSG:32611, identical to scripts/analyze_gdr355_inventory.py"
+ },
+ "systems_inside_footprint": 117,
+ "systems": [
+  {
+   "name": "Dixie Valley",
+   "temp_c": 250.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 850,
+   "col": 1821,
+   "distance_to_supplied_catalogue_km": 1.41
+  },
+  {
+   "name": "Steamboat",
+   "temp_c": 236.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "1-5 km",
+   "row": 1451,
+   "col": 195,
+   "distance_to_supplied_catalogue_km": 11.6
+  },
+  {
+   "name": "Casa Diablo",
+   "temp_c": 229.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene; historic 1980",
+   "workbook_distance_to_fault": "<1",
+   "row": 3403,
+   "col": 877,
+   "distance_to_supplied_catalogue_km": 49.32
+  },
+  {
+   "name": "Beowawe",
+   "temp_c": 227.0,
+   "setting": "pull apart",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 to range front fault",
+   "row": 177,
+   "col": 2917,
+   "distance_to_supplied_catalogue_km": 7.24
+  },
+  {
+   "name": "Humboldt House",
+   "temp_c": 224.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 215,
+   "col": 1489,
+   "distance_to_supplied_catalogue_km": 0.5
+  },
+  {
+   "name": "Desert Peak",
+   "temp_c": 219.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "5 km",
+   "row": 1055,
+   "col": 895,
+   "distance_to_supplied_catalogue_km": 3.83
+  },
+  {
+   "name": "Soda Lake",
+   "temp_c": 216.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene?",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 1283,
+   "col": 984,
+   "distance_to_supplied_catalogue_km": 4.5
+  },
+  {
+   "name": "Bradys",
+   "temp_c": 212.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1021,
+   "col": 843,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "Paoha Island spring-Mono Lalke",
+   "temp_c": 207.0,
+   "setting": "volcanic",
+   "quaternary_faulting": "Location error? Center of Mono Crater",
+   "workbook_distance_to_fault": null,
+   "row": 3012,
+   "col": 789,
+   "distance_to_supplied_catalogue_km": 36.18
+  },
+  {
+   "name": "Dixie Comstock",
+   "temp_c": 196.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 958,
+   "col": 1704,
+   "distance_to_supplied_catalogue_km": 0.45
+  },
+  {
+   "name": "Gerlach",
+   "temp_c": 192.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 45,
+   "col": 568,
+   "distance_to_supplied_catalogue_km": 12.38
+  },
+  {
+   "name": "McGinness Hills",
+   "temp_c": 192.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Late Pleistocene",
+   "workbook_distance_to_fault": "<1-2 km",
+   "row": 1249,
+   "col": 2641,
+   "distance_to_supplied_catalogue_km": 47.51
+  },
+  {
+   "name": "Carson Lake",
+   "temp_c": 191.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1510,
+   "col": 1132,
+   "distance_to_supplied_catalogue_km": 2.82
+  },
+  {
+   "name": "Empire - San Emidio",
+   "temp_c": 190.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 351,
+   "col": 522,
+   "distance_to_supplied_catalogue_km": 0.63
+  },
+  {
+   "name": "Salt Wells",
+   "temp_c": 188.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1573,
+   "col": 1212,
+   "distance_to_supplied_catalogue_km": 1.33
+  },
+  {
+   "name": "Patua Hot Springs",
+   "temp_c": 182.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "1-5 km",
+   "row": 1230,
+   "col": 753,
+   "distance_to_supplied_catalogue_km": 3.58
+  },
+  {
+   "name": "Needle Rock Hot Springs",
+   "temp_c": 179.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "late Pleistocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 613,
+   "col": 282,
+   "distance_to_supplied_catalogue_km": 0.0
+  },
+  {
+   "name": "Big Alkali Lake Spring",
+   "temp_c": 178.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene/Historic 1980",
+   "workbook_distance_to_fault": "2 km from 1980; 2 km from Long Valley",
+   "row": 3379,
+   "col": 995,
+   "distance_to_supplied_catalogue_km": 40.84
+  },
+  {
+   "name": "Stillwater",
+   "temp_c": 178.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Historic, 1954",
+   "workbook_distance_to_fault": "<1",
+   "row": 1301,
+   "col": 1229,
+   "distance_to_supplied_catalogue_km": 1.0
+  },
+  {
+   "name": "Tungsten Mountain",
+   "temp_c": 176.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "3 km from range front",
+   "row": 1169,
+   "col": 1980,
+   "distance_to_supplied_catalogue_km": 29.31
+  },
+  {
+   "name": "Lee-Allen Hot Springs",
+   "temp_c": 171.0,
+   "setting": "pull apart",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1671,
+   "col": 1076,
+   "distance_to_supplied_catalogue_km": 6.8
+  },
+  {
+   "name": "Leach Hot Springs",
+   "temp_c": 169.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene; historic 1915",
+   "workbook_distance_to_fault": "<1",
+   "row": 136,
+   "col": 2017,
+   "distance_to_supplied_catalogue_km": 0.14
+  },
+  {
+   "name": "Emigrant Pass",
+   "temp_c": 164.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "2 km east of Holocene Emigrant Pass; others look old",
+   "row": 3160,
+   "col": 1777,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "Hot Creek Ranch Hot Spr",
+   "temp_c": 160.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Pleistocene/possible Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 2448,
+   "col": 3118,
+   "distance_to_supplied_catalogue_km": 101.95
+  },
+  {
+   "name": "Rhodes Marsh",
+   "temp_c": 159.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1-5 km",
+   "row": 2712,
+   "col": 1629,
+   "distance_to_supplied_catalogue_km": 3.76
+  },
+  {
+   "name": "Benton Indian Well",
+   "temp_c": 158.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 3237,
+   "col": 1222,
+   "distance_to_supplied_catalogue_km": 15.4
+  },
+  {
+   "name": "Hall Mine",
+   "temp_c": 158.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Quaternary; late Pleistocene",
+   "workbook_distance_to_fault": "<1 from secondary trace; 3 km from main late Pleistocene trace",
+   "row": 2704,
+   "col": 2331,
+   "distance_to_supplied_catalogue_km": 21.69
+  },
+  {
+   "name": "Fish Lake Valley",
+   "temp_c": 157.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "2 km on strike from Fish Lake Valley strand.",
+   "row": 3178,
+   "col": 1701,
+   "distance_to_supplied_catalogue_km": 1.89
+  },
+  {
+   "name": "Big Blue",
+   "temp_c": 155.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Probable Holocene",
+   "workbook_distance_to_fault": "3-5 km",
+   "row": 1972,
+   "col": 2515,
+   "distance_to_supplied_catalogue_km": 69.29
+  },
+  {
+   "name": "Colado",
+   "temp_c": 155.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Possible Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 528,
+   "col": 1401,
+   "distance_to_supplied_catalogue_km": 1.17
+  },
+  {
+   "name": "Desert Queen",
+   "temp_c": 155.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km on strike from NE Hot Spring faults",
+   "row": 1016,
+   "col": 984,
+   "distance_to_supplied_catalogue_km": 1.3
+  },
+  {
+   "name": "Teels Marsh",
+   "temp_c": 155.0,
+   "setting": "pull apart",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 2785,
+   "col": 1354,
+   "distance_to_supplied_catalogue_km": 14.92
+  },
+  {
+   "name": "Bonham Ranch",
+   "temp_c": 154.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 420,
+   "col": 190,
+   "distance_to_supplied_catalogue_km": 1.94
+  },
+  {
+   "name": "Pyramid Rock",
+   "temp_c": 153.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1; 1-5 km; not certain E. Pyramid fault exists; check UNRSL data",
+   "row": 800,
+   "col": 430,
+   "distance_to_supplied_catalogue_km": 0.2
+  },
+  {
+   "name": "Rawhide-Wedell Hot Spring",
+   "temp_c": 151.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Likely Holocene",
+   "workbook_distance_to_fault": "<1 km from scarps across sinter terrace on LiDAR",
+   "row": 2001,
+   "col": 1529,
+   "distance_to_supplied_catalogue_km": 0.85
+  },
+  {
+   "name": "Wild Rose",
+   "temp_c": 151.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 2073,
+   "col": 1428,
+   "distance_to_supplied_catalogue_km": 3.54
+  },
+  {
+   "name": "Peterson",
+   "temp_c": 150.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Pleistocene; possible Holocene?",
+   "workbook_distance_to_fault": "<1",
+   "row": 1569,
+   "col": 2092,
+   "distance_to_supplied_catalogue_km": 34.51
+  },
+  {
+   "name": "Reese River",
+   "temp_c": 150.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Pleistocene",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 921,
+   "col": 2442,
+   "distance_to_supplied_catalogue_km": 14.9
+  },
+  {
+   "name": "Silver Springs",
+   "temp_c": 149.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Possible Holocene",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 1418,
+   "col": 673,
+   "distance_to_supplied_catalogue_km": 1.24
+  },
+  {
+   "name": "Warm Spring-East Mono Lake",
+   "temp_c": 148.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "East rim Mono Lake; magmatic?",
+   "workbook_distance_to_fault": null,
+   "row": 2979,
+   "col": 894,
+   "distance_to_supplied_catalogue_km": 25.5
+  },
+  {
+   "name": "Wabuska",
+   "temp_c": 146.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1718,
+   "col": 683,
+   "distance_to_supplied_catalogue_km": 2.02
+  },
+  {
+   "name": "Darroughs Hot Springs",
+   "temp_c": 145.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 2120,
+   "col": 2409,
+   "distance_to_supplied_catalogue_km": 55.2
+  },
+  {
+   "name": "Dixie Meadows",
+   "temp_c": 145.0,
+   "setting": "uncoded",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 1032,
+   "col": 1654,
+   "distance_to_supplied_catalogue_km": 0.45
+  },
+  {
+   "name": "Silver Peak Hot Springs",
+   "temp_c": 141.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "6 km from young scarps just east of ponds; spring location?",
+   "row": 3297,
+   "col": 2009,
+   "distance_to_supplied_catalogue_km": 4.32
+  },
+  {
+   "name": "Hawthorne 3",
+   "temp_c": 137.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 from faults; near tufa ridge",
+   "row": 2398,
+   "col": 1183,
+   "distance_to_supplied_catalogue_km": 8.25
+  },
+  {
+   "name": "McLeod Hot Spring",
+   "temp_c": 134.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Late Pleistocene/likely Holocene",
+   "workbook_distance_to_fault": "4 km",
+   "row": 1888,
+   "col": 2448,
+   "distance_to_supplied_catalogue_km": 65.81
+  },
+  {
+   "name": "Astor Pass",
+   "temp_c": 132.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 576,
+   "col": 230,
+   "distance_to_supplied_catalogue_km": 4.74
+  },
+  {
+   "name": "Moana",
+   "temp_c": 131.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Pleistocene/Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1336,
+   "col": 159,
+   "distance_to_supplied_catalogue_km": 11.02
+  },
+  {
+   "name": "Jersey Valley Hot Springs",
+   "temp_c": 130.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Pleistocene/likely Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 609,
+   "col": 2149,
+   "distance_to_supplied_catalogue_km": 0.7
+  },
+  {
+   "name": "Salisbury Spring",
+   "temp_c": 130.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "none mapped",
+   "workbook_distance_to_fault": "7-10 km from nearest Q fault",
+   "row": 2746,
+   "col": 2714,
+   "distance_to_supplied_catalogue_km": 53.87
+  },
+  {
+   "name": "Black Warrior",
+   "temp_c": 128.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Quaternary?",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 866,
+   "col": 648,
+   "distance_to_supplied_catalogue_km": 2.73
+  },
+  {
+   "name": "Buffalo Valley Hot Spring",
+   "temp_c": 128.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Pleistocene;likely Holocene",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 399,
+   "col": 2289,
+   "distance_to_supplied_catalogue_km": 3.1
+  },
+  {
+   "name": "Grovers Hot Springs",
+   "temp_c": 128.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 2217,
+   "col": 94,
+   "distance_to_supplied_catalogue_km": 72.0
+  },
+  {
+   "name": "Hot Springs Point",
+   "temp_c": 128.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "6 km on strike with NE faults that cut shorelines",
+   "row": 873,
+   "col": 2838,
+   "distance_to_supplied_catalogue_km": 14.35
+  },
+  {
+   "name": "Columbus Marsh",
+   "temp_c": 126.0,
+   "setting": "displacement transfer zone",
+   "quaternary_faulting": "None mapped",
+   "workbook_distance_to_fault": null,
+   "row": 2974,
+   "col": 1681,
+   "distance_to_supplied_catalogue_km": 5.9
+  },
+  {
+   "name": "Carson River Hot Springs",
+   "temp_c": 125.5,
+   "setting": "uncoded",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2138,
+   "col": 206,
+   "distance_to_supplied_catalogue_km": 58.91
+  },
+  {
+   "name": "Alum-Silver Peak",
+   "temp_c": 125.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Pleistocene/Holocene?",
+   "workbook_distance_to_fault": "1-5 km",
+   "row": 3127,
+   "col": 1982,
+   "distance_to_supplied_catalogue_km": 0.8
+  },
+  {
+   "name": "Alkali Hot Springs",
+   "temp_c": 124.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "None mapped",
+   "workbook_distance_to_fault": null,
+   "row": 3220,
+   "col": 2269,
+   "distance_to_supplied_catalogue_km": 7.02
+  },
+  {
+   "name": "Kyle Hot Springs",
+   "temp_c": 124.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 353,
+   "col": 1815,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "McCoy",
+   "temp_c": 122.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 905,
+   "col": 2138,
+   "distance_to_supplied_catalogue_km": 13.27
+  },
+  {
+   "name": "Emerson Pass",
+   "temp_c": 120.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 441,
+   "col": 329,
+   "distance_to_supplied_catalogue_km": 0.22
+  },
+  {
+   "name": "Ambassador Well",
+   "temp_c": 110.0,
+   "setting": "major normal fault",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "5 km on line projection",
+   "row": 1934,
+   "col": 520,
+   "distance_to_supplied_catalogue_km": 25.12
+  },
+  {
+   "name": "Aurora",
+   "temp_c": 109.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "magmatic?",
+   "workbook_distance_to_fault": "?",
+   "row": 2622,
+   "col": 978,
+   "distance_to_supplied_catalogue_km": 18.19
+  },
+  {
+   "name": "Red Meadow Hot Springs",
+   "temp_c": 100.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene/historic",
+   "workbook_distance_to_fault": "2-7 km from Holocene faults some of which rutured 1980",
+   "row": 3430,
+   "col": 736,
+   "distance_to_supplied_catalogue_km": 60.78
+  },
+  {
+   "name": "Hawthorne 2",
+   "temp_c": 99.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "5-6 km east of HFZ",
+   "row": 2406,
+   "col": 1250,
+   "distance_to_supplied_catalogue_km": 5.55
+  },
+  {
+   "name": "Hawthorne 1",
+   "temp_c": 97.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "1-2 km south of fault",
+   "row": 2453,
+   "col": 1129,
+   "distance_to_supplied_catalogue_km": 0.64
+  },
+  {
+   "name": "Spencer Hot Springs",
+   "temp_c": 95.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Late Pleistocene; possible Holocene",
+   "workbook_distance_to_fault": "10 km E of fault but on east side of basin",
+   "row": 1554,
+   "col": 2691,
+   "distance_to_supplied_catalogue_km": 78.09
+  },
+  {
+   "name": "Wilson Hot Spring",
+   "temp_c": 94.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "< 1km",
+   "row": 2153,
+   "col": 677,
+   "distance_to_supplied_catalogue_km": 33.76
+  },
+  {
+   "name": "Travertine Hot Spring",
+   "temp_c": 91.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Late Pleistocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 2731,
+   "col": 637,
+   "distance_to_supplied_catalogue_km": 53.48
+  },
+  {
+   "name": "Fales Hot Springs",
+   "temp_c": 90.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene?",
+   "workbook_distance_to_fault": "< 1km",
+   "row": 2611,
+   "col": 469,
+   "distance_to_supplied_catalogue_km": 64.79
+  },
+  {
+   "name": "Battle Mountain City Well",
+   "temp_c": 89.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Late Quaternary?",
+   "workbook_distance_to_fault": "7-10 km from intersection of NE-NW faults",
+   "row": 88,
+   "col": 2620,
+   "distance_to_supplied_catalogue_km": 7.56
+  },
+  {
+   "name": "Buckeye Hot Springs",
+   "temp_c": 88.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2736,
+   "col": 531,
+   "distance_to_supplied_catalogue_km": 63.52
+  },
+  {
+   "name": "Crescent Valley Hot Sprgs",
+   "temp_c": 87.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary; possible Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 356,
+   "col": 2976,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "Pirouette Mount (Dixie Valley)",
+   "temp_c": 87.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Historic 1954 and late Quaternary",
+   "workbook_distance_to_fault": "2-5 km",
+   "row": 1345,
+   "col": 1573,
+   "distance_to_supplied_catalogue_km": 1.93
+  },
+  {
+   "name": "Klobe Hot Spring",
+   "temp_c": 86.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "mid-Quaternary",
+   "workbook_distance_to_fault": "3 km",
+   "row": 1466,
+   "col": 3128,
+   "distance_to_supplied_catalogue_km": 71.07
+  },
+  {
+   "name": "Well near Belmont Mine",
+   "temp_c": 86.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary?",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 2948,
+   "col": 2434,
+   "distance_to_supplied_catalogue_km": 21.61
+  },
+  {
+   "name": "near Dann Ranch",
+   "temp_c": 86.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 455,
+   "col": 3047,
+   "distance_to_supplied_catalogue_km": 0.36
+  },
+  {
+   "name": "Sou Hot Springs",
+   "temp_c": 85.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Holocene/historic 1915",
+   "workbook_distance_to_fault": "1-5 km",
+   "row": 708,
+   "col": 1948,
+   "distance_to_supplied_catalogue_km": 2.62
+  },
+  {
+   "name": "Carson Hot Spring",
+   "temp_c": 84.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 1668,
+   "col": 188,
+   "distance_to_supplied_catalogue_km": 25.5
+  },
+  {
+   "name": "Gene Sawyer well",
+   "temp_c": 84.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary?",
+   "workbook_distance_to_fault": "5-6 km",
+   "row": 1955,
+   "col": 1753,
+   "distance_to_supplied_catalogue_km": 5.71
+  },
+  {
+   "name": "Hyder Hot Spring",
+   "temp_c": 84.0,
+   "setting": "uncoded",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 802,
+   "col": 1953,
+   "distance_to_supplied_catalogue_km": 7.07
+  },
+  {
+   "name": "Mud Spring",
+   "temp_c": 84.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "2-3 km",
+   "row": 2843,
+   "col": 2744,
+   "distance_to_supplied_catalogue_km": 53.93
+  },
+  {
+   "name": "Hastie Well",
+   "temp_c": 83.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Late Quaternary; probable Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 1861,
+   "col": 218,
+   "distance_to_supplied_catalogue_km": 37.51
+  },
+  {
+   "name": "Walleys Hot Springs",
+   "temp_c": 83.0,
+   "setting": "fault bend",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1",
+   "row": 1901,
+   "col": 113,
+   "distance_to_supplied_catalogue_km": 47.7
+  },
+  {
+   "name": "Walti Hot Springs",
+   "temp_c": 83.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 916,
+   "col": 2918,
+   "distance_to_supplied_catalogue_km": 14.4
+  },
+  {
+   "name": "Wellington Well",
+   "temp_c": 83.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2164,
+   "col": 500,
+   "distance_to_supplied_catalogue_km": 44.76
+  },
+  {
+   "name": "Eleven Mile Canyon",
+   "temp_c": 82.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene/historic 1954",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 1447,
+   "col": 1494,
+   "distance_to_supplied_catalogue_km": 1.2
+  },
+  {
+   "name": "Warm Springs-HWY 6",
+   "temp_c": 81.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2817,
+   "col": 3115,
+   "distance_to_supplied_catalogue_km": 89.71
+  },
+  {
+   "name": "Hind's-Nevada Hot Springs",
+   "temp_c": 80.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2002,
+   "col": 476,
+   "distance_to_supplied_catalogue_km": 33.14
+  },
+  {
+   "name": "Bach Well",
+   "temp_c": 78.0,
+   "setting": "uncoded",
+   "quaternary_faulting": "Quaternary",
+   "workbook_distance_to_fault": "2-3 km",
+   "row": 339,
+   "col": 1066,
+   "distance_to_supplied_catalogue_km": 2.33
+  },
+  {
+   "name": "unnamed spring-Antelope Valley",
+   "temp_c": 78.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "2 km",
+   "row": 2302,
+   "col": 386,
+   "distance_to_supplied_catalogue_km": 62.62
+  },
+  {
+   "name": "Horseshoe Ranch Spr",
+   "temp_c": 77.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "< 1km",
+   "row": 134,
+   "col": 3020,
+   "distance_to_supplied_catalogue_km": 0.91
+  },
+  {
+   "name": "Yellow Jacket Shaft",
+   "temp_c": 77.0,
+   "setting": "stepover",
+   "quaternary_faulting": "None mapped",
+   "workbook_distance_to_fault": null,
+   "row": 1560,
+   "col": 274,
+   "distance_to_supplied_catalogue_km": 11.74
+  },
+  {
+   "name": "New York Canyon",
+   "temp_c": 75.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 748,
+   "col": 1710,
+   "distance_to_supplied_catalogue_km": 0.64
+  },
+  {
+   "name": "Diana's Punch Bowl-Potts Ranch",
+   "temp_c": 74.0,
+   "setting": "accommodation zone",
+   "quaternary_faulting": "Late Quaternary; possible Holocne",
+   "workbook_distance_to_fault": "2 km",
+   "row": 1850,
+   "col": 2865,
+   "distance_to_supplied_catalogue_km": 106.35
+  },
+  {
+   "name": "Mosquito Ranch Springs",
+   "temp_c": 73.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "1-3 km",
+   "row": 2114,
+   "col": 2811,
+   "distance_to_supplied_catalogue_km": 92.44
+  },
+  {
+   "name": "Clan Alpine Ranch",
+   "temp_c": 70.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene; 1954",
+   "workbook_distance_to_fault": "6 km",
+   "row": 1161,
+   "col": 1655,
+   "distance_to_supplied_catalogue_km": 5.85
+  },
+  {
+   "name": "Hobo Hot Spring",
+   "temp_c": 70.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 1807,
+   "col": 101,
+   "distance_to_supplied_catalogue_km": 41.59
+  },
+  {
+   "name": "Indian Health Service Well-City of Fallon",
+   "temp_c": 67.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "6-10 km",
+   "row": 1364,
+   "col": 1052,
+   "distance_to_supplied_catalogue_km": 3.44
+  },
+  {
+   "name": "Coyote Spring - Pleasant Valley NV",
+   "temp_c": 64.0,
+   "setting": "uncoded",
+   "quaternary_faulting": "Holocene/1915",
+   "workbook_distance_to_fault": "5 km",
+   "row": 319,
+   "col": 2035,
+   "distance_to_supplied_catalogue_km": 4.56
+  },
+  {
+   "name": "Paris Well",
+   "temp_c": 63.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Historic; 1915",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 532,
+   "col": 1989,
+   "distance_to_supplied_catalogue_km": 0.7
+  },
+  {
+   "name": "Bartine Hot Springs",
+   "temp_c": 62.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "5 km",
+   "row": 1296,
+   "col": 3116,
+   "distance_to_supplied_catalogue_km": 54.31
+  },
+  {
+   "name": "Emigrant Well",
+   "temp_c": 61.0,
+   "setting": "uncoded",
+   "quaternary_faulting": "None mapped",
+   "workbook_distance_to_fault": null,
+   "row": 3055,
+   "col": 1857,
+   "distance_to_supplied_catalogue_km": 8.59
+  },
+  {
+   "name": "Pearl Hot Spring",
+   "temp_c": 60.0,
+   "setting": "fault intersection",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 3224,
+   "col": 2143,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "Whiskey Flat - BLM well",
+   "temp_c": 57.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "1-3 km",
+   "row": 2704,
+   "col": 1195,
+   "distance_to_supplied_catalogue_km": 14.56
+  },
+  {
+   "name": "Valley of the Moon",
+   "temp_c": 56.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 596,
+   "col": 2476,
+   "distance_to_supplied_catalogue_km": 0.1
+  },
+  {
+   "name": "Mound Spring",
+   "temp_c": 54.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 459,
+   "col": 2513,
+   "distance_to_supplied_catalogue_km": 0.36
+  },
+  {
+   "name": "Mustang Springs - well",
+   "temp_c": 54.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Holocene/historic",
+   "workbook_distance_to_fault": "5 km to BS; 10 km to 1932 Cedar Mt;",
+   "row": 2654,
+   "col": 1729,
+   "distance_to_supplied_catalogue_km": 5.19
+  },
+  {
+   "name": "Sierra E. Mobile Pk.",
+   "temp_c": 54.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2418,
+   "col": 412,
+   "distance_to_supplied_catalogue_km": 65.82
+  },
+  {
+   "name": "Bowers Mansion",
+   "temp_c": 53.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 1562,
+   "col": 116,
+   "distance_to_supplied_catalogue_km": 23.86
+  },
+  {
+   "name": "Grant View Hot Springs",
+   "temp_c": 53.0,
+   "setting": "uncoded",
+   "quaternary_faulting": "mid- late Quaternary",
+   "workbook_distance_to_fault": "4 km",
+   "row": 2474,
+   "col": 826,
+   "distance_to_supplied_catalogue_km": 26.58
+  },
+  {
+   "name": "Unnamed Hot Pool-Carico Valley",
+   "temp_c": 50.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Holocene",
+   "workbook_distance_to_fault": "1-2 km",
+   "row": 600,
+   "col": 2665,
+   "distance_to_supplied_catalogue_km": 1.84
+  },
+  {
+   "name": "Coyote Hole Spring",
+   "temp_c": 49.0,
+   "setting": "undetermined",
+   "quaternary_faulting": "Late Quat?",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 2998,
+   "col": 2846,
+   "distance_to_supplied_catalogue_km": 59.62
+  },
+  {
+   "name": "McCoy Hot Springs",
+   "temp_c": 49.0,
+   "setting": "undetermined",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 718,
+   "col": 2051,
+   "distance_to_supplied_catalogue_km": 0.3
+  },
+  {
+   "name": "Cedar Spring",
+   "temp_c": 44.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": "Late Quaternary",
+   "workbook_distance_to_fault": "<1 km",
+   "row": 3302,
+   "col": 3206,
+   "distance_to_supplied_catalogue_km": 95.8
+  },
+  {
+   "name": "Spring & Test hole Uce 10",
+   "temp_c": 42.0,
+   "setting": "stepover",
+   "quaternary_faulting": "Late Quaternary; possible Holocene",
+   "workbook_distance_to_fault": "3-5 km",
+   "row": 2254,
+   "col": 3056,
+   "distance_to_supplied_catalogue_km": 106.24
+  },
+  {
+   "name": "Western Augusta Mtn Hot Springs",
+   "temp_c": 40.0,
+   "setting": "termination of normal fault",
+   "quaternary_faulting": null,
+   "workbook_distance_to_fault": null,
+   "row": 764,
+   "col": 2038,
+   "distance_to_supplied_catalogue_km": 0.22
+  }
+ ],
+ "temperature_c": {
+  "mean": 120.7,
+  "max": 250.0,
+  "ge_150": 38
+ },
+ "setting_counts_in_footprint": {
+  "stepover": 33,
+  "termination of normal fault": 22,
+  "undetermined": 17,
+  "fault intersection": 14,
+  "accommodation zone": 11,
+  "displacement transfer zone": 7,
+  "uncoded": 7,
+  "pull apart": 3,
+  "volcanic": 1,
+  "major normal fault": 1,
+  "fault bend": 1
+ },
+ "quaternary_faulting_counts": {
+  "Holocene": 50,
+  "Late Quaternary": 9,
+  "NaN": 7,
+  "None mapped": 4,
+  "Late Pleistocene": 3,
+  "Late Quaternary?": 3,
+  "Holocene?": 2,
+  "Possible Holocene": 2,
+  "Late Pleistocene/likely Holocene": 2,
+  "Holocene/historic": 2,
+  "Late Quaternary; possible Holocene": 2,
+  "Holocene; historic 1980": 1,
+  "Location error? Center of Mono Crater": 1,
+  "late Pleistocene": 1,
+  "Holocene/Historic 1980": 1,
+  "Historic, 1954": 1,
+  "Holocene; historic 1915": 1,
+  "Late Pleistocene/possible Holocene": 1,
+  "Quaternary; late Pleistocene": 1,
+  "Probable Holocene": 1,
+  "Likely Holocene": 1,
+  "Late Pleistocene; possible Holocene?": 1,
+  "East rim Mono Lake; magmatic?": 1,
+  "Late Pleistocene/Holocene": 1,
+  "none mapped": 1,
+  "Quaternary?": 1,
+  "Late Pleistocene;likely Holocene": 1,
+  "Late Pleistocene/Holocene?": 1,
+  "magmatic?": 1,
+  "Late Pleistocene; possible Holocene": 1,
+  "Historic 1954 and late Quaternary": 1,
+  "mid-Quaternary": 1,
+  "Holocene/historic 1915": 1,
+  "Late Quaternary; probable Holocene": 1,
+  "Holocene/historic 1954": 1,
+  "Quaternary": 1,
+  "Late Quaternary; possible Holocne": 1,
+  "Holocene; 1954": 1,
+  "Holocene/1915": 1,
+  "Historic; 1915": 1,
+  "mid- late Quaternary": 1,
+  "Late Quat?": 1
+ },
+ "distance_to_supplied_catalogue_km": {
+  "mean": 22.45,
+  "median": 7.07,
+  "within_300m": 12,
+  "within_1km": 26,
+  "farther_than_1km": 91
+ },
+ "radii": [
+  {
+   "radius_px": 3,
+   "radius_m": 300,
+   "raster": "data/derived/gdr355_prior_R3.tif",
+   "sha256": "b6119d70c6fcb5f7dc01259111b3de55105f53acac0a9ae37d8130e3e7b454d4",
+   "bytes": 263969,
+   "disk_px": 3393,
+   "fraction_of_valid": 0.000317,
+   "on_known_fault_px": 51,
+   "on_known_fraction": 0.015
+  },
+  {
+   "radius_px": 10,
+   "radius_m": 1000,
+   "raster": "data/derived/gdr355_prior_R10.tif",
+   "sha256": "d91ffa624509850264a7d0214d2dafacdf98c3fe36bbd8510191a64c3635623f",
+   "bytes": 272332,
+   "disk_px": 37089,
+   "fraction_of_valid": 0.00349,
+   "on_known_fault_px": 391,
+   "on_known_fraction": 0.0105
+  },
+  {
+   "radius_px": 20,
+   "radius_m": 2000,
+   "raster": "data/derived/gdr355_prior_R20.tif",
+   "sha256": "6df6b59840c1441906157f6aa09059cb5ab1c7e3e26091b64155aba4f0fb5cc4",
+   "bytes": 287163,
+   "disk_px": 147069,
+   "fraction_of_valid": 0.013864,
+   "on_known_fault_px": 1175,
+   "on_known_fraction": 0.008
+  },
+  {
+   "radius_px": 30,
+   "radius_m": 3000,
+   "raster": "data/derived/gdr355_prior_R30.tif",
+   "sha256": "70b9de70685a161f52c4d55e67cbdb998b35a97894b3b805ee1f9313c8682902",
+   "bytes": 301753,
+   "disk_px": 329759,
+   "fraction_of_valid": 0.03121,
+   "on_known_fault_px": 2467,
+   "on_known_fraction": 0.0075
+  }
+ ]
+}

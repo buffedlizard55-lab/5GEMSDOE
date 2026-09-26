@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T22:00:09Z",
+ "generated_utc": "2026-09-26T05:35:02Z",
  "generated_by": "scripts/verify_candidates_independently.py",
  "judges": {
   "ours": "scripts/validate_submission.py (17 checks; exit code gates CI)",
@@ -208,6 +208,86 @@
    "verdict": "PASS"
   },
   {
+   "file": "candidate_s5d_gdr_corridor.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5d_gdr_corridor.tif",
+   "sha256": "629800b15ca54906b1bfcbde8811273a47b90d112038b86aea6701460070e1ed",
+   "bytes": 628232,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.045367151498794556,
+    "frac_ge_0.5_inside": 0.045367152709897274,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.657523,
+    "independent_dti": 0.657523,
+    "abs_diff": 1e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 158830.63,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
+   "file": "candidate_s5f_flagship.tif",
+   "path": "/home/user/5GEMSDOE/docs/downloads/candidate_s5f_flagship.tif",
+   "sha256": "cb755e0b91642a085c74bb70eeeb6d89018287226aea93e02d45e9e779df3341",
+   "bytes": 627793,
+   "our_validator": {
+    "exit_code": 0,
+    "passed": true,
+    "tail": "Next: Upload to https://www.drivendata.org/competitions/306/competition-doe-gems/ via 'Submit' button"
+   },
+   "independent_validator": {
+    "checks": {
+     "single_band": true,
+     "float32": true,
+     "same_shape": true,
+     "same_crs": true,
+     "same_transform": true,
+     "values_in_unit_interval": true,
+     "nan_outside_polygon": true,
+     "finite_inside_polygon": true,
+     "plausible_coverage": true
+    },
+    "ok": true,
+    "mean_inside": 0.04596281424164772,
+    "frac_ge_0.5_inside": 0.045962813212825936,
+    "nan_fraction": 0.5791753670446512
+   },
+   "metric": {
+    "ours_dti": 0.656595,
+    "independent_dti": 0.656595,
+    "abs_diff": 1e-08,
+    "agree": true,
+    "T": 60988.0,
+    "F": 159486.37,
+    "FN_w": 0.0,
+    "note": "in-domain: the catalogue the supervised files trained on"
+   },
+   "exception": null,
+   "verdict": "PASS"
+  },
+  {
    "file": "gems-density-probe-20260925T184215Z-9cdae9b4.tif",
    "path": "/home/user/5GEMSDOE/docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
    "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
@@ -244,12 +324,10 @@
     "FN_w": 20354.26,
     "note": "in-domain: the catalogue the supervised files trained on"
    },
-   "exception": "intentional blanket probe: fails only the independent validator's plausible_coverage heuristic, which the platform itself does not enforce",
-   "verdict": "PASS"
+   "exception": null,
+   "verdict": "FAIL"
   }
  ],
- "verdict": "PASS",
- "blanket_exceptions": [
-  "gems-density-probe-20260925T184215Z-9cdae9b4.tif"
- ]
+ "verdict": "FAIL",
+ "blanket_exceptions": []
 }
