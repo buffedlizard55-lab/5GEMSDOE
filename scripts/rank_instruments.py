@@ -147,6 +147,10 @@ def main() -> int:
                     help="defines the scored footprint (finite pixels)")
     ap.add_argument("--pred", action="append", default=[],
                     help="extra candidate: path or path=label (scored, not ranked against the board)")
+    ap.add_argument("--instrument-tif", action="append", default=[],
+                    help="extra boolean instrument raster: path or path=name (pixels > 0.5 are "
+                         "truth; scored with the platform mask, ranked against the board like "
+                         "the built-in instruments)")
     ap.add_argument("--out", default="data/evidence/rank_instruments.json")
     a = ap.parse_args()
 
@@ -172,6 +176,25 @@ def main() -> int:
         instruments.append(instrument("proxy_sgmc_gap", proxy_only & valid, fp_region,
                                       "SGMC faults absent from the labels (Horton et al. 2017, "
                                       "DOI 10.3133/ds1052): out-of-domain for every file here"))
+
+    # Generic boolean instrument rasters (e.g. the GDR 355 geothermal-system prior disks,
+    # built by scripts/build_gdr355_prior.py).  Same mask contract as the built-ins: truth is
+    # restricted to the scored footprint, the FP region excludes the catalogue pixels the
+    # platform masks (forum 11516).
+    for spec in a.instrument_tif:
+        p, _, name = spec.partition("=")
+        if not name:
+            name = Path(p).stem
+        ip = Path(p)
+        if not ip.is_absolute():
+            ip = ROOT / ip
+        if not ip.exists():
+            print(f"WARN: instrument raster not found: {ip} (skipped)", file=sys.stderr)
+            continue
+        arr = read_bool(ip) & valid
+        instruments.append(instrument(name, arr, fp_region,
+                                      f"boolean raster {ip.name} supplied via --instrument-tif "
+                                      "(pixels > 0.5 are truth)"))
 
     files = [dict(s) for s in SCORED if Path(ROOT / s["path"]).exists()]
     missing = [s["sha8"] for s in SCORED if not Path(ROOT / s["path"]).exists()]

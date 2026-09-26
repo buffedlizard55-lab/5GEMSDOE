@@ -1,0 +1,76 @@
+{
+ "generated_utc": "2026-09-26T06:01:25Z",
+ "generated_by": "scripts/build_flagship_candidate.py",
+ "base": "docs/downloads/candidate_s5_catalogue_hedge.tif",
+ "detector": "data/derived/context_detector_prob_topo_rad.tif",
+ "budget_basis": "D2 (STRATEGY.md): a strict superset of +9,430 unmasked px from the SAME detector family scored -0.0003 (break-even) at DTI 0.1563; N = 10,000 is parity with that measured line for a DIFFERENT detector family (D5: Jaccard 0.066, near-disjoint supports)",
+ "sweep": [
+  {
+   "n_add": 5000,
+   "added_px": 5000,
+   "threshold_off_base": 0.6627451181411743,
+   "emitted_px": 232507,
+   "chargeable_px": 171519,
+   "in_domain_dti": 0.66144
+  },
+  {
+   "n_add": 10000,
+   "added_px": 10000,
+   "threshold_off_base": 0.615686297416687,
+   "emitted_px": 237507,
+   "chargeable_px": 176519,
+   "in_domain_dti": 0.65659
+  },
+  {
+   "n_add": 20000,
+   "added_px": 20000,
+   "threshold_off_base": 0.5647059082984924,
+   "emitted_px": 247507,
+   "chargeable_px": 186519,
+   "in_domain_dti": 0.64669
+  },
+  {
+   "n_add": 50000,
+   "added_px": 50000,
+   "threshold_off_base": 0.4745098054409027,
+   "emitted_px": 277507,
+   "chargeable_px": 216519,
+   "in_domain_dti": 0.61813
+  }
+ ],
+ "chosen": {
+  "n_add": 10000,
+  "added_px": 10000,
+  "threshold_off_base": 0.615686297416687,
+  "emitted_px": 237507,
+  "chargeable_px": 176519,
+  "in_domain_dti": 0.65659,
+  "on_masked_catalogue_px": 60988,
+  "required_marginal_hit_rate_at_0_1563": 0.03227,
+  "far_from_catalogue_px": 2496,
+  "far_from_catalogue_fraction": 0.2496
+ },
+ "in_domain_score": {
+  "dti": 0.656595,
+  "T": 60988.0,
+  "F": 159486.37,
+  "note": "against the supplied catalogue: in-domain monitor, NOT the test set"
+ },
+ "output": {
+  "path": "data/derived/candidate_s5f_flagship.tif",
+  "download": "docs/downloads/candidate_s5f_flagship.tif",
+  "sha256": "cb755e0b91642a085c74bb70eeeb6d89018287226aea93e02d45e9e779df3341",
+  "bytes": 627793
+ },
+ "suggested_upload_name": "gems-submission-s5f-flagship-cb755e0b.tif",
+ "suggested_note": "S5-F \u00b7 cb755e0b \u00b7 S5-A + top 10,000 off-base px of H1+H2 detector (scarp + radiometric) \u00b7 D2-parity budget \u00b7 flagship for final selection",
+ "conformance": {
+  "pixels": 12279160,
+  "template_valid_px": 5167373,
+  "filled_inside": 0,
+  "masked_outside": 7111787,
+  "clipped": 0,
+  "unchanged": 5167373
+ },
+ "phase2_note": "the same file is scored in both prize rounds; the 50k row of the sweep is the aggressive end (expanded labels reward verified discoveries) if the owner wants the discovery play at selection time"
+}

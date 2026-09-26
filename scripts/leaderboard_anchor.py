@@ -236,7 +236,7 @@ def algebra(meas: dict) -> dict:
     pair = None
     by = {r["file"]: r for r in meas["files"]}
     a, b = by.get("gemsdoe-ens12-adopted-7f00890a.tif"), by.get("gemsdoe2-dual-family-union-f68e590f.tif")
-    if a and b and a.get("score") and b.get("score"):
+    if a and b and a.get("status") == "OK" and b.get("status") == "OK" and a.get("score") and b.get("score"):
         dE = b["unmasked_emitted_px"] - a["unmasked_emitted_px"]
         rows = []
         for G in (10_000, 20_000, 30_000, 50_000, 80_000, 120_000):
@@ -335,7 +335,21 @@ def main(argv=None) -> int:
             print(f"MISSING {p}: run python scripts/assemble_data_bridge.py first")
             return 2
     meas = measure(Path(a.labels), Path(a.sample))
-    alg = algebra(meas)
+    missing = [r["file"] for r in meas["files"] if r.get("status") != "OK"]
+    missing_scored = [r["file"] for r in meas["files"]
+                      if r.get("status") != "OK" and r.get("score") is not None]
+    if missing:
+        print("MISSING scored files (sha256-pinned bytes expected in data/evidence/leaderboard_anchor/):")
+        for m in missing:
+            print(f"  {m}")
+        print("Restore them with: python scripts/fetch_leaderboard_anchors.py  "
+              "(fetches via api.github.com, verifies every sha256, logs each fetch)")
+    if missing_scored:
+        alg = {"status": "SKIPPED", "missing_files": missing_scored}
+        deductions_out = ["deductions SKIPPED — scored-file bytes missing; restore and re-run"]
+    else:
+        alg = algebra(meas)
+        deductions_out = deductions(meas, alg)
     report = {
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "generated_by": "scripts/leaderboard_anchor.py",
@@ -343,7 +357,7 @@ def main(argv=None) -> int:
         "metric": {"alpha": ALPHA, "beta": BETA, "R_px": R_PX, "R_m": 300},
         "leader": LEADER, "sources": SOURCES,
         "measurements": meas, "algebra": alg,
-        "deductions": deductions(meas, alg),
+        "deductions": deductions_out,
         "irregularities": [
             "The 0.1560 row's file identity is inferred from GEMSDOE2's pre-registered upload order, not read "
             "from the submissions page — FLAGGED; confirm from the account's DrivenData history.",
@@ -355,8 +369,9 @@ def main(argv=None) -> int:
         ],
     }
     Path(a.out).write_text(json.dumps(report, indent=1))
-    ok = all(r.get("sha256_ok") and r.get("nan_inside_valid") == 0 and r.get("finite_outside_valid") == 0
-             for r in meas["files"] if r.get("status") == "OK")
+    ok = (not missing) and all(
+        r.get("sha256_ok") and r.get("nan_inside_valid") == 0 and r.get("finite_outside_valid") == 0
+        for r in meas["files"] if r.get("status") == "OK")
     print(f"valid={meas['valid_px']:,} known={meas['known_fault_px']:,} ({meas['known_fraction_of_valid']:.2%})")
     for r in meas["files"]:
         if r.get("status") != "OK":
@@ -367,7 +382,7 @@ def main(argv=None) -> int:
     print("\n".join(report["deductions"]))
     print(f"\nwrote {Path(a.out).relative_to(ROOT) if str(a.out).startswith(str(ROOT)) else a.out}")
     if a.check and not ok:
-        print("CHECK FAILED: a scored file's sha256 or template conformance does not hold")
+        print("CHECK FAILED: scored files missing and/or sha256 or template conformance does not hold")
         return 1
     return 0
 

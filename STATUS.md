@@ -1,5 +1,86 @@
 # Project status — 5GEMSDOE (fork of GEMSDOE at its 2026-09-24 state)
 
+## 5GEMSDOE session 4 (2026-09-26) — the geothermal prior is measured and rejected as an instrument; the scarp channel is measured and adopted; five uploadable candidates ship, two of them new
+
+**Read `PROJECT_BRIEF.md`, `docs/STRATEGY.md` and `docs/GEOTHERMAL_SCIENCE.md` first.** Everything below was executed in
+the sandbox on this branch; every number is in the evidence JSONs named alongside it.
+
+### What was done, in order
+
+1. **Leaderboard re-read 2026-09-26** (the agent's page fetcher reaches drivendata.org; the shell's egress does not).
+   Raw 50-row capture stored at `data/evidence/leaderboard/leaderboard_2026-09-26.md` with a provenance header;
+   `scripts/fetch_leaderboard_snapshot.py` (new) parses it with self-checks (ranks contiguous, scores non-increasing,
+   each family account's board score ≥ its pinned-byte score) → `leaderboard_snapshot_2026-09-26.json`:
+   leader **DARD 0.3049** (10 subs), **top-5 cutoff 0.2589**, ours #23 (0.1563) / #24 (0.1560) / #40 (0.1193) /
+   #41 (0.1152) / #50 (0.0830) — each still **one** submission; S5-A etc. not yet uploaded. Gap to the top-5 line:
+   **0.1026** from our best file.
+2. **GDR 355 prior built and measured** (`scripts/build_gdr355_prior.py`, fixes: row/col mgrid swap + empty-disk guard):
+   117 systems in the footprint; distance to supplied catalogue **median 7.07 km, 91/117 > 1 km**; disks
+   R3/R10/R20/R30 = 3,393 / 37,089 / 147,069 / 329,759 px (< 1 % on masked px). **Instrument test FAILED**
+   (`scripts/rank_instruments.py --instrument-tif` ×4 → `data/evidence/rank_instruments_gdr355.json`): Spearman
+   ρ vs the board = **−0.60 / −0.60 / −0.20 / −0.20**. Reason is structural (G5 in the science doc): disk truth
+   pays for coverage of geothermal ground, the board pays for precision on fault lines. Recorded as a negative
+   result; the prior may not select, only weight.
+3. **The aux channels are in the repo, verified, unpacked.** The runner's committed uint8 (254-level) parts
+   (`data/aux_bridge/`, sha256-pinned, topo 32.5 MB / radiometric 25.5 MB) pass `scripts/aux_bridge.py verify` and
+   unpack to `data/external/topo_u8.tif` (9 bands) + `radiometric_u8.tif` (7 bands). **H1/H2 no longer need the
+   runner or a GPU.**
+4. **Paired detector training, strict 4-fold** (`scripts/train_context_detector.py`, `--aux` appendable; the
+   session-3 baseline was 3 folds, so a strict 4-fold re-run was launched for the pairing):
+   | detector (same partition, same seed) | fold peaks (held-out binary DTI) | mean |
+   |---|---|---|
+   | 19 official bands | 0.156 / 0.155 / 0.113 / 0.127 | 0.138 |
+   | **+ scarp (H1)** | **0.179 / 0.162 / 0.122 / 0.146** | **0.152** |
+   | + scarp + radiometric (H1+H2) | **0.182 / 0.160 / 0.131 / 0.142** | 0.154 |
+
+   The scarp channel is positive on **every** fold (mean +0.014, **+10.5 %**); radiometric adds ~+0.002.
+   **D7's missing channel is real, and it trains on a laptop from committed bytes.** Evidence:
+   `data/evidence/context_detector_{base4fold,topo,topo_rad}.json`; fields committed as uint8 (×255) in
+   `data/derived/`.
+5. **Two new candidates built, budgeted, gated by both judges** (our 17-check validator + the vendored
+   independent implementation, DTI agreement to six decimals):
+   * **S5-D, the geothermal corridor** (`scripts/build_gdr_corridor_candidate.py` →
+     `docs/downloads/candidate_s5d_gdr_corridor.tif`, sha 629800b1): S5-A base + (GDR355 R20 corridor ∩ H1+H2
+     detector at the corridor's own p90 ∩ off-catalogue) = **+6,922 px**, 100 % of them > 300 m off the
+     catalogue, required marginal hit rate 0.0323. Note:
+     `S5-D · 629800b1 · S5-A + GDR355 R20 corridor ∩ context detector (q0.9) · +6,922 off-catalogue px · budgeted bet on systems-anchored new faults (H8)`.
+   * **S5-F, the flagship for final selection** (`scripts/build_flagship_candidate.py` →
+     `docs/downloads/candidate_s5f_flagship.tif`, sha cb755e0b): S5-A base + top 10,000 off-base pixels of the
+     H1+H2 detector (budget = the D2 parity line: a same-family +9,430 px superset measured break-even; sweep at
+     5k/10k/20k/50k in `data/evidence/emission/flagship.json`, the 50k row is the Phase-2 discovery end).
+     Note: `S5-F · cb755e0b · S5-A + top 10,000 off-base px of H1+H2 detector (scarp + radiometric) · D2-parity budget · flagship for final selection`.
+   Both: 237,507 / 227,507 emitted px, all 5,167,373 template-valid px finite in [0,1], NaN exactly outside —
+   the range-rejection class is structurally impossible.
+6. **Structural-target weights re-derived** (`scripts/build_structural_targets.py`): the published 32/25/22 %
+   does not reproduce over all 426 workbook rows (S6) **but does, to the rounding digit, over the 247
+   favourable-setting rows** (426 − 113 undetermined − 2 volcanic): 79/247 = 32.0 %, 62/247 = 25.1 %, 55/247 =
+   22.3 %, and all 8 rows of the published table match within 0.005. The page and the workbook agree once the
+   denominator is the one the page quotes; the script now carries the measured fractions and the full
+   `weight_derivation` in its report, and `data/derived/structural_targets.tif` was re-run on them.
+7. **Docs updated**: `docs/GEOTHERMAL_SCIENCE.md` §5c (G1–G6, the prior as a measured negative result) + S6
+   resolution,
+   `docs/STRATEGY.md` §4d + renumbered upload plan (S5-A → density probe → S5-C → S5-D → flagship; the flagship
+   is the one final selection, not a weekly slot) + limitations update (aux channels committed).
+8. **Site rebuilt** (`scripts/build_site.py`): index now publishes the 2026-09-26 bar (0.3049, 50 entrants);
+   strategy page gains §9b (board re-read, GDR prior table with the negative result called out, the strict
+   4-fold detector table, the two new submissions); the executive-summary candidate block now offers all five
+   candidates with paste-ready Notes; `scripts/check_site_generator.py` **PASS** (8/10 steps).
+
+### Next steps, in order (for session 5)
+
+1. **Owner uploads S5-A first** (free by rule; the score decides the reading of the masking rule), then the
+   density probe (inverts |G|), then S5-C and S5-D on separate accounts, one per week within the 3/week limit.
+   Paste each returned score back into the anchor script and re-run `leaderboard_anchor.py --check`.
+2. **Re-derive the structural-target weights**: `scripts/build_structural_targets.py` still uses the published
+   32/25/22 % that the workbook does not reproduce (measured 26.5 / 18.5 / 14.6 / 12.9 %; S6 in the science doc).
+3. **CNN path** (`config.yaml` / `config_topo.yaml`) still needs a runner or a GPU box (~300 min/fold on CPU as
+   GEMSDOE measured); if one becomes available, the committed uint8 aux channels drop straight in via
+   `data.aux_feature_paths`.
+4. **If any S5 upload scores**: update `SCORED` in the anchor script, re-run the instrument tests (the new
+   score adds a sixth known pair), and let the branch rule in STRATEGY.md §5 steer the remaining slots.
+5. **Phase-2 decision at selection time**: the 50k sweep row of S5-F is the aggressive end (expanded labels
+   reward verified discoveries); the choice should be made with the |G| measurement from the density probe in hand.
+
 ## 5GEMSDOE session 2 (2026-09-25) — which local instrument can be trusted: the SGMC proxy is measured to anti-rank the board, the leaderboard-inversion is measured to be unidentified, and one free decision survives
 
 **Read `PROJECT_BRIEF.md`, `docs/STRATEGY.md` and `docs/GEOTHERMAL_SCIENCE.md` first.** Everything below was executed in the

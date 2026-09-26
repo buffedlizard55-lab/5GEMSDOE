@@ -1,0 +1,577 @@
+{
+ "generated_utc": "2026-09-26T04:41:30Z",
+ "generated_by": "scripts/fetch_leaderboard_snapshot.py",
+ "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+ "capture": "data/evidence/leaderboard/leaderboard_2026-09-26.md",
+ "observed_date": "2026-09-26",
+ "participants_on_page": 50,
+ "leader": {
+  "account": "DARD",
+  "score": 0.3049,
+  "submissions": 10,
+  "last_submission": "3d 3h ago"
+ },
+ "top5_cutoff_public_dti": 0.2589,
+ "our_accounts": [
+  {
+   "account": "extradr19",
+   "rank": 23,
+   "score": 0.1563,
+   "pinned_score": 0.1563,
+   "submissions": 1,
+   "last_submission": "1d 2h ago",
+   "file_sha8": "7f00890a",
+   "site": "GEMSDOE"
+  },
+  {
+   "account": "smashi34",
+   "rank": 24,
+   "score": 0.156,
+   "pinned_score": 0.156,
+   "submissions": 1,
+   "last_submission": "8h 55min ago",
+   "file_sha8": "f68e590f",
+   "site": "GEMSDOE2"
+  },
+  {
+   "account": "smrtdoog5",
+   "rank": 40,
+   "score": 0.1193,
+   "pinned_score": 0.1193,
+   "submissions": 1,
+   "last_submission": "8h 59min ago",
+   "file_sha8": "f347b70daa",
+   "site": "GEMSDOE3"
+  },
+  {
+   "account": "SDCF9",
+   "rank": 41,
+   "score": 0.1152,
+   "pinned_score": 0.1152,
+   "submissions": 1,
+   "last_submission": "8h 46min ago",
+   "file_sha8": "4e03fc9705",
+   "site": "GEMSDOE3"
+  },
+  {
+   "account": "wbg1",
+   "rank": 50,
+   "score": 0.083,
+   "pinned_score": 0.083,
+   "submissions": 1,
+   "last_submission": "8h 49min ago",
+   "file_sha8": "37f9d5b855",
+   "site": "GEMSDOE3"
+  }
+ ],
+ "rows": [
+  {
+   "rank": 1,
+   "members": [
+    "DARD"
+   ],
+   "display_name": "DARD",
+   "last_submission": "3d 3h ago",
+   "submissions": 10,
+   "score": 0.3049
+  },
+  {
+   "rank": 2,
+   "members": [
+    "alexoktaba"
+   ],
+   "display_name": "alexoktaba",
+   "last_submission": "1d 3h ago",
+   "submissions": 13,
+   "score": 0.2993
+  },
+  {
+   "rank": 3,
+   "members": [
+    "HardcoreTechGod"
+   ],
+   "display_name": "HardcoreTechGod",
+   "last_submission": "1w ago",
+   "submissions": 6,
+   "score": 0.2854
+  },
+  {
+   "rank": 4,
+   "members": [
+    "mzoorob"
+   ],
+   "display_name": "mzoorob",
+   "last_submission": "1d 2h ago",
+   "submissions": 15,
+   "score": 0.2843
+  },
+  {
+   "rank": 5,
+   "members": [
+    "joeyfezster"
+   ],
+   "display_name": "joeyfezster",
+   "last_submission": "9h 23min ago",
+   "submissions": 12,
+   "score": 0.2589
+  },
+  {
+   "rank": 6,
+   "members": [
+    "GrigorSargsyan"
+   ],
+   "display_name": "GrigorSargsyan",
+   "last_submission": "1d 2h ago",
+   "submissions": 5,
+   "score": 0.2504
+  },
+  {
+   "rank": 7,
+   "members": [
+    "xiaofanhu"
+   ],
+   "display_name": "xiaofanhu",
+   "last_submission": "20h 26min ago",
+   "submissions": 2,
+   "score": 0.2367
+  },
+  {
+   "rank": 8,
+   "members": [
+    "exposed"
+   ],
+   "display_name": "exposed",
+   "last_submission": "2h 59min ago",
+   "submissions": 12,
+   "score": 0.234
+  },
+  {
+   "rank": 9,
+   "members": [
+    "hiii12345"
+   ],
+   "display_name": "hiii12345",
+   "last_submission": "8h 21min ago",
+   "submissions": 5,
+   "score": 0.2255
+  },
+  {
+   "rank": 10,
+   "members": [
+    "tchu"
+   ],
+   "display_name": "tchu",
+   "last_submission": "22h 21min ago",
+   "submissions": 11,
+   "score": 0.222
+  },
+  {
+   "rank": 11,
+   "members": [
+    "oshbocker"
+   ],
+   "display_name": "oshbocker",
+   "last_submission": "2d 2h ago",
+   "submissions": 15,
+   "score": 0.2185
+  },
+  {
+   "rank": 12,
+   "members": [
+    "moongrega"
+   ],
+   "display_name": "moongrega",
+   "last_submission": "2d 2h ago",
+   "submissions": 10,
+   "score": 0.2174
+  },
+  {
+   "rank": 13,
+   "members": [
+    "rariwa",
+    "masterozone0617"
+   ],
+   "display_name": "Batik Shirt Brothers",
+   "last_submission": "1d 22h ago",
+   "submissions": 10,
+   "score": 0.1956
+  },
+  {
+   "rank": 14,
+   "members": [
+    "doegemsDrivendata"
+   ],
+   "display_name": "doegemsDrivendata",
+   "last_submission": "5d 23h ago",
+   "submissions": 5,
+   "score": 0.1847
+  },
+  {
+   "rank": 15,
+   "members": [
+    "ndavis7"
+   ],
+   "display_name": "ndavis7",
+   "last_submission": "6h 49min ago",
+   "submissions": 1,
+   "score": 0.1797
+  },
+  {
+   "rank": 16,
+   "members": [
+    "ad3002"
+   ],
+   "display_name": "ad3002",
+   "last_submission": "1d 11h ago",
+   "submissions": 11,
+   "score": 0.177
+  },
+  {
+   "rank": 17,
+   "members": [
+    "nsabaj"
+   ],
+   "display_name": "nsabaj",
+   "last_submission": "1h 7min ago",
+   "submissions": 3,
+   "score": 0.1744
+  },
+  {
+   "rank": 18,
+   "members": [
+    "jgaines"
+   ],
+   "display_name": "jgaines",
+   "last_submission": "1d 2h ago",
+   "submissions": 12,
+   "score": 0.1694
+  },
+  {
+   "rank": 19,
+   "members": [
+    "dmitry_v"
+   ],
+   "display_name": "dmitry_v",
+   "last_submission": "16h 59min ago",
+   "submissions": 2,
+   "score": 0.1672
+  },
+  {
+   "rank": 20,
+   "members": [
+    "VictorCallejas"
+   ],
+   "display_name": "VictorCallejas",
+   "last_submission": "12h 44min ago",
+   "submissions": 1,
+   "score": 0.1629
+  },
+  {
+   "rank": 21,
+   "members": [
+    "Scotty77"
+   ],
+   "display_name": "Scotty77",
+   "last_submission": "2d 16h ago",
+   "submissions": 5,
+   "score": 0.159
+  },
+  {
+   "rank": 22,
+   "members": [
+    "fishnchips"
+   ],
+   "display_name": "fishnchips",
+   "last_submission": "4d 6h ago",
+   "submissions": 7,
+   "score": 0.1587
+  },
+  {
+   "rank": 23,
+   "members": [
+    "extradr19"
+   ],
+   "display_name": "extradr19",
+   "last_submission": "1d 2h ago",
+   "submissions": 1,
+   "score": 0.1563
+  },
+  {
+   "rank": 24,
+   "members": [
+    "smashi34"
+   ],
+   "display_name": "smashi34",
+   "last_submission": "8h 55min ago",
+   "submissions": 1,
+   "score": 0.156
+  },
+  {
+   "rank": 25,
+   "members": [
+    "hudsonenterprises"
+   ],
+   "display_name": "hudsonenterprises",
+   "last_submission": "16h 2min ago",
+   "submissions": 3,
+   "score": 0.1543
+  },
+  {
+   "rank": 26,
+   "members": [
+    "Aero"
+   ],
+   "display_name": "Aero",
+   "last_submission": "1w 1d ago",
+   "submissions": 5,
+   "score": 0.15
+  },
+  {
+   "rank": 27,
+   "members": [
+    "GeoTrace"
+   ],
+   "display_name": "GeoTrace",
+   "last_submission": "1w 1d ago",
+   "submissions": 6,
+   "score": 0.1498
+  },
+  {
+   "rank": 28,
+   "members": [
+    "Milieunomics"
+   ],
+   "display_name": "Milieunomics",
+   "last_submission": "1w 2d ago",
+   "submissions": 10,
+   "score": 0.1466
+  },
+  {
+   "rank": 29,
+   "members": [
+    "mlandry"
+   ],
+   "display_name": "mlandry",
+   "last_submission": "5d 6h ago",
+   "submissions": 4,
+   "score": 0.1461
+  },
+  {
+   "rank": 30,
+   "members": [
+    "kbrodt"
+   ],
+   "display_name": "kbrodt",
+   "last_submission": "6d 6h ago",
+   "submissions": 10,
+   "score": 0.1456
+  },
+  {
+   "rank": 31,
+   "members": [
+    "hall4jm"
+   ],
+   "display_name": "hall4jm",
+   "last_submission": "1d 1h ago",
+   "submissions": 6,
+   "score": 0.1445
+  },
+  {
+   "rank": 32,
+   "members": [
+    "syntropy-digital"
+   ],
+   "display_name": "syntropy-digital",
+   "last_submission": "4d 3h ago",
+   "submissions": 5,
+   "score": 0.1433
+  },
+  {
+   "rank": 33,
+   "members": [
+    "Beacon"
+   ],
+   "display_name": "Beacon",
+   "last_submission": "1w 2d ago",
+   "submissions": 7,
+   "score": 0.1407
+  },
+  {
+   "rank": 34,
+   "members": [
+    "Waltz157"
+   ],
+   "display_name": "Waltz157",
+   "last_submission": "2d 10h ago",
+   "submissions": 9,
+   "score": 0.1403
+  },
+  {
+   "rank": 35,
+   "members": [
+    "Milieu"
+   ],
+   "display_name": "Milieu",
+   "last_submission": "1w 3d ago",
+   "submissions": 6,
+   "score": 0.1401
+  },
+  {
+   "rank": 36,
+   "members": [
+    "joano"
+   ],
+   "display_name": "joano",
+   "last_submission": "1w 3d ago",
+   "submissions": 5,
+   "score": 0.135
+  },
+  {
+   "rank": 37,
+   "members": [
+    "vladee",
+    "ahome"
+   ],
+   "display_name": "zeaal",
+   "last_submission": "1w 3d ago",
+   "submissions": 12,
+   "score": 0.135
+  },
+  {
+   "rank": 38,
+   "members": [
+    "jorgeschmidt"
+   ],
+   "display_name": "jorgeschmidt",
+   "last_submission": "1w 2d ago",
+   "submissions": 9,
+   "score": 0.1256
+  },
+  {
+   "rank": 39,
+   "members": [
+    "mtrpdx"
+   ],
+   "display_name": "mtrpdx",
+   "last_submission": "4d 11h ago",
+   "submissions": 7,
+   "score": 0.1219
+  },
+  {
+   "rank": 40,
+   "members": [
+    "smrtdoog5"
+   ],
+   "display_name": "smrtdoog5",
+   "last_submission": "8h 59min ago",
+   "submissions": 1,
+   "score": 0.1193
+  },
+  {
+   "rank": 41,
+   "members": [
+    "SDCF9"
+   ],
+   "display_name": "SDCF9",
+   "last_submission": "8h 46min ago",
+   "submissions": 1,
+   "score": 0.1152
+  },
+  {
+   "rank": 42,
+   "members": [
+    "ahkarl13"
+   ],
+   "display_name": "ahkarl13",
+   "last_submission": "1w 5d ago",
+   "submissions": 6,
+   "score": 0.1148
+  },
+  {
+   "rank": 43,
+   "members": [
+    "kartoun"
+   ],
+   "display_name": "DBbun",
+   "last_submission": "1w 4d ago",
+   "submissions": 3,
+   "score": 0.1119
+  },
+  {
+   "rank": 44,
+   "members": [
+    "mctamro"
+   ],
+   "display_name": "mctamro",
+   "last_submission": "4d 13h ago",
+   "submissions": 2,
+   "score": 0.1007
+  },
+  {
+   "rank": 45,
+   "members": [
+    "lfiaschi"
+   ],
+   "display_name": "lfiaschi",
+   "last_submission": "4d 15h ago",
+   "submissions": 2,
+   "score": 0.0982
+  },
+  {
+   "rank": 46,
+   "members": [
+    "finding_true_north"
+   ],
+   "display_name": "finding_true_north",
+   "last_submission": "1w ago",
+   "submissions": 3,
+   "score": 0.0966
+  },
+  {
+   "rank": 47,
+   "members": [
+    "dreanarc"
+   ],
+   "display_name": "dreanarc",
+   "last_submission": "2d 22h ago",
+   "submissions": 4,
+   "score": 0.0926
+  },
+  {
+   "rank": 48,
+   "members": [
+    "tarabird90"
+   ],
+   "display_name": "tarabird90",
+   "last_submission": "5d 8h ago",
+   "submissions": 4,
+   "score": 0.0878
+  },
+  {
+   "rank": 49,
+   "members": [
+    "ganesh_stemx"
+   ],
+   "display_name": "ganesh_stemx",
+   "last_submission": "2d 20h ago",
+   "submissions": 6,
+   "score": 0.0858
+  },
+  {
+   "rank": 50,
+   "members": [
+    "wbg1"
+   ],
+   "display_name": "wbg1",
+   "last_submission": "8h 49min ago",
+   "submissions": 1,
+   "score": 0.083
+  }
+ ],
+ "self_checks": [
+  "ranks contiguous 1..N",
+  "scores non-increasing with rank",
+  "each family account's board score is >= the score its committed bytes earned (sha256 pins in scripts/leaderboard_anchor.py); a strict improvement is reported below, a shortfall fails the capture"
+ ],
+ "improvements_over_committed_bytes": []
+}

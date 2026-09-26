@@ -41,6 +41,9 @@ outputs_*/
 *.tiff
 !data/fixture/*.tif
 !data/bridge/*.tif
+# the five public-scored submissions + two unscored arms: the anchor's measurements
+# are only reproducible with the exact pinned bytes (scripts/fetch_leaderboard_anchors.py)
+!data/evidence/leaderboard_anchor/*.tif
 *.zip
 *.gdb
 *.grd
