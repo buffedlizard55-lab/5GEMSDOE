@@ -1,14 +1,14 @@
 {
-  "generated_utc": "2026-09-21T12:53:52+00:00",
-  "generated_by": "scripts/verify_links.py on a host with live HTTP (72 of 84 URLs answered)",
-  "n_urls_reached": 72,
+  "generated_utc": "2026-09-28T14:04:32+00:00",
+  "generated_by": "scripts/verify_links.py on a host with live HTTP (82 of 94 URLs answered)",
+  "n_urls_reached": 82,
   "catalog": "docs/data_catalog.csv",
-  "n_rows": 92,
-  "n_unique_urls": 84,
+  "n_rows": 103,
+  "n_unique_urls": 94,
   "summary_counts": {
     "BOT_BLOCKED_403": 10,
     "AUTH_REQUIRED": 1,
-    "OK_200": 61,
+    "OK_200": 71,
     "OK_REDIRECTED": 10,
     "OK_202": 1,
     "LOGIN_REQUIRED": 1
@@ -141,8 +141,52 @@
       "status": 200,
       "final_url": "https://community.drivendata.org/c/gems-prize-challenge/111",
       "content_type": "text/html",
-      "content_length": 23158,
+      "content_length": 28658,
       "title": "GEMS Prize Challenge - DrivenData Community",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7",
+      "status": 200,
+      "final_url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7",
+      "content_type": "text/html",
+      "content_length": 24036,
+      "title": "How were the new test faults identified? (data sources and fault types) - #7 by chrisk-dd - GEMS Prize Challenge - DrivenData Community",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+      "status": 200,
+      "final_url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+      "content_type": "text/html",
+      "content_length": 31579,
+      "title": "Scoring clarification: are known USGS/INGENIOUS faults masked when scoring, and are they in the Final Round label set? - GEMS Prize Challenge - DrivenData Community",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+      "status": 200,
+      "final_url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+      "content_type": "text/html",
+      "content_length": 24557,
+      "title": "Where do you draw the line? - GEMS Prize Challenge - DrivenData Community",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://data.usgs.gov/datacatalog/data/USGS:3a81321b-c153-416f-98b7-cc8e5f0e17c3",
+      "status": 200,
+      "final_url": "https://data.usgs.gov/datacatalog/data/USGS:3a81321b-c153-416f-98b7-cc8e5f0e17c3",
+      "content_type": "text/html",
+      "content_length": null,
+      "title": "1/3rd arc-second Digital Elevation Models (DEMs) - USGS National Map 3DEP Downloadable Data Collection | USGS Science Data Catalog",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
@@ -340,6 +384,17 @@
       "result": "OK_200"
     },
     {
+      "url": "https://gdr.openei.org/submissions/355",
+      "status": 200,
+      "final_url": "https://gdr.openei.org/submissions/355",
+      "content_type": "text/html",
+      "content_length": null,
+      "title": "GDR: Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
       "url": "https://geoconvention.com/wp-content/uploads/abstracts/2019/GC2019_313_Deep_learning_approach_to_automatic_detection_of_faults_and_fractures_CNN.pdf",
       "status": 200,
       "final_url": "https://geoconvention.com/wp-content/uploads/abstracts/2019/GC2019_313_Deep_learning_approach_to_automatic_detection_of_faults_and_fractures_CNN.pdf",
@@ -361,23 +416,23 @@
       "result": "OK_200"
     },
     {
-      "url": "https://github.com/buffedlizard55-lab/5GEMSDOE/blob/main/docs/results.html",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE/blob/main/docs/results.html",
       "status": 200,
-      "final_url": "https://github.com/buffedlizard55-lab/5GEMSDOE/blob/main/docs/results.html",
+      "final_url": "https://github.com/buffedlizard55-lab/GEMSDOE/blob/main/docs/results.html",
       "content_type": "text/html",
       "content_length": null,
-      "title": "GEMSDOE/docs/results.html at main \u00b7 buffedlizard55-lab/5GEMSDOE \u00b7 GitHub",
+      "title": "GEMSDOE/docs/results.html at main \u00b7 buffedlizard55-lab/GEMSDOE \u00b7 GitHub",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
     },
     {
-      "url": "https://github.com/buffedlizard55-lab/5GEMSDOE/tree/main/data",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/main/data",
       "status": 200,
-      "final_url": "https://github.com/buffedlizard55-lab/5GEMSDOE/tree/main/data",
+      "final_url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/main/data",
       "content_type": "text/html",
       "content_length": null,
-      "title": "GEMSDOE/data at main \u00b7 buffedlizard55-lab/5GEMSDOE \u00b7 GitHub",
+      "title": "GEMSDOE/data at main \u00b7 buffedlizard55-lab/GEMSDOE \u00b7 GitHub",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
@@ -544,6 +599,16 @@
       "result": "OK_200"
     },
     {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt",
+      "status": 200,
+      "final_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt",
+      "content_type": "application/octet-stream",
+      "content_length": 830253,
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
       "url": "https://pubs.usgs.gov/ds/1052/ds20171052_appendix5.pdf",
       "status": 200,
       "final_url": "https://pubs.usgs.gov/ds/1052/ds20171052_appendix5.pdf",
@@ -652,6 +717,17 @@
       "result": "LOGIN_REQUIRED"
     },
     {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "status": 200,
+      "final_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "content_type": "text/html",
+      "content_length": null,
+      "title": "Competition: The Geologic Enhanced Mapping System (GEMS) Prize Challenge",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
       "status": 200,
       "final_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
@@ -755,7 +831,7 @@
       "status": 200,
       "final_url": "https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2025.1635344/full",
       "content_type": "text/html",
-      "content_length": 602061,
+      "content_length": 601596,
       "title": "Frontiers | 3D fault detection method using TransVNet",
       "redirected": false,
       "redirected_offsite": false,
@@ -766,7 +842,7 @@
       "status": 200,
       "final_url": "https://www.herox.com/GEMSPrize/resource/2274",
       "content_type": "text/html",
-      "content_length": 93976,
+      "content_length": 93965,
       "title": "GEMS Prize Official Rules",
       "redirected": false,
       "redirected_offsite": false,
@@ -828,6 +904,37 @@
       "content_type": "text/html",
       "content_length": null,
       "title": "GBCGE Subsurface Database Explorer and APIs (Dataset) | DOE Data Explorer",
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://www.osti.gov/servlets/purl/1110517",
+      "status": 200,
+      "final_url": "https://www.osti.gov/servlets/purl/1110517",
+      "content_type": "application/pdf",
+      "content_length": 1003730,
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://www.osti.gov/servlets/purl/1724082",
+      "status": 200,
+      "final_url": "https://www.osti.gov/servlets/purl/1724082",
+      "content_type": "application/pdf",
+      "content_length": 1719141,
+      "redirected": false,
+      "redirected_offsite": false,
+      "result": "OK_200"
+    },
+    {
+      "url": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5",
+      "status": 200,
+      "final_url": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5",
+      "content_type": "text/html",
+      "content_length": null,
+      "title": "1/3rd arc-second Digital Elevation Models (DEMs) - USGS National Map 3DEP Downloadable Data Collection - ScienceBase-Catalog",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
