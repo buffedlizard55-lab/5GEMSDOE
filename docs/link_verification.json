@@ -1,20 +1,39 @@
 {
-  "generated_utc": "2026-10-12T15:36:35+00:00",
-  "generated_by": "scripts/verify_links.py on a host with live HTTP (82 of 94 URLs answered)",
-  "n_urls_reached": 82,
+  "generated_utc": "2026-10-19T13:30:04+00:00",
+  "generated_by": "scripts/verify_links.py on a host with live HTTP (79 of 94 URLs answered)",
+  "n_urls_reached": 79,
   "catalog": "docs/data_catalog.csv",
   "n_rows": 103,
   "n_unique_urls": 94,
   "summary_counts": {
     "BOT_BLOCKED_403": 10,
     "AUTH_REQUIRED": 1,
-    "OK_200": 71,
+    "OK_200": 68,
     "OK_REDIRECTED": 10,
+    "UNREACHABLE": 1,
     "OK_202": 1,
+    "BROKEN_HTTP_500": 2,
     "LOGIN_REQUIRED": 1
   },
-  "n_problems": 0,
-  "problems": [],
+  "n_problems": 3,
+  "problems": [
+    {
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "status": null,
+      "result": "UNREACHABLE",
+      "error": "URLError(TimeoutError('timed out'))"
+    },
+    {
+      "url": "https://pubs.usgs.gov/publication/ds1052",
+      "status": 500,
+      "result": "BROKEN_HTTP_500"
+    },
+    {
+      "url": "https://pubs.usgs.gov/publication/fs20203055",
+      "status": 500,
+      "result": "BROKEN_HTTP_500"
+    }
+  ],
   "n_expected_non_ok": 12,
   "expected_non_ok": [
     {
@@ -141,7 +160,7 @@
       "status": 200,
       "final_url": "https://community.drivendata.org/c/gems-prize-challenge/111",
       "content_type": "text/html",
-      "content_length": 36243,
+      "content_length": 40446,
       "title": "GEMS Prize Challenge - DrivenData Community",
       "redirected": false,
       "redirected_offsite": false,
@@ -152,7 +171,7 @@
       "status": 200,
       "final_url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7",
       "content_type": "text/html",
-      "content_length": 24044,
+      "content_length": 24079,
       "title": "How were the new test faults identified? (data sources and fault types) - #7 by chrisk-dd - GEMS Prize Challenge - DrivenData Community",
       "redirected": false,
       "redirected_offsite": false,
@@ -174,7 +193,7 @@
       "status": 200,
       "final_url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
       "content_type": "text/html",
-      "content_length": 24508,
+      "content_length": 24536,
       "title": "Where do you draw the line? - GEMS Prize Challenge - DrivenData Community",
       "redirected": false,
       "redirected_offsite": false,
@@ -352,14 +371,9 @@
     },
     {
       "url": "https://gbcge.org/current-projects/ingenious/",
-      "status": 200,
-      "final_url": "https://gbcge.org/current-projects/ingenious/",
-      "content_type": "text/html",
-      "content_length": null,
-      "title": "INGENIOUS project - Great Basin Center for Geothermal Energy",
-      "redirected": false,
-      "redirected_offsite": false,
-      "result": "OK_200"
+      "status": null,
+      "result": "UNREACHABLE",
+      "error": "URLError(TimeoutError('timed out'))"
     },
     {
       "url": "https://gdr.openei.org/submissions/1390",
@@ -582,8 +596,8 @@
       "status": 200,
       "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11834046/",
       "content_type": "text/html",
-      "content_length": 149732,
-      "title": "Integrated structural analysis for geothermal exploration: A new protocol combining remote sensing and aeromagnetic geophysical data - PMC",
+      "content_length": null,
+      "title": "Checking your browser - reCAPTCHA",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
@@ -641,33 +655,21 @@
     },
     {
       "url": "https://pubs.usgs.gov/publication/ds1052",
-      "status": 200,
-      "final_url": "https://pubs.usgs.gov/publication/ds1052",
-      "content_type": "text/html",
-      "content_length": null,
-      "title": "The State Geologic Map Compilation (SGMC) geodatabase of the conterminous United States",
-      "redirected": false,
-      "redirected_offsite": false,
-      "result": "OK_200"
+      "status": 500,
+      "result": "BROKEN_HTTP_500"
     },
     {
       "url": "https://pubs.usgs.gov/publication/fs20203055",
-      "status": 200,
-      "final_url": "https://pubs.usgs.gov/publication/fs20203055",
-      "content_type": "text/html",
-      "content_length": null,
-      "title": "Technical overview of the U.S. Geological Survey Earth Mapping Resources Initiative (Earth MRI)",
-      "redirected": false,
-      "redirected_offsite": false,
-      "result": "OK_200"
+      "status": 500,
+      "result": "BROKEN_HTTP_500"
     },
     {
       "url": "https://pypi.org/project/torch/",
       "status": 200,
       "final_url": "https://pypi.org/project/torch/",
       "content_type": "text/html",
-      "content_length": 305295,
-      "title": "torch \u00b7 PyPI",
+      "content_length": 3038,
+      "title": "Client Challenge",
       "redirected": false,
       "redirected_offsite": false,
       "result": "OK_200"
@@ -831,7 +833,7 @@
       "status": 200,
       "final_url": "https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2025.1635344/full",
       "content_type": "text/html",
-      "content_length": 601368,
+      "content_length": 603185,
       "title": "Frontiers | 3D fault detection method using TransVNet",
       "redirected": false,
       "redirected_offsite": false,
@@ -842,7 +844,7 @@
       "status": 200,
       "final_url": "https://www.herox.com/GEMSPrize/resource/2274",
       "content_type": "text/html",
-      "content_length": 93971,
+      "content_length": 93880,
       "title": "GEMS Prize Official Rules",
       "redirected": false,
       "redirected_offsite": false,
